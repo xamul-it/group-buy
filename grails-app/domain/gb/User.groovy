@@ -10,4 +10,7 @@ class User {
     static constraints = {
 		email email: true, blank: false
     }
+	static mapping = {
+        table "gbuser"
+    }
 }

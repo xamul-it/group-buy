@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>	  <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>		 <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>		 <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/font-awesome.css">
+
+		<!--[if lt IE 9]>
+			<script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
+		<![endif]-->
+	</head>
+	<body id="ng-app" ng-app="ui.fatturasprint.main" ng-controller="FsDashboardController">
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="mainbar">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <!--<a class="navbar-brand" href="#"><img alt="Fattura Sprint" src="img/logo.png"></a>  -->
+		</div>
+		<div class="navbar-collapse collapse main-nav">
+			<ul class="nav navbar-nav">
+				<li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
+				<li class="active"><a href="#"><i class="fa fa-money fa-lg"></i> Vendite</a></li>
+				<li><a href="#"><i class="fa fa-shopping-cart fa-lg"></i> Acquisti</a></li>
+			</ul>
+            
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">UAU Studio <b class="caret"></b></a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="/user/preferences"><i class="glyphicon glyphicon-user"></i> Profilo</a></li>
+                            <li><a href="/help/support"><i class="glyphicon glyphicon-cog"></i> Preferenze</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/auth/logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+		</div><!--/.navbar-collapse -->
+        </div>
+     </div>
+     <div class="secondbar">
+	  <div class="container">
+        <div class="collapse navbar-collapse secondary-nav">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Vendite</a></li>
+				<li><a href="#">Acquisti</a></li>
+			</ul>
+			<ul class="nav navbar-nav pull-right">
+				<li><a href="#">Aiuto?</a></li>
+			</ul>
+
+        </div>
+	  </div>
+      </div>
+	</div>
+
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+	  <div class="container">
+		<h1>{{greeting.text}}, World!</h1>
+		<p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+		<p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+	  </div>
+	</div>
+
+<div class="container">
+
+<h1>Fatture 2014<span class="caret"></span>
+<a role="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> Nuova fattura</a>
+</h1>
+<div class="filtro">
+<div class="pull-left">
+    <i class="glyphicon glyphicon-filter"></i>
+    <button class="btn btn-transparent btn-xs">Tutte</button>
+    <button class="btn btn-transparent btn-xs">Pagate</button>
+    <button class="btn btn-active btn-xs">Inviate</button>
+    <button class="btn btn-transparent btn-xs">Scadute <span class="badge bg-danger">12</span></button>
+    <button class="btn btn-transparent btn-xs">Bozze</button>
+</div>
+<span class="divider-vertical pull-left"></span>
+<div class="pull-left">
+<form class="navbar-form" role="search">
+        <div class="form-group">
+		<i class="glyphicon glyphicon-search"></i>
+        <input type="text" class="form-control" placeholder="Cerca"> <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+</form>
+</div>
+<span class="divider-vertical pull-left"></span>
+<div class="pull-right">
+    <span class="total">Totale <strong>€ 44.720,00</strong></span>
+    <i class="glyphicon glyphicon-export"></i>
+</div>
+</div>
+
+<table class="table table-hover elenco"><tr><th>Stato</th><th>N.</th><th>Data</th><th>Descrizione</th><th class="text-center">Note</th><th class="text-right">Totale</th><th class="td-button"></th></tr>
+    <tr>
+    <td><div class="label label-success">Pagato</div></td>
+    <td>13</td>
+    <td>15/02/2014<br>
+    <small>Scadenza: 15/03/2014</small></td>
+    <td>Bubeefy Srl<br><small>Racket delle estorsioni</small></td>
+    <td class="text-center"><i class="glyphicon glyphicon-list-alt"></i></td>
+    <td class="text-right"><strong>€ 14.000,00</strong><br><small>Imponibile: € 11.742,00</small></td>
+    <td class="text-right">
+		<div class="btn-group" dropdown is-open="status.isopen">
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" ng-disabled="disabled"><span class="caret"></span></button>
+          <ul class="dropdown-menu pull-right" role="menu">
+            <li><a href="#">Visualizza</a></li>
+            <li><a href="#">Modifica</a></li>
+            <li><a href="#">Scarica PDF</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Duplica</a></li>
+          </ul>
+        </div>
+    </td>
+    </tr>
+    
+<tr><td><div class="label label-danger">Scaduto</div></td><td>13</td><td>15/02/2014<br>
+<small>Scadenza: 15/03/2014</small></td><td>Bubeefy Srl<br><small>Racket delle estorsioni</small></td>
+<td class="text-center"></td>
+<td class="text-right"><strong>€ 14.000,00</strong><br><small>Imponibile: € 11.742,00</small></td><td class="text-right"><button class="btn btn-default btn-sm" ng-click="status.open = !status.open"><b class="caret"></b></button></td></tr>
+
+<tr><td><div class="label label-warning">Inviato</div></td><td>13</td><td>15/02/2014<br>
+<small>Scadenza: 15/03/2014</small></td><td>Bubeefy Srl<br><small>Racket delle estorsioni</small></td>
+<td class="text-center"><i class="glyphicon glyphicon-list-alt"></i></td>
+<td class="text-right"><strong>€ 14.000,00</strong><br><small>Imponibile: € 11.742,00</small></td><td class="text-right"><button class="btn btn-default btn-sm" ng-click="status.open = !status.open"><b class="caret"></b></button></td></tr>
+
+</table>
+
+	  <footer>
+		<p>&copy; Fattura Sprint 2014</p>
+	  </footer>
+	</div> <!-- /container -->
+    	<!--
+    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+		-->
+	<script src="js/vendor/angular.js"></script>
+	<script src="js/vendor/ui-bootstrap-tpls-0.11.2.js"></script>
+	<script src="js/vendor/angular-locale_it-it.js"></script>
+	
+	<script src="data/fatture.js"></script>
+	<script src="js/angular/controllers.js"></script>
+	<script src="js/angular/filters.js"></script>
+
+	</body>
+</html>

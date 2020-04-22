@@ -1,0 +1,18 @@
+{
+	"data" : {"total":21728.09, "overdues":18},
+	"items":[
+		{"id":294, "statusText":"Pagato",	"status":3, "number":1, "date":"2014-02-05T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"Ieri", "description":"Fornitura parquet", "net":1000},
+		{"id":301, "statusText":"Scaduto",	"status":2, "number":2, "date":"2014-02-07T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"Oggi", "description":"Posa parquet", "net":1000},
+		{"id":315, "statusText":"Inviato",	"status":1, "number":3, "date":"2014-02-28T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"Domani", "description":"Lamatura parquet", "net":1000},
+		{"id":333, "statusText":"Bozza",	"status":0, "number":4, "date":"2014-03-05T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"tra 3 giorni", "description":"Finitura parquet", "net":1000},
+		
+		{"id":295, "statusText":"Pagato",	"status":3, "number":5, "date":"2014-02-05T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"Ieri", "description":"Fornitura parquet", "net":1000},
+		{"id":302, "statusText":"Scaduto",	"status":2, "number":6, "date":"2014-02-07T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"Oggi", "description":"Posa parquet", "net":1000},
+		{"id":316, "statusText":"Inviato",	"status":1, "number":7, "date":"2014-02-28T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"Domani", "description":"Lamatura parquet", "net":1000},
+		{"id":334, "statusText":"Bozza",	"status":0, "number":8, "date":"2014-03-05T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"tra 3 giorni", "description":"Finitura parquet", "net":1000},
+		
+		{"id":296, "statusText":"Pagato",	"status":3, "number":9, "date":"2014-02-05T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"Ieri", "description":"Fornitura parquet", "net":1000},
+		{"id":302, "statusText":"Scaduto",	"status":2, "number":10, "date":"2014-02-07T00:00:00.000000Z", "customer":"Chet Martino", "total":1220, "notes":"", "dueDate":"Oggi", "description":"Posa parquet", "net":1000}
+		
+	]
+}

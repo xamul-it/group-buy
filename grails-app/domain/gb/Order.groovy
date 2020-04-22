@@ -16,4 +16,8 @@ class Order {
     static constraints = {
 		supplier nullable: false
     }
+	
+	static mapping = {
+        table "gborder"
+    }
 }
