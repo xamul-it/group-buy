@@ -5,11 +5,12 @@ class Group {
 	String description
 	Address deliveryAddress
 	Date creationDate
-	List customers
+	List members
+	boolean isPublic
 	
 	static belongsTo = [customer: Customer]
 	
-	static hasMany = [customers: Customer]
+	static hasMany = [members: Customer]
     
 	static constraints = {
 		name size: 5..15, blank: false , nullable: true
@@ -18,4 +19,5 @@ class Group {
 	static mapping = {
         table "gbgroup"
     }
+	static embedded = ['deliveryAddress']
 }

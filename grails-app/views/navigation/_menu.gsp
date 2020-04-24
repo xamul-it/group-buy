@@ -28,6 +28,6 @@
 		</collapse-group>
 	</div><!--/.navbar -->
 	<collapse-group collapse-group-name="help">
-		<ng-include src="'/ng-templates/navigation-help.html'"></ng-include>
+		<ng-include src="'/assets/ng-templates/navigation-help.html'"></ng-include>
 	</collapse-group>
 </multiple-collapse>

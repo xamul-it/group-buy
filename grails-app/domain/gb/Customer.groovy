@@ -7,4 +7,6 @@ class Customer extends User {
 	static mapping = {
         discriminator value: "customer"
     }
+
+    static embedded = ['deliveryAddress']
 }

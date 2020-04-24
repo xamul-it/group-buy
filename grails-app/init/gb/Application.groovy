@@ -41,6 +41,8 @@ class Application extends GrailsAutoConfiguration  implements ApplicationRunner
 
             gb.UserRole.saveAll( new UserRole(user: admin, role: role))
 
+            gb.Group.saveAll()
+
 
 
         }
