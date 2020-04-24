@@ -8,14 +8,14 @@
 				.constant("baseController", "fattura");
 	
 			angular.module('scaffolding', ['grailsService', 'flashService', 'ngRoute','ngSanitize','textAngular','customFilters','datePicker','ui.bootstrap'])
-				.constant("templateUrl", "/assets/fattura/ng-templates")
+				.constant("templateUrl", "/assets/order/ng-templates")
 				.constant("commonTemplateUrl", "/assets/ng-templates");
 			
 		</script>
 		</head>
 <body>
 
-	<ng-include src="'/assets/ng-templates/navigation-vendite.html'"></ng-include>
+	<ng-include src="'/navigation/menu.html?menu=orders'"></ng-include>
 
 
 </body>
