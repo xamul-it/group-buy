@@ -9,17 +9,16 @@
 			{{listCtrl.list | json}}
 		</pre>
 	</gas-collapse>
-	
 	<div class="top-title clearfix">
-	<div dropdown class="dropdown pull-left">
-			<h1 dropdown-toggle>Ultimi Ordini</h1>
+		<div dropdown class="dropdown pull-left">
+				<h1 dropdown-toggle>Ultimi Ordini</h1>
+		</div>
+
+		<div class="buttons" role="group">
+			<a role="button" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-export"></i> Esporta</a>
+			<a role="button" class="btn btn-sm btn-success" data-ng-href="#create"><i class="glyphicon glyphicon-plus"></i> Nuova fattura</a>
+		</div>
 	</div>
-	
-	<div class="buttons" role="group">
-		<a role="button" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-export"></i> Esporta</a>
-		<a role="button" class="btn btn-sm btn-success" data-ng-href="#create"><i class="glyphicon glyphicon-plus"></i> Nuova fattura</a>
-	</div>
-</div>
 	
 	<div class="filtro">
 		<div class="pull-left">

@@ -1,11 +1,12 @@
 package gb
 
-class Customer extends User {
+class Customer {//extends User {
 
     Address deliveryAddress
+    User user
 		
 	static mapping = {
-        discriminator value: "customer"
+        user nullable:true
     }
 
     static embedded = ['deliveryAddress']

@@ -206,7 +206,6 @@ scaffoldingModule.controller("ListCtrl", function($scope, $routeParams, $locatio
 	};
 
 	ctrl.update = function(item) {
-		
 		console.log("ctrl.update: "+ item.id+" "+JSON.stringify(item));
 		
 		item.$update(function(response) {
@@ -244,16 +243,28 @@ scaffoldingModule.controller("ShowCtrl", function($scope, $routeParams, $locatio
     };
 });
 
+//LZ 2020/04/25 - tolto $scope e sostituito con ctrl, non so perché copiato da altre parti del codice
 scaffoldingModule.controller("CreateCtrl", function($scope, $location, Grails, Flash) {
+    alert("Create")
      var ctrl = this; // assign to a variable to be consistent when using in the template
-    $scope.item = new Grails;
+    //$scope.item = new Grails;
+    ctrl.item = new Grails;
 
-    $scope.save = function(item) {
+    ctrl.save = function(item) {
+        alert("Create save")
+        console.log("createCtrl.save: "+JSON.stringify(item));
         item.$save(function(response) {
             Flash.success(response.message);
             $location.path('/show/' + response.id);
         }, errorHandler.curry($scope, $location, Flash));
     };
+    //$scope.save = function(item) {
+	//	console.log("createCtrl(scope).save: "+ item.id+" "+JSON.stringify(item));
+    //    item.$save(function(response) {
+    //        Flash.success(response.message);
+    //        $location.path('/show/' + response.id);
+    //    }, errorHandler.curry($scope, $location, Flash));
+    //};
 });
 
 scaffoldingModule.controller("EditCtrl", function($scope, $routeParams, $location, Grails, Flash) {
@@ -264,7 +275,6 @@ scaffoldingModule.controller("EditCtrl", function($scope, $routeParams, $locatio
     }, errorHandler.curry($scope, $location, Flash));
 
     ctrl.update = function(item) {
-		
 		console.log("editCtrl.update: "+ item.id+" "+JSON.stringify(item));
 		
         item.$update(function(response) {

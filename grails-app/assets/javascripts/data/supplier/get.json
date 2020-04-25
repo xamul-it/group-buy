@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "name": "test",
+  "user": null,
+  "shippingAddress": {
+    "address1": "Via Indirizzo 1",
+    "countryCode": "MI",
+    "postalCode": "20100",
+    "address2": "Via Indirizzo 2",
+    "city": "Milano"
+  },
+  "contactInfo": {
+    "phone": "123456789",
+    "mobile": "1234577967",
+    "email": "aa@aa.it"
+  },
+  "description": "Negozio che venge frutta",
+  "email": "aa@aa.it"
+}

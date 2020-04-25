@@ -5,7 +5,7 @@
 <h1 class="pull-left">Fattura n. {{showCtrl.item.numero}}<br>
 <small>{{showCtrl.item.data | dateParse | date: 'shortDate'}} - {{showCtrl.item.anagrafica.denominazione}}</small></h1>
 <div class="buttons" role="group">
-		
+
 		<div class="btn-group">
 			<a role="button" class="btn btn-sm btn-default" data-back data-ng-click="navBack()"><i class="glyphicon glyphicon-remove"></i> Annulla</a>
 		</div>
