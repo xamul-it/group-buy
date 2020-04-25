@@ -14,6 +14,15 @@ class SupplierController {
         respond supplierService.list(params), model:[supplierCount: supplierService.count()]
     }
 
+    def list(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond supplierService.list(params), model:[supplierCount: supplierService.count()]
+    }
+
+    def get(Long id) {
+        respond supplierService.get(id)
+    }
+
     def show(Long id) {
         respond supplierService.get(id)
     }

@@ -4,6 +4,18 @@
         <h4 class="modal-title">Nuovo negozio: {{createCtrl.item.name}}</h4>
     </div>
 
+    <gas-alert level="{{message.level}}" text="{{message.text}}"></gas-alert>
+
+    <gas-collapse>
+        <a ng-click="collapseCtrl.toggleCollapsed()" class="btn btn-xs" popover="Debug info" popover-trigger="mouseenter" popover-placement="right">
+            Debug <i class="caret"></i>
+        </a>
+        <pre collapse="collapseCtrl.isCollapsed()">
+            {{createCtrl.item | json}}
+            form.$invalid: {{fattura.$invalid}}
+        </pre>
+    </gas-collapse>
+
     <form role="form" data-ng-submit="update(createCtrl.item)">
         <div class="modal-body">
 
@@ -47,7 +59,7 @@
                 <div class="col-xs-2">
                     <div class="form-group">
                         <label for="">Provincia</label>
-                        <input type="text" class="form-control" ng-model="createCtrl.item.shippingAddress.city"
+                        <input type="text" class="form-control" ng-model="createCtrl.item.shippingAddress.countryCode"
                                placeholder="Comune"/>
                     </div>
                 </div>

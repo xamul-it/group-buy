@@ -4,7 +4,8 @@
 	<meta name="layout" content="angular"/>
 		<script>
 			angular.module('grailsService', ['ngResource'])
-				.constant("baseUrl", "/assets/data/")
+				//.constant("baseUrl", "/assets/data/")
+				.constant("baseUrl", "/")
 				.constant("baseController", "supplier");
 	
 			angular.module('scaffolding', ['grailsService', 'flashService', 'ngRoute','ngSanitize','textAngular','customFilters','datePicker','ui.bootstrap'])

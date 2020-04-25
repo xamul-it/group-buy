@@ -171,7 +171,7 @@ Function.prototype.curry = function() {
  */
 function errorHandler($scope, $location, Flash, response) {
 	
-	console.log("errorHandler: "+response.status+" "+(response.data.message || "Not found")+" "+$location)
+	console.log("errorHandler: "+response.status+" "+" location:"+$location+" Scope:"+$scope+ "Errori: "+response.data.errors)
 	
     switch (response.status) {
         case 404: // resource not found - return to the list and display message returned by the controller
@@ -183,7 +183,8 @@ function errorHandler($scope, $location, Flash, response) {
             $scope.message = {level: 'error', text: response.data.message};
             break;
         case 422: // validation error - display errors alongside form fields
-            $scope.errors = response.data.errors;
+            $scope.message = {level: 'error', text: response.data.errors}
+            Flash.error(response.data.errors);
             break;
         default: // TODO: general error handling
     }
@@ -245,13 +246,12 @@ scaffoldingModule.controller("ShowCtrl", function($scope, $routeParams, $locatio
 
 //LZ 2020/04/25 - tolto $scope e sostituito con ctrl, non so perché copiato da altre parti del codice
 scaffoldingModule.controller("CreateCtrl", function($scope, $location, Grails, Flash) {
-    alert("Create")
      var ctrl = this; // assign to a variable to be consistent when using in the template
     //$scope.item = new Grails;
     ctrl.item = new Grails;
-
+    ctrl.message="ciao ctrl"
+    $scope.message="ciao scope"
     ctrl.save = function(item) {
-        alert("Create save")
         console.log("createCtrl.save: "+JSON.stringify(item));
         item.$save(function(response) {
             Flash.success(response.message);

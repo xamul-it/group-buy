@@ -84,10 +84,10 @@
                     </button>
                     <ul class="dropdown-menu pull-right" role="menu">
                         <li>
-                            <a data-ng-href="#/show/{{item.id}}">Dettagli</a>
+                            <a data-gas-modal="" template-url="#/show/{{item.id}}">Dettagli</a>
                         </li>
                         <li>
-                            <a data-ng-href="#/edit/{{item.id}}">Modifica</a>
+                            <a data-gas-modal="" data-ng-href="#/edit/{{item.id}}">Modifica</a>
                         </li>
                     </ul>
                 </div>

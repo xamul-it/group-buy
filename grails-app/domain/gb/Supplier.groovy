@@ -5,7 +5,7 @@ class Supplier {
     Address shippingAddress
     ContactInfo contactInfo
     User user
-    String email
+    //String email
     String name
     String description
 
@@ -14,10 +14,12 @@ class Supplier {
     }
 
     static mapping = {
+        address nullable:true
+        user nullable:true
         discriminator value: "supplier"
         name nullable: false, blank: false, size: 5..20
         description nullable: false, blank: false, size: 5..200
-        email nullable: false, blank: false, size: 5..20
+        //email nullable: true, blank: true, size: 5..20
     }
     static embedded = ['shippingAddress','contactInfo']
 

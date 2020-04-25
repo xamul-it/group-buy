@@ -4,6 +4,7 @@
         <h4 class="modal-title">Modifica i dati del negozio: {{editCtrl.item.name}} ({{editCtrl.item.id}})</h4>
     </div>
 
+    <gas-alert level="{{message.level}}" text="{{message.text}}"></gas-alert>
     <form role="form" data-ng-submit="update(editCtrl.item)">
         <div class="modal-body">
 
