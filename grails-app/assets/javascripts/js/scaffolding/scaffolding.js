@@ -184,6 +184,7 @@ function errorHandler($scope, $location, Flash, response) {
             break;
         case 422: // validation error - display errors alongside form fields
             $scope.message = {level: 'error', text: response.data.errors}
+            $scope.errors = response.data.errors
             Flash.error(response.data.errors);
             break;
         default: // TODO: general error handling

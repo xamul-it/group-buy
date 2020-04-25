@@ -4,7 +4,7 @@
         <h4 class="modal-title">Modifica i dati del negozio: {{editCtrl.item.name}} ({{editCtrl.item.id}})</h4>
     </div>
 
-    <gas-alert level="{{message.level}}" text="{{message.text}}"></gas-alert>
+    <gas-alert level="{{message.level}}" text="{{message.text}}">test</gas-alert>
     <form role="form" data-ng-submit="update(editCtrl.item)">
         <div class="modal-body">
 
@@ -24,7 +24,35 @@
                     </div>
                 </div>
             </div>
+            <hr/>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group has-success has-feedback">
+                        <label class="control-label" for="email">e-mail</label>
+                        <input type="text" class="form-control" id="email" name="email"
+                               ng-model="editCtrl.item.contactInfo.email" placeholder="Email"/>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group has-error has-feedback">
+                        <label class="control-label" for="phone">Telefono</label>
+                        <input type="text" class="form-control" id="phone" name="phone"
+                               ng-model="editCtrl.item.contactInfo.phone" placeholder="Telefono"/>
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group has-error has-feedback">
+                        <label class="control-label" for="mobile">Cellulare</label>
+                        <input type="text" class="form-control" id="mobile" name="mobile"
+                               ng-model="editCtrl.item.contactInfo.mobile" placeholder="Cellulare"/>
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
 
+            <hr/>
 
             <div class="form-group">
                 <label for="address1">Indirizzo</label>
@@ -58,33 +86,6 @@
                         <input type="text" class="form-control" name="postalCode"
                                ng-model="editCtrl.item.shippingAddress.postalCode"
                                placeholder="Codice postale"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-4">
-                    <div class="form-group has-success has-feedback">
-                        <label class="control-label" for="email">e-mail</label>
-                        <input type="text" class="form-control" id="email" name="email"
-                               ng-model="editCtrl.item.contactInfo.email" placeholder="Email"/>
-                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="form-group has-error has-feedback">
-                        <label class="control-label" for="phone">Telefono</label>
-                        <input type="text" class="form-control" id="phone" name="phone"
-                               ng-model="editCtrl.item.contactInfo.phone" placeholder="Telefono"/>
-                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="form-group has-error has-feedback">
-                        <label class="control-label" for="mobile">Cellulare</label>
-                        <input type="text" class="form-control" id="mobile" name="mobile"
-                               ng-model="editCtrl.item.contactInfo.mobile" placeholder="Cellulare"/>
-                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
                     </div>
                 </div>
             </div>

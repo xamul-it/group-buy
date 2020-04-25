@@ -4,7 +4,7 @@
         <h4 class="modal-title">Nuovo negozio: {{createCtrl.item.name}}</h4>
     </div>
 
-    <gas-alert level="{{message.level}}" text="{{message.text}}"></gas-alert>
+    <gas-alert ng-repeat="error in errors" level="danger" text="{{error.field}}: {{error.message}}"></gas-alert>
 
     <gas-collapse>
         <a ng-click="collapseCtrl.toggleCollapsed()" class="btn btn-xs" popover="Debug info" popover-trigger="mouseenter" popover-placement="right">

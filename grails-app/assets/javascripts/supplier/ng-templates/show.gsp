@@ -1,6 +1,6 @@
   <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	<h4 class="modal-title">Nuovo negozio</h4>
+	<h4 class="modal-title">Scheda negozio</h4>
   </div>
   
 <form role="form" data-ng-submit="update(item)">
@@ -10,7 +10,7 @@
 <div class="row">
 	<div class="col-sm-3">
 		<div class="form-group">
-		<label for="name">SNome </label>
+		<label for="name">Nome </label>
 			<p class="form-control" name="name" id="name" >{{showCtrl.item.name}}</p>
 		</div>
 	</div>
@@ -26,7 +26,7 @@
 <div class="form-group">
 	<label for="address">Indirizzo</label>
 	<p name="address" id="address" class="form-control">{{showCtrl.shippingAddress.address2}}
-		{{showCtrl.item.shippingAddress.address2 || ''}} <br ng-if="item.shippingAddress.address2">
+		{{showCtrl.item.shippingAddress.address2 || ''}} <br ng-if="item.shippingAddress.address2"/>
 	</p>
 </div>
 

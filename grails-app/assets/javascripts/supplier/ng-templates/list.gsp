@@ -53,7 +53,7 @@
                 <div class="client-name">{{item.name}}</div>
             </td>
             <td data-ng-click="show(item)">
-                <a href="mailto:{{item.contactInfo.email}}" ng-if="item.email">{{item.contactInfo.email || ''}}</a>
+                <a href="mailto:{{item.contactInfo.email}}" ng-if="item.contactInfo.email">{{item.contactInfo.email || ''}}</a>
                 <br ng-if="item.contactInfo.email"/>
                 <small ng-if="item.contactInfo.phone">
                     <i class="fa fa-phone"></i>

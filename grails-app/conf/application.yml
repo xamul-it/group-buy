@@ -112,7 +112,13 @@ environments:
     test:
         dataSource:
             dbCreate: update
-            url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            pooled: true
+            jmxExport: true
+            driverClassName: com.mysql.jdbc.Driver
+            username: groupbuy
+            password: gr0up-buy!
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+            url: jdbc:mysql://ptah07.seeweb.it:3306/ilz_it_groupbuy
     production:
         dataSource:
             dbCreate: none
