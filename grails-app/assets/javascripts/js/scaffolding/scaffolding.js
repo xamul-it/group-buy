@@ -172,8 +172,12 @@ Function.prototype.curry = function() {
 function errorHandler($scope, $location, Flash, response) {
 	
 	console.log("errorHandler: "+response.status+" "+" location:"+$location+" Scope:"+$scope+ "Errori: "+response.data.errors)
-	
+	//I livelli di errore sono: success, info, warning, danger
     switch (response.status) {
+        case 0:
+            $scope.message = {level: 'warning', text: "Errore di connessione : "+response.data.message}
+            Flash.error(response.data.errors);
+            break;
         case 404: // resource not found - return to the list and display message returned by the controller
             Flash.error(response.data.message || "Not found");
             if(angular.isDefined($location) && $location != null)
@@ -183,8 +187,12 @@ function errorHandler($scope, $location, Flash, response) {
             $scope.message = {level: 'error', text: response.data.message};
             break;
         case 422: // validation error - display errors alongside form fields
-            $scope.message = {level: 'error', text: response.data.errors}
+            $scope.message = {level: 'warning', text: "Errore di compilazione dati"}
             $scope.errors = response.data.errors
+            Flash.error(response.data.errors);
+            break;
+        case 500:
+            $scope.message = {level: 'warning', text: "Error 500: "+response.data.message}
             Flash.error(response.data.errors);
             break;
         default: // TODO: general error handling

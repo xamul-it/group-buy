@@ -1,26 +1,51 @@
 package gb
 
+/**
+ * Creazione:
+ * Il creator deve essere impostato al utente corrente loggato
+ *
+ * Consultazione:
+ * I dati "contactInfo" e "shippingAddress" possono essere recuperati solo dal creatore o dal owner
+ *
+ * Modifica
+ * La modifica è consentita solo dal creatore o dal owner
+ */
+
 class Supplier {
 
     Address shippingAddress
     ContactInfo contactInfo
-    User user
-    //String email
+    User creator
+    User owner
     String name
     String description
 
+    transient springSecurityService
+
     static constraints = {
-        user nullable:true
+        creator nullable:false
+        shippingAddress nullable:true
+        owner nullable:true
+        name nullable: false, blank: false, size: 5..20, unique: true,
+                validator: { val, obj ->
+                    (obj.creator.id == obj.springSecurityService.getPrincipal().id ||
+                            (obj.owner != null && obj.owner.id == obj.springSecurityService.getPrincipal().id)
+                    )
+                }
+        description nullable: false, blank: false, size: 5..200
     }
 
     static mapping = {
-        address nullable:true
-        user nullable:true
         discriminator value: "supplier"
-        name nullable: false, blank: false, size: 5..20
-        description nullable: false, blank: false, size: 5..200
-        //email nullable: true, blank: true, size: 5..20
     }
     static embedded = ['shippingAddress','contactInfo']
 
+    def beforeValidate () {
+        if (id==null) {
+            if (springSecurityService.isLoggedIn()) {
+                creator= User.get(springSecurityService.getPrincipal().id)
+            }
+        }
+        if (shippingAddress!=null) shippingAddress.countryCode="IT"
+    }
 }

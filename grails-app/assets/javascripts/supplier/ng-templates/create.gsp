@@ -4,7 +4,8 @@
         <h4 class="modal-title">Nuovo negozio: {{createCtrl.item.name}}</h4>
     </div>
 
-    <gas-alert ng-repeat="error in errors" level="danger" text="{{error.field}}: {{error.message}}"></gas-alert>
+    <gas-alert level="{{message.level}}" text="{{message.text}}"></gas-alert>
+    <gas-alert ng-repeat="error in errors" level="warning" text="{{error.field}}: {{error.message}}"></gas-alert>
 
     <gas-collapse>
         <a ng-click="collapseCtrl.toggleCollapsed()" class="btn btn-xs" popover="Debug info" popover-trigger="mouseenter" popover-placement="right">
@@ -59,7 +60,7 @@
                 <div class="col-xs-2">
                     <div class="form-group">
                         <label for="">Provincia</label>
-                        <input type="text" class="form-control" ng-model="createCtrl.item.shippingAddress.countryCode"
+                        <input type="text" class="form-control" ng-model="createCtrl.item.shippingAddress.district"
                                placeholder="Comune"/>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
 			<li><a href="/profilo"><i class="glyphicon glyphicon-user"></i> Profilo</a></li>
 			<li><a href="/preferenze"><i class="glyphicon glyphicon-cog"></i> Preferenze</a></li>
 			<li class="divider"></li>
-			<li><a href="/logout/index"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+			<li><a href="/logoff"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
 		</ul>
 	</li>
 	</ul>

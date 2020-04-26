@@ -13,10 +13,14 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/assets/**',      access: ['permitAll']],
 	[pattern: '/navigation/**',  access: ['permitAll']],
 	[pattern: '/securityinfo/**',access: 'ROLE_ADMIN'],
-	[pattern: '/order/**',       access: 'ROLE_ADMIN'],
-	[pattern: '/supplier/**',       access: 'ROLE_ADMIN'],
-	[pattern: '/groups/**',       access: 'ROLE_ADMIN'],
-	[pattern: '/groupBuy/**',    access: 'ROLE_ADMIN'],
+	[pattern: '/order/**',       access: 'isAuthenticated()'],
+	[pattern: '/supplier/**',       access: 'isAuthenticated()'],
+	[pattern: '/groups/**',       access: 'isAuthenticated()'],
+	[pattern: '/groupBuy/**',    access: 'isAuthenticated()'],
+
+	[pattern: '/user/**',    access: 'ROLE_ADMIN'],
+	[pattern: '/role/**',    access: 'ROLE_ADMIN'],
+	[pattern: '/registrationCode/**',    access: 'ROLE_ADMIN'],
 	[pattern: '/register/**',    access: ['permitAll']],
 	[pattern: '/**/js/**',       access: ['permitAll']],
 	[pattern: '/**/css/**',      access: ['permitAll']],
@@ -30,7 +34,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/css/**',      filters: 'none'],
 	[pattern: '/**/images/**',   filters: 'none'],
 	[pattern: '/**/favicon.ico', filters: 'none'],
-	[pattern: '/**',             filters: 'none']
-	//[pattern: '/**',             filters: 'JOINED_FILTERS']
+	//[pattern: '/**',             filters: 'none']
+	[pattern: '/**',             filters: 'JOINED_FILTERS']
 ]
 

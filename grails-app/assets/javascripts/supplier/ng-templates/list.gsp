@@ -45,7 +45,7 @@
             <th data-gas-sortable="date">Nome</th>
             <th data-gas-sortable="total">Contatto</th>
             <th data-gas-sortable="description">Indirizzo</th>
-            <th data-gas-sortable="description">Negozio Certificato</th>
+            <th data-gas-sortable="description">Creato da</th>
             <th></th>
         </tr>
         <tr ng-repeat="item in listCtrl.list | filter:statusFilterFn">
@@ -72,9 +72,11 @@
                 <br ng-if="item.shippingAddress.address2"/>
                 {{item.shippingAddress.postalCode}} {{item.shippingAddress.postalCode?'-':''}}
                 {{item.shippingAddress.city}}
-                {{item.provincia?'(':''}}{{item.provincia}}{{item.provincia?')':''}}
+                {{item.shippingAddress.district?'(':''}}{{item.shippingAddress.district}}{{item.shippingAddress.district?')':''}}
             </td>
-            <td data-ng-click="show(item)">
+            <td data-ng-click="show(item)">{{item.creator.id}}
+                <br/>
+                {{item.creator.username || 'No Username'}}
             </td>
             <td class="text-right">
                 <div class="btn-group" dropdown="">
