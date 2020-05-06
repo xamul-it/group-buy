@@ -7,9 +7,14 @@ class GroupController {
 
     GroupService groupService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", show: "GET"]
 
     def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond groupService.list(params), model:[groupCount: groupService.count()]
+    }
+
+    def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond groupService.list(params), model:[groupCount: groupService.count()]
     }

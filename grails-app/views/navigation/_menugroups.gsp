@@ -2,7 +2,7 @@
 			<div class="container">
 				<div class="collapse navbar-collapse secondary-nav" collapse="!isOpen">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/fattura/index.html">I miei gruppo</a></li>
+						<li class="active"><a href="/group/index.html">I miei gruppi</a></li>
 						<li><a href="/proforma/index.html">Tutti i gruppi</a></li>
 					</ul>
 					<ul class="nav navbar-nav pull-right">

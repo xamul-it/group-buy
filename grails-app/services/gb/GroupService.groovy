@@ -1,9 +1,11 @@
 package gb
 
+import grails.events.annotation.gorm.Listener
 import grails.gorm.services.Service
+import org.grails.datastore.mapping.engine.event.PreInsertEvent
 
-@Service(Group)
-interface GroupService {
+
+interface IGroupService {
 
     Group get(Serializable id)
 
@@ -15,4 +17,12 @@ interface GroupService {
 
     Group save(Group group)
 
+}
+
+@Service(Group)
+abstract class GroupService implements IGroupService {
+
+    @Listener(Group)
+    void onGroupPreInsert(PreInsertEvent event) {
+    }
 }
