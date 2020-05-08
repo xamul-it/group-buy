@@ -8,14 +8,19 @@ class Group {
 	List members
 	boolean isPublic
 	
-	static belongsTo = [owner: Customer]
+	static belongsTo = [owner: User]
 	
-	static hasMany = [members: Customer]
+	static hasMany = [members: User]
 
 	transient springSecurityService
 
 	static constraints = {
-		name size: 5..15, blank: false , nullable: true
+		name nullable: false, blank: false, size: 5..20, unique: true,
+				validator: { val, obj ->
+					(obj.owner.id == obj.springSecurityService.getPrincipal().id ||
+							(obj.owner != null && obj.owner.id == obj.springSecurityService.getPrincipal().id)
+					)
+				}
 		description size: 5..200, blank: true
     }
 	static mapping = {
@@ -29,9 +34,7 @@ class Group {
 				if(owner == null){
 					//TODO sistemare la gestione dell'owner -> chi genera il gruppo deve essere un customer
 					// o glielo deve associare
-					owner = new Customer();
-					owner.deliveryAddress = deliveryAddress
-					owner.user = User.get(springSecurityService.getPrincipal().id)
+					owner = User.get(springSecurityService.getPrincipal().id)
 				}
 			}
 			creationDate = new Date()

@@ -31,7 +31,7 @@
         </div>
         <span class="divider-vertical pull-left"></span>
         <div class="pull-right">
-            <span class="total"><strong>{{listCtrl.listData.count || 0}}</strong> Elenco gruppi</span>
+            <span class="total"><strong>{{listCtrl.list.count || 0}}</strong> Elenco gruppi</span>
             <i class="glyphicon glyphicon-export"></i>
         </div>
     </div>
@@ -65,7 +65,7 @@
                         <!--					<span class="sr-only">Documento {{item.number}}</span>-->
                     </button>
                     <ul class="dropdown-menu pull-right" role="menu">
-                        <li><a data-ng-href="#/show/{{item.id}}">Modifica</a></li>
+                        <li><a data-ng-href="#/edit/{{item.id}}">Modifica</a></li>
                     </ul>
                 </div>
             </td>

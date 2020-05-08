@@ -23,6 +23,10 @@ class GroupController {
         respond groupService.get(id)
     }
 
+    def get(Long id) {
+        respond groupService.get(id)
+    }
+
     def create() {
         respond new Group(params)
     }
@@ -50,6 +54,7 @@ class GroupController {
     }
 
     def edit(Long id) {
+        log.info "****edit id " + id
         respond groupService.get(id)
     }
 
