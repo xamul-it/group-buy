@@ -31,7 +31,7 @@
         </div>
         <span class="divider-vertical pull-left"></span>
         <div class="pull-right">
-            <span class="total"><strong>{{listCtrl.list.count || 0}}</strong> Elenco gruppi</span>
+            <span class="total"><strong>{{listCtrl.count || 0}}</strong> Gruppi</span>
             <i class="glyphicon glyphicon-export"></i>
         </div>
     </div>

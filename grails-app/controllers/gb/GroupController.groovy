@@ -16,7 +16,7 @@ class GroupController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond groupService.list(params), model:[groupCount: groupService.count()]
+        respond list:groupService.list(params), count: groupService.count()
     }
 
     def show(Long id) {

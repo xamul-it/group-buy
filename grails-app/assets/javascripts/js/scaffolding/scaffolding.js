@@ -202,13 +202,15 @@ function errorHandler($scope, $location, Flash, response) {
 scaffoldingModule.controller("ListCtrl", function($scope, $routeParams, $location, Grails, Flash) {
 	var ctrl = this; // assign to a variable to be consistent when using in the template
 	Grails.list($routeParams, function(list, headers) {
-		ctrl.list = list;//.items;
+		console.log("listCtrl.list: "+ list);
+		ctrl.list = list.list;//.items;
+		ctrl.count = list.count;
 		//ctrl.listData = list.data
 		ctrl.total = parseInt(headers('X-Pagination-Total'));
 		$scope.message = Flash.getMessage();
 		
-		console.log("listCtrl.list: "+ list+" "+JSON.stringify(list));
-		
+		console.log("listCtrl.list: "+ list.count+" "+JSON.stringify(list));
+
 	}, errorHandler.curry($scope, $location, Flash));
 
 	ctrl.show = function(item) {
@@ -234,7 +236,10 @@ scaffoldingModule.controller("ListCtrl", function($scope, $routeParams, $locatio
 			Flash.success(response.message);
 		}, errorHandler.curry($scope, null, Flash));
 	};
-	
+
+	ctrl.count = function(item) {
+		console.log("listCtrl.count: ");
+	};
 });
 	
 scaffoldingModule.controller("ShowCtrl", function($scope, $routeParams, $location, Grails, Flash) {
@@ -258,8 +263,6 @@ scaffoldingModule.controller("CreateCtrl", function($scope, $location, Grails, F
      var ctrl = this; // assign to a variable to be consistent when using in the template
     //$scope.item = new Grails;
     ctrl.item = new Grails;
-    ctrl.message="ciao ctrl"
-    $scope.message="ciao scope"
     ctrl.save = function(item) {
         console.log("createCtrl.save: "+JSON.stringify(item));
         item.$save(function(response) {

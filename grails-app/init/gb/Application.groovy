@@ -18,7 +18,7 @@ class Application extends GrailsAutoConfiguration  implements ApplicationRunner
         @Override
         @Transactional
         void run(ApplicationArguments args) throws Exception {
-            def role = new gb.Role(authority: 'ROLE_ADMIN')
+            /*def role = new gb.Role(authority: 'ROLE_ADMIN')
             gb.Role.saveAll(
                     role,
                     new gb.Role(authority: 'ROLE_CUSTOMER'),
@@ -42,7 +42,7 @@ class Application extends GrailsAutoConfiguration  implements ApplicationRunner
             gb.UserRole.saveAll( new UserRole(user: admin, role: role))
 
             gb.Group.saveAll()
-
+*/
 
 
         }

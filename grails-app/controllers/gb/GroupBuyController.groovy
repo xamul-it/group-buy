@@ -2,7 +2,9 @@ package gb
 
 class GroupBuyController {
 
-    def index() { }
+    def index() {
+        redirect action: "groups"
+    }
 
     def orders(){
     }

@@ -33,7 +33,7 @@
         <span class="divider-vertical pull-left"></span>
         <div class="pull-right">
             <span class="total">
-                <strong>{{listCtrl.listData.count || 0}}</strong>
+                <strong>{{listCtrl.count || 0}}</strong>
                 Elenco negozzi
             </span>
             <i class="glyphicon glyphicon-export"></i>

@@ -62,7 +62,7 @@
 		<!-- content -->
 			
 		<!-- ng-view -->
-		<div class="content" role="main" data-ng-view></div>
+		<div class="content" role="main" data-ng-view=""></div>
 		<!-- /ng-view -->
 	
 		<!-- footer -->

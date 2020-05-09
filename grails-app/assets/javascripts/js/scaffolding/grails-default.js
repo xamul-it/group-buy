@@ -5,7 +5,7 @@
 angular.module('grailsService').factory('Grails', function($resource, baseUrl, baseController) {
 	return $resource(baseUrl + ':controller/:action?id=:id', {controller: '@controller', id: '@id'}, {
 	//return $resource(baseUrl + ':controller/:action/:id', {controller: '@controller', id: '@id'}, {
-		list: {method: 'GET', params: {action: 'list.json', controller: baseController }, isArray: true },
+		list: {method: 'GET', params: {action: 'list.json', controller: baseController }},
 		get: {method: 'GET', params: {action: 'get.json', controller: baseController }},
 		save: {method: 'POST', params: {action: 'save.json', controller: baseController }},
 		update: {method: 'PUT', params: {action: 'update.json', controller: baseController }},
