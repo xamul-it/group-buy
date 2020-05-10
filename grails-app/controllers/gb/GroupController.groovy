@@ -16,7 +16,8 @@ class GroupController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond list:groupService.list(params), count: groupService.count()
+        response.setHeader('X-Pagination-Total', groupService.count().toString())
+        respond groupService.list(params), model:[groupCount: groupService.count()]
     }
 
     def show(Long id) {

@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <table class="table table-hover elenco" data-gas-infinite-scroll="" ng-model="listCtrl.list">
+    <table class="table table-hover elenco" data-gas-infinite-scroll="loadMore()" ng-model="listCtrl.list">
         <tr>
             <th data-gas-sortable="date">Nome</th>
             <th data-gas-sortable="total">Contatto</th>

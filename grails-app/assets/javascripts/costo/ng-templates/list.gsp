@@ -101,7 +101,7 @@
 	</tr>
 	<tr ng-show="!infiniteScrollCtrl.loading">
 		<td colspan="6">
-			<img src="/img/loading-hr.gif">
+			<img src="/assets/img/loading-hr.gif">
 		</td>
 	</tr>
 </table>

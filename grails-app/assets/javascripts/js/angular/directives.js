@@ -88,6 +88,7 @@ scaffoldingModule.directive('gasSearch', function(commonTemplateUrl) {
 });
 
 scaffoldingModule.directive('gasInfiniteScroll', function(WindowService) {
+    console.log("gasInfiniteScroll")
 	return {
 		restrict: 'EA',
 		transclude: false,
@@ -103,7 +104,8 @@ scaffoldingModule.directive('gasInfiniteScroll', function(WindowService) {
 				ctrl.loading = true;
 				var baseLegth = $scope.items.length; //TODO remove this demo code before production
 				if(baseLegth <= 50) //TODO remove this demo code before production
-					Grails.list($routeParams, function(list) {
+//					Grails.list({offset: $routeParams}, function(list) {
+					Grails.list({offset: baseLegth}, function(list) {
 						for (var i = 0; i < list.length; i++) {
 							var item = list[i];
 							//TODO remove this demo code before production

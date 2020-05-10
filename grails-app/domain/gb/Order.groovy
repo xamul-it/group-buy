@@ -2,6 +2,7 @@ package gb
 
 class Order {
 
+	Long number
 	SortedSet orderVoice
 	Supplier supplier
 	Date orderDate

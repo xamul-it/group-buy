@@ -1,7 +1,9 @@
 <div class="label" data-ng-class="{'label-default': getStatus(0), 'label-warning': getStatus(1), 'label-danger': getStatus(2), 'label-success': getStatus(3)}" ng-switch="property">
 	<span ng-switch-when="0">Bozza</span>
 	<span ng-switch-when="1">Inviato</span>
-	<span ng-switch-when="2">Scaduto</span>
-	<span ng-switch-when="3">Pagato</span>
+	<span ng-switch-when="2">Ricevuto</span>
+	<span ng-switch-when="3">Conseganto</span>
+	<span ng-switch-when="4">Chiuso</span>
+	<span ng-switch-when="5">Annullato</span>
 	<!-- {{property}} -->
 </div>
