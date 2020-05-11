@@ -6,7 +6,7 @@ class Group {
 	Address deliveryAddress
 	Date creationDate
 	List members
-	boolean isPublic
+	boolean publicGroup
 	
 	static belongsTo = [owner: User]
 	
@@ -24,8 +24,9 @@ class Group {
 		description size: 5..200, blank: true
     }
 	static mapping = {
-        table 'gbgroup'
-    }
+        table "gbgroup"
+		owner fetch: "join"
+	}
 	static embedded = ['deliveryAddress']
 
 	def beforeValidate () {
@@ -40,5 +41,19 @@ class Group {
 			creationDate = new Date()
 		}
 		if (deliveryAddress!=null) deliveryAddress.countryCode="IT"
+		log.debug "publicGroup:" + publicGroup + "****"
+			log.debug "metto a false il public"
+	}
+
+	def String toString(){
+		String s = new String( "["
+		+ " name: " + name
+		+ ", description: " + description
+		+ ", deliveryAddress: " + deliveryAddress.toString()
+		+ ", creationDate: " + creationDate.toString()
+		+ ", publicGroup: " + publicGroup
+		+ ", owner: " + owner.username
+		+ "]")
+		return s;
 	}
 }

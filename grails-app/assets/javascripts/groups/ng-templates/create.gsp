@@ -70,7 +70,7 @@
                 <div class="col-xs-2">
                     <div class="form-group">
                         <label for="postalCode">CAP</label>
-                        <input type="text" class="form-control input-lg" name="postalCode"
+                        <input type="text" id="postalCode" class="form-control input-lg" name="postalCode"
                                ng-model="createCtrl.item.deliveryAddress.postalCode"
                                placeholder="Codice postale"/>
                     </div>
@@ -81,7 +81,7 @@
                 <div class="col-xs-4">
                     <div class="form-check">
                         <label for="isPublic">Pubblico</label>
-                        <input type="checkbox" id="isPublic" name="isPublic" ng-model="createCtrl.item.isPublic"/>
+                        <input type="checkbox" id="isPublic" value="true" name="isPublic" ng-model="createCtrl.item.publicGroup"/>
                     </div>
                 </div>
                 <div class="col-xs-4">

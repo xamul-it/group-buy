@@ -16,14 +16,23 @@ class GroupController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond groupService.list(params), model:[groupCount: groupService.count()]
+        List<Group> l = groupService.list()
+        l.forEach({g -> log.debug " LIST gruppo : " + g.toString()})
+        l.forEach({g -> log.debug " LIST gruppo : " + g.toString()})
+        respond groupService.list(params), model:[count: groupService.count()]
     }
 
     def show(Long id) {
-        respond groupService.get(id)
+        Group g = groupService.get(id)
+        log.debug "**************SHOW " + g.publicGroup+ "--"
+        respond g
+//        respond groupService.get(id)
     }
 
     def get(Long id) {
+        Group g = groupService.get(id)
+        log.debug "**************GET " + g.publicGroup+ "--"
+        respond g
         respond groupService.get(id)
     }
 
@@ -56,6 +65,11 @@ class GroupController {
     def edit(Long id) {
         log.info "****edit id " + id
         respond groupService.get(id)
+    }
+
+    def changePublic(Group group){
+        group.setPublicGroup(!group.isPublicGroup())
+        update(group)
     }
 
     def update(Group group) {
