@@ -11,12 +11,14 @@ class SupplierController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
+        response.setHeader('X-Pagination-Total', supplierService.count().toString())
         respond supplierService.list(params), model:[supplierCount: supplierService.count()]
     }
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond supplierService.list(params), model:[supplierCount: supplierService.count()]
+        response.setHeader('X-Pagination-Total', supplierService.count().toString())
+        respond  supplierService.list(params), model:[supplierCount: supplierService.count()]
     }
 
     def get(Long id) {

@@ -52,7 +52,7 @@
 <table class="table table-hover elenco" data-gas-infinite-scroll ng-model="listCtrl.list">
 	<tr>
 		<th data-gas-sortable="status">Stato</th>
-		<th data-gas-sortable="number">N.</th>
+		<!--<th data-gas-sortable="number">N.</th>-->
 		<th data-gas-sortable="date">Data</th>
 		<th data-gas-sortable="description">Descrizione</th>
 		<th data-gas-sortable="total" class="text-right">Totale</th>
@@ -62,7 +62,7 @@
 		<td data-ng-click="show(item)">
 			<gas-status-label status="{{item.status}}"></gas-status-label>
 		</td>
-		<td data-ng-click="show(item)">{{item.number}}</td>
+		<!-- <td data-ng-click="show(item)">{{item.number}}</td> -->
 		<td data-ng-click="show(item)">{{item.date | dateParse | date: 'shortDate'}}<br>
 			<small>Scadenza: {{item.dueDate}}</small>
 		</td>
@@ -71,7 +71,7 @@
 		</td>
 		<td class="text-right" data-ng-click="show(item)">
 			<strong>{{item.total | currency}}</strong><br>
-			<small>Imponibile: {{item.net | currency}}</small>
+			<small>Quota personale: {{item.net | currency}}</small>
 		</td>
 
 		<td class="text-right">
@@ -93,7 +93,7 @@
 	</tr>
 	<tr ng-show="!infiniteScrollCtrl.loading">
 		<td colspan="6">
-			<img src="/img/loading-hr.gif">
+			<img src="/assets/img/loading-hr.gif">
 		</td>
 	</tr>
 </table>

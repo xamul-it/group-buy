@@ -16,10 +16,8 @@ class GroupController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        List<Group> l = groupService.list()
-        l.forEach({g -> log.debug " LIST gruppo : " + g.toString()})
-        l.forEach({g -> log.debug " LIST gruppo : " + g.toString()})
-        respond groupService.list(params), model:[count: groupService.count()]
+        response.setHeader('X-Pagination-Total', groupService.count().toString())
+        respond groupService.list(params), model:[groupCount: groupService.count()]
     }
 
     def show(Long id) {

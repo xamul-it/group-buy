@@ -33,14 +33,14 @@
         <span class="divider-vertical pull-left"></span>
         <div class="pull-right">
             <span class="total">
-                <strong>{{listCtrl.listData.count || 0}}</strong>
+                <strong>{{listCtrl.count || 0}}</strong>
                 Elenco negozzi
             </span>
             <i class="glyphicon glyphicon-export"></i>
         </div>
     </div>
 
-    <table class="table table-hover elenco" data-gas-infinite-scroll="" ng-model="listCtrl.list">
+    <table class="table table-hover elenco" data-gas-infinite-scroll="loadMore()" ng-model="listCtrl.list">
         <tr>
             <th data-gas-sortable="date">Nome</th>
             <th data-gas-sortable="total">Contatto</th>

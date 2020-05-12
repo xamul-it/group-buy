@@ -64,6 +64,7 @@ scaffoldingModule.directive('gasAlert', function(commonTemplateUrl) {
  * A directive for including a standard pagination block in the page.
  */
 scaffoldingModule.directive('gasPagination', function(commonTemplateUrl) {
+    console.log("pagination: "+ item.id);
 	return {
         restrict: 'A', // can only be used as an attribute
         transclude: false, // the element should not contain any content so there's no need to transclude
@@ -198,20 +199,26 @@ function errorHandler($scope, $location, Flash, response) {
         default: // TODO: general error handling
     }
 }
-
+var offset = 0;
 scaffoldingModule.controller("ListCtrl", function($scope, $routeParams, $location, Grails, Flash) {
 	var ctrl = this; // assign to a variable to be consistent when using in the template
+    console.log($routeParams)
 	Grails.list($routeParams, function(list, headers) {
+		console.log("listCtrl.list: "+ list);
 		ctrl.list = list;//.items;
+		//ctrl.count = list.count;
 		//ctrl.listData = list.data
+		ctrl.count = parseInt(headers('X-Pagination-Total'));
 		ctrl.total = parseInt(headers('X-Pagination-Total'));
+		offset = offset + list.length
 		$scope.message = Flash.getMessage();
 		
-		console.log("listCtrl.list: "+ list+" "+JSON.stringify(list));
-		
+		console.log("listCtrl.list: "+ list.count+" "+JSON.stringify(list));
+
 	}, errorHandler.curry($scope, $location, Flash));
 
 	ctrl.show = function(item) {
+		console.log("ctrl.show: "+ item.id);
 		$location.path('/show/' + item.id);
 	};
 
@@ -234,7 +241,10 @@ scaffoldingModule.controller("ListCtrl", function($scope, $routeParams, $locatio
 			Flash.success(response.message);
 		}, errorHandler.curry($scope, null, Flash));
 	};
-	
+
+	ctrl.count = function(item) {
+		console.log("listCtrl.count: ");
+	};
 });
 	
 scaffoldingModule.controller("ShowCtrl", function($scope, $routeParams, $location, Grails, Flash) {
@@ -258,8 +268,6 @@ scaffoldingModule.controller("CreateCtrl", function($scope, $location, Grails, F
      var ctrl = this; // assign to a variable to be consistent when using in the template
     //$scope.item = new Grails;
     ctrl.item = new Grails;
-    ctrl.message="ciao ctrl"
-    $scope.message="ciao scope"
     ctrl.save = function(item) {
         console.log("createCtrl.save: "+JSON.stringify(item));
         item.$save(function(response) {
