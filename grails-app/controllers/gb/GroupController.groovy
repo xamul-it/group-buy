@@ -29,10 +29,16 @@ class GroupController {
 
 
     def show(Long id) {
-        respond groupService.get(id)
+        Group g = groupService.get(id)
+        log.debug "**************SHOW " + g.publicGroup+ "--"
+        respond g
+//        respond groupService.get(id)
     }
 
     def get(Long id) {
+        Group g = groupService.get(id)
+        log.debug "**************GET " + g.publicGroup+ "--"
+        respond g
         respond groupService.get(id)
     }
 
@@ -65,6 +71,11 @@ class GroupController {
     def edit(Long id) {
         log.info "****edit id " + id
         respond groupService.get(id)
+    }
+
+    def changePublic(Group group){
+        group.setPublicGroup(!group.isPublicGroup())
+        update(group)
     }
 
     def update(Group group) {
