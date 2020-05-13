@@ -27,4 +27,13 @@ abstract class SupplierService implements ISupplierService {
     @Listener(Supplier)
     void onSupplierPreInsert(PreInsertEvent event) {
     }
+
+    List<Supplier> autocomplete(String query) {
+        def l = Supplier.findAllByNameLike("%"+query+"%")
+        def newL = l.collect {
+            [ id: it.id, name: it.name, description:it.name]
+        }
+        return newL
+    }
+
 }

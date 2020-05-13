@@ -14,6 +14,13 @@ class OrderController {
         respond orderService.list(params), model:[orderCount: orderService.count()]
     }
 
+    def list(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        response.setHeader('X-Pagination-Total', orderService.count().toString())
+        respond orderService.list(params), model:[orderCount: orderService.count()]
+
+    }
+
     def show(Long id) {
         respond orderService.get(id)
     }

@@ -2,6 +2,7 @@ package gb
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.converters.JSON
 
 class GroupController {
 
@@ -19,6 +20,13 @@ class GroupController {
         response.setHeader('X-Pagination-Total', groupService.count().toString())
         respond groupService.list(params), model:[groupCount: groupService.count()]
     }
+
+    def autocomplete(String query) {
+        params.max = 10
+        def lista = groupService.autocomplete(query)
+        render (lista ? lista as JSON : "")
+    }
+
 
     def show(Long id) {
         respond groupService.get(id)

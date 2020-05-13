@@ -28,7 +28,7 @@ class Supplier {
         owner nullable:true
         name nullable: false, blank: false, size: 5..20, unique: true,
                 validator: { val, obj ->
-                    (obj.creator.id == obj.springSecurityService.getPrincipal().id ||
+                    !obj.springSecurityService || (obj.creator.id == obj.springSecurityService.getPrincipal().id ||
                             (obj.owner != null && obj.owner.id == obj.springSecurityService.getPrincipal().id)
                     )
                 }

@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <table class="table table-hover elenco" data-gas-infinite-scroll="loadMore()" ng-model="listCtrl.list">
+    <table class="table table-hover elenco" data-gas-infinite-scroll="" ng-model="listCtrl.list">
         <tr>
             <th data-gas-sortable="date">Nome</th>
             <th data-gas-sortable="total">Contatto</th>
@@ -74,9 +74,10 @@
                 {{item.shippingAddress.city}}
                 {{item.shippingAddress.district?'(':''}}{{item.shippingAddress.district}}{{item.shippingAddress.district?')':''}}
             </td>
-            <td data-ng-click="show(item)">{{item.creator.id}}
-                <br/>
-                {{item.creator.username || 'No Username'}}
+            <td data-ng-click="show(item)">
+                <div class="invoice-to form-group" data-gas-item-load="" item-id="{{item.id}}" item="creator" resource="user">
+                {{creator.id}} - {{creator.username || 'No Username'}}
+                </div>
             </td>
             <td class="text-right">
                 <div class="btn-group" dropdown="">
@@ -86,7 +87,7 @@
                     </button>
                     <ul class="dropdown-menu pull-right" role="menu">
                         <li>
-                            <a data-gas-modal="" template-url="#/show/{{item.id}}">Dettagli</a>
+                            <a data-gas-modal="" template-url="/assets/supplier/ng-templates/show.gsp?id={{item.id}}">Dettagli</a>
                         </li>
                         <li>
                             <a data-gas-modal="" data-ng-href="#/edit/{{item.id}}">Modifica</a>
@@ -95,6 +96,5 @@
                 </div>
             </td>
         </tr>
-
     </table>
 </div>

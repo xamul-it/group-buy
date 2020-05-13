@@ -25,4 +25,12 @@ abstract class GroupService implements IGroupService {
     @Listener(Group)
     void onGroupPreInsert(PreInsertEvent event) {
     }
+
+    List<Group> autocomplete(String query) {
+        def l = Group.findAllByNameLike("%"+query+"%")
+        def newL = l.collect {
+            [ id: it.id, name: it.name, description:it.name]
+        }
+        return newL
+    }
 }

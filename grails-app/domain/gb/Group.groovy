@@ -17,7 +17,12 @@ class Group {
 	static constraints = {
 		name nullable: false, blank: false, size: 5..20, unique: true,
 				validator: { val, obj ->
-					(obj.owner.id == obj.springSecurityService.getPrincipal().id ||
+					if (obj.springSecurityService){
+						println "Principal "+obj.springSecurityService.getPrincipal().id
+					}else{
+						println "missing"
+					}
+					!obj.springSecurityService || (obj.owner.id == obj.springSecurityService.getPrincipal().id ||
 							(obj.owner != null && obj.owner.id == obj.springSecurityService.getPrincipal().id)
 					)
 				}

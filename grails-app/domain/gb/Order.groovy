@@ -2,13 +2,14 @@ package gb
 
 class Order {
 
-	Long number
 	SortedSet orderVoice
 	Supplier supplier
 	Date orderDate
 	Date shipmentDate
 	String deliveryType
-	
+	String description
+
+	transient springSecurityService
 	
 	static belongsTo = [group: Group]
 	
@@ -16,6 +17,9 @@ class Order {
 		
     static constraints = {
 		supplier nullable: false
+		orderVoice nullable: true
+		shipmentDate nullable: true
+		deliveryType nullable: true
     }
 	
 	static mapping = {

@@ -15,8 +15,8 @@
 		</div>
 
 		<div class="buttons" role="group">
-			<a role="button" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-export"></i> Esporta</a>
-			<a role="button" class="btn btn-sm btn-success" data-ng-href="#create"><i class="glyphicon glyphicon-plus"></i> Nuova fattura</a>
+			<!--<a role="button" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-export"></i> Esporta</a>-->
+			<a role="button" class="btn btn-sm btn-success" data-ng-href="#/create/{{item.id}}"><i class="glyphicon glyphicon-plus"></i> Nuovo ordine</a>
 		</div>
 	</div>
 	

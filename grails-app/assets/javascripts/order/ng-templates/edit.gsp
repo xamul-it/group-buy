@@ -23,11 +23,11 @@
 <form name="fattura" role="form">
 <div class="row">
 <div class="col-sm-5">
-	<div class="form-group" data-gas-typeahead ng-model="editCtrl.item.anagrafica" field="denominazione">
+	<div class="form-group" data-gas-typeahead="" ng-model="editCtrl.item.anagrafica" field="denominazione">
 		<label for="client">Cliente</label>
-		<a data-gas-modal template-url="/cliente/ng-templates/create-cliente.gsp" class="btn-default btn-xs pull-right"><i class="glyphicon glyphicon-plus"></i> Nuovo cliente</a>
+		<a data-gas-modal="" template-url="/assets/cliente/ng-templates/create-cliente.gsp" class="btn-default btn-xs pull-right"><i class="glyphicon glyphicon-plus"></i> Nuovo cliente</a>
 		
-		<input id="anagrafica" name="anagrafica.id" ng-model="editCtrl.item.anagrafica.id" type="hidden">
+		<input id="anagrafica" name="anagrafica.id" ng-model="editCtrl.item.anagrafica.id" type="hidden"/>
 		<p class="input-group">
 			<input type="text" ng-model="asyncSelected" placeholder="Seleziona cliente" typeahead="item.denominazione for item in query($viewValue)" typeahead-loading="loading" typeahead-on-select="onSelect($item, $model, $label)" class="form-control">
 			<span class="input-group-btn">
@@ -37,16 +37,16 @@
 		<i ng-show="loading" class="glyphicon glyphicon-refresh"></i>
 	</div>
 	<div class="invoice-to form-group" data-gas-item-load item-id="{{selctedItem.id || editCtrl.item.anagrafica.id}}" item="anagrafica" resource="cliente">
-		<small ng-if="anagrafica.titolo">{{anagrafica.titolo}}<br></small>
-		<strong class="client-name">{{anagrafica.denominazione}}</strong><br>
+		<small ng-if="anagrafica.titolo">{{anagrafica.titolo}}<br/></small>
+		<strong class="client-name">{{anagrafica.denominazione}}</strong><br/>
 		<span ng-bind-html="anagrafica.indirizzo | nl2br"></span>
 		<div class="more">
-			<span ng-if="anagrafica.partitaIva"><small>PI</small> {{anagrafica.partitaIva}}<br></span>
+			<span ng-if="anagrafica.partitaIva"><small>PI</small> {{anagrafica.partitaIva}}<br/></span>
 			<span ng-if="anagrafica.codiceFiscale"><small>CF</small> {{anagrafica.codiceFiscale}}</span>
 		</div>
 	</div>
-
 </div>
+
 <div class="col-sm-2"></div>
 <div class="col-sm-5">
 	<div class="col-sm-6">
@@ -101,7 +101,10 @@
 	</div>
 </div>
 
-<table class="table elenco"><tr><th>Articolo</th><th class="col-sm-3">Descrizione</th><th class="col-sm-1 text-center">Quantità</th><th class="text-center">Importo unitario</th><th class="col-sm-1">IVA</th><th class="text-center">Ritenuta</th><th class="text-right">Totale</th><th class="td-button"></th></tr>
+<table class="table elenco"><tr><th>Articolo</th><th class="col-sm-3">Descrizione</th>
+	<th class="col-sm-1 text-center">Quantità</th><th class="text-center">Importo unitario</th>
+	<th class="col-sm-1">IVA</th><th class="text-center">Ritenuta</th><th class="text-right">Totale</th>
+	<th class="td-button"></th></tr>
 	
 	<tr ng-repeat="voce in editCtrl.item.voci">
 		<td>

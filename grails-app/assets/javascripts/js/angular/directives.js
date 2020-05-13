@@ -135,35 +135,27 @@ scaffoldingModule.directive('gasInfiniteScroll', function(WindowService) {
 	}
 });
 
+
+
 scaffoldingModule.directive('gasTypeahead', function() {
 	return {
 		restrict: 'EA',
 		scope: true,
 		require:"ngModel",
-		controller: function($scope, $http) {
+		controller: function($scope, $http, $routeParams, $location, Grails, Flash) {
 			$scope.asyncSelected
 			$scope.selctedItem = undefined
 			$scope.queryText = undefined
 			$scope.opened = false
-			
-			
-			$scope.query = function(val) {
-				
+
+			$scope.query = function(val,controller) {
 				$scope.queryText = val;
-				
 				console.log('query '+val);
-				
-				return $http.get('http://127.0.0.1/data/autocomplete/cliente.json', {
-					params: {
-						query: val,
-						fields: 'id,descrizione'
-					}
-				}).then(function(response){
-					return response.data.suggestions.map(function(item){
-						console.log(JSON.stringify(item));
-						return item;
-					});
-				});
+				var list = Grails.autocomplete({query: val, controller: controller});
+				return list.$promise.then(function() {
+				    console.log("List "+JSON.stringify(list))
+	                return list
+			    })
 			};
 			
 			$scope.open = function($event) {
@@ -191,9 +183,7 @@ scaffoldingModule.directive('gasTypeahead', function() {
 			};
 			
 			$scope.onSelect = function ($item, $model, $label) {
-				
 				console.log('onSelect '+JSON.stringify($item)+', '+$model+', '+$label);
-				
 				$scope.selctedItem = $item;
 			};
 		},
@@ -238,8 +228,9 @@ scaffoldingModule.directive('gasItemLoad', function(Grails) {
 				return;
 			}
 			scope.$watch("itemId",function(newValue, oldValue) {
-				if(angular.isDefined(newValue) && !angular.equals(newValue, oldValue)) {
-					Grails.get({id: newValue, controller: attrs.resource, action:newValue+'.json'}, function(item) {
+				if(angular.isDefined(newValue)) {  //&& !angular.equals(newValue, oldValue)) {
+					//Grails.get({id: newValue, controller: attrs.resource, action:newValue+'.json'}, function(item) {
+					  Grails.get({id: newValue, controller: attrs.resource}, function(item) {
 						scope.item = item;
 					});
 				}
@@ -391,15 +382,20 @@ scaffoldingModule.directive('back', function factory($window) {
 scaffoldingModule.directive('gasModal', function factory($window) {
 	return {
 		restrict: 'EA',
+		scope: {
+			//items:'=',
+			//item:'='
+		},
 		controller: function($scope, $attrs, $modal, $log) {
 			$scope.open = function (size) {
-				console.log($attrs)
+				console.log($attrs.templateUrl + " "+ $attrs.controller)
 				var modalInstance = $modal.open({
 					size: size,
 					templateUrl: $attrs.templateUrl,
 					controller: $attrs.controller,
 					/*resolve: {
 						items: function () {
+						    console.log("item: " + $scope.item.name )
 							return $scope.items;
 						}
 					}*/
