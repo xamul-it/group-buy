@@ -84,11 +84,6 @@
                             <a data-ng-href="#/edit/{{item.id}}">Modifica</a>
                         </li>
                         <li>
-                            <a data-ng-href="#/changePublic/{{item}}">Rendi {{item.publicGroup? 'privato' :
-                                'pubblico'}}
-                            </a>
-                        </li>
-                        <li>
                             <a data-ng-href="#/delete/{{item.id}}">Elimina</a>
                         </li>
                     </ul>

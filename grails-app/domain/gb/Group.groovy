@@ -26,7 +26,7 @@ class Group {
     }
 	static mapping = {
         table "gbgroup"
-		owner fetch: "join"
+		owner fetch: 'join'
 	}
 	static embedded = ['deliveryAddress']
 
@@ -36,7 +36,8 @@ class Group {
 				if(owner == null){
 					//TODO sistemare la gestione dell'owner -> chi genera il gruppo deve essere un customer
 					// o glielo deve associare
-					owner = User.get(springSecurityService.getPrincipal().id)
+//					owner = User.get(springSecurityService.getPrincipal().id)
+					owner = springSecurityService.getCurrentUser()
 				}
 			}
 			creationDate = new Date()

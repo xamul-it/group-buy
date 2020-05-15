@@ -54,10 +54,10 @@
 		<div class="row">
 			<div class="col-xs-4">
 				<div class="form-check" >
-					<label for="isPublicGroup">Pubblico -{{showCtrl.item.publicGroup}}--</label>
+					<label for="isPublicGroup">Pubblico</label>
 					<p name="isPublicGroup" id="isPublicGroup">
-						<i class="glyphicon glyphicon-ok" data-ng-show="{{showCtrl.item.publicGroup}}"></i>
-						<i class="glyphicon glyphicon-remove" data-ng-show="{{!showCtrl.item.publicGroup}}"></i>
+						<i class="glyphicon glyphicon-ok" data-ng-show="showCtrl.item.publicGroup"></i>
+						<i class="glyphicon glyphicon-remove" data-ng-show="!showCtrl.item.publicGroup"></i>
 					</p>
 				</div>
 			</div>

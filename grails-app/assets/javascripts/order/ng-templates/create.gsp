@@ -71,7 +71,6 @@
 
                         <p class="input-group">
                             <input type="text" ng-model="asyncSelected" placeholder="Seleziona negozio"
-                                   resource="supplier"
                                    typeahead="item.name for item in query($viewValue,'supplier')"
                                    typeahead-loading="loading"
                                    typeahead-on-select="onSelect($item, $model, $label)" class="form-control"/>
