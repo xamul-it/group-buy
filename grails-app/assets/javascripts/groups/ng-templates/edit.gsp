@@ -75,7 +75,7 @@
                 <div class="col-xs-4">
                     <div class="form-check">
                         <label for="isPublic">Pubblico</label>
-                        <input type="checkbox" id="isPublic" name="isPublic" ng-model="editCtrl.item.isPublicGroup"/>
+                        <input type="checkbox" id="isPublic" value="true" name="isPublic" ng-model="editCtrl.item.publicGroup"/>
                     </div>
                 </div>
                 <div class="col-xs-4">

@@ -54,8 +54,11 @@
                 {{item.deliveryAddress.address1}} - {{item.deliveryAddress.address2}}<br>
                 {{item.deliveryAddress.postalCode}} - {{item.deliveryAddress.city}} - {{item.deliveryAddress.district}}
             </td>
-            <td data-ng-click="show(item)">---{{item.owner.username}}+++</td>
-            <td data-ng-click="show(item)"><i class="glyphicon glyphicon-ok" data-ng-show="{{item.publicGroup}}"></i></td>
+            <td data-ng-click="show(item)">{{item.owner.username}}</td>
+            <td data-ng-click="show(item)">
+                <i data-ng-show="{{item.publicGroup}}" class="glyphicon glyphicon-ok"></i>
+                <i data-ng-show="{{!item.publicGroup}}" class="glyphicon glyphicon-remove"></i>
+            </td>
             <td data-ng-click="show(item)">{{item.members.size}}</td>
 
             <td class="text-right">
@@ -67,7 +70,6 @@
                     <ul class="dropdown-menu pull-right" role="menu">
                         <li><a data-ng-href="#/show/{{item.id}}">Dettagli</a></li>
                         <li><a data-ng-href="#/edit/{{item.id}}">Modifica</a></li>
-                        <li><a data-ng-href="#/changePublic/{{item}}">Rendi {{item.publicGroup? 'privato' : 'pubblico'}}</a></li>
                         <li><a data-ng-href="#/delete/{{item.id}}">Elimina</a></li>
                     </ul>
                 </div>

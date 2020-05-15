@@ -30,4 +30,11 @@ class User implements Serializable {
     static mapping = {
 	    password column: '`password`'
     }
+
+    def String toString(){
+        String s = new String( "["
+                + " username: " + username
+                + "]")
+        return s;
+    }
 }

@@ -1,12 +1,15 @@
 package gb
 
 import grails.validation.ValidationException
+import org.hibernate.FetchMode
+
 import static org.springframework.http.HttpStatus.*
 import grails.converters.JSON
 
 class GroupController {
 
     GroupService groupService
+    transient springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", show: "GET"]
 
@@ -16,9 +19,18 @@ class GroupController {
     }
 
     def list(Integer max) {
+        def all = params.all
+        log.debug "************list ALL: " + all + "+"
         params.max = Math.min(max ?: 10, 100)
+//        params.fetch = [owner: "eager"]
         response.setHeader('X-Pagination-Total', groupService.count().toString())
-        respond groupService.list(params), model:[groupCount: groupService.count()]
+        if(params.all){
+            log.debug "QUERY ALL"
+            respond groupService.list(params), model:[groupCount: groupService.count()]
+        }else{
+            log.debug "QUERY by user"
+            respond Group.findAllByOwner(springSecurityService.getCurrentUser(), params), model:[groupCount: groupService.count()]
+        }
     }
 
     def autocomplete(String query) {
@@ -73,12 +85,8 @@ class GroupController {
         respond groupService.get(id)
     }
 
-    def changePublic(Group group){
-        group.setPublicGroup(!group.isPublicGroup())
-        update(group)
-    }
-
     def update(Group group) {
+        log.debug "****** update - publicGroup: " + group.publicGroup
         if (group == null) {
             notFound()
             return
