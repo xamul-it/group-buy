@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="name">Nome {{$routeParams}} -{{$url}}-</label>
+                        <label for="name">Nome</label>
                         <p class="form-control" name="name" id="name">{{item.name}}</p>
                     </div>
                 </div>

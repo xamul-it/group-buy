@@ -20,7 +20,9 @@ interface IOrderService {
 abstract class OrderService implements IOrderService {
     SupplierService supplierService
     GroupService groupService
-    def springSecurityService
+
+    @Autowired
+    transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
 
     Order save(Order order) {
@@ -29,8 +31,12 @@ abstract class OrderService implements IOrderService {
             order.group = order?.group?.id ? groupService.get(order.group.id) : null
             order.orderDate = new Date()
         }
-        order.supplier.springSecurityService = springSecurityService
-        order.group.springSecurityService = springSecurityService
+        println("OrderService springSecurityService:"+springSecurityService )
+        if (springSecurityService) {
+            if (order.supplier) order.supplier.springSecurityService = springSecurityService
+            if (order.group) order.group.springSecurityService = springSecurityService
+            order.orderVoice.each(){ it.springSecurityService=springSecurityService }
+        }
         order.save()
     }
 

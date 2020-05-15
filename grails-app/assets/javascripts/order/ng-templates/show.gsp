@@ -89,7 +89,6 @@
                     <!-- div class="form-group">
                         <strong>Cliente</strong>
                     </div -->
-
                     <div class="invoice-to form-group">
                         <small ng-if="gruppo">{{gruppo.name}}
                             <br/>
@@ -155,39 +154,21 @@
 
             <table class="table elenco">
                 <tr>
-                    <th>Articolo</th>
-                    <th class="col-sm-3">Descrizione</th>
-                    <th class="col-sm-1 text-right">Quantità</th>
-                    <th class="text-right">Importo unitario</th>
-                    <th class="col-sm-1 text-right">IVA</th>
-                    <th class="text-right">Importo IVA</th>
-                    <th class="text-right">Importo netto</th>
+                    <th class="col-sm-1">Posizione</th>
+                    <th class="col-sm-6">Descrizione</th>
+                    <th class="col-sm-6">Utente</th>
+                    <th class="col-sm-1 text-center">Quantità</th>
                 </tr>
-                <tr ng-repeat="voce in showCtrl.item.voci">
-                    <td>{{voce.articolo.descrizione}}</td>
-                    <td>{{voce.descrizione}}</td>
-                    <td class="text-right">{{voce.quantita}}</td>
-                    <td class="text-right">{{voce.importoUnitario | currency}}</td>
-                    <td class="text-right">22%</td>
-                    <td class="text-right">{{voce.iva | currency}}</td>
-                    <td class="text-right text-nowrap">
-                        <strong>€ 4.000,00</strong>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Consulenza</td>
-                    <td>Trapanazione del cranio</td>
-                    <td class="text-right">1</td>
-                    <td class="text-right">1.500,00 €</td>
-                    <td class="text-right">22%</td>
-                    <td class="text-right">300,00 €</td>
-                    <td class="text-right text-nowrap">
-                        <strong>€ 4.000,00</strong>
-                    </td>
+                <tr ng-repeat="vid in showCtrl.item.orderVoice" data-gas-item-load=""
+                    item-id="{{vid.id}}" item="voce"
+                    resource="orderVoice">
+                    <td>{{voce.id}}</td>
+                    <td>{{voce.description}}</td>
+                    <td>{{voce.user}}</td>
+                    <td>{{voce.quantity}}</td>
                 </tr>
             </table>
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-4 pull-right">
                     <div class="panel panel-default">
                         <div class="panel-body">
@@ -217,6 +198,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </form>
         <div class="clearfix">&nbsp;</div>
         <hr/>

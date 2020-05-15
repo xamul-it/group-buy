@@ -75,7 +75,7 @@
                 {{item.shippingAddress.district?'(':''}}{{item.shippingAddress.district}}{{item.shippingAddress.district?')':''}}
             </td>
             <td data-ng-click="show(item)">
-                <div class="invoice-to form-group" data-gas-item-load="" item-id="{{item.id}}" item="creator" resource="user">
+                <div class="invoice-to form-group" data-gas-item-load="" item-id="{{item.creator.id}}" item="creator" resource="user">
                 {{creator.id}} - {{creator.username || 'No Username'}}
                 </div>
             </td>

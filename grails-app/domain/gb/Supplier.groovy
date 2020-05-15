@@ -20,7 +20,8 @@ class Supplier {
     String name
     String description
 
-    transient springSecurityService
+    @Autowired
+    transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
     static constraints = {
         creator nullable:false
@@ -28,7 +29,7 @@ class Supplier {
         owner nullable:true
         name nullable: false, blank: false, size: 5..20, unique: true,
                 validator: { val, obj ->
-                    !obj.springSecurityService || (obj.creator.id == obj.springSecurityService.getPrincipal().id ||
+                    (obj.creator.id == obj.springSecurityService.getPrincipal().id ||
                             (obj.owner != null && obj.owner.id == obj.springSecurityService.getPrincipal().id)
                     )
                 }
@@ -42,7 +43,7 @@ class Supplier {
 
     def beforeValidate () {
         if (id==null) {
-            if (springSecurityService.isLoggedIn()) {
+            if (springSecurityService && springSecurityService.isLoggedIn()) {
                 creator= User.get(springSecurityService.getPrincipal().id)
             }
         }

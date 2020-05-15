@@ -12,17 +12,13 @@ class Group {
 	
 	static hasMany = [members: User]
 
-	transient springSecurityService
+	@Autowired
+	transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
 	static constraints = {
 		name nullable: false, blank: false, size: 5..20, unique: true,
 				validator: { val, obj ->
-					if (obj.springSecurityService){
-						println "Principal "+obj.springSecurityService.getPrincipal().id
-					}else{
-						println "missing"
-					}
-					!obj.springSecurityService || (obj.owner.id == obj.springSecurityService.getPrincipal().id ||
+					obj.springSecurityService && (obj.owner.id == obj.springSecurityService.getPrincipal().id ||
 							(obj.owner != null && obj.owner.id == obj.springSecurityService.getPrincipal().id)
 					)
 				}
@@ -36,7 +32,7 @@ class Group {
 
 	def beforeValidate () {
 		if (id==null) {
-			if (springSecurityService.isLoggedIn()) {
+			if (springSecurityService && springSecurityService.isLoggedIn()) {
 				if(owner == null){
 					//TODO sistemare la gestione dell'owner -> chi genera il gruppo deve essere un customer
 					// o glielo deve associare

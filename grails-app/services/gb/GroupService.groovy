@@ -29,7 +29,7 @@ abstract class GroupService implements IGroupService {
     List<Group> autocomplete(String query) {
         def l = Group.findAllByNameLike("%"+query+"%")
         def newL = l.collect {
-            [ id: it.id, name: it.name, description:it.name]
+            [ id: it.id, name: it.name]
         }
         return newL
     }

@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-sm-5">
 
-                    <div class="form-group" suggestion="" data-gas-typeahead=""
+                    <div class="form-group" data-gas-typeahead=""
                          ng-model="createCtrl.item.group" field="name">
                         <label for="client">Gruppo di acquisto</label>
                         <!--Nuovo gruppo
@@ -50,7 +50,8 @@
                              item-id="{{selctedItem.id || createCtrl.item.group.id}}" item="gruppo"
                              resource="group">
                             <h4>{{gruppo.name}}</h4>
-                            {{gruppo.deliveryAddress.address1}}
+                            <small>{{gruppo.description}}</small>
+                            <br>{{gruppo.deliveryAddress.address1}}
                             <br ng-if="gruppo.deliveryAddress.address2"/>{{gruppo.deliveryAddress.address2 || ''}}
                             <br/>
                             {{gruppo.deliveryAddress.postalCode}} {{gruppo.deliveryAddress.city}}
@@ -65,8 +66,8 @@
                          ng-model="createCtrl.item.supplier" field="name">
                         <label for="client">Negozio</label>
 
-                        <input id="supplier.it" name="createCtrl.item.supplier.id"
-                               ng-model="createCtrl.item.group.id" type="hidden"/>
+                        <input id="supplier.it" name="supplier.id"
+                               ng-model="createCtrl.item.supplier.id" type="hidden"/>
 
                         <p class="input-group">
                             <input type="text" ng-model="asyncSelected" placeholder="Seleziona negozio"
@@ -82,15 +83,16 @@
                         </p>
                         <i ng-show="loading" class="glyphicon glyphicon-refresh">&nbsp;</i>
                         <div class="invoice-to form-group" data-gas-item-load=""
-                             item-id="{{selctedItem.id || createCtrl.item.group.id}}" item="fornitore"
+                             item-id="{{selctedItem.id || createCtrl.item.supplier.id}}" item="fornitore"
                              resource="supplier">
 
                             <h4>{{fornitore.name}}</h4>
-                            {{fornitore.deliveryAddress.address1}}
-                            <br ng-if="gruppo.deliveryAddress.address2"/>{{fornitore.deliveryAddress.address2 || ''}}
+                            <small>{{fornitore.description}}</small>
+                            <br>{{fornitore.shippingAddress.address1}}
+                            <br ng-if="gruppo.deliveryAddress.address2"/>{{fornitore.shippingAddress.address2 || ''}}
                             <br/>
-                            {{fornitore.deliveryAddress.postalCode}} {{fornitore.deliveryAddress.city}}
-                            {{fornitore.deliveryAddress.district}}
+                            {{fornitore.shippingAddress.postalCode}} {{fornitore.shippingAddress.city}}
+                            {{fornitore.shippingAddress.district}}
                         </div>
                     </div>
                 </div>
@@ -106,18 +108,31 @@
 
             <table class="table elenco">
                 <tr>
+                    <th class="col-sm-1">Posizione</th>
                     <th class="col-sm-6">Descrizione</th>
+                    <th class="col-sm-6">Utente</th>
                     <th class="col-sm-1 text-center">Quantità</th>
-                    <th class="text-center">Importo unitario</th>
-                    <th class="text-right">Totale</th>
+<!--                    <th class="text-center">Importo unitario</th>
+                    <th class="text-right">Totale</th> -->
                     <th class="td-button">&nbsp;</th>
                 </tr>
-                <tr>
+                <tr  ng-repeat="voce in createCtrl.item.orderVoice">
                     <td>
-                        <input type="text" class="form-control" placeholder="Descrizione" ng-model="voce.descrizione"/>
+                        <input type="text" class="form-control" placeholder="1" ng-model="voce.posizione"/>
                     </td>
                     <td>
-                        <input type="text" class="form-control text-right" placeholder="1" ng-model="voce.quantity"/>
+                        <input type="text" class="form-control" placeholder="Descrizione" ng-model="voce.description"/>
+                    </td>
+                    <td>
+                        <p class="form-control-static">
+                            <strong>Dummy@to.fix</strong>
+                        </p>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control text-right ng-pristine ng-valid ng-valid-number" placeholder="1" ng-model="voce.quantity"/>
+                    </td>
+                    <!--<td>
+                        <input type="text" class="form-control text-right" placeholder="1" ng-model="voce.price"/>
                     </td>
                     <td>
                         <input type="text" class="form-control" ng-model="voce.amount"/>
@@ -126,58 +141,26 @@
                         <p class="form-control-static">
                             <strong>€ 4.000,00</strong>
                         </p>
-                    </td>
+                    </td>-->
                     <td>
                         <button class="btn btn-default btn-sm" type="button"
-                                ng-if="!$first"
                                 data-gas-delete-row=""
-                                items="createCtrl.item.voci"
+                                items="createCtrl.item.orderVoice"
                                 item="voce">
-                            <i class="glyphicon glyphicon-remove">&nbsp;</i>
-                        </button>
-                        <button class="btn btn-default btn-sm" type="button">
-                            <i class="glyphicon glyphicon-remove">&nbsp;</i>
-                        </button>
-                    </td>
-                </tr>
-                <tr  ng-repeat="voce in createCtrl.item.voci">
-                    <td>
-                        <input type="text" class="form-control" placeholder="Descrizione" ng-model="voce.descrizione"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control text-right" placeholder="1" ng-model="voce.quantity"/>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" ng-model="voce.amount"/>
-                    </td>
-                    <td class="text-right text-nowrap">
-                        <p class="form-control-static">
-                            <strong>€ 4.000,00</strong>
-                        </p>
-                    </td>
-                    <td>
-                        <button class="btn btn-default btn-sm" type="button"
-                                ng-if="!$first"
-                                data-gas-delete-row=""
-                                items="createCtrl.item.voci"
-                                item="voce">
-                            <i class="glyphicon glyphicon-remove">&nbsp;</i>
-                        </button>
-                        <button class="btn btn-default btn-sm" type="button">
                             <i class="glyphicon glyphicon-remove">&nbsp;</i>
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="8" class="text-right">
-                        <a class="btn btn-xs" data-gas-add-new-row="" items="createCtrl.item.voci"
-                           defaults="['posizione':+1,'quantita':1]">
+                        <a class="btn btn-xs" data-gas-add-new-row="" items="createCtrl.item.orderVoice"
+                           defaults="['posizione': +1,'quantity':2]">
                             <i class="glyphicon glyphicon-plus">&nbsp;</i> Aggiungi riga</a>
                     </td>
                 </tr>
             </table>
 
-            <div class="col-md-4 pull-right">
+<!--            <div class="col-md-4 pull-right">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="col-xs-6">
@@ -200,6 +183,7 @@
                     </div>
                 </div>
             </div>
+    -->
         <div class="clearfix">&nbsp;</div>
         <hr/>
     </div>

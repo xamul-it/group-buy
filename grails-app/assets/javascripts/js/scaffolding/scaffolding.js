@@ -261,14 +261,13 @@ scaffoldingModule.controller("ShowCtrl", function($scope, $routeParams, $locatio
 
 //LZ 2020/04/25 - tolto $scope e sostituito con ctrl, non so perché copiato da altre parti del codice
 scaffoldingModule.controller("CreateCtrl", function($scope, $location, Grails, Flash) {
-     var ctrl = this; // assign to a variable to be consistent when using in the template
-    //$scope.item = new Grails;
+    var ctrl = this; // assign to a variable to be consistent when using in the template
     //create empty object
-    /*Grails.get({id: ''}, function(item) {
+    Grails.create({}, function(item) {
         ctrl.item = item;
-        console.log("editCtrl.get: "+ item.id+" "+JSON.stringify(item));
+        console.log("createCtrl.create: "+JSON.stringify(item));
     }, errorHandler.curry($scope, $location, Flash));
-*/
+
     ctrl.item = new Grails;
     ctrl.save = function(item) {
         console.log("createCtrl.save: "+JSON.stringify(item));

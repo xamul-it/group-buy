@@ -26,7 +26,12 @@ class OrderController {
     }
 
     def create() {
-        respond new Order(params)
+        Order item = new Order(params);
+        item.orderDate = new Date()
+        item.addToOrderVoice(new OrderVoice())
+        item.setSupplier(new Supplier())
+        item.setGroup(new Group())
+        respond item
     }
 
     def save(Order order) {
