@@ -64,7 +64,6 @@ scaffoldingModule.directive('gasAlert', function(commonTemplateUrl) {
  * A directive for including a standard pagination block in the page.
  */
 scaffoldingModule.directive('gasPagination', function(commonTemplateUrl) {
-    console.log("pagination: "+ item.id);
 	return {
         restrict: 'A', // can only be used as an attribute
         transclude: false, // the element should not contain any content so there's no need to transclude
@@ -268,7 +267,7 @@ scaffoldingModule.controller("CreateCtrl", function($scope, $location, Grails, F
         console.log("createCtrl.create: "+JSON.stringify(item));
     }, errorHandler.curry($scope, $location, Flash));
 
-    ctrl.item = new Grails;
+//    ctrl.item = new Grails;
     ctrl.save = function(item) {
         console.log("createCtrl.save: "+JSON.stringify(item));
         item.$save(function(response) {
@@ -276,13 +275,6 @@ scaffoldingModule.controller("CreateCtrl", function($scope, $location, Grails, F
             $location.path('/show/' + response.id);
         }, errorHandler.curry($scope, $location, Flash));
     };
-    //$scope.save = function(item) {
-	//	console.log("createCtrl(scope).save: "+ item.id+" "+JSON.stringify(item));
-    //    item.$save(function(response) {
-    //        Flash.success(response.message);
-    //        $location.path('/show/' + response.id);
-    //    }, errorHandler.curry($scope, $location, Flash));
-    //};
 });
 
 scaffoldingModule.controller("EditCtrl", function($scope, $routeParams, $location, Grails, Flash) {

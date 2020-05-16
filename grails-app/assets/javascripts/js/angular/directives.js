@@ -212,6 +212,30 @@ scaffoldingModule.directive('gasTypeahead', function() {
 	}
 });
 
+
+/**
+ * A directive for loading item via its id
+ */
+
+scaffoldingModule.directive('gasUser', function() {
+	return {
+		restrict: 'EA',
+		scope: {
+			item:'=' // inherit the item property from the controller scope
+		},
+		controllerAs:'userCtrl',
+		controller: function($scope, $routeParams, $location, Grails, Flash) {
+			var ctrl = this; // assign to a variable to be consistent when using in the template
+		    if ($scope.item !== 'undefined' ) {
+                var usr = Grails.get({controller: "auth", action:"principal"},function() {
+                    $scope.item=usr
+                });
+              }
+		}
+	}
+});
+
+
 /**
  * A directive for loading item via its id
  */
@@ -238,6 +262,8 @@ scaffoldingModule.directive('gasItemLoad', function(Grails) {
 		}
 	}
 });
+
+
 
 /**
 /* Wrapper directive with new child scope for ui.bootstrap.datepicker

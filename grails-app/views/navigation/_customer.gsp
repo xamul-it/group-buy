@@ -1,7 +1,10 @@
 <sec:ifLoggedIn>
-	<ul class="nav navbar-nav user-menu pull-right">
-	<li class="dropdown" dropdown><a href class="dropdown-toggle" dropdown-toggle><sec:loggedInUserInfo field='fullName'/><b class="caret"></b>
-		<br><small><sec:loggedInUserInfo field='username'/>
+	<ul class="nav navbar-nav user-menu pull-right" data-gas-user="" item="user">
+	<li class="dropdown" dropdown>
+		<a href class="dropdown-toggle" dropdown-toggle>
+			{{user.fullName}}<b class="caret"></b>
+		<br><small>{{user.username}}
+			{{user.authorities}}
 		</small></a>
 		<ul class="dropdown-menu pull-right">
 			<li><a href="/profilo"><i class="glyphicon glyphicon-user"></i> Profilo</a></li>

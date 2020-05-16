@@ -35,6 +35,7 @@ class OrderController {
     }
 
     def save(Order order) {
+        println "Params "+params+" "+request.params
         if (order == null) {
             notFound()
             return
