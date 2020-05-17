@@ -2,6 +2,8 @@ package gb
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.converters.JSON
+import groovy.json.JsonSlurper
 
 class ProductController {
 
@@ -20,6 +22,30 @@ class ProductController {
 
     def create() {
         respond new Product(params)
+    }
+
+    def saveJsonList() {
+        String jsonObject = request.getJSON()
+        println "jsonObject: " + jsonObject
+        def jsonList = new JsonSlurper().parseText(jsonObject)
+        //TODO add REST error handling
+        println "jsonList.size(): " + jsonList.size()
+
+
+        //TODO move to service
+        jsonList.each{ jsonObj ->
+            try{
+                Product p = new Product(jsonObj);
+                //p.save(flush:true); // save JSON directly to grails domain
+                println "productJSON: "+(p as JSON) // render JSON object
+
+            } catch(Exception e){
+                e.printStackTrace();
+                render "{ Error saving products: ${e.getLocalizedMessage} }";
+            }
+        }
+
+        render jsonList
     }
 
     def save(Product product) {
