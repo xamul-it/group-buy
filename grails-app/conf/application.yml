@@ -137,14 +137,14 @@ environments:
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
     test:
         dataSource:
-            dbCreate: update
+            dbCreate: none
             pooled: true
             jmxExport: true
             driverClassName: com.mysql.jdbc.Driver
-            username: groupbuy
+            username: groupbuytest
             password: gr0up-buy!
             dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-            url: jdbc:mysql://ptah07.seeweb.it:3306/ilz_it_groupbuy
+            url: jdbc:mysql://ptah07.seeweb.it:3306/gb-test
             properties:
                 jmxEnabled: true
                 initialSize: 5
@@ -194,8 +194,8 @@ grails:
 grails:
     plugin:
         databasemigration:
-            updateOnStart: true
-            updateOnStartFileName: changelog.groovy
+            updateOnStart: false
+            updateOnStartFileName: changelog-test.groovy
 ---
 grails:
     plugin:
@@ -206,3 +206,9 @@ grails:
                     requireEmailValidation: false
                     postRegisterUrl: '/supplier'
 
+---
+grails:
+    plugin:
+        databasemigration:
+            dbDocController:
+                enabled: true

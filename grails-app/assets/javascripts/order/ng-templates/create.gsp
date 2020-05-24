@@ -100,7 +100,8 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="description" placeholder="Descrizione ordine" ng-model="createCtrl.item.description"/>
+                        <input type="text" class="form-control" name="description" placeholder="Descrizione ordine"
+                               ng-model="createCtrl.item.description"/>
                     </div>
                 </div>
             </div>

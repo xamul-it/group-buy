@@ -15,7 +15,7 @@ angular.module('flashService', []).factory('Flash', function() {
         this.message = {level: 'error', text: text};
     };
     flash.success = function(text) {
-        this.message = {level: 'success', text: text};
+        this.message = {level: 'info', text: text};
     };
     flash.info = function(text) {
         this.message = {level: 'info', text: text};

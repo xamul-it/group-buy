@@ -11,7 +11,7 @@
 						<span class="icon-bar">&nbsp;</span>
 						<span class="icon-bar">&nbsp;</span>
 					</button>
-					<a class="navbar-brand" href="#"><img alt="Fattura Sprint" src="/assets/img/logo"/>&nbsp;</a>
+					<a class="navbar-brand" href="#"><img alt="Fattura Sprint" src="/assets/img/logo.png"/></a>
 				</div>
 				<div class="navbar-collapse collapse main-nav" collapse="!isOpen">
 					<ul class="nav navbar-nav">

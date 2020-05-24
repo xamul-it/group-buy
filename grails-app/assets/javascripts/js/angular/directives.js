@@ -219,19 +219,39 @@ scaffoldingModule.directive('gasTypeahead', function() {
 scaffoldingModule.directive('gasUser', function() {
 	return {
 		restrict: 'EA',
-		scope: {
+		scope: true/*{
 			user:'=', // inherit the item property from the controller scope
 			role:'=' // inherit the item property from the controller scope
-		},
-		controllerAs:'userCtrl',
+		}*/,
+		//controllerAs:'userCtrl',
 		controller: function($scope, $routeParams, $location, Grails, Flash) {
+		    $scope.activateSupplier=false
 			var ctrl = this; // assign to a variable to be consistent when using in the template
 		    if ($scope.user !== 'undefined' ) {
                 var usr = Grails.get({controller: "auth", action:"principal"},function() {
                     $scope.user=usr
+                    $scope.roles = []
+                    for (var i = 0; i < usr.authorities.length; i++) {
+                        var aut = usr.authorities[i];
+                        console.log(aut.authority);
+                        $scope.roles[i]=aut.authority;
+                    }
                     $scope.role=usr.authorities[0].authority
                 });
-              }
+            };
+            $scope.supplier = function(){
+                $scope.activateSupplier=true
+                console.log("supplier: "+ $scope)
+            };
+            $scope.updateSupplier = function(item, user){
+                console.log("supplier: "+ $scope+ " - "+JSON.stringify(item) + user.email)
+                if (item.contactInfo.email == '') item.contactInfo.email = user.email
+                item.$save({controller: 'supplier'},function(response) {
+                    $scope.message = {level: 'success', text: "Profilo aggiornato "};
+                    //Verificare perché non funzionano i messaggi flash
+                    Flash.success("Fatto")
+                }, errorHandler.curry($scope, $location, Flash));
+            };
 		}
 	}
 });
@@ -410,10 +430,14 @@ scaffoldingModule.directive('gasModal', function factory($window) {
 	return {
 		restrict: 'EA',
 		scope: {
-			//items:'=',
-			//item:'='
+			items:'=',
+			item:'=',
+			handleSave: '&onSave',
+            handleCancel: '&onCancel'
 		},
+		controllerAs:'modalCtrl',
 		controller: function($scope, $attrs, $modal, $log) {
+		    var ctrl = this;
 			$scope.open = function (size) {
 				console.log($attrs.templateUrl + " "+ $attrs.controller)
 				var modalInstance = $modal.open({
@@ -436,16 +460,17 @@ scaffoldingModule.directive('gasModal', function factory($window) {
 			};
 			
 			$scope.ok = function () {
+                $log.info('Modal dismiss');
 				$modalInstance.close($scope.selected.item);
 			};
 
 			$scope.cancel = function () {
+                $log.info('Modal dismiss');
 				$modalInstance.dismiss('cancel');
 			};
 		},
 		link: function (scope, element, attrs) {
 			element.bind('click', function(event) {
-				console.log('event '+event);
 				scope.open();
 			});
 		}

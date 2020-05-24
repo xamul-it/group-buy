@@ -40,6 +40,6 @@ class GBUserDetailsService implements GrailsUserDetailsService {
         return new gb.GBUserDetails(user.username, user.password, user.enabled,
                 !user.accountExpired, !user.passwordExpired,
                 !user.accountLocked, authorities ?: NO_ROLES, user.id,
-                "Nodificare in GBUserDetailsService")
+                user.email)
     }
 }

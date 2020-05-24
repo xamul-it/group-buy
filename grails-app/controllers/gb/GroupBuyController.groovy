@@ -14,4 +14,8 @@ class GroupBuyController {
 
     def suppliers(){
     }
+
+    def profilo() {
+
+    }
 }

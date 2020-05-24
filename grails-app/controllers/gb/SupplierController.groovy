@@ -33,7 +33,7 @@ class SupplierController {
     }
 
     def show(Long id) {
-        respond supplierService.get(id)
+            respond supplierService.get(id)
     }
 
     def create() {

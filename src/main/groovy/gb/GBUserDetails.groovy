@@ -6,15 +6,17 @@ import org.springframework.security.core.GrantedAuthority
 class GBUserDetails extends GrailsUser {
 
     final String fullName
+    final String email
 
     GBUserDetails(String username, String password, boolean enabled,
                   boolean accountNonExpired, boolean credentialsNonExpired,
                   boolean accountNonLocked,
                   Collection<GrantedAuthority> authorities,
-                  long id, String fullName) {
+                  long id, String email) {
         super(username, password, enabled, accountNonExpired,
                 credentialsNonExpired, accountNonLocked, authorities, id)
 
-        this.fullName = fullName
+        this.fullName = username
+        this.email = email
     }
 }
