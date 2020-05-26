@@ -6,7 +6,7 @@
     </head>
 
     <body id="ng-app" ng-app="ui.fatturasprint.main" ng-controller="FsDashboardController">
-        <div id="fullscreen_bg" class="fullscreen_bg  w-50 p-3"/>
+        <div class="col-md-4 col-md-offset-4" id="fullscreen_bg" class="fullscreen_bg  w-50 p-3"/>
             <s2ui:form type='login' focus='username'>
                 <h1 class="form-signin-heading text-muted">
                     <g:message code='spring.security.ui.login.signin'/>
@@ -33,9 +33,9 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        <s2ui:linkButton class="btn btn-lg btn-primary btn-block" elementId='register'
-                                         controller='register'
-                                         messageCode='spring.security.ui.login.register'/>
+                        <g:link elementId='register' controller='register'>
+                            <g:message code='spring.security.ui.login.register'/>
+                         </g:link>                 
                     </div>
                     <div class="col-sm-4">
                         <s2ui:submitButton class="btn btn-lg btn-primary btn-block"

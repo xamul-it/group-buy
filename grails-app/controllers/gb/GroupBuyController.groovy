@@ -18,4 +18,8 @@ class GroupBuyController {
     def profilo() {
 
     }
+
+    def pricelist() {
+        
+    }
 }
