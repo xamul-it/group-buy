@@ -1,7 +1,6 @@
 package gb
 
 import grails.validation.ValidationException
-import org.hibernate.FetchMode
 
 import static org.springframework.http.HttpStatus.*
 import grails.converters.JSON
@@ -19,21 +18,29 @@ class GroupController {
     }
 
     def list(Integer max) {
-        def all = params.all
-        log.debug "************list ALL: " + all + "+"
         params.max = Math.min(max ?: 10, 100)
-//        params.fetch = [owner: "eager"]
         response.setHeader('X-Pagination-Total', groupService.count().toString())
-        if(params.all){
-            log.debug "QUERY ALL"
-            respond groupService.list(params), model:[groupCount: groupService.count()]
-        }else{
-            log.debug "QUERY by user"
-            respond Group.findAllByOwner(springSecurityService.getCurrentUser(), params), model:[groupCount: groupService.count()]
-        }
+        respond (groupService.list(params.max, params.allPublicGroups == null ? false : (boolean)params.allPublicGroups), model:[loggedMember: true])
+    }
+
+    def subscribe(Long id){
+        log.debug "subscribe " + id
+        Group g = Group.findById(id);
+        g.getMembers().add(springSecurityService.getCurrentUser())
+        save(g);
+        return g
+    }
+
+    def leaveGroup(Long id){
+        log.debug "leaveGroup " + id
+        Group g = Group.findById(id);
+        g.getMembers().remove(springSecurityService.getCurrentUser())
+        save(g);
+        return g
     }
 
     def autocomplete(String query) {
+        log.debug "autocomplete " + query
         params.max = 10
         def lista = groupService.autocomplete(query)
         render (lista ? lista as JSON : "")
@@ -41,16 +48,10 @@ class GroupController {
 
 
     def show(Long id) {
-        Group g = groupService.get(id)
-        log.debug "**************SHOW " + g.publicGroup+ "--"
-        respond g
-//        respond groupService.get(id)
+        respond groupService.get(id)
     }
 
     def get(Long id) {
-        Group g = groupService.get(id)
-        log.debug "**************GET " + g.publicGroup+ "--"
-        respond g
         respond groupService.get(id)
     }
 
@@ -86,7 +87,6 @@ class GroupController {
     }
 
     def update(Group group) {
-        log.debug "****** update - publicGroup: " + group.publicGroup
         if (group == null) {
             notFound()
             return
