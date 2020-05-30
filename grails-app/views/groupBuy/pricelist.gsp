@@ -3,23 +3,15 @@
 	<head>
 		<link href=/assets/vue/product/pricelist/js/app.js rel=preload as=script>
         <link href=/assets/vue/product/pricelist/js/chunk-vendors.js rel=preload as=script>
-		<meta name="layout" content="angular"/>
-		<script>
-			angular.module('grailsService', ['ngResource'])
-				//.constant("baseUrl", "/assets/data/")
-				.constant("baseUrl", "/")
-				.constant("baseController", "product");
-
-			angular.module('scaffolding', ['grailsService', 'flashService', 'ngRoute','ngSanitize','textAngular','customFilters','datePicker','ui.bootstrap'])
-				.constant("templateUrl", "/assets/products/ng-templates")
-				.constant("commonTemplateUrl", "/assets/ng-templates");
-			
-		</script>
+		<meta name="layout" content="angularuiBootstrap3"/>
 		
 	</head>
 <body>
 
 	<ng-include src="'/navigation/menu.html?menu=groups'"></ng-include>
+	<!-- grails include -->
+	<% params.menu = 'groups'%>
+	<g:render template="/navigation/menu" />
 
 	<div class="top-title clearfix">
         <div dropdown="" class="container">

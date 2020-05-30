@@ -23,7 +23,7 @@
 				</div><!--/.navbar-collapse -->
 			</div>
 		</div>
-		<g:render template="menu${params.menu}"/>
+		<g:render template="/navigation/menu${params.menu}"/>
 		</div>
 		</collapse-group>
 	</div><!--/.navbar -->
