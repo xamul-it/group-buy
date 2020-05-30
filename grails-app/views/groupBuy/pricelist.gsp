@@ -8,8 +8,6 @@
 	</head>
 <body>
 
-	<ng-include src="'/navigation/menu.html?menu=groups'"></ng-include>
-	<!-- grails include -->
 	<% params.menu = 'groups'%>
 	<g:render template="/navigation/menu" />
 
