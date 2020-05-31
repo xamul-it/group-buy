@@ -9,6 +9,7 @@ class Product {
 	static belongsTo = [supplier: Supplier]
 	
     static constraints = {
+		code nullable:true
 		description nullable: false, blank: false, size: 5..255
 		supplier nullable:false
 		price nullable:true
