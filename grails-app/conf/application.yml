@@ -200,6 +200,7 @@ grails:
 grails:
     plugin:
         springsecurity:
+            active: true
             ui:
                 register:
                     defaultRoleNames: ['ROLE_CUSTOMER']

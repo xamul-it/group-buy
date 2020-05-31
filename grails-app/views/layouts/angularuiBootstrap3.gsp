@@ -17,8 +17,17 @@
         <g:layoutHead/>
     </head>
     <body>
+         <g:layoutBody/>
         <div class="container">
-             <g:layoutBody/>
+             <footer>
+                <p>
+                    &copy; Group Buy 2020 - 
+                    Tutti i diritti riservati.
+                    - <a href="#">Privacy</a>
+                    - <a href="#">Termini di servizio</a>
+                </p>
+            </footer>
         </div> <!-- /container -->
+        
     </body>
 </html>

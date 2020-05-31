@@ -45,9 +45,10 @@
             <div class="content" role="main" data-ng-view=""></div>
             <footer>
                 <p>
-                    <asset:image src="fatturasprint.png"/> &copy; Fattura Sprint 2014 - Powered by NUBEEFY S.r.l. © 2010
-                    - 2014 Tutti i diritti riservati. - <a href="#">Privacy</a> -
-                    <a href="#">Termini di servizio</a>
+                    &copy; Group Buy 2020 - 
+                    Tutti i diritti riservati.
+                    - <a href="#">Privacy</a>
+                    - <a href="#">Termini di servizio</a>
                 </p>
             </footer>
 
