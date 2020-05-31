@@ -11,7 +11,7 @@
 						<span class="icon-bar">&nbsp;</span>
 						<span class="icon-bar">&nbsp;</span>
 					</button>
-					<a class="navbar-brand" href="#"><img alt="Fattura Sprint" src="/assets/img/logo.png"/></a>
+					<a class="navbar-brand" href="/" style="padding: 5px 5px;"><img alt="Group BUY" src="/assets/img/logo-gb.png"/></a>
 				</div>
 				<div class="navbar-collapse collapse main-nav" collapse="!isOpen">
 					<ul class="nav navbar-nav">
@@ -23,7 +23,9 @@
 				</div><!--/.navbar-collapse -->
 			</div>
 		</div>
-		<g:render template="/navigation/menu${params.menu}"/>
+		<g:if test="${params.menu}">
+			<g:render template="/navigation/menu${params.menu}"/>
+		</g:if>
 		</div>
 		</collapse-group>
 	</div><!--/.navbar -->
