@@ -22,4 +22,8 @@ class GroupBuyController {
     def pricelist() {
         
     }
+
+    def shops(){
+
+    }
 }

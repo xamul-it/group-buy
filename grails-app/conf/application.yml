@@ -206,6 +206,9 @@ grails:
                     requireEmailValidation: false
                     postRegisterUrl: '/supplier'
 
+
+                gsp:
+                    layoutRegister: 'angular'
 ---
 grails:
     plugin:

@@ -43,15 +43,19 @@
         <g:layoutBody/>
         <div class="container">
             <div class="content" role="main" data-ng-view=""></div>
+        </div>
             <footer>
+                <div class="container text-center">
+                    <br/>
                 <p>
-                    <asset:image src="fatturasprint.png"/> &copy; Fattura Sprint 2014 - Powered by NUBEEFY S.r.l. © 2010
-                    - 2014 Tutti i diritti riservati. - <a href="#">Privacy</a> -
+                    <asset:image src="fatturasprint.png"/> &copy; Group-buy 2020 - Powered by  © 2020
+                    - Tutti i diritti riservati. - <a href="#">Privacy</a> -
                     <a href="#">Termini di servizio</a>
                 </p>
+                </div>
             </footer>
 
-        </div> <!-- /container -->
+
 
         <asset:javascript src="js/vendor/ui-bootstrap-tpls-0.12.0.js"/>
         <asset:javascript src="js/vendor/angular-locale_it-it.js"/>

@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 	<head>
-		<link href=/assets/vue/product/pricelist/js/app.js rel=preload as=script>
-        <link href=/assets/vue/product/pricelist/js/chunk-vendors.js rel=preload as=script>
+		<link href="/assets/vue/product/pricelist/js/app.js" rel="preload" as="script"/>
+        <link href="/assets/vue/product/pricelist/js/chunk-vendors.js" rel="preload" as="script"/>
 		<meta name="layout" content="angular"/>
 		<script>
 			angular.module('grailsService', ['ngResource'])

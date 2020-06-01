@@ -66,7 +66,11 @@ abstract class SupplierService implements ISupplierService {
      * @return
      */
     Supplier save(Supplier supplier) {
-        String email = springSecurityService.principal.email
+
+        if (supplier.contactInfo.email==null){
+            supplier.contactInfo.email=springSecurityService.principal.email
+        }
+
         if (supplier.contactInfo.email==springSecurityService.principal.email){
             supplier.owner=springSecurityService.getCurrentUser()
 

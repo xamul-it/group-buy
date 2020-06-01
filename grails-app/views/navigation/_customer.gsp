@@ -9,7 +9,7 @@
 		<ul class="dropdown-menu pull-right">
 			<li><a data-gas-modal="" template-url="/assets/profilo/profilo.html?id=1"><i class="glyphicon glyphicon-user"></i> Profilo</a></li>
 			<li ng-if="roles.includes('ROLE_SUPPLIER')"><a href="/preferenze"><i class="glyphicon glyphicon-cog"></i> Preferenze</a></li>
-			<li ng-if="roles.includes('ROLE_SUPPLIER')"><a href="/vertina"><i class="glyphicon glyphicon-cog"></i> La mia vetrina</a></li>
+			<li ng-if="roles.includes('ROLE_SUPPLIER')"><a href="/groupBuy/shops"><i class="glyphicon glyphicon-cog"></i> La mia vetrina</a></li>
 			<li ng-if="roles.includes('ROLE_SUPPLIER')"><a href="/groupBuy/pricelist"><i class="glyphicon glyphicon-cog"></i> Il mio listino</a></li>
 			<li ng-if="roles.includes('ROLE_ADMIN')"><a href="/securityInfo/mappings"><i class="glyphicon glyphicon-lock"></i> Amministazione utenti</a></li>
 			<li class="divider"></li>

@@ -226,7 +226,7 @@ scaffoldingModule.directive('gasUser', function() {
 		//controllerAs:'userCtrl',
 		controller: function($scope, $routeParams, $location, Grails, Flash) {
 		    $scope.activateSupplier=false
-			var ctrl = this; // assign to a variable to be consistent when using in the template
+			//var ctrl = this; // assign to a variable to be consistent when using in the template
 		    if ($scope.user !== 'undefined' ) {
                 var usr = Grails.get({controller: "auth", action:"principal"},function() {
                     $scope.user=usr
@@ -241,10 +241,15 @@ scaffoldingModule.directive('gasUser', function() {
             };
             $scope.supplier = function(){
                 $scope.activateSupplier=true
+            };
+            $scope.cancel = function(){
                 console.log("supplier: "+ $scope)
+                console.log("user: "+ usr)
+                console.log("Flash: "+ Flash)
+                console.log("ctrl: "+ ctrl)
+				$modalInstance.dismiss('cancel');
             };
             $scope.updateSupplier = function(item, user){
-                console.log("supplier: "+ $scope+ " - "+JSON.stringify(item) + user.email)
                 if (item.contactInfo.email == '') item.contactInfo.email = user.email
                 item.$save({controller: 'supplier'},function(response) {
                     $scope.message = {level: 'success', text: "Profilo aggiornato "};
@@ -437,7 +442,7 @@ scaffoldingModule.directive('gasModal', function factory($window) {
 		},
 		controllerAs:'modalCtrl',
 		controller: function($scope, $attrs, $modal, $log) {
-		    var ctrl = this;
+		    var modalCtrl = this;
 			$scope.open = function (size) {
 				console.log($attrs.templateUrl + " "+ $attrs.controller)
 				var modalInstance = $modal.open({
@@ -451,7 +456,7 @@ scaffoldingModule.directive('gasModal', function factory($window) {
 						}
 					}*/
 				});
-			
+			    $scope.modalInstance = modalInstance;
 				modalInstance.result.then(function (selectedItem) {
 						$scope.selected = selectedItem;
 					}, function () {
