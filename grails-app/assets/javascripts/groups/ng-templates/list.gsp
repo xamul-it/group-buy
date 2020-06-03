@@ -32,7 +32,7 @@
         <span class="divider-vertical pull-left">&nbsp;</span>
         <div class="pull-right">
             <span class="total">
-                <strong>{{listCtrl.count || 0}}</strong>
+                <strong>{{listCtrl.list.length || 0}}</strong>
                 Gruppi
             </span>
             <i class="glyphicon glyphicon-export">&nbsp;</i>
@@ -41,15 +41,17 @@
 
     <table class="table table-hover elenco" data-gas-infinite-scroll="" ng-model="listCtrl.list">
         <tr>
-            <th data-gas-sortable="date">Nome</th>
-            <th data-gas-sortable="total">Indirizzo Consegna</th>
-            <th data-gas-sortable="description">Amministratore</th>
-            <th data-gas-sortable="description">Pubblico</th>
-            <th data-gas-sortable="description">Membri</th>
+            <th >Nome</th>
+            <th >Indirizzo Consegna</th>
+            <th >Amministratore</th>
+            <th >Pubblico</th>
+            <th >Membri</th>
+            <th >Proprietario</th>
+            <th >Iscritto</th>
             <th>&nbsp;</th>
         </tr>
-        <tr ng-repeat="item in listCtrl.list | filter:statusFilterFn">
-            <td data-ng-click="show(item)">
+        <tr ng-repeat="item in listCtrl.list | filter:statusFilterFn | orderBy:'name'">
+            <td data-ng-click="show(item)" >
                 <div class="client-name">{{item.name}}</div>
                 {{item.description}}
             </td>
@@ -68,7 +70,14 @@
                 <i class="glyphicon glyphicon-ok" data-ng-show="{{item.publicGroup}}">&nbsp;</i>
                 <i class="glyphicon glyphicon-remove" data-ng-show="{{!item.publicGroup}}">&nbsp;</i>
             </td>
-            <td data-ng-click="show(item)">{{item.members.size}}</td>
+            <td data-ng-click="show(item)">{{item.members.length}}</td>
+
+            <td data-ng-click="show(item)"> <!--Proprietario-->
+                <i class="glyphicon glyphicon-ok" data-ng-show="{{item.administrator}}">&nbsp;</i>
+            </td>
+            <td data-ng-click="show(item)"><!--Iscritto-->
+                <i class="glyphicon glyphicon-ok" data-ng-show="{{item.member}}">&nbsp;</i>
+            </td>
 
             <td class="text-right">
                 <div class="btn-group" dropdown="">
@@ -76,12 +85,18 @@
                         <span class="caret">&nbsp;</span>
                         <!--					<span class="sr-only">Documento {{item.number}}</span>-->
                     </button>
-                    <ul class="dropdown-menu pull-right" role="menu">
+                    <ul class="dropdown-menu pull-right" role="menu" data-gas-user="" user="user">
                         <li>
                             <a data-ng-href="#/show/{{item.id}}">Dettagli</a>
                         </li>
-                        <li>
+                        <li data-ng-if="item.administrator">
                             <a data-ng-href="#/edit/{{item.id}}">Modifica</a>
+                        </li>
+                        <li data-gas-subscribe="" data-ng-if="!item.member">
+                            <a data-ng-href="#">Iscriviti</a>
+                        </li>
+                        <li data-gas-leave-group="" data-ng-if="item.member && !item.administrator">
+                            <a data-ng-href="#">Abbandona</a>
                         </li>
                         <li>
                             <a data-ng-href="#/delete/{{item.id}}">Elimina</a>

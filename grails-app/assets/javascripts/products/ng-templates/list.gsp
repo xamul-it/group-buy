@@ -1,1 +1,0 @@
-<!-- angular 1.2 list placeholder page for compatibility with old angularjs routing -->

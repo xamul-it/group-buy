@@ -31,18 +31,18 @@ class ProductController {
         //TODO add REST error handling
         println "jsonList.size(): " + jsonList.size()
 
-
-        //TODO move to service
+        List<Product> products = []
         jsonList.each{ jsonObj ->
-            try{
-                Product p = new Product(jsonObj);
-                //p.save(flush:true); // save JSON directly to grails domain
-                println "productJSON: "+(p as JSON) // render JSON object
+            Product p = new Product(jsonObj)
+            products.add(p)
+            println "productJSON: "+(p as JSON) // render JSON object
+        }
 
-            } catch(Exception e){
-                e.printStackTrace();
-                render "{ Error saving products: ${e.getLocalizedMessage} }";
-            }
+        try{
+            productService.saveProductList(products)
+        } catch(Exception e){
+            e.printStackTrace();
+            render "{ Error saving products: ${e.getLocalizedMessage()} }";
         }
 
         render jsonList

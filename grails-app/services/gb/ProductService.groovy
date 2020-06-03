@@ -2,8 +2,7 @@ package gb
 
 import grails.gorm.services.Service
 
-@Service(Product)
-interface ProductService {
+interface IProductService {
 
     Product get(Serializable id)
 
@@ -14,5 +13,39 @@ interface ProductService {
     void delete(Serializable id)
 
     Product save(Product product)
+}
+
+@Service(Product)
+abstract class ProductService implements IProductService {
+
+    SupplierService supplierService
+
+    void saveProductList(List<Product> products) {
+
+        Supplier supplier = supplierService.get()
+
+        println supplier;
+
+        Product.findAllBySupplier(supplier).each { it.delete(flush:false, failOnError:false) }
+
+        products.eachWithIndex{ product, index ->
+            product.supplier = supplier
+            product.code = 'n/a'
+            product.save(flush: false, failOnError: false, validate:false,deepValidate:false);
+
+            // http://krixisolutions.com/bulk-insert-grails-gorm/
+            /*if(index.mod(100)==0) {
+                cleanUpGorm()
+            }*/
+        }
+
+    }
+
+    def cleanUpGorm() {
+        def session = sessionFactory.currentSession
+        session.flush()
+        session.clear()
+        propertyInstanceMap.get().clear()
+    }
 
 }

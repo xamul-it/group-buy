@@ -19,6 +19,9 @@ class User implements Serializable {
     boolean accountLocked
     boolean passwordExpired
 
+    @Autowired
+    transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
+
     Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
     }

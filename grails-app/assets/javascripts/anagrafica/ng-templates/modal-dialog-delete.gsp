@@ -8,7 +8,7 @@
 <div class="modal-body">
 	<div class="row">
 		<div class="col-xs-2 text-right"><h2 class="glyphicon glyphicon-remove" aria-hidden="true"></h2></div>
-		<div class="col-xs-10"><h4> Vuoi tu eliminare Fattura Sprint e formattare C:\?</h4></div>
+		<div class="col-xs-10"><h4> Vuoi tu formattare C:\?</h4></div>
 	</div>
 </div>
 

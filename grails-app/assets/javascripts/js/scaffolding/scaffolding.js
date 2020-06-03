@@ -151,6 +151,58 @@ scaffoldingModule.directive('gasSortable', function(commonTemplateUrl) {
 	}
 });
 
+/**
+ * A directive for subscribing to a group
+ */
+scaffoldingModule.directive('gasSubscribe', function(){
+        return {
+            replace: false,
+            transclude: true,
+            template:
+                '<a data-ng-href="#">Iscriviti</a>',
+            controller: function($scope, $http, $routeParams, $location, Grails, Flash) {
+
+                $scope.subscribe = function(val,controller) {
+                    $scope.id = val;
+                    Grails.subscribe({id: val, controller: controller});
+                    Flash.success("Iscrizione completata");
+                }, errorHandler.curry($scope, $location, Flash);
+            },
+            link: function(scope, element, attrs, controller) {
+                element.bind('click', function() {
+                    scope.subscribe(scope.item.id, 'group');
+                    scope.$apply();
+                });
+            }
+        };
+});
+
+/**
+ * A directive for leave a group
+ */
+scaffoldingModule.directive('gasLeaveGroup', function(){
+        return {
+            replace: false,
+            transclude: true,
+            template:
+                '<a data-ng-href="#">Abbandona</a>',
+            controller: function($scope, $http, $routeParams, $location, Grails, Flash) {
+
+                $scope.leaveGroup = function(val,controller) {
+                    $scope.id = val;
+                    Grails.leaveGroup({id: val, controller: controller});
+                    Flash.success("Hai abbandonato il gruppo");
+                }, errorHandler.curry($scope, $location, Flash);
+            },
+            link: function(scope, element, attrs, controller) {
+                element.bind('click', function() {
+                    scope.leaveGroup(scope.item.id, 'group');
+                    scope.$apply();
+                });
+            }
+        };
+});
+
 function toArray(element) {
     return Array.prototype.slice.call(element);
 }
