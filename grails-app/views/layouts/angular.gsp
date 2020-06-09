@@ -40,18 +40,22 @@
         <g:layoutHead/>
     </head>
     <body data-ng-app="scaffolding">
+        
         <g:layoutBody/>
+        
         <div class="container">
-            <div class="content" role="main" data-ng-view=""></div>
-            <footer>
-                <p>
-                    &copy; Group Buy 2020 - 
-                    Tutti i diritti riservati.
-                    - <a href="#">Privacy</a>
-                    - <a href="#">Termini di servizio</a>
-                </p>
-            </footer>
-
+            <div class="row">
+                <div class="center-block col-lg-6" style="float: none;">
+                    <footer>
+                        <p style="text-align: center;">
+                            &copy; Group Buy 2020 - 
+                            Tutti i diritti riservati.
+                            - <a href="#">Privacy</a>
+                            - <a href="#">Termini di servizio</a>
+                        </p>
+                    </footer>
+                </div>    
+            </div>
         </div> <!-- /container -->
 
         <asset:javascript src="js/vendor/ui-bootstrap-tpls-0.12.0.js"/>

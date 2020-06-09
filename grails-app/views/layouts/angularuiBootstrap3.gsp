@@ -17,16 +17,22 @@
         <g:layoutHead/>
     </head>
     <body>
-         <g:layoutBody/>
+        
+        <g:layoutBody/>
+
         <div class="container">
-             <footer>
-                <p>
-                    &copy; Group Buy 2020 - 
-                    Tutti i diritti riservati.
-                    - <a href="#">Privacy</a>
-                    - <a href="#">Termini di servizio</a>
-                </p>
-            </footer>
+            <div class="row">
+                <div class="center-block col-lg-6" style="float: none;">
+                    <footer>
+                        <p style="text-align: center;">
+                            &copy; Group Buy 2020 - 
+                            Tutti i diritti riservati.
+                            - <a href="#">Privacy</a>
+                            - <a href="#">Termini di servizio</a>
+                        </p>
+                    </footer>
+                </div>    
+            </div>
         </div> <!-- /container -->
         
     </body>

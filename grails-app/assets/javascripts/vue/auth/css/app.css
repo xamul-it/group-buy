@@ -1,0 +1,47 @@
+.login-form[data-v-ba2e0cba] {
+  width: 340px;
+  margin: 50px auto;
+}
+.login-form form[data-v-ba2e0cba] {
+  margin-bottom: 15px;
+  background: #f7f7f7;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+.login-form h2[data-v-ba2e0cba] {
+  margin: 0 0 15px;
+}
+.register-form[data-v-4b7e9598] {
+  width: 440px;
+  margin: 50px auto;
+}
+.register-form form[data-v-4b7e9598] {
+  margin-bottom: 15px;
+  background: #f7f7f7;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+.register-form h2[data-v-4b7e9598] {
+  margin: 0 0 15px;
+}
+.form-group.invalid label[data-v-4b7e9598],
+.form-group.invalid p.input-alert[data-v-4b7e9598] {
+  color: red;
+}
+.form-group.invalid input[data-v-4b7e9598] {
+  border: 1px solid red;
+  background-color: #ffc9aa;
+}
+.forgot-password-form[data-v-577ef909] {
+  width: 340px;
+  margin: 50px auto;
+}
+.forgot-password-form form[data-v-577ef909] {
+  margin-bottom: 15px;
+  background: #f7f7f7;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+.forgot-password-form h2[data-v-577ef909] {
+  margin: 0 0 15px;
+}
