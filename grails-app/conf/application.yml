@@ -189,7 +189,7 @@ environments:
 grails:
     mail:
         port: 1025
-    serverURL: "http://localhost:8080/${appName}"
+        serverURL: "http://localhost:8080/${appName}"
 ---
 grails:
     plugin:
@@ -213,3 +213,11 @@ grails:
         databasemigration:
             dbDocController:
                 enabled: true
+
+---
+grails:
+    asset:
+        minifyJs: false
+        minifyCss: false
+        enableSourceMaps: false
+        

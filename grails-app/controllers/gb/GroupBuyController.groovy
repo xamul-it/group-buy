@@ -26,4 +26,8 @@ class GroupBuyController {
     def auth() {
         
     }
+
+    def home() {
+        // home page
+    }
 }
