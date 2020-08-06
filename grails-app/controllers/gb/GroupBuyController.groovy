@@ -23,7 +23,16 @@ class GroupBuyController {
         
     }
 
+<<<<<<< HEAD
     def shops(){
 
+=======
+    def auth() {
+        
+    }
+
+    def home() {
+        // home page
+>>>>>>> 9005ad7f042d9c3751534355fc3c2800ff038869
     }
 }

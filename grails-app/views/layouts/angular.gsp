@@ -40,8 +40,11 @@
         <g:layoutHead/>
     </head>
     <body data-ng-app="scaffolding">
+        
         <g:layoutBody/>
+        
         <div class="container">
+<<<<<<< HEAD
             <div class="content" role="main" data-ng-view=""></div>
         </div>
             <footer>
@@ -56,6 +59,21 @@
             </footer>
 
 
+=======
+            <div class="row">
+                <div class="center-block col-lg-6" style="float: none;">
+                    <footer>
+                        <p style="text-align: center;">
+                            &copy; Group Buy 2020 - 
+                            Tutti i diritti riservati.
+                            - <a href="#">Privacy</a>
+                            - <a href="#">Termini di servizio</a>
+                        </p>
+                    </footer>
+                </div>    
+            </div>
+        </div> <!-- /container -->
+>>>>>>> 9005ad7f042d9c3751534355fc3c2800ff038869
 
         <asset:javascript src="js/vendor/ui-bootstrap-tpls-0.12.0.js"/>
         <asset:javascript src="js/vendor/angular-locale_it-it.js"/>
