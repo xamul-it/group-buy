@@ -1,0 +1,20 @@
+
+/* Login Register Forgot password forms */
+.single-page .wrapper .vue-template>form {
+    width: 100%;
+    transition: all .5s;
+    background: #fff;
+    width: 100%;
+}
+
+.single-page .wrapper .vue-template>form>div {
+    position: relative;
+    margin-bottom: 15px;
+}
+hr.divider:after {
+    content: "o";
+}
+
+.input-alert {
+    color: red;
+}

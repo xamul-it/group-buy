@@ -3,7 +3,8 @@ package gb
 class GroupBuyController {
 
     def index() {
-        redirect action: "groups"
+        //redirect action: "groups"
+        redirect action: "home"
     }
 
     def orders(){
@@ -15,15 +16,15 @@ class GroupBuyController {
     def suppliers(){
     }
 
-    def profilo() {
+    def userProfile() {
+
+    }
+
+    def userSettings() {
 
     }
 
     def pricelist() {
-        
-    }
-
-    def auth() {
         
     }
 
