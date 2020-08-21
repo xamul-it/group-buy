@@ -16,6 +16,10 @@ class GroupBuyController {
     def suppliers(){
     }
 
+    def group(){
+        
+    }
+
     def userProfile() {
 
     }

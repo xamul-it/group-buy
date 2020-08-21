@@ -164,7 +164,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.js"></script>
 
     <!-- Vue Pages and Components here -->
-    <script src="/assets/vue/v-login/auth.vue.js"></script>
+    <!-- script src="/assets/vue/v-group-buy/user-profile.vue.js"></script -->
 
     <script>
         Vue.use(window.vuelidate.default);
@@ -172,7 +172,6 @@
         var app = new Vue({
             el: '#v-user-data-app',
             components: {
-                //'v-login-auth': VLoginAuth,
             },
             data: {
                 id: 0,
@@ -260,56 +259,3 @@
 
 </body>
 </html>
-
-<!-- 
-
-http://localhost:8080/supplier/save.json?id=5
-
-Request Headrs:
-
-POST /supplier/save.json?id=5 HTTP/1.1
-Host: localhost:8080
-Connection: keep-alive
-Content-Length: 351
-Accept: application/json, text/plain, */*
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.108 Safari/537.36
-Content-Type: application/json;charset=UTF-8
-Origin: http://localhost:8080
-Sec-Fetch-Site: same-origin
-Sec-Fetch-Mode: cors
-Sec-Fetch-Dest: empty
-Referer: http://localhost:8080/
-Accept-Encoding: gzip, deflate, br
-Accept-Language: it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7
-Cookie: JSESSIONID=24047C29CD4876A7328102C40971848A
-
-Response Headers:
-
-HTTP/1.1 201
-Content-Type: application/json;charset=UTF-8
-Transfer-Encoding: chunked
-Date: Thu, 20 Aug 2020 08:20:04 GMT
-
-Response body:
-
-{"id":5,"name":"Negozio Test Nuovo","owner":{"id":3},"shippingAddress":{"address1":"Viale 10","countryCode":"IT","postalCode":"20100","address2":"Viale 2","city":"Milano","district":"MI"},"creator":{"id":3},"contactInfo":{"phone":"42215432","mobile":"54236424","email":"test@test.it"},"description":"Sono il nuovo negozio che si è appena registrato"}
-
-cURL request:
-
-curl 'http://localhost:8080/supplier/save.json?id=5' \
-  -H 'Connection: keep-alive' \
-  -H 'Accept: application/json, text/plain, */*' \
-  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.108 Safari/537.36' \
-  -H 'Content-Type: application/json;charset=UTF-8' \
-  -H 'Origin: http://localhost:8080' \
-  -H 'Sec-Fetch-Site: same-origin' \
-  -H 'Sec-Fetch-Mode: cors' \
-  -H 'Sec-Fetch-Dest: empty' \
-  -H 'Referer: http://localhost:8080/' \
-  -H 'Accept-Language: it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7' \
-  -H 'Cookie: JSESSIONID=24047C29CD4876A7328102C40971848A' \
-  --data-binary '{"id":5,"name":"Negozio Test Nuovo","owner":{"id":3},"shippingAddress":{"address1":"Viale 10","countryCode":"IT","postalCode":"20100","address2":"Viale 2","city":"Milano","district":"MI"},"creator":{"id":3},"contactInfo":{"phone":"42215432","mobile":"54236424","email":"test@test.it"},"description":"Sono il nuovo negozio che si è appena registrato"}' \
-  --compressed
-
-
--->
