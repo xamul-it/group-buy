@@ -145,7 +145,7 @@
 														</div>
 													</div>
 												</div>
-                                                <pre>{{ group }}</pre>
+                                                <!-- pre>{{ group }}</pre -->
 											</div>
                                             <!-- /list item -->
 											
@@ -462,7 +462,7 @@
 									</div>
 								</div>
 
-								<div class="center-block text-center">
+								<!-- div class="center-block text-center">
 									<ul class="pagination mb-5">
 										<li class="page-item page-prev disabled">
 											<a class="page-link" href="#" tabindex="-1">Precedente</a>
@@ -474,8 +474,8 @@
 											<a class="page-link" href="#">Successivo</a>
 										</li>
 									</ul>
-								</div>
-                                
+								</div -->
+
 							</div>
 						</div>
 					</div>
@@ -501,6 +501,10 @@
             data: {
                 groups: [],
                 total: 0,
+                max: 4, //The maximum number to list
+                offset: 0, //The offset from the first result to list from
+                sort: '', //The property name to sort by
+                order: '' //How to order the list, either "desc" or "asc"
             },
             computed: {
                 groupsCount() {
@@ -519,23 +523,25 @@
                         
                 },
             },
-            mounted:function(){
-                    this.getGroupList() //will execute at pageload
+            mounted() {
+                    //will execute at pageload
+                    this.loadGroupList() 
+
+                    this.infiniteScroll();
             },
             methods: {
-                getGroupList() {
+                loadGroupList() {
                     let url =
-                        "/group.json";
+                        "/group.json"+"?"+"max="+this.max+"&"+"offset="+this.offset;
                     //this.showProgress = true;
                     axios
                         .get(url)
                         .then(result => {
                             console.log("result=", result ); 
                             console.log("headers=", result.headers ); 
-                            
+                            //TODO get X-Pagination-Total header
                             data = result.data;
-                            console.log("data=", data );
-                            this.groups = data;
+                            this.groups = _.concat(this.groups, data)
                             //this.showProgress = false;
                         })
                         .catch(error => {
@@ -543,20 +549,22 @@
                             //this.showProgress = false;
                         }).then( () => {
                             console.log("data", this.$data);
-                            console.log("data.json", JSON.stringify(this.$data));
                         });
                 },
-                postUserData() {
-                    axios.post('/supplier/save.json?id='+this.id, 
-                        JSON.stringify(this.$data)
-                    )
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                }
+                
+                infiniteScroll() {
+                    console.log('scroll')
+                    window.onscroll = () => {
+                        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= document.body.scrollHeight;
+                       
+                        if (bottomOfWindow) {
+                            this.offset += this.max;
+                            this.loadGroupList();
+                            //TODO stop loading when _size(this.groups) >= X-Pagination-Total
+                        }
+                    };
+                },
+
             },
         })        
     </script>
