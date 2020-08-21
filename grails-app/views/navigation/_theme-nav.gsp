@@ -12,7 +12,7 @@
                 <ul class="horizontalMenu-list">
 
                     <li aria-haspopup="true"><a href="${createLink(controller: 'groupBuy', action: 'group')}">Gruppi</a></li>
-                    <li aria-haspopup="true"><a href="${createLink(controller: 'groupBuy', action: 'suppliers')} /groupBuy/suppliers">Attivit&aacute;</a></li>
+                    <li aria-haspopup="true"><a href="${createLink(controller: 'groupBuy', action: 'suppliers')}">Attivit&aacute;</a></li>
                     <!-- Blog -->
                     <li aria-haspopup="true"><a href="https://www.group-buy.it/#blog"> Blog<span class="wsarrow"></span></a></li>
                     <!-- how to -->
