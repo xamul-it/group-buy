@@ -243,7 +243,7 @@
                         });
                 },
                 postUserData() {
-                    axios.post('/supplier/save.json?id='+this.id, 
+                    axios.post('/supplier/save/'+this.id+'.json',
                         JSON.stringify(this.$data)
                     )
                     .then(function (response) {
