@@ -62,7 +62,7 @@ var VRegisterRegister = Vue.component("VRegisterRegister", {
                         @input="$v.password.$touch()"
                         v-model="password">
                         <label>{{inputParams.loginPassword}}</label>
-                        <!-- password v-model="password" :strength-meter-only="true"/ TODO -->
+                        <password v-model="password" :strength-meter-only="true"/>
                         <!-- alerts -->
                         <p class="input-alert" v-if="!$v.password.minLength && $v.password.$error">Please insert at least {{ $v.password.$params.minLength.min }} characters.</p>
                         <p class="input-alert" v-if="!$v.password.required && $v.password.$error">This field must not be empty.</p>

@@ -24,6 +24,14 @@ class GroupBuyController {
 
     }
 
+    def groupOrders() {
+
+    }
+
+    def groupMembers() {
+        
+    }
+
     def userProfile() {
 
     }

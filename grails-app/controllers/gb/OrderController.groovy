@@ -21,6 +21,11 @@ class OrderController {
 
     }
 
+    def listByGroup(Long groupId) {
+        println "Params "+params+" "+request.params
+        list()
+    }
+
     def show(Long id) {
         respond orderService.get(id)
     }

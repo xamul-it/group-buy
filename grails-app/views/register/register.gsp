@@ -104,8 +104,8 @@
     <script src="https://unpkg.com/vuelidate@0.7.5/dist/vuelidate.min.js"></script>
     <script src="https://unpkg.com/vuelidate@0.7.5/dist/validators.min.js"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/vue-password-strength-meter@1.7.2/dist/vue-password-strength-meter.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/zxcvbn@4.4.2/dist/zxcvbn.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-password-strength-meter@1.7.2/dist/vue-password-strength-meter.js"></script>
 
     <!-- Vue Pages and Components here -->
     <script src="/assets/vue/v-register/register.vue.js"></script>

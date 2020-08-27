@@ -1,4 +1,4 @@
-<!--Topbar-->
+		<!--Topbar-->
 		<div class="header-main">
 			<div class="top-bar">
 				<div class="container">
@@ -97,3 +97,5 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<!--/Topbar-->
