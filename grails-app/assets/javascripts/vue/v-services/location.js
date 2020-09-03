@@ -1,7 +1,8 @@
 //require axios @0.19.2
 
-const REVERSE_ENDPOINT = "https://nominatim.openstreetmap.org/reverse";
-const FORWARD_ENDPOINT = "https://nominatim.openstreetmap.org/search";
+//https://operations.osmfoundation.org/policies/nominatim/
+const REVERSE_ENDPOINT = "https://nominatim.openstreetmap.org/reverse"; //https://nominatim.org/release-docs/develop/api/Reverse/
+const FORWARD_ENDPOINT = "https://nominatim.openstreetmap.org/search"; //https://nominatim.org/release-docs/develop/api/Search/
 const FORMAT = "jsonv2";
 
 export function currentCoordinates() {

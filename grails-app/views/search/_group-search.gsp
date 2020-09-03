@@ -81,6 +81,7 @@
                     this.addressString += this.addressString.length>0?', ':'';
                     this.addressString += address.postcode ? address.postcode:'';
                     this.addressString += address.village ? ' '+address.village:'';
+                    this.addressString += address.city ? ' '+address.city:'';
                     this.addressString += this.addressString.length>0?', ':'';
                     this.addressString += address.country ? address.country:'';
                 }
