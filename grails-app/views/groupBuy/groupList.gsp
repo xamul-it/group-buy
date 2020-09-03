@@ -6,6 +6,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
 	<script src="https://unpkg.com/lodash@4.17.19/lodash.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/locale/it.js"></script>
 </head>
 <body>
 
@@ -72,6 +74,7 @@
 																<a href="#categoria">Categoria</a>
 																<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id" class="text-dark"><h4 class="font-weight-semibold mt-1">{{ group.name }}</h4></a>
 																<p class="mb-0 leading-tight text-dark">{{ group.description }}</p>
+																<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id" title="Creato"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </a>
 															</div>
 														</div>
 														<div class="card-footer pt-4 pb-4">
@@ -171,7 +174,6 @@
                         return _.size(this.groups);
                     else
                         return 0;
-                        
                 },
 			},
 			watch: {
@@ -198,23 +200,27 @@
 							this.sort = '';
 							this.order = '';
 					}
+					//reset offset
+					this.offset=0
 					this.fetchGroupList(true);
 				},
             },
             mounted() {
-                    //will execute at pageload
-					this.fetchGroupList();
-                    this.infiniteScroll();
+				//will execute at pageload
+				this.fetchGroupList();
+				this.infiniteScroll();
             },
             methods: {
 				async fetchGroupList(/*boolean*/ reload = false) {
                     try {
                         this.setLoadingState();
 						//this.address = await groupService.groupList(this.max,this.offset,this.sort,this.order);
+						let { data, headers } = await groupService.groupList(this.max,this.offset,this.sort,this.order);
+						console.log("let", data, headers);
 						if(reload)
-							this.groups = await groupService.groupList(this.max,this.offset,this.sort,this.order);
+							this.groups = data; //await groupService.groupList(this.max,this.offset,this.sort,this.order);
 						else
-							this.groups = _.concat(this.groups, await groupService.groupList(this.max,this.offset,this.sort,this.order));
+							this.groups = _.concat(this.groups, data); //_.concat(this.groups, await groupService.groupList(this.max,this.offset,this.sort,this.order));
                         // Reset the loading state after fetching groups.
                         this.loading = false;
                     } catch (error) {
@@ -243,6 +249,12 @@
                             //TODO stop loading when _size(this.groups) >= X-Pagination-Total
                         }
                     };
+				},
+				timeFromNow(date) {
+        		    return moment(date).fromNow();
+                },
+                dateTime(date) {
+        		    return moment(date).format('D MMMM YYYY, h:mm');
                 },
 
             },

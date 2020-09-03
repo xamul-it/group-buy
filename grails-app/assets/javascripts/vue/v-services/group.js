@@ -12,8 +12,20 @@ export async function groupList(max, offset, sort, order) {
   if (!_.isUndefined(order) && sort != "") params.append("sort", sort);
   if (!_.isUndefined(order) && order != "") params.append("order", order);
 
-  const { data } = await axios.get(LIST_ENDPOINT, { params });
+  const { data, headers, status, statusText } = await axios.get(LIST_ENDPOINT, {
+    params,
+  });
 
-  console.log("group data", data, "params", params.toString());
-  return data;
+  console.log(
+    "group data",
+    data,
+    "params",
+    params.toString(),
+    "headers",
+    headers,
+    "status",
+    status,
+    statusText
+  );
+  return { data, headers };
 }

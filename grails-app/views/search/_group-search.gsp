@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="form-group  col-xl-3 col-lg-3 col-md-12 mb-0 bg-white">
                                         <input type="text" class="form-control input-lg br-md-0" id="address" v-model="addressString" placeholder="Luogo">
-                                        <span v-if="geolocationSupported" @click="fetchAddress"><i class="fa fa-map-marker location-gps mr-1"></i> </span>										</div>
+                                        <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione"><i class="fa fa-map-marker location-gps mr-1"></i> </span>										</div>
                                     <div class="form-group col-xl-3 col-lg-3 col-md-12 select2-lg  mb-0 bg-white">
                                         <select class="form-control select2-show-search  border-bottom-0" data-placeholder="Select Category">
                                             <optgroup label="Categories">
