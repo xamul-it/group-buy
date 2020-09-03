@@ -216,7 +216,6 @@
                         this.setLoadingState();
 						//this.address = await groupService.groupList(this.max,this.offset,this.sort,this.order);
 						let { data, headers } = await groupService.groupList(this.max,this.offset,this.sort,this.order);
-						console.log("let", data, headers);
 						if(reload)
 							this.groups = data; //await groupService.groupList(this.max,this.offset,this.sort,this.order);
 						else
@@ -239,7 +238,6 @@
                     this.loading = true;
                 },
                 infiniteScroll() {
-                    console.log('scroll')
                     window.onscroll = () => {
                         let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= document.body.scrollHeight;
                        
