@@ -1,4 +1,4 @@
-//require axios
+//require axios @0.19.2
 
 const REVERSE_ENDPOINT = "https://nominatim.openstreetmap.org/reverse";
 const FORWARD_ENDPOINT = "https://nominatim.openstreetmap.org/search";

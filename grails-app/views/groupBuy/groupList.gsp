@@ -136,13 +136,13 @@
 		</section>
 		<!--Group Listing-->
 
+	<!-- Vue Pages and Components here -->
+    <script type="module" src="/assets/vue/v-services/group.js"></script>
 
-    
-
-    <!-- Vue Pages and Components here -->
-    <!-- script src="/assets/vue/v-group-buy/group.vue.js"></script -->
-
-    <script>
+    <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
+    <script type="module">
+		import * as groupService from '/assets/vue/v-services/group.js';
+		
         var app = new Vue({
             el: '#v-groups-app',
             data: {
@@ -152,8 +152,10 @@
                 offset: 0, //The offset from the first result to list from
                 sort: '', //The property name to sort by
 				order: '', //How to order the list, either "desc" or "asc"
-				sortOrder: ''
-                //https://docs.grails.org/latest/ref/Domain Classes/list.html
+				sortOrder: '',
+				//https://docs.grails.org/latest/ref/Domain Classes/list.html
+				error: null,
+                loading: false,
             },
             computed: {
                 groupsCount() {
@@ -171,37 +173,65 @@
                         return 0;
                         
                 },
+			},
+			watch: {
+                sortOrder: function (sortOrder) {
+                    switch(sortOrder) {
+						case 'newest':
+							this.sort = 'creationDate';
+							this.order = 'desc';
+							break;
+						case 'oldest':
+							this.sort = 'creationDate';
+							this.order = 'asc';
+							break;
+						case 'nearest':
+							//TODO
+							break;
+						case 'bigger':
+							//TODO
+							break;
+						case 'smaller':
+							//TODO
+							break;
+						default:
+							this.sort = '';
+							this.order = '';
+					}
+					this.fetchGroupList(true);
+				},
             },
             mounted() {
                     //will execute at pageload
-                    this.loadGroupList() 
-
+					this.fetchGroupList();
                     this.infiniteScroll();
             },
             methods: {
-                loadGroupList() {
-                    let url =
-                        "/group.json"+"?"+"max="+this.max+"&"+"offset="+this.offset;
-                    //this.showProgress = true;
-                    axios
-                        .get(url)
-                        .then(result => {
-                            console.log("result=", result ); 
-                            console.log("headers=", result.headers ); 
-                            //TODO get X-Pagination-Total header
-                            //https://github.com/axios/axios#response-schema
-                            data = result.data;
-                            this.groups = _.concat(this.groups, data)
-                            //this.showProgress = false;
-                        })
-                        .catch(error => {
-                            console.log("error", error);
-                            //this.showProgress = false;
-                        }).then( () => {
-                            console.log("data", this.$data);
-                        });
+				async fetchGroupList(/*boolean*/ reload = false) {
+                    try {
+                        this.setLoadingState();
+						//this.address = await groupService.groupList(this.max,this.offset,this.sort,this.order);
+						if(reload)
+							this.groups = await groupService.groupList(this.max,this.offset,this.sort,this.order);
+						else
+							this.groups = _.concat(this.groups, await groupService.groupList(this.max,this.offset,this.sort,this.order));
+                        // Reset the loading state after fetching groups.
+                        this.loading = false;
+                    } catch (error) {
+                        console.log("catch error", error);
+                        this.setErrorState(error);
+                    } finally {
+                        console.log("finally data", this.$data);
+                    }
+				},
+				setErrorState(error) {
+                    this.error = error;
+                    this.loading = false;
                 },
-                
+                setLoadingState() {
+                    this.error = null;
+                    this.loading = true;
+                },
                 infiniteScroll() {
                     console.log('scroll')
                     window.onscroll = () => {
@@ -209,7 +239,7 @@
                        
                         if (bottomOfWindow) {
                             this.offset += this.max;
-                            this.loadGroupList();
+                            this.fetchGroupList();
                             //TODO stop loading when _size(this.groups) >= X-Pagination-Total
                         }
                     };
