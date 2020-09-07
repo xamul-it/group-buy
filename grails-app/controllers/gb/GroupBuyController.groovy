@@ -3,7 +3,8 @@ package gb
 class GroupBuyController {
 
     def index() {
-        redirect action: "groups"
+        //redirect action: "groups"
+        redirect action: "home"
     }
 
     def orders(){
@@ -15,7 +16,30 @@ class GroupBuyController {
     def suppliers(){
     }
 
-    def profilo() {
+    def groupList() {
+
+    }
+
+    def group(){
+
+    }
+
+    def groupOrders() {
+
+    }
+
+    def groupMembers() {
+        
+    }
+
+    def shops(){
+	}
+    def auth() {
+	}    def userProfile() {
+
+    }
+
+    def userSettings() {
 
     }
 
@@ -23,16 +47,7 @@ class GroupBuyController {
         
     }
 
-<<<<<<< HEAD
-    def shops(){
-
-=======
-    def auth() {
-        
-    }
-
     def home() {
         // home page
->>>>>>> 9005ad7f042d9c3751534355fc3c2800ff038869
     }
 }

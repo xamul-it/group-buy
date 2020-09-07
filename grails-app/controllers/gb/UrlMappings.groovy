@@ -10,8 +10,9 @@ class UrlMappings {
             }
         }
 
+        
         "/vetrina"(controller:"groupBuy",action:"shops")
-        "/"(controller:"groupBuy",action:"groups")
+        "/"(controller:"groupBuy",action:"groupList")
         "/info"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
