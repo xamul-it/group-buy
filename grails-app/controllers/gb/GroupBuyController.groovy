@@ -34,8 +34,11 @@ class GroupBuyController {
 
     def shops(){
 	}
+
     def auth() {
-	}    def userProfile() {
+	}
+
+    def userProfile() {
 
     }
 
