@@ -3,8 +3,7 @@ package gb
 class GroupBuyController {
 
     def index() {
-        //redirect action: "groups"
-        redirect action: "home"
+        redirect action: "groups"
     }
 
     def orders(){
