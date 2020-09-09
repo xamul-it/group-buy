@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-body pattern-1">
+                            <div class="card-body group-pattern-1">
                                 <div class="wideget-user">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
