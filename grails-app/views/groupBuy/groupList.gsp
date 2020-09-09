@@ -3,17 +3,15 @@
 <head>
 	<meta name="layout" content="claylist"/>
     <title>Gruppi di acquisto</title>
+
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
 	<script src="https://unpkg.com/lodash@4.17.19/lodash.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/locale/it.js"></script>
+
 </head>
 <body>
-
-    <g:render template="/navigation/theme-topbar" />
-
-	<g:render template="/navigation/theme-nav" />
 
 	<!--Sliders Section-->
 	<g:render template="/search/group-search" />
@@ -100,7 +98,7 @@
 																	</div> (000 reviews)
 																</div>
 																<div class="ml-auto">
-																	<a href="#" class="location"><i class="fa fa-map-marker text-muted mr-1"></i> {{ group.deliveryAddress.city }}</a>
+																	<a class="location" :title="addressFormat(group.deliveryAddress)"><i class="fa fa-map-marker text-muted mr-1"></i> {{ group.deliveryAddress.city }}</a>
 																</div>
 															</div>
 														</div>
@@ -140,12 +138,13 @@
 		<!--Group Listing-->
 
 	<!-- Vue Pages and Components here -->
-    <script type="module" src="/assets/vue/v-services/group.js"></script>
+    <script type="module" src="/assets/vue/v-services/group-rest.js"></script>
 
-    <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
     <script type="module">
-		import * as groupService from '/assets/vue/v-services/group.js';
+		import * as groupService from '/assets/vue/v-services/group-rest.js';
 		
+		moment.locale('it');
+
         var app = new Vue({
             el: '#v-groups-app',
             data: {
@@ -214,19 +213,20 @@
 				async fetchGroupList(/*boolean*/ reload = false) {
                     try {
                         this.setLoadingState();
-						//this.address = await groupService.groupList(this.max,this.offset,this.sort,this.order);
-						let { data, headers } = await groupService.groupList(this.max,this.offset,this.sort,this.order);
+						let { data, headers } = await groupService.list(this.max,this.offset,this.sort,this.order);
 						if(reload)
-							this.groups = data; //await groupService.groupList(this.max,this.offset,this.sort,this.order);
+							this.groups = data;
 						else
-							this.groups = _.concat(this.groups, data); //_.concat(this.groups, await groupService.groupList(this.max,this.offset,this.sort,this.order));
+							this.groups = _.concat(this.groups, data);
+						
+						this.total = headers['x-pagination-total'];
                         // Reset the loading state after fetching groups.
                         this.loading = false;
                     } catch (error) {
                         console.log("catch error", error);
                         this.setErrorState(error);
                     } finally {
-                        console.log("finally data", this.$data);
+                        console.log("finally vue data", this.$data);
                     }
 				},
 				setErrorState(error) {
@@ -240,11 +240,10 @@
                 infiniteScroll() {
                     window.onscroll = () => {
                         let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= document.body.scrollHeight;
-                       
-                        if (bottomOfWindow) {
+					   
+                        if (bottomOfWindow && _.size(this.groups) < this.total) {
                             this.offset += this.max;
                             this.fetchGroupList();
-                            //TODO stop loading when _size(this.groups) >= X-Pagination-Total
                         }
                     };
 				},
@@ -253,7 +252,21 @@
                 },
                 dateTime(date) {
         		    return moment(date).format('D MMMM YYYY, h:mm');
-                },
+				},
+				addressFormat(deliveryAddress) {
+					let formattedAddress = '';
+
+					formattedAddress = '';
+                    formattedAddress += deliveryAddress.address1 ? deliveryAddress.address1:'';
+                    formattedAddress += deliveryAddress.address2 ? ' '+deliveryAddress.address2:'';
+                    formattedAddress += formattedAddress.length>0?', ':'';
+                    formattedAddress += deliveryAddress.postalCode ? deliveryAddress.postalCode:'';
+                    formattedAddress += deliveryAddress.city ? ' '+deliveryAddress.city:'';
+                    formattedAddress += formattedAddress.length>0?', ':'';
+					formattedAddress += deliveryAddress.countryCode ? deliveryAddress.countryCode:'';
+					
+					return formattedAddress
+				}
 
             },
         })        
