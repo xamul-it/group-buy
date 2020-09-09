@@ -4,6 +4,10 @@
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'gb.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'gb.UserRole'
 grails.plugin.springsecurity.authority.className = 'gb.Role'
+
+grails.plugin.springsecurity.rejectIfNoRule = false
+grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
@@ -27,6 +31,9 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/product/**',    access: 'isAuthenticated()'],
 	[pattern: '/shop/**',    access: 'isAuthenticated()'],
 	[pattern: '/auth/**',    access: 'isAuthenticated()'],
+	[pattern: '/api/**',    access: 'isAuthenticated()'],
+	[pattern: '/api/v1/**',    access: 'isAuthenticated()'],
+	[pattern: '/api/v1/groups',    access: 'isAuthenticated()'],
 
 	[pattern: '/user/**',    access: 'ROLE_ADMIN'],
 	[pattern: '/role/**',    access: 'ROLE_ADMIN'],
