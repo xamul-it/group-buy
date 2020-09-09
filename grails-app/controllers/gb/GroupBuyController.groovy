@@ -50,7 +50,4 @@ class GroupBuyController {
         
     }
 
-    def home() {
-        // home page
-    }
 }
