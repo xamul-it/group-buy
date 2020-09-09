@@ -5,10 +5,6 @@
 </head>
 <body>
 
-    <g:render template="/navigation/theme-topbar" />
-
-	<g:render template="/navigation/theme-nav" />
-
     <!--Sliders Section-->
     <section>
         <div class="bannerimg cover-image bg-background3" style="background: url(&quot;/assets/theme/img/banners/banner2.jpg&quot;) center center;" >
