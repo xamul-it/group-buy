@@ -43,14 +43,17 @@ abstract class GroupService implements IGroupService {
             log.debug "QUERY ALL"
             l =  Group.findAllByPublicGroup(true, [max: max]) //, model: [groupCount: groupService.count(), allPublicGroups: true]
         } else {
-            log.debug "QUERY by user"
-            def query = Group.where{
-                members{id == springSecurityService.getCurrentUser().getId()}
+            def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
+            log.debug "QUERY by user $userId"
+            def query = Group.where {
+                members{id == userId}
             }
             l = query.findAll()
         }
         return l;
     }
+
+    
 
 //    Group subscribe(Long id){
 //        def g = Group.findById(id);
