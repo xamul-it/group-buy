@@ -4,9 +4,6 @@
 	<meta name="layout" content="claylist"/>
     <title>Gruppi di acquisto</title>
 
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-	<script src="https://unpkg.com/lodash@4.17.19/lodash.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/locale/it.js"></script>
 
