@@ -60,7 +60,7 @@
 									<div class="simple dropdown float-right">
 										<ul class="horizontalMenu-list">
 											<li> 
-												<a href="#" class="active"><i class="fa fa-home mr-1"></i><span> My Dashboard</span></a>
+												<a href="#" class="active"><i class="fa fa-home mr-1"></i><span>Dashboard</span></a>
 
 												<ul>
 													<li>
@@ -71,16 +71,6 @@
 													<li>
 														<a href="${createLink(controller: 'groupBuy', action: 'userSettings')}" class="dropdown-item"> 
 															<i class="dropdown-icon icon icon-settings"></i> Preferenze
-														</a>
-													</li>
-													<li>
-														<a class="dropdown-item" href="/vertina"> 
-															<i class="dropdown-icon icon icon-diamond"></i> Vetrina 
-														</a>
-													</li>
-													<li>
-														<a href="${createLink(controller: 'groupBuy', action: 'pricelist')}" class="dropdown-item"> 
-															<i class="dropdown-icon icon icon-list"></i> Listino 
 														</a>
 													</li>
 												</ul>

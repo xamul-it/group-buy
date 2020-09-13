@@ -1,13 +1,13 @@
 //vuelidate
-const { required, minLength } = window.validators
+const { required, minLength } = window.validators;
 // import { required, minLength } from 'vuelidate/lib/validators'
 
 //lodash
-const { drop, every, forEach, get, isArray, map, set } = _
+const { drop, every, forEach, get, isArray, map, set } = _;
 //import { drop, every, forEach, get, isArray, map, set } from 'lodash';
 
 var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
-    template: `
+  template: `
         <div class="vue-template">
             <slot v-bind:$v="$v" v-bind:$props="$props">
             </slot>
@@ -20,8 +20,6 @@ var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
                 id="forgotPasswordForm"
                 autocomplete="off"
                 >
-                <!-- 
-                //@submit.prevent="onSubmit" -->
 
                 <h3 class="pb-2">{{inputParams.forgotPasswordDescription}}</h3>
 
@@ -47,55 +45,53 @@ var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
 
         </div>`,
 
-    props: {
-        inputParams: {
-            required: true
-        },
-        urls: {
-            required: true
-        },
+  props: {
+    inputParams: {
+      required: true,
     },
+    urls: {
+      required: true,
+    },
+  },
 
-    data() {
+  data() {
+    return {
+      username: "",
+      params: [],
+    };
+  },
+
+  validations: {
+    username: {
+      required,
+      minLength: minLength(3),
+    },
+  },
+
+  created() {
+    if (isArray(this.inputParams)) {
+      this.params = map(this.inputParams, (item) => {
         return {
-            username: '',
-            params: [],
+          key: item,
+          label: item,
         };
-    },
-
-    validations: {
-        username: {
-            required,
-            minLength: minLength(3)
-        },
-    },
-
-    created() {
-        
-        if (isArray(this.inputParams)) {
-            this.params = map(this.inputParams, (item) => {
-                return {
-                    key: item,
-                    label: item
-                };
-            });
-        } else {
-            this.params = map(this.inputParams, (label, key) => {
-                return {
-                    key: key,
-                    label: label
-                };
-            });
-        }
-        
-    },
-    methods: {
-        onSubmit (e) {
-            console.log(e)
-            //submit form
-        },
-        rememberMeToggle (e) {
-            console.log(e)
-        }
+      });
+    } else {
+      this.params = map(this.inputParams, (label, key) => {
+        return {
+          key: key,
+          label: label,
+        };
+      });
     }
+  },
+  methods: {
+    onSubmit(e) {
+      console.log(e);
+      //submit form
+    },
+    rememberMeToggle(e) {
+      console.log(e);
+    },
+  },
 });

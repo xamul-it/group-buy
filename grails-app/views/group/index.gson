@@ -1,0 +1,7 @@
+model {
+    List<Group> groupList
+}
+
+System.out.println "Model is $binding.variables"
+
+json g.render(groupList?:[], [deep:false])

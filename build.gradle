@@ -7,7 +7,8 @@ buildscript {
         classpath "org.grails.plugins:hibernate5:7.0.0"
         classpath "gradle.plugin.com.github.erdi.webdriver-binaries:webdriver-binaries-gradle-plugin:2.0"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:3.0.10"
-        classpath 'org.grails.plugins:database-migration:3.1.0.RC1'
+        classpath "org.grails.plugins:database-migration:3.1.0.RC1"
+        classpath "org.grails.plugins:views-gradle:2.0.2"
     }
 }
 
@@ -20,6 +21,7 @@ apply plugin:"war"
 apply plugin:"org.grails.grails-web"
 apply plugin:"com.github.erdi.webdriver-binaries"
 apply plugin:"org.grails.grails-gsp"
+apply plugin: "org.grails.plugins.views-json"
 apply plugin:"com.bertramlabs.asset-pipeline"
 
 repositories {
@@ -51,6 +53,7 @@ dependencies {
     compile "org.grails:grails-web-boot"
     compile "org.grails:grails-logging"
     compile "org.grails:grails-plugin-rest"
+    compile "org.grails.plugins:views-json:2.0.2"
     compile "org.grails:grails-plugin-databinding"
     compile "org.grails:grails-plugin-i18n"
     compile "org.grails:grails-plugin-services"
@@ -81,7 +84,7 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-chrome-driver:3.14.0"
     testRuntime "org.seleniumhq.selenium:selenium-firefox-driver:3.14.0"
 
-    compile "org.grails.plugins:spring-security-core:4.0.0"
+    compile "org.grails.plugins:spring-security-core:4.0.2"
     compile 'org.grails.plugins:spring-security-ui:4.0.0.M1'
     compile "org.grails.plugins:mail:3.0.0"
     runtime 'mysql:mysql-connector-java:5.1.29'

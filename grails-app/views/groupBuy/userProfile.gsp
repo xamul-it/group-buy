@@ -3,12 +3,15 @@
 <head>
 	<meta name="layout" content="claylist"/>
     <title>Profilo utente</title>
+
+    <script src="https://unpkg.com/vuelidate@0.7.5/dist/vuelidate.min.js"></script>
+    <script src="https://unpkg.com/vuelidate@0.7.5/dist/validators.min.js"></script>
+
+    <!-- Vue Pages and Components here -->
+    <!-- script src="/assets/vue/v-group-buy/user-profile.vue.js"></script -->
+
 </head>
 <body>
-
-    <g:render template="/navigation/theme-topbar" />
-
-	<g:render template="/navigation/theme-nav" />
 
     <!--Sliders Section-->
     <section>
@@ -32,7 +35,7 @@
                 <div class="col-xl-3 col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">My Dashboard</h3>
+                            <h3 class="card-title">Dashboard</h3>
                         </div>
                         <div class="card-body text-center item-user border-bottom">
                             <div class="profile-pic">
@@ -45,51 +48,11 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="item1-links  mb-0"> 
-                            <a href="${createLink(controller: 'groupBuy', action: 'userProfile')}" class="active d-flex border-bottom"> 
-                                <span class="icon1 mr-3"><i class="icon icon-user"></i></span> Profilo 
-                            </a> 
-                            <a href="${createLink(controller: 'groupBuy', action: 'userSettings')}"  class=" d-flex  border-bottom">
-                                <span class="icon1 mr-3"><i class="icon icon-settings"></i></span> Preferenze 
-                            </a> 
-                            
-                            <a href="#" class="d-flex  border-bottom"> 
-                                <span class="icon1 mr-3"><i class="icon icon-folder-alt"></i></span> Vetrina 
-                            </a>
-                            <a href="${createLink(controller: 'groupBuy', action: 'pricelist')}" class=" d-flex  border-bottom">
-                                <span class="icon1 mr-3"><i class="icon icon-list"></i></span> Listino 
-                            </a> 
-                            <a href="#orders" class="d-flex  border-bottom">
-                                <span class="icon1 mr-3"><i class="icon icon-basket"></i></span> Ordini
-                            </a> 
-                            <a href="#groups" class="d-flex border-bottom"> 
-                                <span class="icon1 mr-3"><i class="icon icon-share"></i></span> Gruppi
-                            </a>
-                            <a href="/logoff" class="d-flex">
-                                <span class="icon1 mr-3"><i class="icon icon-power"></i></span> Logout
-                            </a> 
-                        </div>
+
+                        <g:render template="/navigation/theme-user-side-nav" />
+
                     </div>
-                    
-                    <div class="card mb-xl-0">
-                        <div class="card-header">
-                            <h3 class="card-title">Consigli per te</h3>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled widget-spec  mb-0">
-                                <li class=""> <i class="fa fa-check text-success" aria-hidden="true"></i> 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </li>
-                                <li class=""> <i class="fa fa-check text-success" aria-hidden="true"></i>
-                                    Vivamus malesuada magna nec diam accumsan pellentesque.
-                                </li>
-                                <li class=""> <i class="fa fa-check text-success" aria-hidden="true"></i>
-                                    Nullam sed dolor nec purus pulvinar porttitor eget at tellus.
-                                </li>
-                                <li class="ml-5 mb-0"> <a href="tips.html"> Vedi altro.</a> </li>
-                            </ul>
-                        </div>
-                    </div>
+
                 </div>
 
                 <div class="col-xl-9 col-lg-12 col-md-12">
@@ -154,18 +117,6 @@
     </section>
     <!-- /User Dashboard -->
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-
-    <script src="https://unpkg.com/lodash@4.17.19/lodash.js"></script>
-
-    <script src="https://unpkg.com/vuelidate@0.7.5/dist/vuelidate.min.js"></script>
-    <script src="https://unpkg.com/vuelidate@0.7.5/dist/validators.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.js"></script>
-
-    <!-- Vue Pages and Components here -->
-    <!-- script src="/assets/vue/v-group-buy/user-profile.vue.js"></script -->
-
     <script>
         Vue.use(window.vuelidate.default);
 
@@ -209,7 +160,6 @@
                     axios
                         .get(url)
                         .then(result => {
-                            console.log("result=", result ); 
                             data = result.data;
                             console.log("data=", data );
 
@@ -238,8 +188,6 @@
                             //this.showProgress = false;
                         }).then( () => {
                             console.log("data", this.$data);
-                            console.log("data.json", JSON.stringify(this.$data));
-                            
                         });
                 },
                 postUserData() {
