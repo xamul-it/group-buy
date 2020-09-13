@@ -12,6 +12,8 @@ class Group {
 	
 	static hasMany = [members: User]
 
+	static hasOne = [category: GroupCategory]
+
 	Boolean member; //transient - true if logged user is group member
 
 	Boolean administrator; //transient - true if logged user is group owner

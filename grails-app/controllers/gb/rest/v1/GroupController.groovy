@@ -66,13 +66,8 @@ class GroupController extends RestfulController<Group> {
      */
     @Override
     protected List<Group> listAllResources(Map params) {
-        response.setHeader('X-Pagination-Total', countResources().toString())
-
-        println "RestGroupController.listAllResources($params)"
-
-        //super.listAllResources(params)
+        response.setHeader('X-Pagination-Total', groupService.count().toString())
         groupService.list(params);
-        //groupService.list(params.max, params.allPublicGroups?false:(boolean)params.allPublicGroups)        
     }
 
     /**

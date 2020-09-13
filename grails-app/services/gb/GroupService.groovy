@@ -37,18 +37,35 @@ abstract class GroupService implements IGroupService {
         return newL
     }
 
-    List<Group> list (Integer max, boolean allPublicGroups){
+    Long count (){
         def l
-        if (allPublicGroups) {
-            log.debug "QUERY ALL"
-            l =  Group.findAllByPublicGroup(true, [max: max]) //, model: [groupCount: groupService.count(), allPublicGroups: true]
+        def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
+        println "QUERY by user $userId"
+
+        if (userId==0) {
+            l = query.count()
         } else {
-            def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
-            log.debug "QUERY by user $userId"
             def query = Group.where {
                 members{id == userId}
             }
-            l = query.findAll()
+            l = query.count()
+        }
+        return l;
+    }
+
+
+    List<Group> list (Map params){
+        def l
+        def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
+        println "QUERY by user $userId"
+
+        if (userId==0) {
+            l = query.list(params)
+        } else {
+            def query = Group.where {
+                members{id == userId}
+            }
+            l = query.list(params)
         }
         return l;
     }
