@@ -11,10 +11,28 @@
     position: relative;
     margin-bottom: 15px;
 }
+
 hr.divider:after {
     content: "o";
 }
 
 .input-alert {
     color: red;
+}
+
+/* Toast alerts */
+.toasted-container .toasted.bubble .action {
+    color: #ffffff;
+}
+
+.toasted-container .toasted.bubble.alert {
+    border-radius: .25rem;
+}
+
+.toasted-container .toasted.bubble.alert-danger {
+    background-color: #ff382b;
+}
+
+.toasted-container .toasted.bubble.alert-success {
+    background-color: #00e682;
 }

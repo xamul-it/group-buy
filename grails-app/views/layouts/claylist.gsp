@@ -52,8 +52,9 @@
     <asset:stylesheet src="claylist/webslidemenu/color-skins/color3.css" id="theme" rel="stylesheet" type="text/css" media="all" />
 
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.js"></script> <!-- script src="https://unpkg.com/lodash@4.17.19/lodash.js"></script -->
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-toasted@1.1.28/dist/vue-toasted.min.js"></script>
 
     <g:layoutHead/>
 </head>
