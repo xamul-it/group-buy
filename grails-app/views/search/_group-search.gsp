@@ -93,7 +93,8 @@
                 async fetchAddress() {
                     try {
                         this.setLoadingState();
-                        this.address = await locationService.currentAddress();
+                        let currentAddress = await locationService.currentAddress();
+                        this.address = currentAddress.address
                         // Reset the loading state after fetching the address.
                         this.loading = false;
                         console.log("Address", _.toString(_.valuesIn(this.address)), this.address );
