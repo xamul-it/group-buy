@@ -100,9 +100,7 @@ export async function update(id, payload) {
 export async function save(payload) {
   const { data, headers, status, statusText } = await axiosInstance.post(
     REST_ENDPOINT,
-    {
       payload,
-    }
   );
 
   console.log(

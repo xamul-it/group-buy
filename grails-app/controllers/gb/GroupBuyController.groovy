@@ -3,8 +3,7 @@ package gb
 class GroupBuyController {
 
     def index() {
-        //redirect action: "groups"
-        redirect action: "home"
+        redirect action: "groupList"
     }
 
     def orders(){
@@ -22,6 +21,12 @@ class GroupBuyController {
 
     def group(){
 
+        //sanitize params
+        def groupIdParam = params.id?.isInteger() ? params.id.toInteger() : 0
+        def isEditParam = params.edit == 'true'?:'false'
+        def isDebugParam = params.debug == 'true'?:'false'
+
+        ['groupId': groupIdParam, 'isEdit': isEditParam, 'isDebug': isDebugParam]
     }
 
     def groupOrders() {
@@ -49,8 +54,5 @@ class GroupBuyController {
     def pricelist() {
         
     }
-
-    def home() {
-        // home page
-    }
+    
 }

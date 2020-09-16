@@ -147,3 +147,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+label .location-gps {
+  position: static;
+}

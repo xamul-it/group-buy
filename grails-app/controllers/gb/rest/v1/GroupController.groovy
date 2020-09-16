@@ -71,13 +71,17 @@ class GroupController extends RestfulController<Group> {
     }
 
     /**
-     * Saves a resource
+     * Creates a new instance of the resource.  If the request
+     * contains a body the body will be parsed and used to
+     * initialize the new instance, otherwise request parameters
+     * will be used to initialized the new instance.
      *
-     * @param resource The resource to be saved
-     * @return The saved resource or null if can't save it
+     * @return The resource instance
      */
-    @Override
-    protected Group saveResource(Group group) {
+    protected Group createResource() {
+        Group group = resource.newInstance()
+        bindData group, getObjectToBind()
+
         if (!group.id) {
             if (springSecurityService && springSecurityService.isLoggedIn()) {
                 group.owner = springSecurityService.getCurrentUser()
@@ -87,7 +91,7 @@ class GroupController extends RestfulController<Group> {
         }
         group.members.each() {it.springSecurityService=springSecurityService}
 
-        group.save flush: true
+        group
     }
 
 }

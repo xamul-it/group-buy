@@ -30,8 +30,8 @@
                         </li -->
                     </ul>
                     <ul class="mb-0">
-                        <li aria-haspopup="true" class="mt-5 d-none d-lg-block "> <span><a
-                                    class="btn btn-orange ad-post " href="#cta" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
+                        <li aria-haspopup="true" class="mt-5 d-none d-lg-block "> 
+                            <span><a class="btn btn-orange ad-post " href="${createLink(controller: 'groupBuy', action: 'group')}/new" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
                         </li>
                     </ul>
                 </nav>
