@@ -37,36 +37,35 @@ abstract class GroupService implements IGroupService {
         return newL
     }
 
-    Long count (){
+    Long count (Map params){
         def l
         def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
-        println "QUERY by user $userId"
 
-        if (userId==0) {
-            l = query.count()
-        } else {
-            def query = Group.where {
-                members{id == userId}
+        def query = Group.where {
+            if (userId!=0) members{id == userId}
+            if (params.src) {
+                like("description", "%"+params.src+"%")
+                like("name", "%"+params.src+"%")
             }
-            l = query.count()
         }
-        return l;
+
+        return query.count();
     }
 
 
     List<Group> list (Map params){
         def l
         def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
-        println "QUERY by user $userId"
-
-        if (userId==0) {
-            l = query.list(params)
-        } else {
-            def query = Group.where {
-                members{id == userId}
+//        println "QUERY by user $userId"
+        def query = Group.where {
+            if (userId!=0) members{id == userId}
+            if (params.src) {
+                like("description", "%"+params.src+"%")
+                like("name", "%"+params.src+"%")
             }
-            l = query.list(params)
         }
+        l = query.list(params)
+
         return l;
     }
 

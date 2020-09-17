@@ -23,7 +23,7 @@ class BootStrap {
 */
 
         //custom marshaller to get group transient fields in gsp pages
-        JSON.registerObjectMarshaller(Group) {
+        /*JSON.registerObjectMarshaller(Group) {
             def returnArray = [:]
             returnArray['id'] = it.id
             returnArray['name'] = it.name
@@ -36,7 +36,7 @@ class BootStrap {
             returnArray['member'] = it.member
             returnArray['administrator'] = it.administrator
             return returnArray
-        }
+        }*/
     }
 
     def destroy = {
