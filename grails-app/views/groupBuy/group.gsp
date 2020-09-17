@@ -317,7 +317,13 @@
                         publicGroup: false,
                         description: '',
                         members: [],
-                        owner: {}
+                        owner: {},
+                        categoria: {
+                            id: 0,
+                        },
+                        category: {
+                            id: 0,
+                        }
                     },
                     groupId: ${groupId},
                     categories: [],

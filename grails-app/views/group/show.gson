@@ -5,8 +5,9 @@ model {
 System.out.println "Model is $binding.variables"
 
 json g.render(group, [deep:true]) {
-    categoria {
-        id 1
+    member group.member
+    administrator group.administrator
+    category {
+        id group.category?.id?:0
     }
-    staticField 'example'
 }
