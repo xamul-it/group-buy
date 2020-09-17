@@ -20,8 +20,6 @@ class GroupBuyController {
     }
 
     def group(){
-
-        //sanitize params
         def groupIdParam = params.id?.isInteger() ? params.id.toInteger() : 0
         def isEditParam = params.edit == 'true'?:'false'
         def isDebugParam = params.debug == 'true'?:'false'
@@ -30,17 +28,20 @@ class GroupBuyController {
     }
 
     def groupOrders() {
+        def groupIdParam = params.id?.isInteger() ? params.id.toInteger() : 0
+        def isDebugParam = params.debug == 'true'?:'false'
 
+        ['groupId': groupIdParam, 'isDebug': isDebugParam]
     }
 
-    def groupMembers() {
-        
+    def groupMembers() {        
+        def groupIdParam = params.id?.isInteger() ? params.id.toInteger() : 0
+        def isDebugParam = params.debug == 'true'?:'false'
+
+        ['groupId': groupIdParam, 'isDebug': isDebugParam]
     }
 
     def shops(){
-	}
-
-    def auth() {
 	}
 
     def userProfile() {

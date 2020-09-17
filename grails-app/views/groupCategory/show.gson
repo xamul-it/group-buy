@@ -1,0 +1,7 @@
+model {
+    GroupCategory groupCategory
+}
+
+System.out.println "Model is $binding.variables"
+
+json g.render(groupCategory, [deep:true])

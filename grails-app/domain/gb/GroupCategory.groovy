@@ -10,5 +10,4 @@ class GroupCategory {
         name nullable: false, blank: false, size: 5..20, unique: true
     }
 
-
 }

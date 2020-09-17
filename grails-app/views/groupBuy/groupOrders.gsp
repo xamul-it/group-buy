@@ -3,6 +3,9 @@
 <head>
 	<meta name="layout" content="claylist"/>
     <title>Gruppo di acquisto</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/locale/it.js"></script>
 </head>
 <body>
 
@@ -63,12 +66,7 @@
                             <div class="wideget-user-tab">
                                 <div class="tab-menu-heading">
                                     <div class="tabs-menu1">
-                                        <ul class="nav">
-                                            <li class=""><a href="${createLink(controller: 'groupBuy', action: 'group', id: params.id)}">Informazioni</a></li>
-                                            <li><a href="${createLink(controller: 'groupBuy', action: 'group', id: params.id)}?edit=true">Gestisci gruppo</a></li>
-                                            <li><a href="${createLink(controller: 'groupBuy', action: 'groupOrders', id: params.id)}" class="active">Ordini<span class="badge badge-primary badge-pill">{{ groupOrders.length }}</span></a></li>
-                                            <li><a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: params.id)}" data-toggle="tab" class="">Membri<span class="badge badge-primary badge-pill">08</span></a></li>
-                                        </ul>
+                                        <g:render template="/navigation/theme-group-nav" />
                                     </div>
                                 </div>
                             </div>
@@ -143,15 +141,6 @@
     </section>
 
     <!-- /Group -->
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-
-    <script src="https://unpkg.com/lodash@4.17.19/lodash.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/locale/it.js"></script>
 
     <!-- Vue Pages and Components here -->
     <!-- script src="/assets/vue/v-group-buy/group.vue.js"></script -->

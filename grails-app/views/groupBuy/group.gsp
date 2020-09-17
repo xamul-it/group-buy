@@ -72,12 +72,7 @@
                                 <div class="wideget-user-tab">
                                     <div class="tab-menu-heading">
                                         <div class="tabs-menu1">
-                                            <ul class="nav">
-                                                <li class=""><a v-on:click="showItem()" v-bind:class="{ active: isShow }">Informazioni</a></li>
-                                                <li><a v-on:click="editItem()" class="" v-bind:class="{ active: isEdit }">Gestisci gruppo</a></li>
-                                                <li><a href="${createLink(controller: 'groupBuy', action: 'groupOrders', id: params.id)}" class="">Ordini<span class="badge badge-primary badge-pill">20</span></a></li>
-                                                <li><a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: params.id)}" data-toggle="tab" class="">Membri<span class="badge badge-primary badge-pill">08</span></a></li>
-                                            </ul>
+                                            <g:render template="/navigation/theme-group-nav" />
                                         </div>
                                     </div>
                                 </div>
@@ -103,13 +98,19 @@
                                                     <li v-if="group.owner"><a :href="'mailto:'+group.owner.email" class="text-dark"><span class="font-weight-semibold">Email :</span> <span>{{ group.owner.email }}</span> </a></li>
                                                     <li v-if="group.owner"><a :href="group.owner.phone?'tel:'+group.owner.phone:'tel:'" class="text-dark"><span class="font-weight-semibold">Telefono :</span> <span v-if="group.owner">{{ group.owner.phone }}</span> </a></li>
                                                 </ul>
-                                                <div class="row profie-img">
+                                                <div class="row group-description">
                                                     <div class="col-md-12 text-dark">
                                                         <div class="media-heading">
                                                             <h3 class="card-title mb-3 font-weight-bold">Descrizione</h3>
                                                         </div>
                                                         <p></p>
                                                         <p class="mb-0">{{ group.description }}</p>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row group-actions">
+                                                    <div class="col-md-12 text-dark">
+                                                        <button type="submit" :disabled="false" class="btn btn-primary" v-on:click="subscibeToGroup">Iscriviti al gruppo</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -135,6 +136,18 @@
                                                         </div>
 
                                                         <pre v-if="isDebug">{{ $v.group.name }}</pre>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label text-dark">Categoria</label>
+                                                        <select class="form-control w-100"
+                                                            v-model="group.categoria.id">
+                                                            <optgroup label="Categorie">
+                                                                <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+                                                            </optgroup>
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -269,12 +282,14 @@
 
         <!-- Vue Pages and Components here -->
         <script type="module" src="/assets/vue/v-services/group-rest.js"></script>
+        <script type="module" src="/assets/vue/v-services/categories-rest.js"></script>
         <script type="module" src="/assets/vue/v-services/location.js"></script>
         <script type="module" src="/assets/vue/v-services/toast.js"></script>
 
         <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
         <script type="module">
             import * as groupService from '/assets/vue/v-services/group-rest.js';
+            import * as categoriesService from '/assets/vue/v-services/categories-rest.js';
             import * as locationService from '/assets/vue/v-services/location.js';
             import * as toastService from '/assets/vue/v-services/toast.js';
             
@@ -305,6 +320,7 @@
                         owner: {}
                     },
                     groupId: ${groupId},
+                    categories: [],
                     edit: ${isEdit},
                     debug: ${isDebug},
                     error: null,
@@ -364,6 +380,7 @@
                     //will execute at pageload
                     if(this.groupId>0)
                         this.fetchGroup();
+                    this.fetchCategories();
                 },
                 watch: {
                     currentAddress: function(currentAddress) {
@@ -384,11 +401,30 @@
                     }
                 },
                 methods: {
+                    subscibeToGroup() {
+                        toastService.alertSuccess("Complimenti ti sei iscritto al gruppo "+this.group.name)
+                    },
                     async fetchGroup() {
                         try {
                             this.setLoadingState();
                             let { data, headers } = await groupService.show(this.groupId);
                             this.group = data; 
+                            // Reset the loading state after fetching group.
+                            this.loading = false;
+                        } catch (error) {
+                            if(this.debug)
+                                console.log("catch error", error);
+                            this.setErrorState(error.message);
+                        } finally {
+                            if(this.debug)
+                                console.log("finally vue data", this.$data);
+                        }
+                    },
+                    async fetchCategories() {
+                        try {
+                            this.setLoadingState();
+                            let { data, headers } = await categoriesService.list(100,0,'name','asc');
+                            this.categories = data; 
                             // Reset the loading state after fetching group.
                             this.loading = false;
                         } catch (error) {
@@ -418,13 +454,14 @@
                     async saveGroup() {
                         try {
                             let payload = this.group;
-
+                            let r;
                             if(this.groupId == 0)
-                                await groupService.save( payload );
+                                r = await groupService.save( payload );
                             else
-                                await groupService.update( this.groupId, payload );
+                                r = await groupService.update( this.groupId, payload );
                             // Reset the loading state after fetching the address.
                             this.loading = false;
+                            this.success = r.message;
                         } catch (error) {
                             if(this.debug)
                                 console.log("catch error", error);
