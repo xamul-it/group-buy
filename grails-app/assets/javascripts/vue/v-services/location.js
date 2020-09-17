@@ -27,8 +27,8 @@ export async function addressByCoordinates({ latitude, longitude }) {
     },
   });
 
-  console.log("data", data);
-  return data.address;
+  console.log("addressByCoordinates", "data", data);
+  return { address: data.address, latitude: data.lon, longitude: data.lat };
 }
 
 export async function coordinatesByAddress(address) {
@@ -44,12 +44,12 @@ export async function coordinatesByAddress(address) {
     },
   });
 
-  console.log("data[0]", data[0]);
+  console.log("coordinatesByAddress", "data[0]", data[0]);
   return { latitude: data[0].lat, longitude: data[0].lon };
 }
 
 export async function currentAddress() {
   const coordinates = await currentCoordinates();
-  console.log("browser coordinates", coordinates);
+  console.log("Browser coordinates", coordinates);
   return addressByCoordinates(coordinates);
 }

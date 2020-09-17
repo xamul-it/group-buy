@@ -4,4 +4,9 @@ model {
 
 System.out.println "Model is $binding.variables"
 
-json g.render(group, [deep:true])
+json g.render(group, [deep:true]) {
+    categoria {
+        id 1
+    }
+    staticField 'example'
+}
