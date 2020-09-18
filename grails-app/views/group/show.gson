@@ -4,10 +4,4 @@ model {
 
 System.out.println "Model is $binding.variables"
 
-json g.render(group, [deep:true]) {
-    member group.member
-    administrator group.administrator
-    category {
-        id group.category?.id?:0
-    }
-}
+json g.render(template:'group', model:[group:group])

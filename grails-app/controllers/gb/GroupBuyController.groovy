@@ -16,7 +16,9 @@ class GroupBuyController {
     }
 
     def groupList() {
+        def isDebugParam = params.debug == 'true'?:'false'
 
+        ['isDebug': isDebugParam]
     }
 
     def group(){

@@ -146,3 +146,38 @@ export async function members(id) {
   );
   return { data, headers, status };
 }
+
+export async function subscribe(id) {
+  const { data, headers, status, statusText } = await axiosInstance.put(
+    REST_ENDPOINT + "/" + id + "/subscribe"
+  );
+
+  console.log(
+    "group subscribe data",
+    data,
+    "headers",
+    headers,
+    "status",
+    status,
+    statusText
+  );
+  return { data, headers, status, statusText };
+}
+
+export async function unsubscribe(id) {
+  const { data, headers, status, statusText } = await axiosInstance.put(
+    REST_ENDPOINT + "/" + id + "/unsubscribe"
+  );
+
+  console.log(
+    "group unsubscribe data",
+    data,
+    "headers",
+    headers,
+    "status",
+    status,
+    statusText
+  );
+  return { data, headers, status, statusText };
+}
+
