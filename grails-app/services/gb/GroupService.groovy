@@ -43,6 +43,9 @@ abstract class GroupService implements IGroupService {
         println "QUERY by user $userId"
 
         if (userId==0) {
+            def query = Group.where {
+                publicGroup == true
+            }
             l = query.count()
         } else {
             def query = Group.where {
@@ -60,6 +63,9 @@ abstract class GroupService implements IGroupService {
         println "QUERY by user $userId"
 
         if (userId==0) {
+            def query = Group.where {
+                publicGroup == true
+            }
             l = query.list(params)
         } else {
             def query = Group.where {
