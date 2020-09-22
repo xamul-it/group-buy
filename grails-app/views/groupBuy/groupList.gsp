@@ -4,8 +4,13 @@
 	<meta name="layout" content="claylist"/>
     <title>Gruppi di acquisto</title>
 
-	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/locale/it.js"></script>
+	<!-- vuex store -->
+	<script type="module" src="/assets/vue/v-store/store.js"></script>
+	<!-- actions -->
+	<script type="module" src="/assets/vue/v-store/actions.js"></script>
+	<!-- date time helpers -->
+	<script src="/assets/vue/v-jslib/moment@2.28.0/moment.js"></script>
+    <script src="/assets/vue/v-jslib/moment@2.28.0/locale/it.js"></script>
 
 </head>
 <body>
@@ -40,8 +45,6 @@
 														<option value="newest">Più recente</option>
 														<option value="oldest">Più vecchio</option>
 														<option value="nearest">Più vicino</option>
-														<option value="bigger">Più grande</option>
-														<option value="smaller">Più piccolo</option>
 													</select>
 												</div>
 											</div>
@@ -51,49 +54,32 @@
 									<div class="tab-content">
 										<div class="tab-pane active" id="tab-11">
                                             <!-- /list item -->
-											<div v-for="group in groups" class="card overflow-hidden">
+											<div v-for="(group, index) in groupList" class="card overflow-hidden">
 												<div class="d-md-flex">
 													<div class="item-card9-img">
-														<div class="arrow-ribbon bg-primary">Gruppo speciale</div>
+														<div class="arrow-ribbon bg-primary">{{ group.category.name }}</div>
 														<div class="item-card9-imgs">
 															<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id"></a>
-															<img src="/assets/claylist/images/products/h4.png" alt="img" class="cover-image">
+															<img :src="'/assets/theme/img/categories/category-'+group.category.id+'.jpg'" :alt="group.category.name" :title="group.category.name" class="cover-image">
 														</div>
 														<div class="item-card9-icons">
-															<a href="#favorite" class="item-card9-icons1 wishlist"> <i class="fa fa fa-heart-o"></i></a>
+															<a v-if="group.administrator" class="item-card9-icons1 ownership" title="Amministra gruppo"
+																:href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id +'?edit=true'"> <i class="fa fa fa-group"></i></a>
+															<a v-else v-on="!group.member ? { click:()=>subscribe(group.id, index) }:{ click:()=>unsubscribe(group.id, index) }" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer"> <i class="fa fa fa-heart-o"></i></a>
 														</div>
 													</div>
 													<div class="card border-0 mb-0">
 														<div class="card-body ">
 															<div class="item-card9">
-																<a href="#categoria">Categoria</a>
 																<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id" class="text-dark"><h4 class="font-weight-semibold mt-1">{{ group.name }}</h4></a>
 																<p class="mb-0 leading-tight text-dark">{{ group.description }}</p>
-																<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id" title="Creato"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </a>
 															</div>
 														</div>
 														<div class="card-footer pt-4 pb-4">
 															<div class="item-card2-footer d-sm-flex">
-																<div class="rating-stars d-inline-flex">
-																	<input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value"  value="3">
-																	<div class="rating-stars-container">
-																		<div class="rating-star sm">
-																			<i class="fa fa-star"></i>
-																		</div>
-																		<div class="rating-star sm">
-																			<i class="fa fa-star"></i>
-																		</div>
-																		<div class="rating-star sm">
-																			<i class="fa fa-star"></i>
-																		</div>
-																		<div class="rating-star sm">
-																			<i class="fa fa-star"></i>
-																		</div>
-																		<div class="rating-star sm">
-																			<i class="fa fa-star"></i>
-																		</div>
-																	</div> (000 reviews)
-																</div>
+
+																<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id" title="Creato"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </a>
+
 																<div class="ml-auto">
 																	<a class="location" :title="addressFormat(group.deliveryAddress)"><i class="fa fa-map-marker text-muted mr-1"></i> {{ group.deliveryAddress.city }}</a>
 																</div>
@@ -110,20 +96,6 @@
 									</div>
 								</div>
 
-								<!-- div class="center-block text-center">
-									<ul class="pagination mb-5">
-										<li class="page-item page-prev disabled">
-											<a class="page-link" href="#" tabindex="-1">Precedente</a>
-										</li>
-										<li class="page-item active"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item page-next">
-											<a class="page-link" href="#">Successivo</a>
-										</li>
-									</ul>
-								</div -->
-
 							</div>
 						</div>
 					</div>
@@ -135,42 +107,45 @@
 		<!--Group Listing-->
 
 	<!-- Vue Pages and Components here -->
-    <script type="module" src="/assets/vue/v-services/group-rest.js"></script>
+	<script type="module" src="/assets/vue/v-services/group-rest.js"></script>
 
     <script type="module">
 		import * as groupService from '/assets/vue/v-services/group-rest.js';
+
+		import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+		import { store } from '/assets/vue/v-store/store.js';
 		
 		moment.locale('it');
 
         var app = new Vue({
-            el: '#v-groups-app',
+			el: '#v-groups-app',
+			store,
             data: {
-                groups: [],
-                total: 0,
-                max: 4, //The maximum number to list
-                offset: 0, //The offset from the first result to list from
-                sort: '', //The property name to sort by
-				order: '', //How to order the list, either "desc" or "asc"
 				sortOrder: '',
-				//https://docs.grails.org/latest/ref/Domain Classes/list.html
-				error: null,
-                loading: false,
-            },
+			},
             computed: {
+				//all needed data fields from vuex store
+                //mapped with vuex-map-fields
+                ...mapFields([
+					'group.groupList',
+					'pagination.total',
+					'pagination.offset',
+					'pagination.max',
+					'sort.sort',
+					'sort.order',
+					'error',
+					'success',
+                    'debug',
+				]),
                 groupsCount() {
-                    if(_.isArray(this.groups))
-                        return _.size(this.groups);
+                    if(_.isArray(this.groupList))
+                        return _.size(this.groupList);
                     else
                         return 0;
                 },
                 groupsTotal() {
-                    if(this.total > 0)
-                        return this.total;
-                    else if(_.isArray(this.groups))
-                        return _.size(this.groups);
-                    else
-                        return 0;
-                },
+                    return this.total;
+				},
 			},
 			watch: {
                 sortOrder: function (sortOrder) {
@@ -185,63 +160,45 @@
 							break;
 						case 'nearest':
 							//TODO
-							break;
-						case 'bigger':
-							//TODO
-							break;
-						case 'smaller':
-							//TODO
-							break;
 						default:
 							this.sort = '';
 							this.order = '';
 					}
 					//reset offset
-					this.offset=0
+					this.offset = 0;
 					this.fetchGroupList(true);
 				},
             },
             mounted() {
 				//will execute at pageload
-				this.fetchGroupList();
+				this.fetchGroupList(true);
 				this.infiniteScroll();
             },
             methods: {
+				...Vuex.mapActions([
+					'fetchGroupListAction',
+					'subscription',
+                ]),
 				async fetchGroupList(/*boolean*/ reload = false) {
-                    try {
-                        this.setLoadingState();
-						let { data, headers } = await groupService.list(this.max,this.offset,this.sort,this.order);
-						if(reload)
-							this.groups = data;
-						else
-							this.groups = _.concat(this.groups, data);
-						
-						this.total = headers['x-pagination-total'];
-                        // Reset the loading state after fetching groups.
-                        this.loading = false;
-                    } catch (error) {
-                        console.log("catch error", error);
-                        this.setErrorState(error);
-                    } finally {
-                        console.log("finally vue data", this.$data);
-                    }
+					this.fetchGroupListAction({service: groupService, reload: reload})
 				},
-				setErrorState(error) {
-                    this.error = error;
-                    this.loading = false;
-                },
-                setLoadingState() {
-                    this.error = null;
-                    this.loading = true;
-                },
+				async subscribe(groupId, groupIndex) {
+					console.log("Subscribe to "+groupId+" at index "+groupIndex);
+					this.subscription({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: true})
+				},
+				async unsubscribe(groupId, groupIndex) {
+					console.log("Unsubscribe from "+groupId+" at index "+groupIndex);
+					this.subscription({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: false})
+				},
                 infiniteScroll() {
                     window.onscroll = () => {
                         let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= document.body.scrollHeight;
 					   
-                        if (bottomOfWindow && _.size(this.groups) < this.total) {
+                        if (bottomOfWindow && _.size(this.groupList) < this.total) {
                             this.offset += this.max;
-                            this.fetchGroupList();
-                        }
+                            this.fetchGroupList(false);
+						}
+						
                     };
 				},
 				timeFromNow(date) {

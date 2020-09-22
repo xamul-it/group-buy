@@ -140,8 +140,8 @@
 }
 
 .group-pattern-1 {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url(/assets/theme/img/groups/group-1.jpg) center;
+  /*background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(/assets/theme/img/groups/group-1.jpg) center center cover no-repeat;*/
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-repeat: no-repeat;
@@ -150,4 +150,14 @@
 
 label .location-gps {
   position: static;
+}
+
+.subscription {
+  background: #605e7e;
+}
+.subscription.active {
+  background: #e62a72;
+}
+.ownership {
+  background: rgb(241, 196, 15);
 }

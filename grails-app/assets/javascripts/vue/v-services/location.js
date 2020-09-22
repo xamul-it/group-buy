@@ -28,28 +28,34 @@ export async function addressByCoordinates({ latitude, longitude }) {
   });
 
   console.log("addressByCoordinates", "data", data);
-  return { address: data.address, latitude: data.lon, longitude: data.lat };
+  return data.address;
 }
 
 export async function coordinatesByAddress(address) {
-  const { data } = await axios.get(FORWARD_ENDPOINT, {
-    params: {
-      extratags: 0,
-      addressdetails: 0,
-      namedetails: 0,
-      countrycodes: "it",
-      limit: 1,
-      format: FORMAT,
-      q: address,
-    },
-  });
+  try {
+    const { data } = await axios.get(FORWARD_ENDPOINT, {
+      params: {
+        extratags: 0,
+        addressdetails: 0,
+        namedetails: 0,
+        countrycodes: "it",
+        limit: 1,
+        format: FORMAT,
+        q: address,
+      },
+    });
 
-  console.log("coordinatesByAddress", "data[0]", data[0]);
-  return { latitude: data[0].lat, longitude: data[0].lon };
+    console.log("coordinatesByAddress", address, "data[0]", data[0]);
+    return { latitude: data[0].lat, longitude: data[0].lon };
+  } catch (error) {
+    console.log("coordinatesByAddress error", error);
+    throw { error, message: "Nessun risultato trovato" };
+  }
 }
 
 export async function currentAddress() {
   const coordinates = await currentCoordinates();
   console.log("Browser coordinates", coordinates);
-  return addressByCoordinates(coordinates);
+  const address = await addressByCoordinates(coordinates);
+  return { currentCoordinates: coordinates, currentAddress: address };
 }
