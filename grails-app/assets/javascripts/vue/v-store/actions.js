@@ -78,9 +78,15 @@ export const fetchCoordinatesAction = async (
 ) => {
   try {
     dispatch("setLoadingState");
-    let coords = await payload.service.coordinatesByAddress(
-      payload.addressString
-    );
+    let coords = {};
+
+    if (!_.isUndefined(payload.addressString) && payload.addressString != "") {
+      coords = await payload.service.coordinatesByAddress(
+        payload.addressString
+      );
+    } else {
+      coords = await payload.service.currentCoordinates();
+    }
     commit("updateField", {
       path: "search.searchLatitude",
       value: coords.latitude,

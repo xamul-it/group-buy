@@ -116,8 +116,9 @@
 
     <script type="module">
 		import * as groupService from '/assets/vue/v-services/group-rest.js';
+        import * as locationService from '/assets/vue/v-services/location.js';
 		import * as toastService from '/assets/vue/v-services/toast.js';
-
+		
 		import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
 		import { store } from '/assets/vue/v-store/store.js';
 		
@@ -155,7 +156,7 @@
 				},
 			},
 			watch: {
-                sortOrder: function (sortOrder) {
+                sortOrder: async function (sortOrder) {
                     switch(sortOrder) {
 						case 'newest':
 							this.sort = 'creationDate';
@@ -166,7 +167,10 @@
 							this.order = 'asc';
 							break;
 						case 'nearest':
+							this.sort = 'nearest';
+							await this.fetchCoordinatesAction({service: locationService});
 							//TODO
+							break;
 						default:
 							this.sort = '';
 							this.order = '';
@@ -179,7 +183,7 @@
 					console.log("search watcher", search);
 
 					this.fetchGroupList(true);
-					
+
 					this.search = false;
 				}
             },
@@ -193,6 +197,7 @@
 				...Vuex.mapActions([
 					'fetchGroupListAction',
 					'subscription',
+					'fetchCoordinatesAction'
                 ]),
 				async fetchGroupList(/*boolean*/ reload = false) {
 					this.fetchGroupListAction({service: groupService, reload: reload})
