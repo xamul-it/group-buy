@@ -126,8 +126,8 @@ tasks.withType(Test) {
 }
 
 assets {
-    minifyJs = true
-    minifyCss = true
-    enableSourceMaps = true
-    excludes = ["vue/*/","_vue/*/"]
+    minifyJs = false
+    minifyCss = false
+    enableSourceMaps = false
+    excludes = ["vue/*.js","vue/v-*/*"]
 }

@@ -36,15 +36,51 @@ DELETE      /api/v1/groups/${id}       delete
 //https://docs.grails.org/latest/guide/REST.html#extendingRestfulController
 // curl -i -H "Accept: application/json" /api/v1/groups
 
-
-export async function list(max, offset, sort, order) {
+export async function list({
+  max,
+  offset = 0,
+  sort = "",
+  order = "",
+  q = "",
+  latitude = 0.0,
+  longitude = 0.0,
+  categoryId = 0,
+}) {
   const params = new URLSearchParams();
+
+  console.log(
+    "list",
+    "max",
+    max,
+    "offset",
+    offset,
+    "sort",
+    sort,
+    "order",
+    order,
+    "q",
+    q,
+    "latitude",
+    latitude,
+    "longitude",
+    longitude,
+    "categoryId",
+    categoryId
+  );
 
   if (!_.isUndefined(max)) params.append("max", max);
   if (!_.isUndefined(offset)) params.append("offset", offset);
 
   if (!_.isUndefined(order) && sort != "") params.append("sort", sort);
   if (!_.isUndefined(order) && order != "") params.append("order", order);
+
+  if (!_.isUndefined(q) && q != "") params.append("q", q);
+  if (!_.isUndefined(latitude) && latitude != 0.0)
+    params.append("latitude", latitude);
+  if (!_.isUndefined(longitude) && longitude != 0.0)
+    params.append("longitude", longitude);
+  if (!_.isUndefined(categoryId) && categoryId != 0)
+    params.append("categoryId", categoryId);
 
   const { data, headers, status, statusText } = await axiosInstance.get(
     REST_ENDPOINT,
@@ -62,7 +98,7 @@ export async function list(max, offset, sort, order) {
     headers,
     "status",
     status,
-    statusText,
+    statusText
   );
   return { data, headers };
 }
@@ -112,7 +148,7 @@ export async function save(payload) {
   console.log("save", REST_ENDPOINT, payload);
   const { data, headers, status, statusText } = await axiosInstance.post(
     REST_ENDPOINT,
-      payload,
+    payload
   );
 
   let message = HTTP_CODES_MESSAGES_MAP[status];
@@ -129,7 +165,6 @@ export async function save(payload) {
   return { status, message };
 }
 
-
 export async function members(id) {
   const { data, headers, status, statusText } = await axiosInstance.get(
     REST_ENDPOINT + "/" + id + "/members"
@@ -145,4 +180,38 @@ export async function members(id) {
     statusText
   );
   return { data, headers, status };
+}
+
+export async function subscribe(id) {
+  const { data, headers, status, statusText } = await axiosInstance.put(
+    REST_ENDPOINT + "/" + id + "/subscribe"
+  );
+
+  console.log(
+    "group subscribe data",
+    data,
+    "headers",
+    headers,
+    "status",
+    status,
+    statusText
+  );
+  return { data, headers, status, statusText };
+}
+
+export async function unsubscribe(id) {
+  const { data, headers, status, statusText } = await axiosInstance.put(
+    REST_ENDPOINT + "/" + id + "/unsubscribe"
+  );
+
+  console.log(
+    "group unsubscribe data",
+    data,
+    "headers",
+    headers,
+    "status",
+    status,
+    statusText
+  );
+  return { data, headers, status, statusText };
 }

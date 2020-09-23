@@ -1,0 +1,38 @@
+model {
+    Group group
+}
+
+json {
+    id group.id
+    name group.name
+    description group.description
+    publicGroup group.publicGroup
+    creationDate group.creationDate
+
+    deliveryAddress {
+        address1 group.deliveryAddress.address1
+        address2 group.deliveryAddress.address2
+        city group.deliveryAddress.city
+        district group.deliveryAddress.district
+        postalCode group.deliveryAddress.postalCode
+        countryCode group.deliveryAddress.countryCode
+    }
+
+    category {
+        id group.category.id
+        name group.category.name
+    } 
+
+    //References
+    //membres ?
+
+    owner {
+        id group.owner.id
+        username group.owner.username
+        email group.owner.email
+    }
+
+    //Transients
+    member group.member
+    administrator group.administrator    
+}

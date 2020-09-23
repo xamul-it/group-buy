@@ -51,10 +51,17 @@
 	<!-- COLOR-SKINS -->
     <asset:stylesheet src="claylist/webslidemenu/color-skins/color3.css" id="theme" rel="stylesheet" type="text/css" media="all" />
 
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue-toasted@1.1.28/dist/vue-toasted.min.js"></script>
+	<!-- helper -->
+	<script src="/assets/vue/v-jslib/lodash@4.17.20/lodash.min.js"></script>
+	<!-- network -->
+    <script src="/assets/vue/v-jslib/axios@0.20.0/axios.min.js"></script>
+	<!-- vue -->
+	<script src="/assets/vue/v-jslib/vue@2.6.12/vue.js"></script>
+	<!-- vue alerts -->
+	<script src="/assets/vue/v-jslib/vue-toasted@1.1.28/vue-toasted.min.js"></script>
+	<!-- vuex app state management -->
+	<script type="module" src="/assets/vue/v-jslib/vuex@3.5.1/vuex.min.js"></script>
+	<script type="module" src="/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js"></script>
 
     <g:layoutHead/>
 </head>

@@ -6,8 +6,8 @@ class UrlMappings {
         group "/api", {
             "/$namespace/groups" (resources:'group') {
                 "/members" (controller: 'group', action: 'members', method: 'GET')
-                "/subscribe" (controller: 'group', action: 'subscribe', method: ['PUT','POST'])
-                "/unsubscribe" (controller: 'group', action: 'unsubscribe', method: ['PUT','POST'])
+                "/subscribe" (controller: 'group', action: 'subscribe', method: 'PUT')
+                "/unsubscribe" (controller: 'group', action: 'unsubscribe', method: 'PUT')
             }
             "/$namespace/categories" (resources:'groupCategory')
         }

@@ -31,19 +31,21 @@ class GroupController extends RestfulController<Group> {
         super(Group)
     }
 
+    @Transactional
     def subscribe(){
-        log.debug "subscribe to group " + params.groupId
         Group g = queryForResource(params.groupId)
         g.getMembers().add(springSecurityService.getCurrentUser())
-        save(g);
+        log.debug "${springSecurityService.getCurrentUser()} subscribe to group ${params.groupId}"
+        saveResource g
         respond g, [status: CREATED]
     }
 
+    @Transactional
     def unsubscribe(){
-        log.debug "unsubscribe from group " + params.groupId
         Group g = queryForResource(params.groupId)
         g.getMembers().remove(springSecurityService.getCurrentUser())
-        save(g);
+        log.debug "${springSecurityService.getCurrentUser()} unsubscribe from group ${params.groupId}"
+        saveResource g
         respond g, [status: CREATED]
     }
 

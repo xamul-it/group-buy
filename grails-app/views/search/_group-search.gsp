@@ -1,14 +1,6 @@
 <!--Sliders Section-->
     <section>
         <div class=" cover-image sptb-1 bg-background" style="background: url(&quot;/assets/theme/img/banners/banner2.jpg&quot;) center center;" >
-            
-            <!-- div class="header-text mb-0">
-                <div class="container">
-                    <div class="text-center text-white">
-                        <h1 class="">Gruppi di acquisto</h1>
-                    </div>
-                </div>
-            </div -->
 
             <div class="header-text1 mb-0">
                 <div class="container" id="v-group-search-app">
@@ -16,28 +8,44 @@
                         <div class="col-xl-9 col-lg-12 col-md-12 d-block mx-auto">
                             <div class="search-background bg-transparent">
                                 <div class="form row no-gutters ">
+
                                     <div class="form-group  col-xl-4 col-lg-3 col-md-12 mb-0 bg-white">
-                                        <input type="text" class="form-control input-lg br-tr-md-0 br-br-md-0" id="search-text" v-model="searchText" placeholder="Nome gruppo o Keyword">
+                                        <input type="text" class="form-control input-lg br-tr-md-0 br-br-md-0" id="search-text" 
+                                            placeholder="Nome gruppo o Keyword"
+                                            v-model="searchQuery"
+                                            @input="$v.searchQuery.$touch()">
+                                            
+                                            <pre v-if="isDebug">{{ $v.searchQuery }}</pre>
+
                                     </div>
+
                                     <div class="form-group  col-xl-3 col-lg-3 col-md-12 mb-0 bg-white">
-                                        <input type="text" class="form-control input-lg br-md-0" id="address" v-model="addressString" placeholder="Luogo">
-                                        <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione"><i class="fa fa-map-marker location-gps mr-1"></i> </span>										</div>
+                                        <input type="text" class="form-control input-lg br-md-0" id="address" 
+                                            placeholder="Luogo"
+                                            v-model="searchAddressString"
+                                            @input="$v.searchAddressString.$touch()">
+                                        <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione"><i class="fa fa-map-marker location-gps mr-1"></i> </span> 
+                                        
+                                        <pre v-if="isDebug">{{ $v.searchAddressString }}</pre>
+
+                                    </div>
+
                                     <div class="form-group col-xl-3 col-lg-3 col-md-12 select2-lg  mb-0 bg-white">
-                                        <select class="form-control select2-show-search  border-bottom-0" data-placeholder="Select Category">
-                                            <optgroup label="Categories">
-                                                <option>Categoria</option>
-                                                <option value="1">Alimentari</option>
-                                                <option value="2">Abbigliamento</option>
-                                                <option value="3">Casa</option>
-                                                <option value="4">Elettronica</option>
-                                                <option value="5">Fai da te</option>
-                                                <option value="6">Animali</option>
-                                                <option value="7">Sport</option>
+
+                                        <select class="form-control select2-show-search  border-bottom-0" v-model="searchCategoryId">
+                                            <optgroup label="Categorie">
+                                                <option v-if="searchCategoryId<=0" :value="searchCategoryId" disabled selected hidden>Categorie</option>
+                                                <option v-for="category in groupCategories" :value="category.id">{{category.name}}</option>
                                             </optgroup>
                                         </select>
+
                                     </div>
                                     <div class="col-xl-2 col-lg-3 col-md-12 mb-0">
-                                        <button @click="fetchCoordinates" class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0">Cerca</button>
+                                        <button class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0"
+                                            @click="searchGroups"
+                                            :disabled="$v.$invalid" 
+                                            :title="$v.$invalid?'Inserire un testo o un indirizzo':'Cerca'" 
+                                            >Cerca</button>
                                     </div>
                                 </div>
                             </div>
@@ -52,79 +60,116 @@
 
     <!-- Vue Pages and Components here -->
     <script type="module" src="/assets/vue/v-services/location.js"></script>
+    <script type="module" src="/assets/vue/v-services/categories-rest.js"></script>
 
     <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
     <script type="module">
         import * as locationService from '/assets/vue/v-services/location.js';
+        import * as categoriesService from '/assets/vue/v-services/categories-rest.js';
+        import * as toastService from '/assets/vue/v-services/toast.js';
+
+        import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+        import { store } from '/assets/vue/v-store/store.js';
+
+        //vuelidate
+        Vue.use(window.vuelidate.default);
+        const { required,requiredIf, requiredUnless, minLength, helpers } = window.validators;
+
+        //https://github.com/vuelidate/vuelidate/issues/486#issuecomment-500549486
+        const validateIf = (prop, validator) =>
+            helpers.withParams({ type: 'validatedIf', prop }, function(value, parentVm) {
+                return helpers.ref(prop, this, parentVm) ? validator(value) : true
+            })
+        const validateUnless = (prop, validator) =>
+            helpers.withParams({ type: 'validateUnless', prop }, function(value, parentVm) {
+                return !helpers.ref(prop, this, parentVm) ? validator(value) : true
+            })
 
         var app = new Vue({
             el: '#v-group-search-app',
-            data: {
-                searchText: '',
-                addressString: '',
-                latitude: 0,
-                longitude: 0,
-                category: '',
-                address: {},
-                error: null,
-                geolocationSupported: 'geolocation' in navigator,
-                loading: false,
+            store,
+            data: { /*using vuex store*/ 
+
             },
             computed: {
-                
+                //all needed data fields from vuex store
+                //mapped with vuex-map-fields
+                ...mapFields([
+					'search.searchQuery',
+                    'search.searchAddress',
+                    'search.searchAddressString',
+                    'search.searchCategoryId',
+                    'group.groupCategories',
+                    'search.search',
+                    'loading',
+                    'error',
+                    'success',
+                    'debug',
+                    'geolocationSupported',
+                ]),
+                isDebug: function () {
+                    return this.debug
+                },
+            },
+            validations: {
+                searchQuery: {
+                    required: validateUnless('searchAddressString', required),
+                    minLength: minLength(3),
+                },
+                searchAddressString:  {
+                    required: validateUnless('searchQuery', required),
+                    minLength: minLength(2),
+                },
             },
             watch: {
-                address: function (address) {
-                    this.addressString = '';
-                    this.addressString += address.road ? address.road:'';
-                    this.addressString += address.house_number ? ' '+address.house_number:'';
-                    this.addressString += this.addressString.length>0?', ':'';
-                    this.addressString += address.postcode ? address.postcode:'';
-                    this.addressString += address.village ? ' '+address.village:'';
-                    this.addressString += address.city ? ' '+address.city:'';
-                    this.addressString += this.addressString.length>0?', ':'';
-                    this.addressString += address.country ? address.country:'';
+                searchAddress: function (address) {
+                    this.searchAddressString = '';
+                    this.searchAddressString += address.road ? address.road:'';
+                    this.searchAddressString += address.house_number ? ' '+address.house_number:'';
+                    this.searchAddressString += this.searchAddressString.length>0?', ':'';
+                    this.searchAddressString += address.postcode ? address.postcode:'';
+                    this.searchAddressString += address.village ? ' '+address.village:'';
+                    this.searchAddressString += address.city ? ' '+address.city:'';
+                    this.searchAddressString += this.searchAddressString.length>0?', ':'';
+                    this.searchAddressString += address.country ? address.country:'';
+                },
+                categories: function(cats) {
+                    if(this.debug)
+                        console.log("categories loaded",this.groupCategories, cats)
+                },
+                error: function (message) {
+                    toastService.alertDanger(message)
+                },
+                success: function (message) {
+                    toastService.alertSuccess(message)
                 }
             },
             mounted() {
                 //will execute at pageload
+                this.fetchCategoriesAction({service: categoriesService});
             },
             methods: {
+                ...Vuex.mapActions([
+                    'fetchCategoriesAction',
+                    'fetchAddressAction',
+                    'fetchCoordinatesAction',
+                ]),
                 async fetchAddress() {
-                    try {
-                        this.setLoadingState();
-                        let currentAddress = await locationService.currentAddress();
-                        this.address = currentAddress.address
-                        // Reset the loading state after fetching the address.
-                        this.loading = false;
-                        console.log("Address", _.toString(_.valuesIn(this.address)), this.address );
-                    } catch (error) {
-                        console.log("error", error);
-                        this.setErrorState(error);
+                    this.fetchAddressAction({service: locationService})
+                },
+                async searchGroups() {
+                    
+                    console.log("searchGroups", this.search);
+
+                    if(!_.isUndefined(this.searchAddressString) && this.searchAddressString != "") {
+                        //get coordinates for searchAddressString
+                        await this.fetchCoordinatesAction({service: locationService, addressString: this.searchAddressString});
                     }
-                },
-                setErrorState(error) {
-                    this.error = error;
-                    this.loading = false;
-                },
-                setLoadingState() {
-                    this.error = null;
-                    this.loading = true;
-                },
-                async fetchCoordinates() {
-                    try {
-                        this.setLoadingState();
-                        let coords = await locationService.coordinatesByAddress(this.addressString);
-                        this.latitude = coords.latitude;
-                        this.longitude = coords.longitude;
-                        // Reset the loading state after fetching coordinates.
-                        this.loading = false;
-                        console.log("Coordinates", coords );
-                    } catch (error) {
-                        console.log("error", error);
-                        this.setErrorState(error);
-                    }
-                },
+
+                    // toggle serch
+                    this.search = true;
+                    
+                }
 
             },
         })        

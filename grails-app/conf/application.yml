@@ -223,3 +223,4 @@ grails:
     minifyJs: false
     minifyCss: false
     enableSourceMaps: false
+    excludes: ["vue/*.js", "vue/v-*/*"]
