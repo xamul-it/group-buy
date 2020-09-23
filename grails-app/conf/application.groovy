@@ -10,6 +10,7 @@ grails.plugin.springsecurity.fii.rejectPublicInvocations = false
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
+	[pattern: '/groupBuy/**',    access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
 	[pattern: '/index',          access: ['permitAll']],
 	[pattern: '/index.gsp',      access: ['permitAll']],
@@ -24,7 +25,6 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/orderVoice/**',       access: 'isAuthenticated()'],
 	[pattern: '/supplier/**',       access: 'isAuthenticated()'],
 	[pattern: '/group/**',       access: 'isAuthenticated()'],
-	[pattern: '/groupBuy/**',    access: 'isAuthenticated()'],
 	[pattern: '/customer/**',    access: 'isAuthenticated()'],
 	[pattern: '/cliente/**',    access: 'isAuthenticated()'],
 	[pattern: '/timeline/**',    access: 'isAuthenticated()'],

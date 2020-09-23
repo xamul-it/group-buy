@@ -74,7 +74,7 @@ export async function list({
   if (!_.isUndefined(order) && sort != "") params.append("sort", sort);
   if (!_.isUndefined(order) && order != "") params.append("order", order);
 
-  if (!_.isUndefined(q) && q != "") params.append("q", q);
+  if (!_.isUndefined(q) && q != "") params.append("src", q);
   if (!_.isUndefined(latitude) && latitude != 0.0)
     params.append("latitude", latitude);
   if (!_.isUndefined(longitude) && longitude != 0.0)
