@@ -8,6 +8,11 @@
 	<script type="module" src="/assets/vue/v-store/store.js"></script>
 	<!-- actions -->
 	<script type="module" src="/assets/vue/v-store/actions.js"></script>
+	<!-- alerts -->
+	<script type="module" src="/assets/vue/v-services/toast.js"></script>
+	<!-- vue form validation -->
+	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/vuelidate.min.js"></script>
+	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/validators.min.js"></script>
 	<!-- date time helpers -->
 	<script src="/assets/vue/v-jslib/moment@2.28.0/moment.js"></script>
     <script src="/assets/vue/v-jslib/moment@2.28.0/locale/it.js"></script>
@@ -111,6 +116,7 @@
 
     <script type="module">
 		import * as groupService from '/assets/vue/v-services/group-rest.js';
+		import * as toastService from '/assets/vue/v-services/toast.js';
 
 		import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
 		import { store } from '/assets/vue/v-store/store.js';
@@ -133,6 +139,7 @@
 					'pagination.max',
 					'sort.sort',
 					'sort.order',
+					'search.search',
 					'error',
 					'success',
                     'debug',
@@ -168,8 +175,16 @@
 					this.offset = 0;
 					this.fetchGroupList(true);
 				},
+				search: function(search) {
+					console.log("search watcher", search);
+
+					this.fetchGroupList(true);
+					
+					this.search = false;
+				}
             },
             mounted() {
+				this.debug = ${isDebug};
 				//will execute at pageload
 				this.fetchGroupList(true);
 				this.infiniteScroll();

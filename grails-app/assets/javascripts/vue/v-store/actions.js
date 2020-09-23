@@ -22,15 +22,7 @@ export const fetchCategoriesAction = async (
     let { data, headers } = await payload.service.list(100, 0, "name", "asc");
     //commit("setCategories", data);
     commit("updateField", { path: "group.groupCategories", value: data });
-    // wait for https://github.com/maoberlehner/vuex-map-fields/issues/114
-    if (state.debug)
-      console.log(
-        "state.group.groupCategories",
-        getters.getField("group.groupCategories"),
-        data,
-        state
-      );
-
+    // https://github.com/maoberlehner/vuex-map-fields/issues/114
     // Reset the loading state after fetching
     dispatch("resetLoadingState");
   } catch (error) {
@@ -114,12 +106,15 @@ export const fetchGroupListAction = async (
 ) => {
   try {
     dispatch("setLoadingState");
-    let { data, headers } = await payload.service.list(
-      getters.getField("pagination.max"),
-      getters.getField("pagination.offset"),
-      getters.getField("sort.sort"),
-      getters.getField("sort.order")
-    );
+    let { data, headers } = await payload.service.list({
+      max: getters.getField("pagination.max"),
+      offset: getters.getField("pagination.offset"),
+      sort: getters.getField("sort.sort"),
+      order: getters.getField("sort.order"),
+      q: getters.getField("search.searchQuery"),
+      latitude: getters.getField("search.searchLatitude"),
+      longitude: getters.getField("search.searchLongitude"),
+    });
     if (payload.reload) {
       commit("updateField", {
         path: "group.groupList",

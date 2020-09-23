@@ -8,12 +8,28 @@
                         <div class="col-xl-9 col-lg-12 col-md-12 d-block mx-auto">
                             <div class="search-background bg-transparent">
                                 <div class="form row no-gutters ">
+
                                     <div class="form-group  col-xl-4 col-lg-3 col-md-12 mb-0 bg-white">
-                                        <input type="text" class="form-control input-lg br-tr-md-0 br-br-md-0" id="search-text" v-model="searchQuery" placeholder="Nome gruppo o Keyword">
+                                        <input type="text" class="form-control input-lg br-tr-md-0 br-br-md-0" id="search-text" 
+                                            placeholder="Nome gruppo o Keyword"
+                                            v-model="searchQuery"
+                                            @input="$v.searchQuery.$touch()">
+                                            
+                                            <pre v-if="isDebug">{{ $v.searchQuery }}</pre>
+
                                     </div>
+
                                     <div class="form-group  col-xl-3 col-lg-3 col-md-12 mb-0 bg-white">
-                                        <input type="text" class="form-control input-lg br-md-0" id="address" v-model="searchAddressString" placeholder="Luogo">
-                                        <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione"><i class="fa fa-map-marker location-gps mr-1"></i> </span> </div>
+                                        <input type="text" class="form-control input-lg br-md-0" id="address" 
+                                            placeholder="Luogo"
+                                            v-model="searchAddressString"
+                                            @input="$v.searchAddressString.$touch()">
+                                        <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione"><i class="fa fa-map-marker location-gps mr-1"></i> </span> 
+                                        
+                                        <pre v-if="isDebug">{{ $v.searchAddressString }}</pre>
+
+                                    </div>
+
                                     <div class="form-group col-xl-3 col-lg-3 col-md-12 select2-lg  mb-0 bg-white">
 
                                         <select class="form-control select2-show-search  border-bottom-0" v-model="searchCategoryId">
@@ -25,7 +41,11 @@
 
                                     </div>
                                     <div class="col-xl-2 col-lg-3 col-md-12 mb-0">
-                                        <button @click="fetchCoordinates" class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0">Cerca</button>
+                                        <button class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0"
+                                            @click="searchGroups"
+                                            :disabled="$v.$invalid" 
+                                            :title="$v.$invalid?'Inserire un testo o un indirizzo':'Cerca'" 
+                                            >Cerca</button>
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +61,6 @@
     <!-- Vue Pages and Components here -->
     <script type="module" src="/assets/vue/v-services/location.js"></script>
     <script type="module" src="/assets/vue/v-services/categories-rest.js"></script>
-    <script type="module" src="/assets/vue/v-services/toast.js"></script>
 
     <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
     <script type="module">
@@ -52,10 +71,26 @@
         import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
         import { store } from '/assets/vue/v-store/store.js';
 
+        //vuelidate
+        Vue.use(window.vuelidate.default);
+        const { required,requiredIf, requiredUnless, minLength, helpers } = window.validators;
+
+        //https://github.com/vuelidate/vuelidate/issues/486#issuecomment-500549486
+        const validateIf = (prop, validator) =>
+            helpers.withParams({ type: 'validatedIf', prop }, function(value, parentVm) {
+                return helpers.ref(prop, this, parentVm) ? validator(value) : true
+            })
+        const validateUnless = (prop, validator) =>
+            helpers.withParams({ type: 'validateUnless', prop }, function(value, parentVm) {
+                return !helpers.ref(prop, this, parentVm) ? validator(value) : true
+            })
+
         var app = new Vue({
             el: '#v-group-search-app',
             store,
-            data: { /*using vuex store*/ },
+            data: { /*using vuex store*/ 
+
+            },
             computed: {
                 //all needed data fields from vuex store
                 //mapped with vuex-map-fields
@@ -65,12 +100,26 @@
                     'search.searchAddressString',
                     'search.searchCategoryId',
                     'group.groupCategories',
+                    'search.search',
                     'loading',
                     'error',
                     'success',
                     'debug',
                     'geolocationSupported',
-				]),
+                ]),
+                isDebug: function () {
+                    return this.debug
+                },
+            },
+            validations: {
+                searchQuery: {
+                    required: validateUnless('searchAddressString', required),
+                    minLength: minLength(3),
+                },
+                searchAddressString:  {
+                    required: validateUnless('searchQuery', required),
+                    minLength: minLength(2),
+                },
             },
             watch: {
                 searchAddress: function (address) {
@@ -96,7 +145,6 @@
                 }
             },
             mounted() {
-                this.debug = true;
                 //will execute at pageload
                 this.fetchCategoriesAction({service: categoriesService});
             },
@@ -109,9 +157,19 @@
                 async fetchAddress() {
                     this.fetchAddressAction({service: locationService})
                 },
-                async fetchCoordinates() {
-                    this.fetchCoordinatesAction({service: locationService, addressString: this.searchAddressString})
-                },
+                async searchGroups() {
+                    
+                    console.log("searchGroups", this.search);
+
+                    if(!_.isUndefined(this.searchAddressString) && this.searchAddressString != "") {
+                        //get coordinates for searchAddressString
+                        await this.fetchCoordinatesAction({service: locationService, addressString: this.searchAddressString});
+                    }
+
+                    // toggle serch
+                    this.search = true;
+                    
+                }
 
             },
         })        
