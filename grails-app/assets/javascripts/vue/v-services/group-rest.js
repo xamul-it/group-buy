@@ -44,6 +44,7 @@ export async function list({
   q = "",
   latitude = 0.0,
   longitude = 0.0,
+  categoryId = 0,
 }) {
   const params = new URLSearchParams();
 
@@ -62,7 +63,9 @@ export async function list({
     "latitude",
     latitude,
     "longitude",
-    longitude
+    longitude,
+    "categoryId",
+    categoryId
   );
 
   if (!_.isUndefined(max)) params.append("max", max);
@@ -76,6 +79,8 @@ export async function list({
     params.append("latitude", latitude);
   if (!_.isUndefined(longitude) && longitude != 0.0)
     params.append("longitude", longitude);
+  if (!_.isUndefined(categoryId) && categoryId != 0)
+    params.append("categoryId", categoryId);
 
   const { data, headers, status, statusText } = await axiosInstance.get(
     REST_ENDPOINT,

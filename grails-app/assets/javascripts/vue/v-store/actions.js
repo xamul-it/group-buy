@@ -114,6 +114,7 @@ export const fetchGroupListAction = async (
       q: getters.getField("search.searchQuery"),
       latitude: getters.getField("search.searchLatitude"),
       longitude: getters.getField("search.searchLongitude"),
+      categoryId: getters.getField("search.searchCategoryId"),
     });
     if (payload.reload) {
       commit("updateField", {
