@@ -161,3 +161,28 @@ label .location-gps {
 .ownership {
   background: rgb(241, 196, 15);
 }
+
+/* v-modal css start */
+.modal.show {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-fade-enter-to,
+.modal-fade-leave {
+  opacity: 0.3;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s linear;
+}
+
+.modal-fade-enter,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+/* v-modal css end */

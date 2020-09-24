@@ -27,6 +27,7 @@
     <!--Group listing-->
 		<section class="sptb">
 			<div class="container" id="v-groups-app">
+				<v-modal ref="registerLoginModal"></v-modal>
 				<div class="row">
 
 					<!--Group lists-->
@@ -68,9 +69,15 @@
 															<img :src="'/assets/theme/img/categories/category-'+group.category.id+'.jpg'" :alt="group.category.name" :title="group.category.name" class="cover-image">
 														</div>
 														<div class="item-card9-icons">
-															<a v-if="group.administrator" class="item-card9-icons1 ownership" title="Amministra gruppo"
-																:href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id +'?edit=true'"> <i class="fa fa fa-group"></i></a>
-															<a v-else v-on="!group.member ? { click:()=>subscribe(group.id, index) }:{ click:()=>unsubscribe(group.id, index) }" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer"> <i class="fa fa fa-heart-o"></i></a>
+															<sec:ifNotLoggedIn>
+																<a class="item-card9-icons1 subscription" style="cursor:pointer" @click="$refs.registerLoginModal.openModal()"> <i class="fa fa fa-heart-o"></i></a>
+															</sec:ifNotLoggedIn>
+															<sec:ifLoggedIn>
+																<a v-if="group.administrator" class="item-card9-icons1 ownership" title="Amministra gruppo"
+																	:href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id +'?edit=true'"> <i class="fa fa fa-group"></i></a>
+																<a v-else v-on="!group.member ? { click:()=>subscribe(group.id, index) }:{ click:()=>unsubscribe(group.id, index) }" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer"> <i class="fa fa fa-heart-o"></i></a>
+                            								</sec:ifLoggedIn>
+
 														</div>
 													</div>
 													<div class="card border-0 mb-0">
@@ -126,6 +133,9 @@
 
         var app = new Vue({
 			el: '#v-groups-app',
+			components: {
+				'v-modal': VModal,
+			},
 			store,
             data: {
 				sortOrder: '',

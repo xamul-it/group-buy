@@ -1,7 +1,8 @@
 
-<div id="v-sticky-app">
+<div id="v-nav-app">
+    <v-modal ref="registerLoginModal"></v-modal>
 
-    <div id="sticky-wrapper" v-sticky sticky-offset="10" sticky-side="top" on-stick="onStick" class="sticky-wrapper" style="height: 88px;">
+    <div id="sticky-wrapper" class="sticky-wrapper" style="height: 88px;">
 
         <div class="horizontal-main bg-dark-transparent clearfix" style="width: 1868px;">
             <div class="horizontal-mainwrapper container clearfix">
@@ -31,7 +32,12 @@
                     </ul>
                     <ul class="mb-0">
                         <li aria-haspopup="true" class="mt-5 d-none d-lg-block "> 
-                            <span><a class="btn btn-orange ad-post " href="${createLink(controller: 'groupBuy', action: 'group')}/new" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
+                            <sec:ifNotLoggedIn>
+                                <span><a class="btn btn-orange ad-post " @click="$refs.registerLoginModal.openModal()" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
+							</sec:ifNotLoggedIn>
+							<sec:ifLoggedIn>
+								<span><a class="btn btn-orange ad-post " href="${createLink(controller: 'groupBuy', action: 'group')}/new" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
+                            </sec:ifLoggedIn>
                         </li>
                     </ul>
                 </nav>
@@ -41,35 +47,15 @@
         
     </div>
 
+    
+
 </div>
 
-<!-- script type="module" src="https://cdn.jsdelivr.net/npm/vue-sticky-directive@0.0.10/vue-sticky-directive.js"></script -->
-
-<!-- script type="module">    
-    import Sticky from 'https://cdn.jsdelivr.net/npm/vue-sticky-directive@0.0.10/vue-sticky-directive.js';
-    
-    Vue.directive('Sticky', Sticky);
-
+<script>
     new Vue({
-        el: '#v-sticky-app',
-        data() {
-            return {
-                text: 'Text',
-            }
+        el: "#v-nav-app",
+        components: {
+            'v-modal': VModal,
         },
-        mounted() {
-            
-        },
-        /*directives: {
-            Sticky
-        },*/
-         watch: {
-            
-        },
-        methods: {
-            onStick(data) {
-                console.log(data);
-            },
-        }
-    })
-</script -->
+    });
+</script>

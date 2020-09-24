@@ -64,8 +64,18 @@
 	<script type="module" src="/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js"></script>
 
     <g:layoutHead/>
+
+	<!-- Vue common Components here -->
+	<script src="/assets/vue/v-common/modal.js"></script>
+
+	<!-- template for the modal component -->
+    <script type="text/x-template" id="modal-template">
+      
+	</script>
+
 </head>
 <body>
+	
     <div class="horizontalMenucontainer">
 
 		<g:render template="/navigation/theme-topbar" />
@@ -80,6 +90,6 @@
 		<a href="#top" id="back-to-top"><i class="fa fa-rocket"></i></a>
 
     </div>
+
 </body>
 </html>
-
