@@ -1,9 +1,0 @@
-{"query":"a",
- "suggestions":
- [{"id":15,"denominazione":"Mario Rossi"},
-  {"id":20,"denominazione":"Giuseppe Verdi S.p.A."},
-  {"id":81,"denominazione":"ACME S.p.A."},
-  {"id":82,"denominazione":"BICME S.a.p.A."},
-  {"id":107,"denominazione":"Mario Bianchi"},
-  {"id":108,"denominazione":"Mario Verdi"}]
-}

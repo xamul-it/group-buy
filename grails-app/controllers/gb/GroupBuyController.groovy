@@ -6,14 +6,20 @@ class GroupBuyController {
         redirect action: "groupList"
     }
 
-    def orders(){
-    }
+    /*def orders(){
+    }*/
 
-    def groups(){
-    }
+    /*def groups(){
+    }*/
 
-    def suppliers(){
-    }
+    /*def suppliers(){
+    }*/
+
+    /*def shops(){
+	}*/
+
+    /*def pricelist() { 
+    }*/
 
     def groupList() {
         def isDebugParam = params.debug == 'true'?:'false'
@@ -43,9 +49,6 @@ class GroupBuyController {
         ['groupId': groupIdParam, 'isDebug': isDebugParam]
     }
 
-    def shops(){
-	}
-
     def userProfile() {
 
     }
@@ -54,8 +57,6 @@ class GroupBuyController {
 
     }
 
-    def pricelist() {
-        
-    }
+    
     
 }

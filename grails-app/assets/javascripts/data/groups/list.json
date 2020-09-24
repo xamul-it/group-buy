@@ -1,8 +1,0 @@
-[
-  {"id":1,"deliveryAddress":{"city":"milano","street":"viale Abruzzi"},"members":[],"name":"test1","creationDate":"2020-04-23T22:00:00Z","owner":{"id":2},"isPublic":false,"description":"descrizione"},
-  {"id":2,"deliveryAddress":{"city":"como","street":"via Roma"},"members":[],"name":"Gruppo Di Como","creationDate":"2020-04-23T22:00:00Z","owner":{"id":2},"isPublic":true,"description":"Como-GDA"},
-  {"id":3,"deliveryAddress":{"city":"milano","street":"viale Romagna"},"members":[],"name":"test2","creationDate":"2020-04-23T22:00:00Z","owner":{"id":2},"isPublic":false,"description":"Milano"},
-  {"id":4,"deliveryAddress":{"city":"milano","street":"piazza Piola"},"members":[],"name":"Milano-Piola","creationDate":"2020-04-23T22:00:00Z","owner":{"id":2},"isPublic":true,"description":"Piola-frutta"},
-  {"id":5,"deliveryAddress":{"city":"sondrio","street":"piazza Mattei"},"members":[],"name":"Valtellina","creationDate":"2020-04-23T22:00:00Z","owner":{"id":2},"isPublic":true,"description":"----"},
-  {"id":6,"deliveryAddress":{"city":"milano","street":"corso Buenos Aires"},"members":[],"name":"grMilano","creationDate":"2020-04-23T22:00:00Z","owner":{"id":2},"isPublic":false,"description":"desc"}
-]

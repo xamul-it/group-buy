@@ -12,7 +12,7 @@ class UrlMappings {
 
         
         "/vetrina"(controller:"groupBuy",action:"shops")
-        "/"(controller:"groupBuy",action:"groupList")
+        "/"(controller:"groupBuy",action:"index")
         "/info"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
