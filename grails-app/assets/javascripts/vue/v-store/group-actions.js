@@ -148,7 +148,28 @@ export const fetchGroupListAction = async (
   }
 };
 
-export const subscription = async (
+export const fetchGroupAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let { data, headers } = await payload.service.show(payload.groupId);
+    commit("updateField", {
+      path: "group.groupItem",
+      value: data,
+    });
+    // Reset the loading state after fetching
+    dispatch("resetLoadingState");
+  } catch (error) {
+    if (state.debug) console.log("catch error", error);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("fetchGroupAction state", state);
+  }
+};
+
+export const subscriptionAction = async (
   { commit, dispatch, state, getters },
   payload
 ) => {
@@ -161,7 +182,15 @@ export const subscription = async (
     else r = await payload.service.unsubscribe(payload.groupId);
 
     commit("success", r.status + " OK");
-    commit("updateGroupInList", { group: r.data });
+
+    if (payload.mode == "single") {
+      commit("updateField", {
+        path: "group.groupItem",
+        value: r.data,
+      });
+    } else {
+      commit("updateGroupInList", { group: r.data });
+    }
     // Reset the loading state after fetching
     dispatch("resetLoadingState");
   } catch (error) {

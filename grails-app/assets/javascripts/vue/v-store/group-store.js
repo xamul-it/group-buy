@@ -5,7 +5,7 @@ import {
   updateField,
 } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
 
-import * as actions from "/assets/vue/v-store/actions.js";
+import * as actions from "/assets/vue/v-store/group-actions.js";
 
 Vue.use(Vuex);
 
@@ -33,7 +33,7 @@ export const store = new Vuex.Store({
     group: {
       groupCategories: [],
       groupList: [],
-      groupItem: {},
+      groupItem: null,
     },
     success: null,
     error: null,

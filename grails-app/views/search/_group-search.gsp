@@ -70,7 +70,7 @@
         import * as toastService from '/assets/vue/v-services/toast.js';
 
         import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
-        import { store } from '/assets/vue/v-store/store.js';
+        import { store } from '/assets/vue/v-store/group-store.js';
 
         //vuelidate
         Vue.use(window.vuelidate.default);

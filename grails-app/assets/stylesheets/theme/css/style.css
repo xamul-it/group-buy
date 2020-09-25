@@ -162,6 +162,36 @@ label .location-gps {
   background: rgb(241, 196, 15);
 }
 
+.linkedin-bg {
+  background: #0e76a8;
+  color: #fff;
+}
+
+.instagram-bg {
+  background: #cd486b;
+  color: #fff;
+}
+
+.snapchat-bg {
+  background: #fffc00;
+  color: #fff;
+}
+
+.slack-bg {
+  background: #ecb22e;
+  color: #fff;
+}
+
+.skype-bg {
+  background: #00aff0;
+  color: #fff;
+}
+
+.whatsapp-bg {
+  background: #25d366;
+  color: #fff;
+}
+
 /* v-modal css start */
 .modal.show {
   background-color: rgba(0, 0, 0, 0.4);

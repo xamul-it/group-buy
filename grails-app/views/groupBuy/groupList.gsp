@@ -5,9 +5,9 @@
     <title>Gruppi di acquisto</title>
 
 	<!-- vuex store -->
-	<script type="module" src="/assets/vue/v-store/store.js"></script>
+	<script type="module" src="/assets/vue/v-store/group-store.js"></script>
 	<!-- actions -->
-	<script type="module" src="/assets/vue/v-store/actions.js"></script>
+	<script type="module" src="/assets/vue/v-store/group-actions.js"></script>
 	<!-- alerts -->
 	<script type="module" src="/assets/vue/v-services/toast.js"></script>
 	<!-- vue form validation -->
@@ -74,7 +74,7 @@
 															</sec:ifNotLoggedIn>
 															<sec:ifLoggedIn>
 																<a v-if="group.administrator" class="item-card9-icons1 ownership" title="Amministra gruppo"
-																	:href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id +'?edit=true'"> <i class="fa fa fa-group"></i></a>
+																	:href="'${createLink(controller: 'groupBuy', action: 'groupEdit')}/' + group.id"> <i class="fa fa fa-group"></i></a>
 																<a v-else v-on="!group.member ? { click:()=>subscribe(group.id, index) }:{ click:()=>unsubscribe(group.id, index) }" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer"> <i class="fa fa fa-heart-o"></i></a>
                             								</sec:ifLoggedIn>
 
@@ -127,7 +127,7 @@
 		import * as toastService from '/assets/vue/v-services/toast.js';
 		
 		import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
-		import { store } from '/assets/vue/v-store/store.js';
+		import { store } from '/assets/vue/v-store/group-store.js';
 		
 		moment.locale('it');
 
@@ -206,7 +206,7 @@
             methods: {
 				...Vuex.mapActions([
 					'fetchGroupListAction',
-					'subscription',
+					'subscriptionAction',
 					'fetchCoordinatesAction'
                 ]),
 				async fetchGroupList(/*boolean*/ reload = false) {
@@ -214,11 +214,11 @@
 				},
 				async subscribe(groupId, groupIndex) {
 					console.log("Subscribe to "+groupId+" at index "+groupIndex);
-					this.subscription({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: true})
+					this.subscriptionAction({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: true, mode: 'list'})
 				},
 				async unsubscribe(groupId, groupIndex) {
 					console.log("Unsubscribe from "+groupId+" at index "+groupIndex);
-					this.subscription({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: false})
+					this.subscriptionAction({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: false, mode: 'list'})
 				},
                 infiniteScroll() {
                     window.onscroll = () => {
