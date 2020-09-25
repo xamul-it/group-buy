@@ -4,7 +4,7 @@
 
     <div id="sticky-wrapper" class="sticky-wrapper" style="height: 88px;">
 
-        <div class="horizontal-main bg-dark-transparent clearfix" style="width: 1868px;">
+        <div class="horizontal-main bg-dark-transparent clearfix">
             <div class="horizontal-mainwrapper container clearfix">
                 <div class="desktoplogo"> <a href="/"><img src="/assets/theme/img/brand/logo1.png"
                             alt=""></a> </div>

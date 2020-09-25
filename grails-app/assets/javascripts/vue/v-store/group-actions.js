@@ -1,4 +1,5 @@
 export const setLoadingState = ({ commit }) => {
+  commit("updateField", { path: "success", value: null });
   commit("updateField", { path: "error", value: null });
   commit("updateField", { path: "loading", value: true });
 };
