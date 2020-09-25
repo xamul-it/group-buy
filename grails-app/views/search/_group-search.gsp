@@ -35,6 +35,7 @@
                                         <select class="form-control select2-show-search  border-bottom-0" v-model="searchCategoryId">
                                             <optgroup label="Categorie">
                                                 <option v-if="searchCategoryId<=0" :value="searchCategoryId" disabled selected hidden>Categorie</option>
+                                                <option value="0">Tutte le categorie</option>
                                                 <option v-for="category in groupCategories" :value="category.id">{{category.name}}</option>
                                             </optgroup>
                                         </select>

@@ -167,18 +167,32 @@ label .location-gps {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+/*
 .modal-fade-enter-to,
 .modal-fade-leave {
   opacity: 0.3;
-}
+}*/
 
-.modal-fade-enter-active,
-.modal-fade-leave-active {
+/* backdrop transition */
+.modal-backdrop-enter-active,
+.modal-backdrop-leave-active {
   transition: opacity 0.3s linear;
 }
 
-.modal-fade-enter,
-.modal-fade-leave-to {
+.modal-backdrop-enter,
+.modal-backdrop-leave-to {
+  opacity: 0;
+}
+
+/* dialog transition */
+.modal-dialog-enter-active,
+.modal-dialog-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.modal-dialog-enter,
+.modal-dialog-leave-to {
+  transform: translateY(10%) !important;
   opacity: 0;
 }
 
