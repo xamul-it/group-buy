@@ -2,67 +2,36 @@
 <!-- TODO i18n -->
 <head>
 	<meta name="layout" content="claylist"/>
-    <title>Gruppo di acquisto - membri</title>
+    <title>Gruppo di acquisto</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/locale/it.js"></script>
+    <!-- vuex store -->
+    <script type="module" src="/assets/vue/v-store/group-store.js"></script>
+    <!-- actions -->
+    <script type="module" src="/assets/vue/v-store/group-actions.js"></script>
+    <!-- alerts -->
+    <script type="module" src="/assets/vue/v-services/toast.js"></script>
+    <!-- date time helpers -->
+    <script src="/assets/vue/v-jslib/moment@2.28.0/moment.js"></script>
+    <script src="/assets/vue/v-jslib/moment@2.28.0/locale/it.js"></script>
+
 </head>
 <body>
 
     <!--Sliders Section-->
-    <section>
-        <div class="bannerimg cover-image bg-background3" style="background: url(&quot;/assets/theme/img/banners/banner2.jpg&quot;) center center;" >
-            <div class="header-text mb-0">
-                <div class="container">
-                    <div class="text-center text-white">
-                        <h1 class="">Gruppo di acquisto</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <g:render template="/common/theme-header" model="['headerTitle':'Gruppo di acquisto']"/>
     <!--/Sliders Section-->
 
     <!-- Group -->
     <section class="sptb">
-        <div class="container">
+        <div class="container" id="v-group-members-app">
+        
             <div class="row">
                 <div class="col-lg-12">
 
                     <div class="card group-head">
-                        <div class="card-body pattern-1">
-                            <div class="wideget-user">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="wideget-user-desc text-center">
-                                            <!-- div class="wideget-user-img">
-                                                <img class="brround" src="/assets/images/faces/male/25.jpg" alt="img">
-                                            </div -->
-                                            <div class="user-wrap wideget-user-info">
-                                                <a href="#" class="text-white"><h4 class="font-weight-semibold">{{ group.name }}</h4></a>
-                                                <div class="wideget-user-rating">
-                                                    <a href="#"><i class="fa fa-star text-warning"></i></a>
-                                                    <a href="#"><i class="fa fa-star text-warning"></i></a>
-                                                    <a href="#"><i class="fa fa-star text-warning"></i></a>
-                                                    <a href="#"><i class="fa fa-star text-warning"></i></a>
-                                                    <a href="#"><i class="fa fa-star-o text-warning mr-1"></i></a> <span class="text-white">5 (XXXX Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 text-center">
-                                        <div class="wideget-user-info ">
-                                            <div class="wideget-user-icons mt-2">
-                                                <a href="#" class="facebook-bg mt-0"><i class="fa fa-facebook"></i></a>
-                                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                                                <a href="#" class="dribbble-bg"><i class="fa fa-dribbble"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        <g:render template="/group/group-header"/>
+
                         <div class="card-footer">
                             <div class="wideget-user-tab">
                                 <div class="tab-menu-heading">
@@ -74,7 +43,7 @@
                         </div>
                     </div>
 
-                    <div class="card mb-0" id="v-group-members-app">
+                    <div class="card mb-0">
                         <div class="card-body">
                             <div class="border-0">
                                 <div class="tab-content">
@@ -184,25 +153,48 @@
         import * as groupService from '/assets/vue/v-services/group-rest.js';
         import * as toastService from '/assets/vue/v-services/toast.js';
 
+        import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+        import { store } from '/assets/vue/v-store/group-store.js';
+
+        //Moment.js
         moment.locale('it');
 
         var app = new Vue({
             el: '#v-group-members-app',
+            components: {
+                'v-modal': VModal,
+            },
+            store,
             data: {
-                groupMembers: [],
                 groupId: ${groupId},
-                error: null,
-                success: null,
-                loading: false,
             },
             computed: {
-                
+                //all needed data fields from vuex store
+                //mapped with vuex-map-fields
+                ...mapFields([
+                    'group.groupMembers',
+                    'group.groupItem',
+                    'loading',
+                    'error',
+                    'success',
+                    'debug',
+                ]),
             },
             mounted() {
+                this.debug = ${isDebug};
                 //will execute at pageload
+                if(this.groupId>0)
+                    this.fetchGroup();
                 this.fetchGroupMembers();
             },
             methods: {
+                ...Vuex.mapActions([
+                    'fetchGroupAction',
+                    'fetchGroupMembersAction'
+                ]),
+                async fetchGroup() {
+                    this.fetchGroupAction({service: groupService, groupId: this.groupId});
+                },
                 timeFromNow(date) {
         		    return moment(date).fromNow();
                 },
@@ -213,29 +205,7 @@
         		    return moment(date).format('D MMMM YYYY');
                 },
                 async fetchGroupMembers() {
-                    try {
-                        this.setLoadingState();
-                        let { data, headers } = await groupService.members(this.groupId);
-                        this.groupMembers = data; 
-                        // Reset the loading state after fetching group.
-                        this.loading = false;
-                    } catch (error) {
-                        if(this.debug)
-                            console.log("catch error", error);
-                        this.setErrorState(error.message);
-                    } finally {
-                        if(this.debug)
-                            console.log("finally data", this.$data);
-                    }
-                },
-                setErrorState(error) {
-                    this.error = error;
-                    this.loading = false;
-                },
-                setLoadingState() {
-                    this.success = null;
-                    this.error = null;
-                    this.loading = true;
+                    this.fetchGroupMembersAction({service: groupService, groupId: this.groupId })
                 },
             },
         })        

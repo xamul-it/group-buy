@@ -147,11 +147,11 @@
             },
             mounted() {
                 //will execute at pageload
-                this.fetchCategoriesAction({service: categoriesService});
+                this.fetchGroupCategoriesAction({service: categoriesService});
             },
             methods: {
                 ...Vuex.mapActions([
-                    'fetchCategoriesAction',
+                    'fetchGroupCategoriesAction',
                     'fetchAddressAction',
                     'fetchCoordinatesAction',
                 ]),

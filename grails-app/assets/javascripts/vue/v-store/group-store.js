@@ -34,6 +34,7 @@ export const store = new Vuex.Store({
       groupCategories: [],
       groupList: [],
       groupItem: null,
+      groupMembers: [],
     },
     success: null,
     error: null,

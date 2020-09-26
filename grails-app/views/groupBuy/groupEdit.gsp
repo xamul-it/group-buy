@@ -299,7 +299,7 @@
                     //will execute at pageload
                     if(this.groupId>0)
                         this.fetchGroup();
-                    this.fetchCategoriesAction({service: categoriesService});
+                    this.fetchGroupCategoriesAction({service: categoriesService});
                 },
                 watch: {
                     currentAddress: function(currentAddress) {
@@ -316,7 +316,7 @@
                 methods: {
                     ...Vuex.mapActions([
                         'fetchGroupAction',
-                        'fetchCategoriesAction',
+                        'fetchGroupCategoriesAction',
                         'fetchAddressAction',
                     ]),
                     async fetchGroup() {
