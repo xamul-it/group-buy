@@ -16,6 +16,9 @@
         <!-- vue form validation -->
 	    <script src="/assets/vue/v-jslib/vuelidate@0.7.5/vuelidate.min.js"></script>
 	    <script src="/assets/vue/v-jslib/vuelidate@0.7.5/validators.min.js"></script>
+        <!-- vue-select -->
+        <script type="module" src="/assets/vue/v-jslib/vue-select@3.10.8/vue-select.js"></script>
+        <link rel="stylesheet" href="/assets/vue/v-jslib/vue-select@3.10.8/vue-select.css">
 
     </head>
     <body>
@@ -79,12 +82,14 @@
                                                 <div class="col-sm-6 col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label text-dark">Categoria</label>
-                                                        <select class="form-control w-100"
+                                                        <v-select label="name" :options="groupCategories" v-model="groupItem.category"></v-select>
+
+                                                        <!-- select class="form-control w-100"
                                                             v-model="groupItem.category.id">
                                                             <optgroup label="Categorie">
                                                                 <option v-for="category in groupCategories" :value="category.id">{{ category.name }}</option>
                                                             </optgroup>
-                                                        </select>
+                                                        </select -->
                                                     </div>
                                                 </div>
 
@@ -230,6 +235,29 @@
             
             import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
             import { store } from '/assets/vue/v-store/group-store.js';
+            //import { VueSelect.VueSelect } from '/assets/vue/v-jslib/vue-select@3.10.8/vue-select.js';
+
+            //vue-select
+            // Set the components prop default to return our fresh components 
+            VueSelect.VueSelect.props.components.default = () => ({
+                Deselect: null,
+                OpenIndicator: {
+                    render: createElement => createElement(
+                                                'span', 
+                                                {
+                                                    class: {'select2-selection__arrow': true}
+                                                },
+                                                [
+                                                    createElement('b', {
+                                                        attrs: {
+                                                            role: 'presentation',
+                                                        }
+                                                    })
+                                                ],
+                                                ),
+                },
+            });
+            Vue.component('v-select', VueSelect.VueSelect);
 
             //vuelidate
             Vue.use(window.vuelidate.default);
