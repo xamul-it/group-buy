@@ -195,6 +195,12 @@
 					this.fetchGroupList(true);
 
 					this.search = false;
+				},
+				error: function (message) {
+					toastService.alertDanger(message)
+				},
+				success: function (message) {
+					toastService.alertSuccess(message)
 				}
             },
             mounted() {

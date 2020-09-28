@@ -202,7 +202,7 @@
                                                 </div -->
                                                 <div class="col-md-12">
                                                     <button type="submit" :disabled="$v.$invalid" :title="$v.$invalid?'Compilare tutti campi obbligatori per inviare i dati':''" class="btn btn-primary" v-on:click="saveGroup">Salva gruppo</button>
-                                                    <a href="/" class="btn btn-secondary">Annulla</a>
+                                                    <a href="${createLink(controller: 'groupBuy', action: 'group', id: groupId)}" class="btn btn-secondary">Annulla</a>
                                                     <pre v-if="isDebug">{{ $v }}</pre>
                                                 </div>
 
@@ -340,6 +340,12 @@
                         this.groupItem.deliveryAddress.lat = currentAddress.latitude;
                         this.groupItem.deliveryAddress.lon = currentAddress.longitude;
                     },
+                    error: function (message) {
+                        toastService.alertDanger(message)
+                    },
+                    success: function (message) {
+                        toastService.alertSuccess(message)
+                    }
                 },
                 methods: {
                     ...Vuex.mapActions([

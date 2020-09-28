@@ -139,6 +139,7 @@
   float: right;
 }
 
+/* group page */
 .group-pattern-1 {
   /*background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(/assets/theme/img/groups/group-1.jpg) center center cover no-repeat;*/
@@ -151,7 +152,9 @@
 label .location-gps {
   position: static;
 }
+/* end group page */
 
+/* group list */
 .subscription {
   background: #605e7e;
 }
@@ -161,7 +164,9 @@ label .location-gps {
 .ownership {
   background: rgb(241, 196, 15);
 }
+/* end group list */
 
+/* social */
 .linkedin-bg {
   background: #0e76a8;
   color: #fff;
@@ -191,8 +196,9 @@ label .location-gps {
   background: #25d366;
   color: #fff;
 }
+/* end social */
 
-/* v-modal css start */
+/* v-modal */
 .modal.show {
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -229,9 +235,9 @@ label .location-gps {
 .overflow-hidden {
   overflow: hidden;
 }
-/* v-modal css end */
+/* end v-modal */
 
-/* vue select css */
+/* vue select */
 .v-select {
   display: block;
   height: 40px;
@@ -299,3 +305,28 @@ label .location-gps {
   transition: none !important;
   transform: none !important;
 }
+/* end vue-select */
+
+/* login form */
+.single-page .wrapper label.custom-control.custom-checkbox {
+  top: 0px;
+  margin-bottom: 0.25rem;
+  padding-left: 1.5rem;
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5rem;
+  left: 0px;
+}
+
+.single-page
+  .wrapper
+  label.custom-control.custom-checkbox
+  input[type="checkbox"] {
+  user-select: none !important;
+  pointer-events: none !important;
+}
+
+/* end login form */

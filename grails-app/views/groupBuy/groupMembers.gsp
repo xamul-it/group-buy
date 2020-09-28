@@ -187,6 +187,14 @@
                     this.fetchGroup();
                 this.fetchGroupMembers();
             },
+            watch: {
+                error: function (message) {
+                    toastService.alertDanger(message)
+                },
+                success: function (message) {
+                    toastService.alertSuccess(message)
+                }
+            },
             methods: {
                 ...Vuex.mapActions([
                     'fetchGroupAction',
