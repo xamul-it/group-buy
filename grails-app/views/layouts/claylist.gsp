@@ -28,6 +28,7 @@
 
 	<!-- Dashboard Css -->
     <asset:stylesheet src="claylist/css/dashboard.css" rel="stylesheet" />
+	<asset:stylesheet src="claylist/css/admin-custom.css" rel="stylesheet" />
 
 	<!-- Font-awesome  Css -->
     <asset:stylesheet src="claylist/css/icons.css" rel="stylesheet" />

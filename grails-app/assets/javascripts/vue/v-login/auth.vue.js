@@ -53,15 +53,6 @@ var VLoginAuth = Vue.component("VLoginAuth", {
 
                 </div>
 
-                <!-- div class="rememberme"> < !--  @click="rememberMeToggle">< !-- style="z-index:999999; border: 1px solid red" -- >
-                    <div class="custom-controls-stacked d-md-flex">
-                        <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" :name="inputParams.rememberMeParameter" id="remember_me" checked="checked" value="checkbox">
-                            <span class="custom-control-label">{{inputParams.loginRememberMe}}</span>
-                        </label>
-                    </div>
-                </div -->
-
                 <div class="submit">
                     <input type="submit" :disabled="$v.$invalid" class="btn btn-primary btn-block" :value="inputParams.loginLogin" id="loginButton_submit">
                 </div>

@@ -8,6 +8,7 @@
                                                     <img class="brround" src="/assets/images/faces/face.jpg" alt="img">
                                                 </div -->
                                                 <div class="user-wrap wideget-user-info">
+                                                    <!-- v-once -->
                                                     <h4 v-if="groupItem" class="font-weight-semibold text-white">{{ groupItem.name }}</h4>
                                                     <!-- div class="wideget-user-rating">
                                                         <a href="#"><i class="fa fa-star text-warning"></i></a>

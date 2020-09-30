@@ -27,50 +27,48 @@
         <g:render template="/common/theme-header" model="['headerTitle':'Gruppo di acquisto']"/>
         <!--/Sliders Section-->
 
-        <gb:ifGroupOwner groupId="${groupId}">
-            <!-- Group -->
-            <section class="sptb">
-                <div class="container" id="v-group-edit-app">
+        <!-- Group -->
+        <section class="sptb">
+            <div class="container" id="v-group-edit-app">
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            
-                            <div class="card">
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                        <div class="card">
 
-                                <g:render template="/group/group-header"/>
+                            <g:render template="/group/group-header"/>
 
-                                <div class="card-footer">
-                                    <div class="wideget-user-tab">
-                                        <div class="tab-menu-heading">
-                                            <div class="tabs-menu1">
-                                                <g:render template="/navigation/theme-group-nav" />
-                                            </div>
+                            <div class="card-footer">
+                                <div class="wideget-user-tab">
+                                    <div class="tab-menu-heading">
+                                        <div class="tabs-menu1">
+                                            <g:render template="/navigation/theme-group-nav" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="card mb-0">
-                                <div class="card-body">
-                                    <div class="border-0">
-                                        <div v-if="groupItem" class="tab-content">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <div class="border-0">
+                                    <div v-if="groupItem" class="tab-content">
 
-                                            <!-- Edit -->
-                                            <g:render template="group-edit-form" />
-                                            <!-- /Edit -->
+                                        <!-- Edit -->
+                                        <g:render template="group-edit-form" />
+                                        <!-- /Edit -->
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- /Group -->
+            </div>
+        </section>
+        <!-- /Group -->
 
-            <g:render template="group-edit-vue" />
-        </gb:ifGroupOwner>
+        <g:render template="group-edit-vue" />
 
     </body>
 </html>

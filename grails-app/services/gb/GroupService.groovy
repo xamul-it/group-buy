@@ -57,6 +57,8 @@ class GroupService {
     }
 
     boolean isOwner (Long groupId) {
+        if(groupId<=0)
+            return false
         Group group = Group.findById(groupId);
         group?.owner == springSecurityService.getCurrentUser()
     }

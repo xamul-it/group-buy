@@ -59,6 +59,10 @@ export const fetchAddressAction = async (
       currentCoordinates,
       currentAddress,
     } = await payload.service.currentAddress();
+
+    currentAddress.latitude = currentCoordinates.latitude;
+    currentAddress.longitude = currentCoordinates.longitude;
+
     commit("updateField", {
       path: "search.searchAddress",
       value: currentAddress,
@@ -182,6 +186,29 @@ export const fetchGroupAction = async (
     dispatch("setErrorState", error.message);
   } finally {
     if (state.debug) console.log("fetchGroupAction state", state);
+  }
+};
+
+export const saveGroupAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    let r;
+    if (payload.groupId == 0) {
+      r = await payload.service.save(payload.groupItem);
+    } else {
+      r = await payload.service.update(payload.groupId, payload.groupItem);
+    }
+    // Reset the loading state after fetching
+    dispatch("resetLoadingState");
+    commit("updateField", {
+      path: "success",
+      value: r.message,
+    });
+  } catch (error) {
+    if (state.debug) console.log("catch error", error);
+    dispatch("setErrorState", error.message);
   }
 };
 

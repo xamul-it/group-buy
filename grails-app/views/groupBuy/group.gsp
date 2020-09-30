@@ -53,6 +53,19 @@
                                             <pre v-if="isDebug">{{ groupItem }}</pre>
                                             
                                             <div class="profile-log-switch">
+                                                <!-- Members -- >
+                                                <a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: groupId)}" >
+                                                    <div class="avatar-list avatar-list-stacked">
+                                                        <span class="avatar brround cover-image cover-image">AD</span>
+                                                        <span class="avatar brround cover-image cover-image">LU</span>
+                                                        <span class="avatar brround cover-image cover-image">TE</span>
+                                                        <span class="avatar brround cover-image cover-image">AL</span>
+                                                        <span class="avatar brround cover-image cover-image">US</span>
+                                                        <span class="avatar brround cover-image cover-image">+3</span>
+                                                    </div>
+                                                </a>
+                                                -->
+                                                
                                                 <div class="media-heading">
                                                     <h3 class="card-title mb-3 font-weight-bold text-dark">Dettagli</h3>
                                                 </div>
