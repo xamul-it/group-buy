@@ -42,10 +42,15 @@ abstract class GroupService implements IGroupService {
         def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
 
         def query = Group.where {
-            if (userId!=0) members{id == userId}
+            or {
+                if (userId != 0) members { id == userId }
+                eq ("publicGroup", true)
+            }
             if (params.src) {
-                like("description", "%"+params.src+"%")
-                like("name", "%"+params.src+"%")
+                or {
+                    like("description", "%"+params.src+"%")
+                    like("name", "%"+params.src+"%")
+                }
             }
         }
 
@@ -56,12 +61,17 @@ abstract class GroupService implements IGroupService {
     List<Group> list (Map params){
         def l
         def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
-//        println "QUERY by user $userId"
+        println "QUERY by user $userId"
         def query = Group.where {
-            if (userId!=0) members{id == userId}
+            or {
+                if (userId != 0) members { id == userId }
+                eq("publicGroup",true)
+            }
             if (params.src) {
-                like("description", "%"+params.src+"%")
-                like("name", "%"+params.src+"%")
+                or {
+                    like("description", "%"+params.src+"%")
+                    like("name", "%"+params.src+"%")
+                }
             }
         }
         l = query.list(params)
