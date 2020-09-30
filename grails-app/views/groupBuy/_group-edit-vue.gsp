@@ -154,7 +154,16 @@
                         id: 0,
                         name: 'Scegli la categoria',
                     },
-                    deliveryAddress: {},
+                    deliveryAddress: {
+                        address1: null,
+                        address2: null,
+                        city: null,
+                        postalCode: null,
+                        district: null,
+                        countryCode: null,
+                        lat: null,
+                        lon: null,
+                    },
                     publicGroup: false
                 }
             },

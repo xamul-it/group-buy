@@ -36,6 +36,7 @@ if (Environment.isDevelopmentMode() && targetDir != null) {
     //logger 'org.springframework.security', DEBUG, ['STDOUT'], false
     //logger 'grails.plugin.springsecurity', DEBUG, ['STDOUT'], false
     logger 'org.codehaus.groovy.grails.web.mapping', DEBUG, ['STDOUT'], false
+    logger 'grails.views', DEBUG, ['STDOUT'], false
     logger 'gb', DEBUG, ['STDOUT'], false
 }
 root(ERROR, ['STDOUT'])

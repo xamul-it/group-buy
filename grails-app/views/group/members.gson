@@ -2,6 +2,6 @@ model {
     List<User> userList
 }
 
-System.out.println "Model is $binding.variables"
+log.debug "Model is $binding.variables"
 
 json g.render(template:'/user/user', collection: userList, var: 'user')

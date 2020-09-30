@@ -25,7 +25,7 @@
         <div class="col-sm-6 col-md-6">
             <div class="form-group">
                 <label class="form-label text-dark">Categoria</label>
-                <v-select :clearable="false" label="name" :options="groupCategories" v-model="groupItem.category"></v-select>
+                <v-select :clearable="false" placeholder="Scegli la categoria per il gruppo" label="name" :options="groupCategories" v-model="groupItem.category"></v-select>
 
                 <!-- select class="form-control w-100"
                     v-model="groupItem.category.id">
