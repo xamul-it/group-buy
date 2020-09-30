@@ -139,8 +139,28 @@
   float: right;
 }
 
-/* page header */
+/* media queries */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1380px;
+  }
+}
 
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1860px;
+  }
+}
+
+/* end media queries */
+
+/* page header */
 .bg-background:before {
   /* background: rgba(4, 82, 212, 0.8); */
   background: linear-gradient(
@@ -150,7 +170,6 @@
     rgba(50, 106, 228, 0.7) 100%
   ) !important;
 }
-
 /* end page header */
 
 /* group page */
