@@ -1,6 +1,6 @@
 <!--Sliders Section-->
     <section>
-        <div class=" cover-image sptb-1 bg-background" style="background: url(&quot;/assets/theme/img/banners/banner2.jpg&quot;) center center;" >
+        <div class=" cover-image sptb-1 bg-background" >
 
             <div class="header-text1 mb-0">
                 <div class="container" id="v-group-search-app">

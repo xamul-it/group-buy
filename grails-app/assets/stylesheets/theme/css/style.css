@@ -139,6 +139,20 @@
   float: right;
 }
 
+/* page header */
+
+.bg-background:before {
+  /* background: rgba(4, 82, 212, 0.8); */
+  background: linear-gradient(
+    -225deg,
+    rgba(1, 31, 255, 0.7) 0,
+    rgba(24, 104, 242, 0.7) 48%,
+    rgba(50, 106, 228, 0.7) 100%
+  ) !important;
+}
+
+/* end page header */
+
 /* group page */
 .group-pattern-1 {
   /*background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
