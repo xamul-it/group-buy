@@ -38,16 +38,13 @@
 
                             <g:render template="/group/group-header"/>
 
-                            <div class="card-footer">
-                                <div class="wideget-user-tab">
-                                    <div class="tab-menu-heading">
-                                        <div class="tabs-menu1">
-                                            <g:render template="/navigation/theme-group-nav" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <div class="card mb-0">
                             <div class="card-body">

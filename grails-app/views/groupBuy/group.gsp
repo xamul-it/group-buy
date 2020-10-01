@@ -43,6 +43,14 @@
                             </div>
                         </div>
 
+
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xl-9 col-lg-8 col-md-12">
+
                         <div class="card mb-0">
                             <div class="card-body">
                                 <div class="border-0">
@@ -103,7 +111,26 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-12">
+
+                        <div class="card"> 
+                            <div class="card-body"> 
+                                <sec:ifLoggedIn>
+                                    <div class="row group-actions">
+                                        <div class="col-md-12 text-dark" v-if="groupItem">
+                                            <button v-if="!groupItem.member"     type="button" class="btn btn-primary   btn-block btn-lg" v-on:click="subscribe">  <i class="fa fa fa-heart-o"></i> Iscriviti al gruppo</button>
+                                            <button v-else-if="groupItem.member" type="button" class="btn btn-secondary btn-block btn-lg" v-on:click="unsubscribe"><i class="fa fa fa-heart"></i> Disiscriviti dal gruppo</button>
+                                        </div>
+                                    </div>
+                                </sec:ifLoggedIn>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </section>
