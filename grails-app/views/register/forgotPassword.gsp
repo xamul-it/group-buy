@@ -6,17 +6,7 @@
 <body>
 
     <!--Sliders Section-->
-    <section>
-        <div class="bannerimg cover-image bg-background3" style="background: url(&quot;/assets/theme/img/banners/banner2.jpg&quot;) center center;" >
-            <div class="header-text mb-0">
-                <div class="container">
-                    <div class="text-center text-white">
-                        <h1 class="">${message(code:'spring.security.ui.forgotPassword.title')}</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <g:render template="/common/theme-header" model="['headerTitle':message(code:'spring.security.ui.forgotPassword.title')]"/>
     <!--/Sliders Section-->
 
     <!--ForgotPassword-Section-->

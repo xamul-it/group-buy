@@ -16,18 +16,13 @@
 	<!-- Title -->
 	<title>Group Buy - <g:layoutTitle default="" /></title>
 
-    <!-- Bbox Css -->
-    <asset:stylesheet src="theme/css/style.css"/>
-
-	<!-- Vue Css -->
-    <asset:stylesheet src="theme/css/vue.css"/>
-
 	<!-- Bootstrap Css -->
 	<!-- link href="../../assets/plugins/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet" / -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<!-- Dashboard Css -->
     <asset:stylesheet src="claylist/css/dashboard.css" rel="stylesheet" />
+	<asset:stylesheet src="claylist/css/admin-custom.css" rel="stylesheet" />
 
 	<!-- Font-awesome  Css -->
     <asset:stylesheet src="claylist/css/icons.css" rel="stylesheet" />
@@ -51,6 +46,13 @@
 	<!-- COLOR-SKINS -->
     <asset:stylesheet src="claylist/webslidemenu/color-skins/color3.css" id="theme" rel="stylesheet" type="text/css" media="all" />
 
+	<!-- Vue Css -->
+    <asset:stylesheet src="theme/css/vue.css"/>
+
+	<!-- Bbox Css -->
+    <asset:stylesheet src="theme/css/style.css"/>
+
+	<!-- JavaScript modules -->
 	<!-- helper -->
 	<script src="/assets/vue/v-jslib/lodash@4.17.20/lodash.min.js"></script>
 	<!-- network -->
@@ -63,15 +65,14 @@
 	<script type="module" src="/assets/vue/v-jslib/vuex@3.5.1/vuex.min.js"></script>
 	<script type="module" src="/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js"></script>
 
-    <g:layoutHead/>
-
-	<!-- Vue common Components here -->
+	
+	<!-- Vue common Components -->
 	<script src="/assets/vue/v-common/modal.js"></script>
-
 	<!-- template for the modal component -->
     <script type="text/x-template" id="modal-template">
       
 	</script>
+    <g:layoutHead/>
 
 </head>
 <body>

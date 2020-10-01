@@ -2,6 +2,6 @@ model {
     Group group
 }
 
-System.out.println "Model is $binding.variables"
+log.debug "Model is $binding.variables"
 
 json g.render(template:'group', model:[group:group])

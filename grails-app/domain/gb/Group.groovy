@@ -10,9 +10,19 @@ class Group {
 	
 	static belongsTo = [owner: User]
 	
-	static hasMany = [members: User]
+	static hasMany = [members: Member]
 
 	static hasOne = [category: GroupCategory]
+
+	String facebook
+	String twitter
+	String youtube
+	String linkedin
+	String instagram
+	String whatsapp
+	String skype
+	String slack
+	String snapchat
 
 	Boolean member; //transient - true if logged user is group member
 
@@ -24,6 +34,19 @@ class Group {
 	static transients = ['member', 'administrator']
 	static constraints = {
 		name nullable: false, blank: false, size: 5..20, unique: true
+
+		facebook url: true, nullable: false
+		twitter url: true, nullable: false
+		youtube url: true, nullable: false
+		linkedin url: true, nullable: false
+		instagram url: true, nullable: false
+		whatsapp url: true, nullable: false
+		skype url: true, nullable: false
+		slack url: true, nullable: false
+		snapchat url: true, nullable: false
+
+
+
 //		name nullable: false, blank: false, size: 5..20, unique: true,
 //				validator: { val, obj ->
 //					obj.springSecurityService && (obj.owner.id == obj.springSecurityService.getPrincipal().id ||
@@ -32,6 +55,9 @@ class Group {
 //				}
 		description size: 5..200, blank: true
     }
+
+
+
 	static mapping = {
 		autowire true //if missed, by default autowired in domain classes is disabled due to performance issues.
 					  // Here needed in isMember() and isAdministrator() methods

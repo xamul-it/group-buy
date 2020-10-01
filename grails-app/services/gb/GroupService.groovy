@@ -1,33 +1,9 @@
 package gb
 
-import grails.events.annotation.gorm.Listener
-import grails.gorm.services.Service
-import org.grails.datastore.mapping.engine.event.PreInsertEvent
-
-
-interface IGroupService {
-
-    Group get(Serializable id)
-
-    List<Group> list(Map args)
-
-    Long count()
-
-    void delete(Serializable id)
-
-    Group save(Group group)
-
-}
-
-@Service(Group)
-abstract class GroupService implements IGroupService {
+class GroupService {
 
     @Autowired
     transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
-
-    @Listener(Group)
-    void onGroupPreInsert(PreInsertEvent event) {
-    }
 
     List<Group> autocomplete(String query) {
         def l = Group.findAllByNameLike("%"+query+"%")
@@ -39,55 +15,51 @@ abstract class GroupService implements IGroupService {
 
     Long count (Map params){
         def l
-        def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
-
-        def query = Group.where {
-            or {
-                if (userId != 0) members { id == userId }
-                eq ("publicGroup", true)
-            }
-            if (params.src) {
-                or {
-                    like("description", "%"+params.src+"%")
-                    like("name", "%"+params.src+"%")
-                }
-            }
-        }
-
-        return query.count();
+        def qparam= [:]
+        String q
+        (qparam,q) = query(params)
+        return Group.countBy(q , qparam);
     }
 
+    def query(Map params){
+        def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
+        println "QUERY by user $userId and $params"
+        def qparam= [:]
+        String q = "from Group as g where 1=1 and "
+        if (params.src) {
+            q += "(g.description like :src or " + "g.name like :src ) and "
+            qparam.src = params.src
+        }
+        if (userId!=null) {
+            q += "(g.publicGroup = true or "
+            //q += "q.members.id = :user or"
+            q += "g.owner.id = :user)"
+            qparam.user = (long)userId
+        }
+        if (params.sort){
+            if (params.sort=="creationDate"){
+                q += " order by g.$params.sort $params.order"
+            }
+            if (params.sort=="nearest"){
+                q += " order by (ABS(g.lat-$params.latitude) + ABS(g.lon-$params.longitude)) asc"
+            }
+        }
+        return [qparam,q]
+    }
 
     List<Group> list (Map params){
         def l
-        def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
-        println "QUERY by user $userId"
-        def query = Group.where {
-            or {
-                if (userId != 0) members { id == userId }
-                eq("publicGroup",true)
-            }
-            if (params.src) {
-                or {
-                    like("description", "%"+params.src+"%")
-                    like("name", "%"+params.src+"%")
-                }
-            }
-        }
-        l = query.list(params)
+        def qparam= [:]
+        String q
+        (qparam,q) = query(params)
 
-        return l;
+        qparam.max=params.max
+        qparam.offset=params.offset
+        def res = Group.findAll(q , qparam)
+        log.debug("Risultato "+params.src!=null ? "++ $params.src":"--"+" $res")
+
+        return res
     }
-
-    
-
-//    Group subscribe(Long id){
-//        def g = Group.findById(id);
-////        g.addToMembers(springSecurityService.getCurrentUser()).save(flush:true);
-//        g.members.add(springSecurityService.getCurrentUser())
-//        save(g);
-//        return g
-//    }
 
     Group save (Group group){
         if (!group.id) {
@@ -100,4 +72,12 @@ abstract class GroupService implements IGroupService {
         group.members.each() {it.springSecurityService=springSecurityService}
         group.save()
     }
+
+    boolean isOwner (Long groupId) {
+        if(groupId<=0)
+            return false
+        Group group = Group.findById(groupId);
+        group?.owner == springSecurityService.getCurrentUser()
+    }
+
 }

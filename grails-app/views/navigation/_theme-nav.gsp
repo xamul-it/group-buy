@@ -4,7 +4,7 @@
 
     <div id="sticky-wrapper" class="sticky-wrapper" style="height: 88px;">
 
-        <div class="horizontal-main bg-dark-transparent clearfix" style="width: 1868px;">
+        <div class="horizontal-main bg-dark-transparent clearfix">
             <div class="horizontal-mainwrapper container clearfix">
                 <div class="desktoplogo"> <a href="/"><img src="/assets/theme/img/brand/logo1.png"
                             alt=""></a> </div>
@@ -35,7 +35,7 @@
                                 <span><a class="btn btn-orange ad-post " @click="$refs.registerLoginModal.openModal()" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
 							</sec:ifNotLoggedIn>
 							<sec:ifLoggedIn>
-								<span><a class="btn btn-orange ad-post " href="${createLink(controller: 'groupBuy', action: 'group')}/new" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
+								<span><a class="btn btn-orange ad-post " href="${createLink(controller: 'groupBuy', action: 'groupCreate')}" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
                             </sec:ifLoggedIn>
                         </li>
                     </ul>
@@ -45,8 +45,6 @@
         </div>
         
     </div>
-
-    
 
 </div>
 

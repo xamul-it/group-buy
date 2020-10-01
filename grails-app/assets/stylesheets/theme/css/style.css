@@ -139,6 +139,40 @@
   float: right;
 }
 
+/* media queries */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1380px;
+  }
+}
+
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1860px;
+  }
+}
+
+/* end media queries */
+
+/* page header */
+.bg-background:before {
+  /* background: rgba(4, 82, 212, 0.8); */
+  background: linear-gradient(
+    -225deg,
+    rgba(1, 31, 255, 0.7) 0,
+    rgba(24, 104, 242, 0.7) 48%,
+    rgba(50, 106, 228, 0.7) 100%
+  ) !important;
+}
+/* end page header */
+
+/* group page */
 .group-pattern-1 {
   /*background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(/assets/theme/img/groups/group-1.jpg) center center cover no-repeat;*/
@@ -151,7 +185,9 @@
 label .location-gps {
   position: static;
 }
+/* end group page */
 
+/* group list */
 .subscription {
   background: #605e7e;
 }
@@ -161,8 +197,41 @@ label .location-gps {
 .ownership {
   background: rgb(241, 196, 15);
 }
+/* end group list */
 
-/* v-modal css start */
+/* social */
+.linkedin-bg {
+  background: #0e76a8;
+  color: #fff;
+}
+
+.instagram-bg {
+  background: #cd486b;
+  color: #fff;
+}
+
+.snapchat-bg {
+  background: #fffc00;
+  color: #fff;
+}
+
+.slack-bg {
+  background: #ecb22e;
+  color: #fff;
+}
+
+.skype-bg {
+  background: #00aff0;
+  color: #fff;
+}
+
+.whatsapp-bg {
+  background: #25d366;
+  color: #fff;
+}
+/* end social */
+
+/* v-modal */
 .modal.show {
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -199,4 +268,98 @@ label .location-gps {
 .overflow-hidden {
   overflow: hidden;
 }
-/* v-modal css end */
+/* end v-modal */
+
+/* vue select */
+.v-select {
+  display: block;
+  height: 40px;
+  padding-left: 8px;
+  padding-right: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  border: 1px solid #e8ebf3 !important;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.vs__dropdown-toggle {
+  border: none !important;
+}
+
+.vs__selected {
+  padding-top: 0.25em !important;
+}
+
+.select2-selection__deselect,
+.select2-selection__arrow {
+  height: 26px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 20px;
+
+  height: 100% !important;
+}
+
+.select2-selection__arrow b {
+  border-color: #605e7e transparent transparent transparent;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;
+}
+
+.select2-selection__arrow b {
+  height: 0;
+  left: 50%;
+  margin-left: -12px;
+  margin-top: -2px;
+  position: absolute;
+  top: 50%;
+  width: 0;
+}
+
+.vs__clear {
+  position: absolute;
+  margin-left: -12px;
+  margin-top: -18px;
+}
+
+.vs--open .select2-selection__arrow b {
+  border-color: transparent transparent #605e7e transparent;
+  border-width: 0 4px 5px 4px;
+}
+
+.vs--open,
+.vs__open-indicator,
+.vs__open-indicator {
+  transition: none !important;
+  transform: none !important;
+}
+/* end vue-select */
+
+/* login form */
+.single-page .wrapper label.custom-control.custom-checkbox {
+  top: 0px;
+  margin-bottom: 0.25rem;
+  padding-left: 1.5rem;
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5rem;
+  left: 0px;
+}
+
+.single-page
+  .wrapper
+  label.custom-control.custom-checkbox
+  input[type="checkbox"] {
+  user-select: none !important;
+  pointer-events: none !important;
+}
+
+/* end login form */

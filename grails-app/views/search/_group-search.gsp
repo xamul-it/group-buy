@@ -1,6 +1,6 @@
 <!--Sliders Section-->
     <section>
-        <div class=" cover-image sptb-1 bg-background" style="background: url(&quot;/assets/theme/img/banners/banner2.jpg&quot;) center center;" >
+        <div class=" cover-image sptb-1 bg-background" >
 
             <div class="header-text1 mb-0">
                 <div class="container" id="v-group-search-app">
@@ -70,7 +70,7 @@
         import * as toastService from '/assets/vue/v-services/toast.js';
 
         import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
-        import { store } from '/assets/vue/v-store/store.js';
+        import { store } from '/assets/vue/v-store/group-store.js';
 
         //vuelidate
         Vue.use(window.vuelidate.default);
@@ -147,11 +147,11 @@
             },
             mounted() {
                 //will execute at pageload
-                this.fetchCategoriesAction({service: categoriesService});
+                this.fetchGroupCategoriesAction({service: categoriesService});
             },
             methods: {
                 ...Vuex.mapActions([
-                    'fetchCategoriesAction',
+                    'fetchGroupCategoriesAction',
                     'fetchAddressAction',
                     'fetchCoordinatesAction',
                 ]),

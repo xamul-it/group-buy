@@ -1,4 +1,5 @@
 export const setLoadingState = ({ commit }) => {
+  commit("updateField", { path: "success", value: null });
   commit("updateField", { path: "error", value: null });
   commit("updateField", { path: "loading", value: true });
 };
@@ -12,24 +13,39 @@ export const setErrorState = ({ commit }, error) => {
   commit("updateField", { path: "loading", value: false });
 };
 
-export const fetchCategoriesAction = async (
+export const fetchGroupCategoriesAction = async (
   { commit, dispatch, state, getters },
   payload
 ) => {
-  console.log("fetchCategoriesAction");
   try {
     dispatch("setLoadingState");
     let { data, headers } = await payload.service.list(100, 0, "name", "asc");
-    //commit("setCategories", data);
-    commit("updateField", { path: "group.groupCategories", value: data });
-    // https://github.com/maoberlehner/vuex-map-fields/issues/114
+    commit("updateField", { path: "group.groupCategories", value: data }); // https://github.com/maoberlehner/vuex-map-fields/issues/114
     // Reset the loading state after fetching
     dispatch("resetLoadingState");
   } catch (error) {
     if (state.debug) console.log("catch error", error);
     dispatch("setErrorState", error.message);
   } finally {
-    if (state.debug) console.log("fetchCategoriesAction state", state);
+    if (state.debug) console.log("fetchGroupCategoriesAction state", state);
+  }
+};
+
+export const fetchGroupMembersAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let { data, headers } = await payload.service.members(payload.groupId);
+    commit("updateField", { path: "group.groupMembers", value: data });
+    // Reset the loading state after fetching
+    dispatch("resetLoadingState");
+  } catch (error) {
+    if (state.debug) console.log("catch error", error);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("fetchGroupMembersAction", state);
   }
 };
 
@@ -43,6 +59,10 @@ export const fetchAddressAction = async (
       currentCoordinates,
       currentAddress,
     } = await payload.service.currentAddress();
+
+    currentAddress.latitude = currentCoordinates.latitude;
+    currentAddress.longitude = currentCoordinates.longitude;
+
     commit("updateField", {
       path: "search.searchAddress",
       value: currentAddress,
@@ -148,7 +168,51 @@ export const fetchGroupListAction = async (
   }
 };
 
-export const subscription = async (
+export const fetchGroupAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let { data, headers } = await payload.service.show(payload.groupId);
+    commit("updateField", {
+      path: "group.groupItem",
+      value: data,
+    });
+    // Reset the loading state after fetching
+    dispatch("resetLoadingState");
+  } catch (error) {
+    if (state.debug) console.log("catch error", error);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("fetchGroupAction state", state);
+  }
+};
+
+export const saveGroupAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    let r;
+    if (payload.groupId == 0) {
+      r = await payload.service.save(payload.groupItem);
+    } else {
+      r = await payload.service.update(payload.groupId, payload.groupItem);
+    }
+    // Reset the loading state after fetching
+    dispatch("resetLoadingState");
+    commit("updateField", {
+      path: "success",
+      value: r.message,
+    });
+  } catch (error) {
+    if (state.debug) console.log("catch error", error);
+    dispatch("setErrorState", error.message);
+  }
+};
+
+export const subscriptionAction = async (
   { commit, dispatch, state, getters },
   payload
 ) => {
@@ -161,7 +225,15 @@ export const subscription = async (
     else r = await payload.service.unsubscribe(payload.groupId);
 
     commit("success", r.status + " OK");
-    commit("updateGroupInList", { group: r.data });
+
+    if (payload.mode == "single") {
+      commit("updateField", {
+        path: "group.groupItem",
+        value: r.data,
+      });
+    } else {
+      commit("updateGroupInList", { group: r.data });
+    }
     // Reset the loading state after fetching
     dispatch("resetLoadingState");
   } catch (error) {

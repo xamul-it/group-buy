@@ -22,31 +22,27 @@ class GroupBuyController {
     }*/
 
     def groupList() {
-        def isDebugParam = params.debug == 'true'?:'false'
 
-        ['isDebug': isDebugParam]
     }
 
     def group(){
-        def groupIdParam = params.id?.isInteger() ? params.id.toInteger() : 0
-        def isEditParam = params.edit == 'true'?:'false'
-        def isDebugParam = params.debug == 'true'?:'false'
 
-        ['groupId': groupIdParam, 'isEdit': isEditParam, 'isDebug': isDebugParam]
+    }
+
+    def groupEdit(){
+        
+    }
+
+    def groupCreate(){
+
     }
 
     def groupOrders() {
-        def groupIdParam = params.id?.isInteger() ? params.id.toInteger() : 0
-        def isDebugParam = params.debug == 'true'?:'false'
 
-        ['groupId': groupIdParam, 'isDebug': isDebugParam]
     }
 
     def groupMembers() {        
-        def groupIdParam = params.id?.isInteger() ? params.id.toInteger() : 0
-        def isDebugParam = params.debug == 'true'?:'false'
 
-        ['groupId': groupIdParam, 'isDebug': isDebugParam]
     }
 
     def userProfile() {
@@ -56,7 +52,5 @@ class GroupBuyController {
     def userSettings() {
 
     }
-
-    
     
 }
