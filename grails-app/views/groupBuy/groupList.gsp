@@ -133,6 +133,7 @@
 
         var app = new Vue({
 			el: '#v-groups-app',
+			name: 'GroupList',
 			components: {
 				'v-modal': VModal,
 			},

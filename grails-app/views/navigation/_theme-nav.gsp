@@ -51,6 +51,7 @@
 <script>
     new Vue({
         el: "#v-nav-app",
+        name: 'Nav',
         components: {
             'v-modal': VModal,
         },

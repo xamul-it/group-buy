@@ -103,6 +103,7 @@
 
         var app = new Vue({
             el: '#v-group-search-app',
+            name: 'GroupSearch',
             store,
             data: { /*using vuex store*/ 
                 locationLoading: false

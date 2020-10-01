@@ -44,6 +44,7 @@
 
     var app = new Vue({
         el: '#v-group-edit-app',
+        name: 'GroupEdit',
         components: {
             'v-modal': VModal,
         },
