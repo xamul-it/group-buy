@@ -133,6 +133,7 @@
 
         var app = new Vue({
 			el: '#v-groups-app',
+			name: 'GroupList',
 			components: {
 				'v-modal': VModal,
 			},
@@ -190,9 +191,9 @@
 					this.fetchGroupList(true);
 				},
 				search: function(search) {
-					console.log("search watcher", search);
-
-					this.fetchGroupList(true);
+					//Trigger search action
+					if(search)
+						this.fetchGroupList(true);
 
 					this.search = false;
 				},

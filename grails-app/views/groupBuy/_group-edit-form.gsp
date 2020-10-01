@@ -82,7 +82,12 @@
 
         <div class="col-md-12" v-if="groupItem.deliveryAddress">
             <div class="form-group">
-                <label class="form-label text-dark">Indirizzo di consegna <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione"><i class="fa fa-map-marker location-gps mr-1"></i> </span> </label>
+                <label class="form-label text-dark">Indirizzo di consegna 
+                    <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione">
+                        <i v-if="!locationLoading" class="fa fa-map-marker location-gps mr-1"></i>
+                        <i v-if="locationLoading" class="fa fa-spinner fa-spin location-gps mr-1"></i>
+                    </span> 
+                </label>
                 <input type="text" class="form-control" placeholder="Indirizzo di consegna per il gruppo"
                     @input="$v.groupItem.deliveryAddress.address1.$touch()"
                     v-model="groupItem.deliveryAddress.address1">

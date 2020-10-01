@@ -182,7 +182,7 @@ export const fetchGroupAction = async (
     // Reset the loading state after fetching
     dispatch("resetLoadingState");
   } catch (error) {
-    if (state.debug) console.log("catch error", error);
+    if (state.debug) console.log("catch error", error, error.response);
     dispatch("setErrorState", error.message);
   } finally {
     if (state.debug) console.log("fetchGroupAction state", state);
@@ -194,6 +194,7 @@ export const saveGroupAction = async (
   payload
 ) => {
   try {
+    dispatch("setLoadingState");
     let r;
     if (payload.groupId == 0) {
       r = await payload.service.save(payload.groupItem);
@@ -207,8 +208,9 @@ export const saveGroupAction = async (
       value: r.message,
     });
   } catch (error) {
-    if (state.debug) console.log("catch error", error);
-    dispatch("setErrorState", error.message);
+    if (state.debug)
+      console.log("catch error", error, error.response, error.response.data);
+    dispatch("setErrorState", error);
   }
 };
 
@@ -237,7 +239,7 @@ export const subscriptionAction = async (
     // Reset the loading state after fetching
     dispatch("resetLoadingState");
   } catch (error) {
-    if (state.debug) console.log("catch error", error);
+    if (state.debug) console.log("catch error", error, error.response);
     dispatch("setErrorState", error.message);
   } finally {
     if (state.debug) console.log("subscription state", state);

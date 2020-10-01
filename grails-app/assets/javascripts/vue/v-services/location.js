@@ -54,8 +54,23 @@ export async function coordinatesByAddress(address) {
 }
 
 export async function currentAddress() {
-  const coordinates = await currentCoordinates();
-  console.log("Browser coordinates", coordinates);
-  const address = await addressByCoordinates(coordinates);
+  let coordinates;
+  try {
+    coordinates = await currentCoordinates();
+    console.log("currentAddress browser coordinates", coordinates);
+  } catch (error) {
+    console.log("currentAddress coordinates error", error);
+    throw { error, message: "Localizzazione momentaneamente non disponibile" };
+  }
+
+  let address;
+  try {
+    address = await addressByCoordinates(coordinates);
+    console.log("currentAddress address", address);
+  } catch (error) {
+    console.log("currentAddress address error", error);
+    throw { error, message: "Geocoding momentaneamente non disponibile" };
+  }
+
   return { currentCoordinates: coordinates, currentAddress: address };
 }

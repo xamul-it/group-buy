@@ -44,12 +44,14 @@
 
     var app = new Vue({
         el: '#v-group-edit-app',
+        name: 'GroupEdit',
         components: {
             'v-modal': VModal,
         },
         store,
         data: {
             groupId: ${groupId},
+            locationLoading: false
         },
         validations: {
             groupItem: {
@@ -131,8 +133,8 @@
                     this.$forceUpdate()
                 }
             },
-            error: function (message) {
-                toastService.alertDanger(message)
+            error: function (error) {
+                toastService.alertDanger(this.fetchError(error))
             },
             success: function (message) {
                 toastService.alertSuccess(message)
@@ -168,11 +170,35 @@
                 }
             },
             async fetchAddress() {
-                this.fetchAddressAction({service: locationService})
+                this.locationLoading = true
+                await this.fetchAddressAction({service: locationService})
+                this.locationLoading = false
             },
             async saveGroup() {
                 this.saveGroupAction({service: groupService, groupId: this.groupId, groupItem: this.groupItem});
             },
+            fetchError(error) {
+                let errorData = null
+                if(error.response) {
+                    errorData = error.response.data
+                }
+                let errorMessage = ''
+                if(errorData) {
+                    console.log('errorData',errorData)
+                    if(errorData.errors) {
+                        errorMessage = _.reduce(errorData.errors, function(message, e) {
+                            if(message != "")
+                                return message +'<br/>\n'+ e.message;
+                            else
+                                return e.message;
+                        }, '');
+                    }
+
+                } else {
+                    errorMessage = error
+                }
+                return errorMessage
+            }
         },
     })        
 </script>
