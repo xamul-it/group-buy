@@ -131,8 +131,8 @@
                     this.$forceUpdate()
                 }
             },
-            error: function (message) {
-                toastService.alertDanger(message)
+            error: function (error) {
+                toastService.alertDanger(this.fetchError(error))
             },
             success: function (message) {
                 toastService.alertSuccess(message)
@@ -173,6 +173,25 @@
             async saveGroup() {
                 this.saveGroupAction({service: groupService, groupId: this.groupId, groupItem: this.groupItem});
             },
+            fetchError(error) {
+                let errorData = error.response.data
+                let errorMessage = ''
+                if(errorData) {
+                    console.log('errorData',errorData)
+                    if(errorData.errors) {
+                        errorMessage = _.reduce(errorData.errors, function(message, e) {
+                            if(message != "")
+                                return message +'<br/>\n'+ e.message;
+                            else
+                                return e.message;
+                        }, '');
+                    }
+
+                } else {
+                    errorMessage = error.message
+                }
+                return errorMessage
+            }
         },
     })        
 </script>

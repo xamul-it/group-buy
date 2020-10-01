@@ -144,17 +144,32 @@
   .container {
     max-width: 1380px;
   }
+  .col-xl-9 {
+    -ms-flex: 0 0 80%;
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
 }
 
 @media (min-width: 1680px) {
   .container {
     max-width: 1600px;
   }
+  .col-xl-9 {
+    -ms-flex: 0 0 85%;
+    flex: 0 0 85%;
+    max-width: 85%;
+  }
 }
 
 @media (min-width: 1920px) {
   .container {
     max-width: 1860px;
+  }
+  .col-xl-9 {
+    -ms-flex: 0 0 90%;
+    flex: 0 0 90%;
+    max-width: 90%;
   }
 }
 
@@ -196,6 +211,10 @@ label .location-gps {
 }
 .ownership {
   background: rgb(241, 196, 15);
+}
+.location-gps.fa-spinner {
+  cursor: auto;
+  height: inherit;
 }
 /* end group list */
 

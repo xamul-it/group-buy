@@ -9,7 +9,7 @@
                             <div class="search-background bg-transparent">
                                 <div class="form row no-gutters ">
 
-                                    <div class="form-group  col-xl-4 col-lg-3 col-md-12 mb-0 bg-white">
+                                    <div class="form-group  col-xl-4 col-lg-4 col-md-12 mb-0 bg-white">
                                         <input type="text" class="form-control input-lg br-tr-md-0 br-br-md-0" id="search-text" 
                                             placeholder="Nome gruppo o Keyword"
                                             v-model="searchQuery"
@@ -19,18 +19,21 @@
 
                                     </div>
 
-                                    <div class="form-group  col-xl-3 col-lg-3 col-md-12 mb-0 bg-white">
+                                    <div class="form-group  col-xl-4 col-lg-4 col-md-12 mb-0 bg-white">
                                         <input type="text" class="form-control input-lg br-md-0" id="address" 
                                             placeholder="Luogo"
                                             v-model="searchAddressString"
                                             @input="$v.searchAddressString.$touch()">
-                                        <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione"><i class="fa fa-map-marker location-gps mr-1"></i> </span> 
+                                        <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione">
+                                            <i v-if="!locationLoading" class="fa fa-map-marker location-gps mr-1"></i>
+                                            <i v-if="locationLoading" class="fa fa-spinner fa-spin location-gps mr-1"></i>
+                                        </span> 
                                         
                                         <pre v-if="isDebug">{{ $v.searchAddressString }}</pre>
 
                                     </div>
 
-                                    <div class="form-group col-xl-3 col-lg-3 col-md-12 select2-lg  mb-0 bg-white">
+                                    <div class="form-group col-xl-2 col-lg-2 col-md-12 select2-lg  mb-0 bg-white">
 
                                         <select class="form-control select2-show-search  border-bottom-0" v-model="searchCategoryId">
                                             <optgroup label="Categorie">
@@ -41,14 +44,26 @@
                                         </select>
 
                                     </div>
-                                    <div class="col-xl-2 col-lg-3 col-md-12 mb-0">
+
+                                    <div class="col-xl-1 col-lg-1 col-md-12 mb-0">
                                         <button class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0"
                                             @click="searchGroups"
                                             :disabled="$v.$invalid" 
                                             :title="$v.$invalid?'Inserire un testo o un indirizzo':'Cerca'" 
-                                            >Cerca</button>
+                                            ><i class="fa fa-search" aria-hidden="true"></i></button>
                                     </div>
+
+                                    <div v-if="$v.$anyDirty" class="col-xl-1 col-lg-1 col-md-12 mb-0">
+                                        <button class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0"
+                                            @click="resetSearch"
+                                            :disabled="!$v.$anyDirty" 
+                                            title="Annulla ricerca" 
+                                            ><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                                    </div>
+
                                 </div>
+
+                                <pre v-if="isDebug">{{ $v }}</pre>
                             </div>
                         </div>
                     </div>
@@ -90,7 +105,7 @@
             el: '#v-group-search-app',
             store,
             data: { /*using vuex store*/ 
-
+                locationLoading: false
             },
             computed: {
                 //all needed data fields from vuex store
@@ -138,12 +153,8 @@
                     if(this.debug)
                         console.log("categories loaded",this.groupCategories, cats)
                 },
-                error: function (message) {
-                    toastService.alertDanger(message)
-                },
-                success: function (message) {
-                    toastService.alertSuccess(message)
-                }
+                //error: in page
+                //success: in page
             },
             mounted() {
                 //will execute at pageload
@@ -156,10 +167,11 @@
                     'fetchCoordinatesAction',
                 ]),
                 async fetchAddress() {
-                    this.fetchAddressAction({service: locationService})
+                    this.locationLoading = true
+                    await this.fetchAddressAction({service: locationService})
+                    this.locationLoading = false
                 },
                 async searchGroups() {
-                    
                     console.log("searchGroups", this.search);
 
                     if(!_.isUndefined(this.searchAddressString) && this.searchAddressString != "") {
@@ -169,9 +181,19 @@
 
                     // toggle serch
                     this.search = true;
-                    
-                }
+                },
+                resetSearch() {
+                    this.searchQuery = ""
+                    this.searchAddress = {}
+                    this.searchAddressString = ""
+                    this.searchCategoryId = 0
+                    this.searchLatitude = 0.0
+                    this.searchLongitude = 0.0
+                    this.search = false
+                    this.$v.$reset()
 
+                    this.search = true
+                },
             },
         })        
     </script>
