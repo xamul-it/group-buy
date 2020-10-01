@@ -50,6 +50,7 @@
         store,
         data: {
             groupId: ${groupId},
+            locationLoading: false
         },
         validations: {
             groupItem: {
@@ -168,13 +169,18 @@
                 }
             },
             async fetchAddress() {
-                this.fetchAddressAction({service: locationService})
+                this.locationLoading = true
+                await this.fetchAddressAction({service: locationService})
+                this.locationLoading = false
             },
             async saveGroup() {
                 this.saveGroupAction({service: groupService, groupId: this.groupId, groupItem: this.groupItem});
             },
             fetchError(error) {
-                let errorData = error.response.data
+                let errorData = null
+                if(error.response) {
+                    errorData = error.response.data
+                }
                 let errorMessage = ''
                 if(errorData) {
                     console.log('errorData',errorData)
@@ -188,7 +194,7 @@
                     }
 
                 } else {
-                    errorMessage = error.message
+                    errorMessage = error
                 }
                 return errorMessage
             }

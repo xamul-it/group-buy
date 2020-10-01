@@ -54,7 +54,7 @@ export async function coordinatesByAddress(address) {
 }
 
 export async function currentAddress() {
-  const coordinates = null;
+  let coordinates;
   try {
     coordinates = await currentCoordinates();
     console.log("currentAddress browser coordinates", coordinates);
@@ -63,7 +63,7 @@ export async function currentAddress() {
     throw { error, message: "Localizzazione momentaneamente non disponibile" };
   }
 
-  const address = null;
+  let address;
   try {
     address = await addressByCoordinates(coordinates);
     console.log("currentAddress address", address);

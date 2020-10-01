@@ -144,7 +144,7 @@
   .container {
     max-width: 1380px;
   }
-  .col-xl-9 {
+  .theme-header .col-xl-9 {
     -ms-flex: 0 0 80%;
     flex: 0 0 80%;
     max-width: 80%;
@@ -155,7 +155,7 @@
   .container {
     max-width: 1600px;
   }
-  .col-xl-9 {
+  .theme-header .col-xl-9 {
     -ms-flex: 0 0 85%;
     flex: 0 0 85%;
     max-width: 85%;
@@ -166,7 +166,7 @@
   .container {
     max-width: 1860px;
   }
-  .col-xl-9 {
+  .theme-header .col-xl-9 {
     -ms-flex: 0 0 90%;
     flex: 0 0 90%;
     max-width: 90%;
@@ -184,6 +184,7 @@
     rgba(24, 104, 242, 0.7) 48%,
     rgba(50, 106, 228, 0.7) 100%
   ) !important;
+  z-index: -100 !important;
 }
 /* end page header */
 
@@ -199,6 +200,12 @@
 
 label .location-gps {
   position: static;
+  height: inherit;
+}
+
+label .location-gps.fa-spinner {
+  margin-left: 3px;
+  height: inherit;
 }
 /* end group page */
 
