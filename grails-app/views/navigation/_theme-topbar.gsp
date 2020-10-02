@@ -60,19 +60,19 @@
 									<div class="simple dropdown float-right">
 										<ul class="horizontalMenu-list">
 											<li> 
-												<a href="#" class="active"><i class="fa fa-home mr-1"></i><span>Dashboard</span></a>
+												<a href="#" class="active"><i class="fa fa-user-circle-o mr-1"></i><span><sec:loggedInUserInfo field='username'/></span></a>
 
 												<ul>
 													<li>
 														<a href="${createLink(controller: 'groupBuy', action: 'userProfile')}" class="dropdown-item"> 
-															<i class="dropdown-icon icon icon-user"></i>Profilo 
+															<i class="fa fa-address-card-o dropdown-icon"></i>Profilo 
 														</a>
 													</li>
-													<li>
+													<!-- li>
 														<a href="${createLink(controller: 'groupBuy', action: 'userSettings')}" class="dropdown-item"> 
 															<i class="dropdown-icon icon icon-settings"></i> Preferenze
 														</a>
-													</li>
+													</li -->
 												</ul>
 
 											</li>

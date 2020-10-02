@@ -61,37 +61,52 @@
                                             <pre v-if="isDebug">{{ groupItem }}</pre>
                                             
                                             <div class="profile-log-switch">
-                                                <!-- Members -- >
-                                                <a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: groupId)}" >
-                                                    <div class="avatar-list avatar-list-stacked">
-                                                        <span class="avatar brround cover-image cover-image">AD</span>
-                                                        <span class="avatar brround cover-image cover-image">LU</span>
-                                                        <span class="avatar brround cover-image cover-image">TE</span>
-                                                        <span class="avatar brround cover-image cover-image">AL</span>
-                                                        <span class="avatar brround cover-image cover-image">US</span>
-                                                        <span class="avatar brround cover-image cover-image">+3</span>
-                                                    </div>
-                                                </a>
-                                                -->
                                                 
-                                                <div class="media-heading">
-                                                    <h3 class="card-title mb-3 font-weight-bold text-dark">Dettagli</h3>
-                                                </div>
-                                                <ul class="usertab-list mb-0 text-dark" v-if="groupItem">
-                                                    <li><span class="font-weight-semibold">Nome :</span> {{ groupItem.name }} </li>
-                                                    <li><span class="font-weight-semibold">Luogo :</span> <span v-if="groupItem.deliveryAddress">{{ groupItem.deliveryAddress.city }} - {{ groupItem.deliveryAddress.countryCode }}</span> </li>
-                                                    <li><span class="font-weight-semibold">Creato :</span> {{ timeFromNow(groupItem.creationDate) }}</li>
-                                                    <li><a href="#" class="text-dark"><span class="font-weight-semibold">Web :</span> <span> - </span></a></li>
-                                                    <li v-if="groupItem.owner"><a :href="'mailto:'+groupItem.owner.email" class="text-dark"><span class="font-weight-semibold">Email :</span> <span>{{ groupItem.owner.email }}</span> </a></li>
-                                                    <li v-if="groupItem.owner"><a :href="groupItem.owner.phone?'tel:'+groupItem.owner.phone:'tel:'" class="text-dark"><span class="font-weight-semibold">Telefono :</span> <span v-if="groupItem.owner">{{ groupItem.owner.phone }}</span> </a></li>
-                                                </ul>
-                                                <div class="row group-description">
-                                                    <div class="col-md-12 text-dark">
-                                                        <div class="media-heading">
-                                                            <h3 class="card-title mb-3 font-weight-bold">Descrizione</h3>
-                                                        </div>
+                                                <div v-if="groupItem" class="row text-dark">
+                                                    <div class="col-xl-10 col-lg-9 col-md-12 media-heading">
+                                                        <h3 class="card-title mb-3 font-weight-bold">
+                                                            {{ groupItem.name }}
+                                                        </h3>
                                                         <p></p>
                                                         <p v-if="groupItem" class="mb-0">{{ groupItem.description }}</p>
+                                                        <p></p>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg-3 col-md-12">
+                                                        <!-- Members -->
+                                                        <a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: groupId)}" >
+                                                            <h3 class="card-title mb-3 font-weight-bold">
+                                                                Iscritti <span class="label label-pill badge-default mt-2">20+</span>
+                                                            </h3>
+                                                            <div class="avatar-list avatar-list-stacked">
+                                                                <span class="avatar brround cover-image cover-image">AD</span>
+                                                                <span class="avatar brround cover-image cover-image">LU</span>
+                                                                <span class="avatar brround cover-image cover-image">TE</span>
+                                                                <span class="avatar brround cover-image cover-image">AL</span>
+                                                                <span class="avatar brround cover-image cover-image">US</span>
+                                                                <span class="avatar brround cover-image cover-image">+3</span>
+                                                            </div>
+                                                        </a>
+                                                        <!-- -->
+                                                    </div>
+                                                </div>
+                                                <div v-if="groupItem" class="row text-dark">
+                                                    <div v-if="groupItem.deliveryAddress" class="col-md-12">
+                                                        <p><span class="font-weight-semibold"><i class="fa fa-clock-o mr-1"></i></span> {{ timeFromNow(groupItem.creationDate) }}</p>
+                                                    </div>
+                                                </div>
+                                                <div v-if="groupItem"  class="row text-dark">
+                                                    <div v-if="groupItem.deliveryAddress" class="col-md-12">
+                                                        <div class="media-heading">
+                                                            <h3 class="card-title mb-3 font-weight-bold">Indirizzo</h3>
+                                                        </div>
+                                                        <p></p>
+                                                        <p class="mb-0">
+                                                            {{ groupItem.deliveryAddress.address1 }}
+                                                            {{ groupItem.deliveryAddress.address2 }}
+                                                        </p>
+                                                        <p class="mb-0">
+                                                            {{ groupItem.deliveryAddress.postalCode }} {{ groupItem.deliveryAddress.city }}
+                                                        </p>
                                                         <p></p>
                                                     </div>
                                                 </div>

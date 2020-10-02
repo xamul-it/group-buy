@@ -50,7 +50,7 @@
     <asset:stylesheet src="theme/css/vue.css"/>
 
 	<!-- Bbox Css -->
-    <asset:stylesheet src="theme/css/style.css"/>
+    <asset:stylesheet src="theme/css/gb-style.css"/>
 
 	<!-- JavaScript modules -->
 	<!-- helper -->
