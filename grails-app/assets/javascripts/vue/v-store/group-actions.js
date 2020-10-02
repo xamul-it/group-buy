@@ -126,6 +126,40 @@ export const fetchCoordinatesAction = async (
   }
 };
 
+export const fetchGroupCoordinatesAction = async (
+  { commit, dispatch, state },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let coords = {};
+
+    if (!_.isUndefined(payload.addressString) && payload.addressString != "") {
+      coords = await payload.service.coordinatesByAddress(
+        payload.addressString
+      );
+    } else {
+      coords = await payload.service.currentCoordinates();
+    }
+    commit("updateField", {
+      path: "group.groupItem.deliveryAddress.lat",
+      value: coords.latitude,
+    });
+    commit("updateField", {
+      path: "group.groupItem.deliveryAddress.lon",
+      value: coords.longitude,
+    });
+    // Reset the loading state after fetching
+    dispatch("resetLoadingState");
+    if (state.debug) console.log("coordinates", coords);
+  } catch (error) {
+    if (state.debug) console.log("error", error);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("fetchGroupCoordinatesAction state", state);
+  }
+};
+
 export const fetchGroupListAction = async (
   { commit, dispatch, state, getters },
   payload

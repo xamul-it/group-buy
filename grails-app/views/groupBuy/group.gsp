@@ -115,23 +115,23 @@
                                         </div>
                                         <!-- /Show -->
 
-                                            <l-map
-                                            v-if="showMap"
-                                            :zoom="16"
-                                            :center="center"
-                                            :options="{ zoomSnap: 0.5 }"
-                                            style="height: 400px"
-                                            >
-                                                <l-marker :lat-lng="markerLatLng">
-                                                    <l-tooltip :options="{ permanent: true, interactive: true }">
-                                                        {{ groupItem.name }}
-                                                    </l-tooltip>
-                                                </l-marker>
-                                                <l-tile-layer
-                                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                                :attribution="attribution"
-                                                />
-                                            </l-map>
+                                        <l-map
+                                        v-if="showMap"
+                                        :zoom="16"
+                                        :center="center"
+                                        :options="{ zoomSnap: 0.5 }"
+                                        style="height: 400px"
+                                        >
+                                            <l-marker :lat-lng="markerLatLng">
+                                                <l-tooltip :options="{ permanent: true, interactive: true }">
+                                                    {{ groupItem.name }}
+                                                </l-tooltip>
+                                            </l-marker>
+                                            <l-tile-layer
+                                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                            :attribution="attribution"
+                                            />
+                                        </l-map>
 
                                     </div>
                                 </div>

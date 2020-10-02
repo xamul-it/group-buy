@@ -145,20 +145,47 @@
                 <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.district }}</pre>
             </div>
         </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <button type="button" title="" class="btn btn-outline-secondary" v-on:click="fetchCoordinates">Verifica indirizzo</button>
+            </div>
+        </div>
+
+        <div class="col-md-12" v-if="showMap">
+            <div class="form-group">
+                <l-map
+                    v-if="showMap"
+                    :zoom="16"
+                    :center="center"
+                    :options="{ zoomSnap: 0.5 }"
+                    style="height: 400px"
+                    >
+                        <l-marker :lat-lng="markerLatLng"></l-marker>
+                        <l-tile-layer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        :attribution="attribution"
+                        />
+                </l-map>
+            </div>
+        </div>
         
         <!-- div class="col-md-12">
             <div class="form-group">
-                <label class="form-label text-dark">Carica immagine gruppo</label>
+                <label class="form-label text-dark">Carica immagine</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" name="example-file-input-custom">
                     <label class="custom-file-label">Scegli file</label>
                 </div>
             </div>
         </div -->
+
         <div class="col-md-12">
-            <button type="submit" :disabled="$v.$invalid" :title="$v.$invalid?'Compilare tutti campi obbligatori per inviare i dati':''" class="btn btn-primary" v-on:click="saveGroup">Salva gruppo</button>
-            <a href="${createLink(controller: 'groupBuy', action: 'group', id: groupId)}" class="btn btn-secondary">Annulla</a>
-            <pre v-if="isDebug">{{ $v }}</pre>
+            <div class="form-group">
+                <button type="submit" :disabled="$v.$invalid" :title="$v.$invalid?'Compilare tutti campi obbligatori per inviare i dati':''" class="btn btn-primary" v-on:click="saveGroup">Salva gruppo</button>
+                <a href="${createLink(controller: 'groupBuy', action: 'group', id: groupId)}" class="btn btn-secondary">Annulla</a>
+                <pre v-if="isDebug">{{ $v }}</pre>
+            </div>
         </div>
 
         
