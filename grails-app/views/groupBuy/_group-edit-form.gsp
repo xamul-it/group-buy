@@ -148,7 +148,7 @@
 
         <div class="col-md-12">
             <div class="form-group">
-                <button type="button" title="" class="btn btn-outline-secondary" v-on:click="fetchCoordinates">Verifica indirizzo</button>
+                <button type="button" title="" class="btn btn-outline-primary" v-on:click="fetchCoordinates">Verifica indirizzo</button>
             </div>
         </div>
 
