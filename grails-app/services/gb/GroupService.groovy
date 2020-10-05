@@ -37,8 +37,8 @@ class GroupService {
 //            Longitude: 1 deg = 111.320*cos(latitude) km
 
             q += "(abs(g.lat - :latitude)< 0.1 and abs(g.lon - :longitude)< 0.1) and "
-            qparam.latitude = Double.valueOf(params.latitude).toLong()
-            qparam.longitude = Double.valueOf(params.longitude).toLong()
+            qparam.latitude = Double.valueOf(params.latitude)
+            qparam.longitude = Double.valueOf(params.longitude)
         }
         if (params.categoryId) {
             q += "g.category.id=  :categoryId and "

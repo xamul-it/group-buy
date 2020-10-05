@@ -35,15 +35,15 @@ class Group {
 	static constraints = {
 		name nullable: false, blank: false, size: 5..20, unique: true
 
-		facebook url: true, nullable: false
-		twitter url: true, nullable: false
-		youtube url: true, nullable: false
-		linkedin url: true, nullable: false
-		instagram url: true, nullable: false
-		whatsapp url: true, nullable: false
-		skype url: true, nullable: false
-		slack url: true, nullable: false
-		snapchat url: true, nullable: false
+		facebook url: true, nullable: true
+		twitter url: true, nullable: true
+		youtube url: true, nullable: true
+		linkedin url: true, nullable: true
+		instagram url: true, nullable: true
+		whatsapp url: true, nullable: true
+		skype url: true, nullable: true
+		slack url: true, nullable: true
+		snapchat url: true, nullable: true
 
 
 
