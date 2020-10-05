@@ -16,10 +16,10 @@ json {
         district group.deliveryAddress.district
         postalCode group.deliveryAddress.postalCode
         countryCode group.deliveryAddress.countryCode
-        //lat	group.deliveryAddress.lat
-        //lon	group.deliveryAddress.lon
-        lat	45.45354866064325
-        lon	9.210321578347274
+        lat	group.deliveryAddress.lat
+        lon	group.deliveryAddress.lon
+        //lat	45.45354866064325
+        //lon	9.210321578347274
     }
 
     category {
@@ -29,6 +29,8 @@ json {
 
     //References
     //membres ?
+
+    //membres group.members
 
     owner {
         id group.owner.id
