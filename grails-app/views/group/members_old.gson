@@ -1,0 +1,10 @@
+model {
+    List<GroupMember> userList
+}
+
+log.debug "Model is $binding.variables"
+
+json(userList)
+//}
+
+//json g.render(template:'/user/user', collection: userList, var: 'user')

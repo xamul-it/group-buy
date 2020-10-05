@@ -11,6 +11,8 @@ import static org.springframework.http.HttpStatus.*
 import grails.rest.RestfulController
 
 import gb.Group
+import gb.GroupMember
+import gb.MemberStatus
 import gb.GroupService
 
 //Extending the RestfulController super class docs:
@@ -31,23 +33,68 @@ class GroupController extends RestfulController<Group> {
         super(Group)
     }
 
+    /**
+     * Se la sottoscrizione esiste viene restituta quella esistente e aggiornato lo stato ad active
+     * Se non esiste e il gruppo è pubblico viene creata e impostata ad active
+     * Se non esiste eil gruppo è privato viene restituita una sottoscrizione vuota in stato invalid
+     * TODO Verificare se generare errore
+     *
+     * @return
+     */
     @Transactional
     def subscribe(){
+        log.debug "subscribe " + params
         Group g = queryForResource(params.groupId)
-        g.getMembers().add(springSecurityService.getCurrentUser())
-        log.debug "${springSecurityService.getCurrentUser()} subscribe to group ${params.groupId}"
-        saveResource g
-        respond g, [status: CREATED]
+        GroupMember gm = new GroupMember()
+        gm  = GroupMember.createCriteria().get{
+            eq('group',g)
+            eq('user',springSecurityService.getCurrentUser())
+        }
+        if (gm==null) {
+            if (g.publicGroup) {
+                //verifica se è già iscritto
+                gm = new GroupMember()
+                gm.group = g
+                gm.user = springSecurityService.getCurrentUser()
+                gm.status = MemberStatus.ACTIVE
+                gm.subscriptionDate = new Date()
+                gm.lastUpdate = new Date()
+                g.getMembers().add(gm)
+                saveResource g
+            }else {
+                gm=new GroupMember()
+                gm.status = MemberStatus.INVALID
+            }
+        }else if (!gm.status.equals(MemberStatus.ACTIVE)){
+            gm.status = MemberStatus.ACTIVE
+            gm.lastUpdate = new Date()
+            gm.save()
+        }
+
+        respond gm, [status: CREATED]
     }
 
     @Transactional
     def unsubscribe(){
+        log.debug "unsubscribe " + params
         Group g = queryForResource(params.groupId)
-        g.getMembers().remove(springSecurityService.getCurrentUser())
-        log.debug "${springSecurityService.getCurrentUser()} unsubscribe from group ${params.groupId}"
-        saveResource g
-        respond g, [status: CREATED]
+        GroupMember gm = new GroupMember()
+        gm  = GroupMember.createCriteria().get{
+            eq('group',g)
+            eq('user',springSecurityService.getCurrentUser())
+        }
+        if (gm==null) {
+            gm=new GroupMember()
+            gm.status = MemberStatus.INVALID
+        }else if (!gm.status.equals(MemberStatus.CANCELLED)){
+            gm.status = MemberStatus.CANCELLED
+            gm.lastUpdate = new Date()
+            gm.save()
+        }
+
+        respond gm, [status: CREATED]
     }
+
 
     def members() {
         log.debug "members " + params

@@ -13,6 +13,8 @@ class GroupService {
         return newL
     }
 
+
+
     Long count (Map params){
         def l
         def qparam= [:]

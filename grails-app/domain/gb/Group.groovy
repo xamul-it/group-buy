@@ -10,7 +10,7 @@ class Group {
 	
 	static belongsTo = [owner: User]
 	
-	static hasMany = [members: Member]
+	static hasMany = [members: GroupMember]
 
 	static hasOne = [category: GroupCategory]
 

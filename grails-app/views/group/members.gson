@@ -1,7 +1,0 @@
-model {
-    List<User> userList
-}
-
-log.debug "Model is $binding.variables"
-
-json g.render(template:'/user/user', collection: userList, var: 'user')
