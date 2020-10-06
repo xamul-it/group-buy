@@ -16,6 +16,9 @@
 	<!-- vue form validation -->
 	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/vuelidate.min.js"></script>
 	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/validators.min.js"></script>
+	<!-- vue-select -->
+	<script type="module" src="/assets/vue/v-jslib/vue-select@3.10.8/vue-select.js"></script>
+	<link rel="stylesheet" href="/assets/vue/v-jslib/vue-select@3.10.8/vue-select.css">
 
 </head>
 <body>

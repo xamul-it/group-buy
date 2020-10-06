@@ -312,12 +312,24 @@ label .location-gps.fa-spinner {
   cursor: pointer;
 }
 
+.search-background .form .v-select {
+  border: none !important;
+}
+
 .vs__dropdown-toggle {
   border: none !important;
 }
 
+.search-background .form .vs__dropdown-toggle {
+  padding-top: 8px;
+}
+
 .vs__selected {
   padding-top: 0.25em !important;
+}
+
+.search-background .form .vs__selected {
+  padding-top: 0.1em !important;
 }
 
 .select2-selection__deselect,

@@ -4,9 +4,11 @@
 
             <div class="header-text1 mb-0">
                 <div class="container" id="v-group-search-app">
+
                     <div class="row">
                         <div class="col-xl-9 col-lg-12 col-md-12 d-block mx-auto">
                             <div class="search-background bg-transparent">
+
                                 <div class="form row no-gutters ">
 
                                     <div class="form-group  col-xl-4 col-lg-4 col-md-12 mb-0 bg-white">
@@ -33,15 +35,28 @@
 
                                     </div>
 
-                                    <div class="form-group col-xl-2 col-lg-2 col-md-12 select2-lg  mb-0 bg-white">
+                                    <div class="form-group col-xl-2 col-lg-2 col-md-12 mb-0 bg-white">
 
-                                        <select class="form-control select2-show-search  border-bottom-0" v-model="searchCategoryId">
+                                        <v-select 
+                                            :clearable="false"
+                                            append-to-body
+                                            placeholder="Categorie" 
+                                            :options="groupCategories"
+                                            :reduce="name => name.id"
+                                            label="name"
+                                            v-model="searchCategoryId">
+                                                <template #open-indicator>
+                                                    <span class="select2-selection__arrow vs__open-indicator" role="presentation"><b role="presentation"></b></span>
+                                                </template>
+                                        </v-select>
+
+                                        <!-- select class="form-control select2-show-search  border-bottom-0" v-model="searchCategoryId">
                                             <optgroup label="Categorie">
                                                 <option v-if="searchCategoryId<=0" :value="searchCategoryId" disabled selected hidden>Categorie</option>
                                                 <option value="0">Tutte le categorie</option>
                                                 <option v-for="category in groupCategories" :value="category.id">{{category.name}}</option>
                                             </optgroup>
-                                        </select>
+                                        </select -->
 
                                     </div>
 
@@ -61,14 +76,21 @@
                                             ><i class="fa fa-times-circle" aria-hidden="true"></i></button>
                                     </div>
 
-                                </div>
+                                </div><!-- .form .row .no-gutters -->
+
+                                
 
                                 <pre v-if="isDebug">{{ $v }}</pre>
-                            </div>
+                            </div><!-- .search-background .bg-transparent -->
+
+                            
+
                         </div>
                     </div>
+            
                 </div>
             </div><!-- /header-text -->
+            
 
         </div>
     </section>
@@ -86,6 +108,13 @@
 
         import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
         import { store } from '/assets/vue/v-store/group-store.js';
+
+        //vue-select
+        // Set the components prop default to return our fresh components 
+        VueSelect.VueSelect.props.components.default = () => ({
+            Deselect: null,
+        });
+        Vue.component('v-select', VueSelect.VueSelect);
 
         //vuelidate
         Vue.use(window.vuelidate.default);
@@ -159,7 +188,8 @@
             },
             mounted() {
                 //will execute at pageload
-                this.fetchGroupCategoriesAction({service: categoriesService});
+                this.groupCategories = [{id:0, name:"Tutte le categorie"}]
+                this.fetchGroupCategories();
             },
             methods: {
                 ...Vuex.mapActions([
@@ -167,6 +197,9 @@
                     'fetchAddressAction',
                     'fetchCoordinatesAction',
                 ]),
+                async fetchGroupCategories(/*boolean*/ reload = false) {
+					this.fetchGroupCategoriesAction({service: categoriesService, reload: reload})
+				},
                 async fetchAddress() {
                     this.locationLoading = true
                     await this.fetchAddressAction({service: locationService})

@@ -20,7 +20,16 @@ export const fetchGroupCategoriesAction = async (
   try {
     dispatch("setLoadingState");
     let { data, headers } = await payload.service.list(100, 0, "name", "asc");
-    commit("updateField", { path: "group.groupCategories", value: data }); // https://github.com/maoberlehner/vuex-map-fields/issues/114
+
+    if (payload.reload) {
+      commit("updateField", { path: "group.groupCategories", value: data });
+    } else {
+      commit("updateField", {
+        path: "group.groupCategories",
+        value: _.concat(getters.getField("group.groupCategories"), data),
+      });
+    }
+
     // Reset the loading state after fetching
     dispatch("resetLoadingState");
   } catch (error) {
