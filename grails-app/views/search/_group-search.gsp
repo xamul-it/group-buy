@@ -68,13 +68,14 @@
                                             ><i class="fa fa-search" aria-hidden="true"></i></button>
                                     </div>
 
+                                    
                                     <div v-if="$v.$anyDirty" class="col-xl-1 col-lg-1 col-md-12 mb-0">
                                         <button class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0"
                                             @click="resetSearch"
-                                            :disabled="!$v.$anyDirty" 
                                             title="Annulla ricerca" 
                                             ><i class="fa fa-times-circle" aria-hidden="true"></i></button>
                                     </div>
+                                    <pre>{{ $v.$anyDirty }}</pre>
 
                                 </div><!-- .form .row .no-gutters -->
 
@@ -145,6 +146,8 @@
                     'search.searchAddress',
                     'search.searchAddressString',
                     'search.searchCategoryId',
+                    'search.searchLatitude',
+                    'search.searchLongitude',
                     'group.groupCategories',
                     'search.search',
                     'loading',
@@ -178,6 +181,8 @@
                     this.searchAddressString += address.city ? ' '+address.city:'';
                     this.searchAddressString += this.searchAddressString.length>0?', ':'';
                     this.searchAddressString += address.country ? address.country:'';
+                    //trigger vuelidate touch
+                    this.$v.searchAddressString.$touch()
                 },
                 categories: function(cats) {
                     if(this.debug)
@@ -197,6 +202,9 @@
                     'fetchAddressAction',
                     'fetchCoordinatesAction',
                 ]),
+                aaa() {
+                    alert('aaa');
+                },
                 async fetchGroupCategories(/*boolean*/ reload = false) {
 					this.fetchGroupCategoriesAction({service: categoriesService, reload: reload})
 				},
@@ -224,7 +232,9 @@
                     this.searchLatitude = 0.0
                     this.searchLongitude = 0.0
                     this.search = false
-                    this.$v.$reset()
+
+                    //https://github.com/vuelidate/vuelidate/issues/132#issuecomment-660859862
+                    this.$nextTick(() => { this.$v.$reset() })
 
                     this.search = true
                 },
