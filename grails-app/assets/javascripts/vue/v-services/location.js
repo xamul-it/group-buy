@@ -36,7 +36,7 @@ export async function coordinatesByAddress(address) {
     const { data } = await axios.get(FORWARD_ENDPOINT, {
       params: {
         extratags: 0,
-        addressdetails: 0,
+        addressdetails: 1,
         namedetails: 0,
         countrycodes: "it",
         limit: 1,
@@ -45,7 +45,13 @@ export async function coordinatesByAddress(address) {
       },
     });
 
-    console.log("coordinatesByAddress", address, "data[0]", data[0]);
+    console.log(
+      "coordinatesByAddress",
+      address,
+      data[0].address,
+      "data[0]",
+      data[0]
+    );
     return { latitude: data[0].lat, longitude: data[0].lon };
   } catch (error) {
     console.log("coordinatesByAddress error", error);

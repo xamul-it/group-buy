@@ -96,6 +96,7 @@ export const fetchAddressAction = async (
   } catch (error) {
     if (state.debug) console.log("error", error);
     dispatch("setErrorState", error.message);
+    throw error;
   } finally {
     if (state.debug) console.log("fetchAddressAction state", state);
   }
@@ -164,6 +165,7 @@ export const fetchGroupCoordinatesAction = async (
   } catch (error) {
     if (state.debug) console.log("error", error);
     dispatch("setErrorState", error.message);
+    throw error;
   } finally {
     if (state.debug) console.log("fetchGroupCoordinatesAction state", state);
   }

@@ -18,8 +18,6 @@ json {
         countryCode group.deliveryAddress.countryCode
         lat	group.deliveryAddress.lat
         lon	group.deliveryAddress.lon
-        //lat	45.45354866064325
-        //lon	9.210321578347274
     }
 
     category {
@@ -37,6 +35,16 @@ json {
         username group.owner.username
         email group.owner.email
     }
+
+    facebook group.facebook
+	twitter group.twitter
+	youtube group.youtube
+	linkedin group.linkedin
+	instagram group.instagram
+	whatsapp group.whatsapp
+	skype group.skype
+	slack group.slack
+	snapchat group.snapchat
 
     //Transients
     member group.member

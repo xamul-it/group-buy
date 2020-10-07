@@ -25,7 +25,16 @@
         <div class="col-sm-6 col-md-6">
             <div class="form-group">
                 <label class="form-label text-dark">Categoria</label>
-                <v-select :clearable="false" placeholder="Scegli la categoria per il gruppo" label="name" :options="groupCategories" v-model="groupItem.category"></v-select>
+                <v-select 
+                    :clearable="false" 
+                    placeholder="Scegli la categoria per il gruppo" 
+                    label="name" 
+                    :options="groupCategories" 
+                    v-model="groupItem.category">
+                    <template #open-indicator>
+                        <span class="select2-selection__arrow vs__open-indicator" role="presentation"><b role="presentation"></b></span>
+                    </template>
+                </v-select>
 
                 <!-- select class="form-control w-100"
                     v-model="groupItem.category.id">
@@ -42,6 +51,9 @@
                 <pre v-if="isDebug">{{ $v.groupItem.category.id }}</pre>
             </div>
         </div>
+
+    </div>
+    <div class="row">
 
         <div class="col-md-12">
             <div class="form-group">
@@ -79,6 +91,9 @@
                 </div>
             </div>
         </div>
+
+    </div>
+    <div class="row"> 
 
         <div class="col-md-12" v-if="groupItem.deliveryAddress">
             <div class="form-group">
@@ -146,9 +161,20 @@
             </div>
         </div>
 
+    </div>
+    <div class="row"> 
+
         <div class="col-md-12">
             <div class="form-group">
-                <button type="button" title="" class="btn btn-outline-primary" v-on:click="fetchCoordinates">Verifica indirizzo</button>
+                <button 
+                    type="button" 
+                    title="Verifica indirizzo" 
+                    class="btn btn-outline-primary"
+                    v-on:click="fetchCoordinates"
+                    :disabled="$v.groupItem.deliveryAddress.address1.$invalid && $v.groupItem.deliveryAddress.city.$invalid"
+                    >
+                    Verifica indirizzo
+                </button>
             </div>
         </div>
 
@@ -170,6 +196,134 @@
             </div>
         </div>
         
+    </div>
+    <div class="row group-social" v-if="groupItem">
+
+        <div class="col-md-6 col-lg-4 form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-facebook tx-16 lh-0 op-6"></i>
+                    </div>
+                </div>
+                <input v-model="groupItem.facebook" class="form-control" placeholder="Facebook page id" type="text">
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-twitter tx-16 lh-0 op-6"></i>
+                    </div>
+                </div>
+                <input v-model="groupItem.twitter" class="form-control" placeholder="Twitter name" type="text">
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-4 form-group">
+            <div class="row">
+                <div class="col-md-10 col-lg-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-youtube tx-16 lh-0 op-6"></i>
+                            </div>
+                        </div>
+                        <input v-model="youtube" class="form-control" placeholder="YouTube id" type="text">
+                    </div>
+                </div>
+                <div class="col-md-2 col-lg-4">
+                    <label class="custom-switch">
+                        <input type="radio" name="youtube-url" value="channel" v-model="socialYouTubeUrlPrefix" class="custom-switch-input">
+                        <span class="custom-switch-indicator"></span>
+                        <span class="custom-switch-description">Channel</span>
+                    </label>
+                    <label class="custom-switch">
+                        <input type="radio" checked name="youtube-url" value="c" v-model="socialYouTubeUrlPrefix" class="custom-switch-input">
+                        <span class="custom-switch-indicator"></span>
+                        <span class="custom-switch-description">Custom</span>
+                    </label>
+                </div>
+            </div>   
+        </div>
+
+        <div class="col-md-12 col-lg-4 form-group">
+            <div class="row">
+                <div class="col-md-10 col-lg-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-linkedin tx-16 lh-0 op-6"></i>
+                            </div>
+                        </div>
+                        <input v-model="linkedin" class="form-control" placeholder="LinkedIn id" type="text">
+                    </div>
+                </div>
+                <div class="col-md-2 col-lg-4">
+                    <label class="custom-switch">
+                        <input type="radio" name="linkedin-url" value="company" v-model="socialLinkedInUrlPrefix" class="custom-switch-input">
+                        <span class="custom-switch-indicator"></span>
+                        <span class="custom-switch-description">Company</span>
+                    </label>
+                    <label class="custom-switch">
+                        <input type="radio" checked name="linkedin-url" value="in" v-model="socialLinkedInUrlPrefix" class="custom-switch-input">
+                        <span class="custom-switch-indicator"></span>
+                        <span class="custom-switch-description">User</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-instagram tx-16 lh-0 op-6"></i>
+                    </div>
+                </div>
+                <input v-model="groupItem.instagram" class="form-control" placeholder="Instagram name" type="text">
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-whatsapp tx-16 lh-0 op-6"></i>
+                    </div>
+                </div>
+                <input v-model="groupItem.whatsapp" class="form-control" placeholder="Whatsapp group id" type="text">
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-skype tx-16 lh-0 op-6"></i>
+                    </div>
+                </div>
+                <input v-model="groupItem.skype" class="form-control" placeholder="Skype group id" type="text">
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-slack tx-16 lh-0 op-6"></i>
+                    </div>
+                </div>
+                <input v-model="groupItem.slack" class="form-control" placeholder="Slack team id" type="text">
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-snapchat-ghost tx-16 lh-0 op-6"></i>
+                    </div>
+                </div>
+                <input v-model="groupItem.snapchat"  class="form-control" placeholder="Snapchat username" type="text">
+            </div>
+        </div>
+
         <!-- div class="col-md-12">
             <div class="form-group">
                 <label class="form-label text-dark">Carica immagine</label>
