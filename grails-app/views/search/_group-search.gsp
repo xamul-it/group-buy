@@ -77,8 +77,6 @@
 
                                 </div><!-- .form .row .no-gutters -->
 
-                                
-
                                 <pre v-if="isDebug">{{ $v }}</pre>
                             </div><!-- .search-background .bg-transparent -->
 
@@ -129,7 +127,7 @@
                 return !helpers.ref(prop, this, parentVm) ? validator(value) : true
             })
 
-        var app = new Vue({
+        var GroupSearchApp = new Vue({
             el: '#v-group-search-app',
             name: 'GroupSearch',
             store,
@@ -140,14 +138,16 @@
                 //all needed data fields from vuex store
                 //mapped with vuex-map-fields
                 ...mapFields([
+                    'group.groupCategories',
 					'search.searchQuery',
                     'search.searchAddress',
                     'search.searchAddressString',
                     'search.searchCategoryId',
                     'search.searchLatitude',
                     'search.searchLongitude',
-                    'group.groupCategories',
                     'search.search',
+                    'search.searchDirty',
+                    'search.reset',
                     'loading',
                     'error',
                     'success',
@@ -169,23 +169,51 @@
                 },
             },
             watch: {
+                searchAddressString: function (string) {
+                    console.log("searchAddressString", string)
+                    if(_.isUndefined(string) || string == "" ) {
+                        this.resetSearch()
+                        this.searchDirty = false
+                    } else {
+                        this.setSearchDirty()
+                    }
+                },
+                searchQuery: function(query) {
+                    if(!_.isUndefined(query) && query!= "" ) {
+                        this.setSearchDirty()
+                    }
+                },
+                searchCategoryId: function(id) {
+                    if(id>0)
+                        this.setSearchDirty()
+                    else
+                        this.searchDirty = false
+                },
                 searchAddress: function (address) {
-                    this.searchAddressString = '';
-                    this.searchAddressString += address.road ? address.road:'';
-                    this.searchAddressString += address.house_number ? ' '+address.house_number:'';
-                    this.searchAddressString += this.searchAddressString.length>0?', ':'';
-                    this.searchAddressString += address.postcode ? address.postcode:'';
-                    this.searchAddressString += address.village ? ' '+address.village:'';
-                    this.searchAddressString += address.city ? ' '+address.city:'';
-                    this.searchAddressString += this.searchAddressString.length>0?', ':'';
-                    this.searchAddressString += address.country ? address.country:'';
-                    //trigger vuelidate touch
+                    let searchAddressString = '';
+                    searchAddressString += address.road ? address.road:'';
+                    searchAddressString += address.house_number ? ' '+address.house_number:'';
+                    searchAddressString += searchAddressString.length>0?', ':'';
+                    searchAddressString += address.postcode ? address.postcode:'';
+                    searchAddressString += address.village ? ' '+address.village:'';
+                    searchAddressString += address.city ? ' '+address.city:'';
+                    searchAddressString += this.searchAddressString.length>0?', ':'';
+                    searchAddressString += address.country ? address.country:'';
+                    this.searchAddressString = searchAddressString
+                    //trigger vuelidate touch to notify changed value in form field
                     this.$v.searchAddressString.$touch()
                 },
                 categories: function(cats) {
                     if(this.debug)
                         console.log("categories loaded",this.groupCategories, cats)
                 },
+                reset: function(reset) {
+					//Trigger reset action
+					if(reset) {
+						this.resetSearch()
+					}
+					this.reset = false
+				},
                 //error: in page
                 //success: in page
             },
@@ -199,9 +227,11 @@
                     'fetchGroupCategoriesAction',
                     'fetchAddressAction',
                     'fetchCoordinatesAction',
+                    'resetSearchAction',
                 ]),
-                aaa() {
-                    alert('aaa');
+                setSearchDirty() {
+                    if(!this.searchDirty)
+                        this.searchDirty = true
                 },
                 async fetchGroupCategories(/*boolean*/ reload = false) {
 					this.fetchGroupCategoriesAction({service: categoriesService, reload: reload})
@@ -212,7 +242,8 @@
                     this.locationLoading = false
                 },
                 async searchGroups() {
-                    console.log("searchGroups", this.search);
+                    if(this.debug)
+                        console.log("searchGroups", this.search);
 
                     if(!_.isUndefined(this.searchAddressString) && this.searchAddressString != "") {
                         //get coordinates for searchAddressString
@@ -223,18 +254,9 @@
                     this.search = true;
                 },
                 resetSearch() {
-                    this.searchQuery = ""
-                    this.searchAddress = {}
-                    this.searchAddressString = ""
-                    this.searchCategoryId = 0
-                    this.searchLatitude = 0.0
-                    this.searchLongitude = 0.0
-                    this.search = false
-
+                    this.resetSearchAction()
                     //https://github.com/vuelidate/vuelidate/issues/132#issuecomment-660859862
                     this.$nextTick(() => { this.$v.$reset() })
-
-                    this.search = true
                 },
             },
         })        

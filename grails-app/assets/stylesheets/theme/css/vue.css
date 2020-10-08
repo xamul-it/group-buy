@@ -1,38 +1,41 @@
-
 /* Login Register Forgot password forms */
-.single-page .wrapper .vue-template>form {
-    width: 100%;
-    transition: all .5s;
-    background: #fff;
-    width: 100%;
+.single-page .wrapper .vue-template > form {
+  width: 100%;
+  transition: all 0.5s;
+  background: #fff;
+  width: 100%;
 }
 
-.single-page .wrapper .vue-template>form>div {
-    position: relative;
-    margin-bottom: 15px;
+.single-page .wrapper .vue-template > form > div {
+  position: relative;
+  margin-bottom: 15px;
 }
 
 hr.divider:after {
-    content: "o";
+  content: "o";
 }
 
 .input-alert {
-    color: red;
+  color: red;
 }
 
 /* Toast alerts */
 .toasted-container .toasted.bubble .action {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .toasted-container .toasted.bubble.alert {
-    border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .toasted-container .toasted.bubble.alert-danger {
-    background-color: #ff382b;
+  background-color: #ff382b;
 }
 
 .toasted-container .toasted.bubble.alert-success {
-    background-color: #00e682;
+  background-color: #00e682;
+}
+
+[v-cloak] {
+  display: none;
 }

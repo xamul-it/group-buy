@@ -4,7 +4,7 @@ export const setLoadingState = ({ commit }) => {
   commit("updateField", { path: "loading", value: true });
 };
 
-export const resetLoadingState = ({ commit }) => {
+export const setLoadedState = ({ commit }, payload) => {
   commit("updateField", { path: "loading", value: false });
 };
 
@@ -31,7 +31,7 @@ export const fetchGroupCategoriesAction = async (
     }
 
     // Reset the loading state after fetching
-    dispatch("resetLoadingState");
+    dispatch("setLoadedState");
   } catch (error) {
     if (state.debug) console.log("catch error", error);
     dispatch("setErrorState", error.message);
@@ -49,7 +49,7 @@ export const fetchGroupMembersAction = async (
     let { data, headers } = await payload.service.members(payload.groupId);
     commit("updateField", { path: "group.groupMembers", value: data });
     // Reset the loading state after fetching
-    dispatch("resetLoadingState");
+    dispatch("setLoadedState");
   } catch (error) {
     if (state.debug) console.log("catch error", error);
     dispatch("setErrorState", error.message);
@@ -86,7 +86,7 @@ export const fetchAddressAction = async (
     });
 
     // Reset the loading state after fetching
-    dispatch("resetLoadingState");
+    dispatch("setLoadedState");
     if (state.debug)
       console.log(
         "Address",
@@ -133,7 +133,7 @@ export const fetchCoordinatesAction = async (
       value: coords.longitude,
     });
     // Reset the loading state after fetching
-    dispatch("resetLoadingState");
+    dispatch("setLoadedState");
     if (state.debug) console.log("coordinates", coords);
   } catch (error) {
     if (state.debug) console.log("error", error);
@@ -160,7 +160,7 @@ export const fetchGroupCoordinatesAction = async (
       value: coords.longitude,
     });
     // Reset the loading state after fetching
-    dispatch("resetLoadingState");
+    dispatch("setLoadedState");
     if (state.debug) console.log("coordinates", coords);
   } catch (error) {
     if (state.debug) console.log("error", error);
@@ -193,7 +193,6 @@ export const fetchGroupListAction = async (
         value: data,
       });
     } else {
-      //this.groups = _.concat(this.groups, data);
       commit("updateField", {
         path: "group.groupList",
         value: _.concat(getters.getField("group.groupList"), data),
@@ -204,7 +203,7 @@ export const fetchGroupListAction = async (
       value: headers["x-pagination-total"],
     });
     // Reset the loading state after fetching
-    dispatch("resetLoadingState");
+    dispatch("setLoadedState");
   } catch (error) {
     console.log("catch error", error);
     dispatch("setErrorState", error.message);
@@ -225,7 +224,7 @@ export const fetchGroupAction = async (
       value: data,
     });
     // Reset the loading state after fetching
-    dispatch("resetLoadingState");
+    dispatch("setLoadedState");
   } catch (error) {
     if (state.debug) console.log("catch error", error, error.response);
     dispatch("setErrorState", error.message);
@@ -247,7 +246,7 @@ export const saveGroupAction = async (
       r = await payload.service.update(payload.groupId, payload.groupItem);
     }
     // Reset the loading state after fetching
-    dispatch("resetLoadingState");
+    dispatch("setLoadedState");
     commit("updateField", {
       path: "success",
       value: r.message,
@@ -282,11 +281,25 @@ export const subscriptionAction = async (
       commit("updateGroupInList", { group: r.data });
     }
     // Reset the loading state after fetching
-    dispatch("resetLoadingState");
+    dispatch("setLoadedState");
   } catch (error) {
     if (state.debug) console.log("catch error", error, error.response);
     dispatch("setErrorState", error.message);
   } finally {
     if (state.debug) console.log("subscription state", state);
   }
+};
+
+export const resetSearchAction = (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  commit("updateField", { path: "search.searchQuery", value: "" });
+  commit("updateField", { path: "search.searchAddress", value: {} });
+  commit("updateField", { path: "search.searchAddressString", value: "" });
+  commit("updateField", { path: "search.searchCategoryId", value: 0 });
+  commit("updateField", { path: "search.searchLatitude", value: 0.0 });
+  commit("updateField", { path: "search.searchLatitude", value: 0.0 });
+  commit("updateField", { path: "search.search", value: true });
+  commit("updateField", { path: "search.searchDirty", value: false });
 };

@@ -29,6 +29,8 @@ export const store = new Vuex.Store({
       searchLatitude: 0.0,
       searchLongitude: 0.0,
       search: false,
+      searchDirty: false,
+      reset: false,
     },
     group: {
       groupCategories: [],

@@ -29,12 +29,23 @@
 
     <!--Group listing-->
 		<section class="sptb">
-			<div class="container" id="v-groups-app">
+			<div class="container" id="v-groups-app" v-cloak>
 				<v-modal ref="registerLoginModal"></v-modal>
 				<div class="row">
+					<div v-if="groupsCount==0 && groupListLoaded" class="col-md-12 col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="jumbotron">
+									<h1 class="display-3">Ops!</h1>
+									<p class="lead">Nessun gruppo trovato, prova una nuova ricerca.</p>
+									<p class="lead m-0"> <a @click="resetSearch()" class="btn btn-primary btn-lg text-white" role="button">Annulla ricerca</a> </p>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<!--Group lists-->
-					<div class="col-xl-12 col-lg-12 col-md-12">
+					<div v-if="groupsCount>0" class="col-xl-12 col-lg-12 col-md-12">
 						<div class=" mb-lg-0">
 							<div class="">
 								<div class="item2-gl ">
@@ -50,7 +61,10 @@
 												</ul -->
 												<div class="d-flex">
 													<label class="mr-2 mt-1 mb-sm-1" style="white-space: nowrap;">Ordina per:</label>
-													<select name="sort" v-model="sortOrder" class="form-control select-sm w-70">
+													<select name="sort" 
+														class="form-control select-sm w-70"
+														v-model="sortOrder"
+														:disabled="searchDirty">
 														<option value="newest">Più recente</option>
 														<option value="oldest">Più vecchio</option>
 														<option value="nearest">Più vicino</option>
@@ -102,7 +116,6 @@
 														</div>
 													</div>
 												</div>
-                                                <!-- pre>{{ group }}</pre -->
 											</div>
                                             <!-- /list item -->
 											
@@ -134,7 +147,7 @@
 		
 		moment.locale('it');
 
-        var app = new Vue({
+        var GroupListApp = new Vue({
 			el: '#v-groups-app',
 			name: 'GroupList',
 			components: {
@@ -143,6 +156,7 @@
 			store,
             data: {
 				sortOrder: '',
+				groupListLoaded: false,
 			},
             computed: {
 				//all needed data fields from vuex store
@@ -155,15 +169,19 @@
 					'sort.sort',
 					'sort.order',
 					'search.search',
+					'search.searchDirty',
+					'search.reset',
+					'loading',
 					'error',
 					'success',
                     'debug',
 				]),
                 groupsCount() {
+					console.log('groupsCount', this.groupList)
                     if(_.isArray(this.groupList))
                         return _.size(this.groupList);
                     else
-                        return 0;
+                        return -1;
                 },
                 groupsTotal() {
                     return this.total;
@@ -171,34 +189,38 @@
 			},
 			watch: {
                 sortOrder: async function (sortOrder) {
-                    switch(sortOrder) {
-						case 'newest':
-							this.sort = 'creationDate';
-							this.order = 'desc';
-							break;
-						case 'oldest':
-							this.sort = 'creationDate';
-							this.order = 'asc';
-							break;
-						case 'nearest':
-							this.sort = 'nearest';
-							await this.fetchCoordinatesAction({service: locationService});
-							//TODO
-							break;
-						default:
-							this.sort = '';
-							this.order = '';
+					if(!this.searchDirty) {
+						switch(sortOrder) {
+							case 'newest':
+								this.sort = 'creationDate';
+								this.order = 'desc';
+								break;
+							case 'oldest':
+								this.sort = 'creationDate';
+								this.order = 'asc';
+								break;
+							case 'nearest':
+								this.sort = 'nearest';
+								await this.fetchCoordinatesAction({service: locationService});
+								//TODO
+								break;
+							default:
+								this.sort = '';
+								this.order = '';
+						}
+						//reset offset
+						this.offset = 0;
+						this.fetchGroupList(true)
 					}
-					//reset offset
-					this.offset = 0;
-					this.fetchGroupList(true);
 				},
 				search: function(search) {
 					//Trigger search action
-					if(search)
+					if(search) {
+						if(this.searchDirty)
+							this.searchDirty = false
 						this.fetchGroupList(true);
-
-					this.search = false;
+					}
+					this.search = false
 				},
 				error: function (message) {
 					toastService.alertDanger(message)
@@ -207,36 +229,39 @@
 					toastService.alertSuccess(message)
 				}
             },
-            mounted() {
+            async mounted() {
 				this.debug = ${isDebug};
 				//will execute at pageload
-				this.fetchGroupList(true);
+				await this.fetchGroupList(true);
+				this.groupListLoaded = true
 				this.infiniteScroll();
             },
             methods: {
 				...Vuex.mapActions([
 					'fetchGroupListAction',
 					'subscriptionAction',
-					'fetchCoordinatesAction'
+					'fetchCoordinatesAction',
                 ]),
 				async fetchGroupList(/*boolean*/ reload = false) {
-					this.fetchGroupListAction({service: groupService, reload: reload})
+					await this.fetchGroupListAction({service: groupService, reload: reload})
 				},
 				async subscribe(groupId, groupIndex) {
 					console.log("Subscribe to "+groupId+" at index "+groupIndex);
-					this.subscriptionAction({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: true, mode: 'list'})
+					await this.subscriptionAction({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: true, mode: 'list'})
 				},
 				async unsubscribe(groupId, groupIndex) {
 					console.log("Unsubscribe from "+groupId+" at index "+groupIndex);
-					this.subscriptionAction({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: false, mode: 'list'})
+					await this.subscriptionAction({service: groupService, groupId: groupId, groupIndex: groupIndex, subscribe: false, mode: 'list'})
 				},
                 infiniteScroll() {
                     window.onscroll = () => {
                         let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= document.body.scrollHeight;
 					   
-                        if (bottomOfWindow && _.size(this.groupList) < this.total) {
-                            this.offset += this.max;
-                            this.fetchGroupList(false);
+					    if(!this.searchDirty) {
+							if (bottomOfWindow && _.size(this.groupList) < this.total) {
+								this.offset += this.max;
+								this.fetchGroupList(false);
+							}
 						}
 						
                     };
@@ -260,8 +285,10 @@
 					formattedAddress += deliveryAddress.countryCode ? deliveryAddress.countryCode:'';
 					
 					return formattedAddress
-				}
-
+				},
+				resetSearch() {
+					this.reset = true
+                },
             },
         })        
     </script>
