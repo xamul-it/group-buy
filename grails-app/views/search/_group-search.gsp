@@ -67,7 +67,6 @@
                                             :title="$v.$invalid?'Inserire un testo o un indirizzo':'Cerca'" 
                                             ><i class="fa fa-search" aria-hidden="true"></i></button>
                                     </div>
-
                                     
                                     <div v-if="$v.$anyDirty" class="col-xl-1 col-lg-1 col-md-12 mb-0">
                                         <button class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0"
@@ -75,7 +74,6 @@
                                             title="Annulla ricerca" 
                                             ><i class="fa fa-times-circle" aria-hidden="true"></i></button>
                                     </div>
-                                    <pre>{{ $v.$anyDirty }}</pre>
 
                                 </div><!-- .form .row .no-gutters -->
 
