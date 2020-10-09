@@ -3,7 +3,7 @@
         <div class="bannerimg cover-image bg-background sptb-1" >
 
             <div class="header-text1 mb-0">
-                <div class="container" id="v-group-search-app">
+                <div class="container" id="v-group-search-app" v-cloak>
 
                     <div class="row">
                         <div class="col-xl-9 col-lg-12 col-md-12 d-block mx-auto">

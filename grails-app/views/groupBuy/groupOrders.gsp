@@ -185,10 +185,10 @@
                     return this.orderTotals[orderId];
                 },
                 timeFromNow(date) {
-        		    return moment(date).fromNow();
+        		    return moment(date).fromNow()
                 },
                 dateTime(date) {
-        		    return moment(date).format('D MMMM YYYY, h:mm');
+        		    return moment(date).format('D MMMM YYYY, h:mm')
                 },
                 getGroup() {
                     let url =

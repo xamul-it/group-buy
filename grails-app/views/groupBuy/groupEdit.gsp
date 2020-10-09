@@ -30,7 +30,7 @@
         <gb:ifGroupOwner groupId="${groupId}">
             <!-- Group -->
             <section class="sptb">
-                <div class="container" id="v-group-edit-app">
+                <div class="container" id="v-group-edit-app" v-cloak>
 
                     <div class="row">
                         <div class="col-lg-12">

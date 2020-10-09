@@ -23,7 +23,7 @@
 
         <!-- Group -->
         <section class="sptb">
-            <div class="container" id="v-group-app">
+            <div class="container" id="v-group-app" v-cloak>
                 <v-modal ref="registerLoginModal"></v-modal>
                 <div class="row">
                     <div class="col-lg-12">
@@ -147,24 +147,24 @@
                                
                                 <div class="row group-actions" v-if="groupItem">
                                         <sec:ifLoggedIn>
-                                        <div class="col-md-12 form-group" v-if="!groupItem.administrator">
-                                            <button v-if="!groupItem.member" type="button" class="btn btn-primary btn-block btn-lg" v-on:click="subscribe">  <i class="fa fa-heart-o"></i> Iscriviti al gruppo</button>
-                                            <button v-else-if="groupItem.member" type="button" class="btn btn-secondary btn-block btn-lg" v-on:click="unsubscribe"><i class="fa fa-heart"></i> Lascia gruppo</button>
-                                        </div>
-                                        <div class="col-md-12 form-group" v-if="groupItem.administrator">
-                                            <button class="btn btn-outline-primary btn-block btn-lg" onclick="alert('unavailable')"><i class="fa fa-cart-plus"></i> Crea ordine </button>
-                                        </div>
-                                        <div class="col-md-12 form-group" v-if="!groupItem.member && !groupItem.administrator">
-                                            <button class="btn btn-outline-primary btn-block btn-lg" onclick="alert('unavailable')"><i class="fa fa-envelope"></i> Contatta l'amministratore </button>
-                                        </div>
+                                            <div class="col-md-12 form-group" v-if="!groupItem.administrator">
+                                                <button v-if="!groupItem.member" type="button" class="btn btn-primary btn-block btn-lg" v-on:click="subscribe">  <i class="fa fa-heart-o"></i> Iscriviti al gruppo</button>
+                                                <button v-else-if="groupItem.member" type="button" class="btn btn-secondary btn-block btn-lg" v-on:click="unsubscribe"><i class="fa fa-heart"></i> Lascia gruppo</button>
+                                            </div>
+                                            <div class="col-md-12 form-group" v-if="groupItem.administrator || groupItem.member">
+                                                <button class="btn btn-outline-primary btn-block btn-lg" onclick="alert('unavailable')"><i class="fa fa-cart-plus"></i> Crea ordine </button>
+                                            </div>
+                                            <div class="col-md-12 form-group" v-if="!groupItem.member && !groupItem.administrator">
+                                                <button class="btn btn-outline-primary btn-block btn-lg" onclick="alert('unavailable')"><i class="fa fa-envelope"></i> Contatta l'amministratore </button>
+                                            </div>
                                         </sec:ifLoggedIn>
                                         <sec:ifNotLoggedIn>
-                                        <div class="col-md-12 form-group">
-                                            <button v-if="!groupItem.member && !groupItem.administrator" type="button" class="btn btn-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()">  <i class="fa fa-heart-o"></i> Iscriviti al gruppo</button>
-                                        </div>
-                                        <div class="col-md-12 form-group">
-                                            <button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-envelope"></i> Contatta l'amministratore </button>
-                                        </div>
+                                            <div class="col-md-12 form-group">
+                                                <button type="button" class="btn btn-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()">  <i class="fa fa-heart-o"></i> Iscriviti al gruppo</button>
+                                            </div>
+                                            <div class="col-md-12 form-group">
+                                                <button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-envelope"></i> Contatta l'amministratore </button>
+                                            </div>
                                         </sec:ifNotLoggedIn>
                                 </div>
                                 

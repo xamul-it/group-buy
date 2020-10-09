@@ -52,8 +52,6 @@
                                     <li class=""><a href="#tab1" class="active btn-orange" data-toggle="tab">Tutti (52)</a></li>
                                     <li><a href="#tab2" data-toggle="tab" class="text-dark">Attivi (22)</a></li>
                                     <li><a href="#tab3" data-toggle="tab" class="text-dark">In sospeso (20)</a></li> 
-                                    <li><a href="#tab4" data-toggle="tab" class="text-dark">Da approvare (10)</a></li> 
-                                    <li><a href="#tab5" data-toggle="tab" class="text-dark">Disiscritti (20)</a></li>
                                 </ul> 
 
                             </div>
@@ -122,7 +120,7 @@
 
                                                         <td> 10 </td>
 
-                                                        <td>{{ dateSimple(new Date()) }}</td>
+                                                        <td>{{ dateSimple(member.subscriptionDate) }}</td>
 
                                                         <td>
                                                             <a class="btn btn-purple btn-sm text-white" title="scrivi"><i class="fa fa-envelope"></i></a>
@@ -225,7 +223,7 @@
                 },
                 initial(string, numChars = 2) {
                     return string.substring(0, numChars).toUpperCase();
-                }
+                },
             },
         })        
     </script>

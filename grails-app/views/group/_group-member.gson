@@ -1,0 +1,19 @@
+model {
+    GroupMember groupMember
+}
+
+log.debug "GroupMember Model is $binding.variables"
+
+json {
+    id groupMember.id
+    
+    userId groupMember.user.id
+    groupId groupMember.group.id
+    status groupMember.status.id
+
+    subscriptionDate groupMember.subscriptionDate
+    lastUpdate groupMember.lastUpdate
+
+    username groupMember.user.username
+    email groupMember.user.email
+}

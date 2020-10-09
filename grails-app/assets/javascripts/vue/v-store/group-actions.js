@@ -267,10 +267,19 @@ export const subscriptionAction = async (
     dispatch("setLoadingState");
     let r;
 
-    if (payload.subscribe) r = await payload.service.subscribe(payload.groupId);
-    else r = await payload.service.unsubscribe(payload.groupId);
-
-    commit("success", r.status + " OK");
+    if (payload.subscribe) {
+      r = await payload.service.subscribe(payload.groupId);
+      commit("updateField", {
+        path: "success",
+        value: "Richiesta di iscrizione inviata (" + r.status + ")",
+      });
+    } else {
+      r = await payload.service.unsubscribe(payload.groupId);
+      commit("updateField", {
+        path: "success",
+        value: "Richiesta di disiscrizione inviata (" + r.status + ")",
+      });
+    }
 
     if (payload.mode == "single") {
       commit("updateField", {
@@ -280,6 +289,7 @@ export const subscriptionAction = async (
     } else {
       commit("updateGroupInList", { group: r.data });
     }
+
     // Reset the loading state after fetching
     dispatch("setLoadedState");
   } catch (error) {

@@ -61,7 +61,7 @@ class GroupController extends RestfulController<Group> {
                 gm.lastUpdate = new Date()
                 g.getMembers().add(gm)
                 saveResource g
-            }else {
+            } else {
                 gm=new GroupMember()
                 gm.status = MemberStatus.INVALID
             }
@@ -71,7 +71,7 @@ class GroupController extends RestfulController<Group> {
             gm.save()
         }
 
-        respond gm, [status: CREATED]
+        respond gm.group, [status: CREATED]
     }
 
     @Transactional
@@ -86,13 +86,13 @@ class GroupController extends RestfulController<Group> {
         if (gm==null) {
             gm=new GroupMember()
             gm.status = MemberStatus.INVALID
-        }else if (!gm.status.equals(MemberStatus.CANCELLED)){
+        } else if (!gm.status.equals(MemberStatus.CANCELLED)){
             gm.status = MemberStatus.CANCELLED
             gm.lastUpdate = new Date()
             gm.save()
         }
 
-        respond gm, [status: CREATED]
+        respond gm.group, [status: CREATED]
     }
 
 
