@@ -26,7 +26,7 @@ class GroupService {
 
     def query(Map params){
         def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
-        println "QUERY by user $userId and $params"
+        log.debug "QUERY by user $userId and $params"
         def qparam= [:]
         String q = "from Group as g where 1=1 and "
         if (params.src) {
@@ -63,6 +63,8 @@ class GroupService {
         log.debug("$params.categoryId : $qparam.categoryId Query $q Params: $qparam")
         return [qparam,q]
     }
+
+
 
     List<Group> list (Map params){
         def l

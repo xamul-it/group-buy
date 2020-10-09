@@ -8,6 +8,7 @@ class UrlMappings {
                 "/groupMembers" (controller: 'groupMember', action: 'index', method: 'GET')
                 //Subscribe e unsubscribe possono essere anche in get, non ricevono parametri
                 "/subscribe" (controller: 'group', action: 'subscribe')//, method: 'PUT')
+                "/changestatus" (controller: 'group', action: 'changestatus')//, method: 'PUT')
                 "/unsubscribe" (controller: 'group', action: 'unsubscribe')//, method: 'PUT')
                 "/members" (controller: 'group', action: 'members', method: 'GET')
 

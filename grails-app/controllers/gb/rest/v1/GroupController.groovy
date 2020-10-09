@@ -14,6 +14,7 @@ import gb.Group
 import gb.GroupMember
 import gb.MemberStatus
 import gb.GroupService
+import gb.User
 
 //Extending the RestfulController super class docs:
 //https://docs.grails.org/latest/guide/REST.html#extendingRestfulController
@@ -34,9 +35,13 @@ class GroupController extends RestfulController<Group> {
     }
 
     /**
-     * Se la sottoscrizione esiste viene restituta quella esistente e aggiornato lo stato ad active
-     * Se non esiste e il gruppo è pubblico viene creata e impostata ad active
-     * Se non esiste eil gruppo è privato viene restituita una sottoscrizione vuota in stato invalid
+     * Adds a new membership to the group.
+     * Constraints:
+     *   Group need to be public
+     * Cases:
+     *  1) Se la sottoscrizione esiste viene restituta quella esistente e aggiornato lo stato ad active
+     *  2) Se non esiste e il gruppo è pubblico viene creata e impostata ad active
+     *  3) Se non esiste eil gruppo è privato viene restituita una sottoscrizione vuota in stato invalid
      * TODO Verificare se generare errore
      *
      * @return
@@ -73,7 +78,103 @@ class GroupController extends RestfulController<Group> {
 
         respond gm.group, [status: CREATED]
     }
+    /**
+     * Adds a new membership to the group.
+     * Constraints:
+     *   Group need to be public
+     * Cases:
+     *  1) Se la sottoscrizione esiste viene restituta quella esistente e aggiornato lo stato ad active
+     *  2) Se non esiste e il gruppo è pubblico viene creata e impostata ad active
+     *  3) Se non esiste eil gruppo è privato viene restituita una sottoscrizione vuota in stato invalid
+     * TODO Verificare se generare errore
+     *
+     * @return
+     */
+    @Transactional
+    def changestatus(){
+        log.debug "changestatus " + params
+        Group g = queryForResource(params.groupId)
+        GroupMember gm
+        if (g.owner.equals(springSecurityService.getCurrentUser())){
+            User u = User.get(params.uid)
+            gm  = GroupMember.createCriteria().get{
+                eq('group',g)
+                eq('user', u)
+                //eq('owner',springSecurityService.getCurrentUser())
+            }
+            if (gm!=null) {
+                //verifica se è già iscritto
+                gm.status = MemberStatus.ACTIVE
+                gm.lastUpdate = new Date()
+                saveResource g
+            }
+        }
+        if (gm==null) {
+            //By now return error?
+            gm=new GroupMember()
+            gm.status = MemberStatus.INVALID
+        }
+        //respond MemberStatus.values()
 
+        respond gm, [status: CREATED]
+    }
+
+    /**
+     * Invites a new user.
+     * Input:
+     *   params.email
+     * Constraints:
+     *  Only an active  member of a group can invite.
+     * Cases:
+     *  1) Based on Email user is already in the system, just adds a new membership in status valid
+     *      TODO: Processo setting user stauts in pending
+     *  2) User is not present in the system a new partial subscription needs to be craeted
+     */
+    @Transactional
+    def inviteUser(){
+        log.debug "inviteUser " + params
+        Group g = queryForResource(params.groupId)
+        GroupMember gm = new GroupMember()
+        GroupMember invite = new GroupMember()
+        //current user is member of group
+        gm  = GroupMember.createCriteria().get{
+            eq('group',g)
+            eq('user',springSecurityService.getCurrentUser())
+            eq('status',MemberStatus.ACTIVE)
+        }
+        if (gm!=null) {
+            //Search user
+            User u = User.findByEmail(params.email)
+            if (u){
+                invite  = GroupMember.createCriteria().get{
+                    eq('group',g)
+                    eq('user',u)
+                }
+                if (invite) {
+                    invite.status = MemberStatus.ACTIVE
+                    invite.lastUpdate = new Date()
+                }else {
+                    invite.group = g
+                    invite.user = springSecurityService.getCurrentUser()
+                    invite.status = MemberStatus.ACTIVE
+                    invite.subscriptionDate = new Date()
+                    invite.lastUpdate = new Date()
+                }
+                g.getMembers().add(invite)
+                saveResource g
+                //Add membership in state active
+            }else{
+                //By now return error?
+                invite=new GroupMember()
+                invite.status = MemberStatus.INVALID
+            }
+        }
+        respond gm, [status: CREATED]
+    }
+
+    /**
+     * Sets user membership status to Invalid
+     */
     @Transactional
     def unsubscribe(){
         log.debug "unsubscribe " + params
@@ -99,7 +200,15 @@ class GroupController extends RestfulController<Group> {
     def members() {
         log.debug "members " + params
         Group g = queryForResource(params.groupId)
-        def members = g?.getMembers()
+        GroupMember members = new GroupMember()
+        members  = GroupMember.createCriteria().get{
+            eq('group',g)
+            eq('user',springSecurityService.getCurrentUser())
+
+        }
+        if (members){
+            respond (g.members ? g.members : [])
+        }
         respond (members ? members : [])
     }
 
