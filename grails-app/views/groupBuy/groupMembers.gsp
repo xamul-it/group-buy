@@ -23,8 +23,26 @@
 
     <!-- Group -->
     <section class="sptb">
-        <div class="container" id="v-group-members-app">
-        
+        <div class="container" id="v-group-members-app" v-cloak>
+            <v-modal ref="memberInviteModal" :click-to-close="false">
+                <template v-slot:header>
+                    <h5 class="modal-title"> <i class="fa fa-user-plus mr-1"></i> Invita a partecipare </h5>
+                </template>
+                <template v-slot:body>
+                    <form>
+                        <p>
+                            Inserisci l'indirizzo e-mail del destinatario per inviare l'invito. 
+                        </p> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Email">
+                        </div>
+                    </form>
+                </template>
+                <template v-slot:footer>
+                    <a type="button" class="btn btn-primary" href="#invia">Invia</a> 
+					<a type="button" class="btn btn-secondary" @click="$refs.memberInviteModal.closeModal()">Annulla</a> 
+                </template>
+            </v-modal>
             <div class="row">
                 <div class="col-lg-12">
 
@@ -69,7 +87,7 @@
                                             <!--
                                             <div class="chk-all"> <div class="btn-group"> <a data-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false"> Bulk Actions <i class="fa fa-angle-down "></i> </a> <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 24px, 0px); top: 0px; left: 0px; will-change: transform;"> <li><a href="#">Bulk Action</a></li> <li><a href="#">Edit</a></li> <li><a href="#">Move to Trash</a></li> </ul> </div> </div> 
                                             -->                                        
-                                            <div class="btn-group hidden-phone"> <a href="#" class="btn btn-outline-primary" aria-expanded="false"> <i class="fa fa-user-plus"></i> Invita </a> </div>
+                                            <div class="btn-group"> <a @click="$refs.memberInviteModal.openModal()" class="btn btn-outline-primary" aria-expanded="false"> <i class="fa fa-user-plus"></i> Invita </a> </div>
                                             <!-- div class="btn-group hidden-phone"> <a href="#" class="btn" aria-expanded="false"> Filter </a> </div --> 
                                             
                                             <ul class="unstyled inbox-pagination text-dark"> <li><span>1-10 of 52 membri</span></li> <li> <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a> </li> </ul> 
@@ -165,8 +183,9 @@
         //Moment.js
         moment.locale('it');
 
-        var app = new Vue({
+        var GroupMembersApp = new Vue({
             el: '#v-group-members-app',
+            name: "GroupMembers",
             components: {
                 'v-modal': VModal,
             },

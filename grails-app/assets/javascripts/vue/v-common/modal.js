@@ -1,9 +1,20 @@
+//https://medium.com/notonlycss/how-to-build-a-modal-in-vue-js-b3db644afaeb
 var VModal = Vue.component("VModal", {
+  props: {
+    clickToClose: { type: Boolean, default: true, required: false },
+  },
   template: `
         <transition name="modal-backdrop" @after-enter="showDialog = true">
 
-		<div v-if="showModal" class="modal show" role="dialog" style="display: block;" aria-modal="true" @click.passive="showDialog = false"> 
-		
+		<!-- div v-if="showModal" class="modal show" role="dialog" style="display: block;" aria-modal="true" @click.passive="showDialog = false" -->
+
+		<div v-if="showModal" 
+			class="modal show"
+			role="dialog" 
+			style="display: block;" 
+			aria-modal="true"
+			v-on:click.prevent="clickToClose ? showDialog=false: null">
+
 			<transition name="modal-dialog" @after-leave="closeModal()">
 
 				<div v-if="showDialog" class="modal-dialog" role="document">

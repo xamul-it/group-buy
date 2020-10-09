@@ -213,7 +213,7 @@
             //Moment.js
             moment.locale('it');
 
-            var app = new Vue({
+            var GroupApp = new Vue({
                 el: '#v-group-app',
                 name: 'Group',
                 components: {
