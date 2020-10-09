@@ -78,14 +78,22 @@ class GroupController extends RestfulController<Group> {
 
         respond gm.group, [status: CREATED]
     }
+
+    def memberStatusList() {
+        respond MemberStatus.values()
+    }
+
     /**
-     * Adds a new membership to the group.
+     * Changes membership of a member.
+     * Input:
+     *  http://localhost:8080/api/v1/groups/1/changestatus?uid=1&status=0
+     * Params:
+     *   uid = userid
+     *   status = new status refer to list http://localhost:8080/api/v1/groups/1/memberstatuslist
      * Constraints:
-     *   Group need to be public
-     * Cases:
-     *  1) Se la sottoscrizione esiste viene restituta quella esistente e aggiornato lo stato ad active
-     *  2) Se non esiste e il gruppo è pubblico viene creata e impostata ad active
-     *  3) Se non esiste eil gruppo è privato viene restituita una sottoscrizione vuota in stato invalid
+     *   Current user needs to be owner of the group
+     *   User must be alredy subscribed to group
+     *   No other checks are performed
      * TODO Verificare se generare errore
      *
      * @return
@@ -100,11 +108,12 @@ class GroupController extends RestfulController<Group> {
             gm  = GroupMember.createCriteria().get{
                 eq('group',g)
                 eq('user', u)
-                //eq('owner',springSecurityService.getCurrentUser())
             }
+
             if (gm!=null) {
                 //verifica se è già iscritto
-                gm.status = MemberStatus.ACTIVE
+                MemberStatus s = MemberStatus.getById(params.status as Integer)
+                gm.status = s
                 gm.lastUpdate = new Date()
                 saveResource g
             }
@@ -114,8 +123,6 @@ class GroupController extends RestfulController<Group> {
             gm=new GroupMember()
             gm.status = MemberStatus.INVALID
         }
-        //respond MemberStatus.values()
-
         respond gm, [status: CREATED]
     }
 

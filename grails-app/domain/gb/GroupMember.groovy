@@ -7,9 +7,8 @@ class GroupMember {
     Date subscriptionDate
     Date lastUpdate
     MemberStatus status
-    String statusName
+    transient String statusName
 
-    static transients = ['statusName']
 
     static constraints = {
         subscriptionDate nullable: false
@@ -30,7 +29,7 @@ class GroupMember {
         lastUpdate = new Date();
     }
 
-    String getStatusName(){
+    public String getStatusName(){
         return (status ? status.name : "N/A");
     }
 
