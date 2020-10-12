@@ -95,14 +95,6 @@ class GroupController extends RestfulController<Group> {
         respond gm.group, [status: CREATED]
     }
 
-
-    def members() {
-        log.debug "members " + params
-        Group g = queryForResource(params.groupId)
-        def members = g?.getMembers()
-        respond (members ? members : [])
-    }
-
     def autocomplete(String query) {
         log.debug "autocomplete " + params
         params.max = 10
