@@ -1,5 +1,5 @@
 //https://medium.com/notonlycss/how-to-build-a-modal-in-vue-js-b3db644afaeb
-var VModal = Vue.component("VModal", {
+const VModal = Vue.component("VModal", {
   props: {
     clickToClose: { type: Boolean, default: true, required: false },
   },

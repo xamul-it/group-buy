@@ -2,7 +2,7 @@
 <!-- TODO i18n -->
 <head>
 	<meta name="layout" content="claylist"/>
-    <title>Gruppo di acquisto</title>
+    <title>Gruppo di acquisto - Iscritti</title>
 
     <!-- vuex store -->
     <script type="module" src="/assets/vue/v-store/group-store.js"></script>
@@ -10,15 +10,12 @@
     <script type="module" src="/assets/vue/v-store/group-actions.js"></script>
     <!-- alerts -->
     <script type="module" src="/assets/vue/v-services/toast.js"></script>
-    <!-- date time helpers -->
-    <script src="/assets/vue/v-jslib/moment@2.28.0/moment.js"></script>
-    <script src="/assets/vue/v-jslib/moment@2.28.0/locale/it.js"></script>
 
 </head>
 <body>
 
     <!--Sliders Section-->
-    <g:render template="/common/theme-header" model="['headerTitle':'Gruppo di acquisto']"/>
+    <g:render template="/common/theme-header" model="['headerTitle':'Iscritti al gruppo']"/>
     <!--/Sliders Section-->
 
     <!-- Group -->
@@ -46,7 +43,7 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <div class="card group-head">
+                    <div class="card overflow-hidden group-head">
 
                         <g:render template="/group/group-header"/>
 
@@ -64,14 +61,16 @@
                     <div class="panel panel-primary">
                         <div>
                             <div class="user-tabs mb-4">
-                            
-                                <!-- Filtri --> 
-                                <ul class="nav panel-tabs"> 
-                                    <li class=""><a href="#tab1" class="active btn-orange" data-toggle="tab">Tutti (52)</a></li>
-                                    <li><a href="#tab2" data-toggle="tab" class="text-dark">Attivi (22)</a></li>
-                                    <li><a href="#tab3" data-toggle="tab" class="text-dark">In sospeso (20)</a></li> 
-                                </ul> 
-
+                                <sec:ifLoggedIn>
+                                    <gb:ifGroupOwner groupId="${groupId}">			
+                                    <!-- Filtri --> 
+                                    <ul class="nav panel-tabs">
+                                        <li class=""><a @click="groupStatusId = -1" class="btn" :class="{ 'active btn-orange': groupStatusId == -1 }">Tutti</a></li>
+                                        <li><a @click="groupStatusId = 0" class="btn" :class="{ 'active btn-orange text-white': groupStatusId == 0 }">Attivi</a></li>
+                                        <li><a @click="groupStatusId = 1" class="btn" :class="{ 'active btn-orange text-white': groupStatusId == 1 }">In sospeso</a></li> 
+                                    </ul>
+                                    </gb:ifGroupOwner>
+                                </sec:ifLoggedIn>
                             </div>
                         </div>
                     </div>
@@ -84,14 +83,13 @@
                                     <div class="tab-pane userprof-tab active" id="tab-7">
 
                                         <div class="mail-option"> 
-                                            <!--
-                                            <div class="chk-all"> <div class="btn-group"> <a data-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false"> Bulk Actions <i class="fa fa-angle-down "></i> </a> <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 24px, 0px); top: 0px; left: 0px; will-change: transform;"> <li><a href="#">Bulk Action</a></li> <li><a href="#">Edit</a></li> <li><a href="#">Move to Trash</a></li> </ul> </div> </div> 
-                                            -->                                        
-                                            <div class="btn-group"> <a @click="$refs.memberInviteModal.openModal()" class="btn btn-outline-primary" aria-expanded="false"> <i class="fa fa-user-plus"></i> Invita </a> </div>
-                                            <!-- div class="btn-group hidden-phone"> <a href="#" class="btn" aria-expanded="false"> Filter </a> </div --> 
-                                            
-                                            <ul class="unstyled inbox-pagination text-dark"> <li><span>1-10 of 52 membri</span></li> <li> <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a> </li> </ul> 
-
+                                            <sec:ifLoggedIn>
+												<div class="btn-group"> <a @click="$refs.memberInviteModal.openModal()" class="btn btn-outline-primary" aria-expanded="false"> <i class="fa fa-user-plus"></i> Invita </a> </div>
+                            				</sec:ifLoggedIn>
+                                            <ul class="unstyled inbox-pagination text-dark">
+                                                <li> <span>1-{{membersCount}} di {{membersTotal}}</span> </li> 
+                                                <!-- li> <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a> </li --> 
+                                            </ul> 
                                         </div>
 
                                         <div class="table-responsive border-top">
@@ -112,8 +110,7 @@
                                                             <span v-if="member.image" class="avatar avatar-md  d-block brround cover-image" style="background: rgba(0, 0, 0, 0) url(&quot;../../assets/theme/img/faces/user-placeholder.jpg&quot;) repeat scroll center center;"></span>
                                                             <span v-else class="avatar avatar-md brround cover-image mr-3 h-100">
                                                                 {{ initial(member.username) }}
-                                                                <span class="avatar-status "></span>
-                                                                <!-- bg-yellow bg-green bg-red -->
+                                                                <span class="avatar-status " :class="memberStatusBgClass(member.status)"></span>
                                                             </span>
                                                         </td>
 
@@ -123,18 +120,12 @@
                                                         
                                                         <td>
                                                             <span v-if="index === 0" class="text-dark">Amministratore</span>
-                                                            <span v-else class="text-dark">Membro</span>
+                                                            <span v-else class="text-dark">Iscritto</span>
                                                         </td>
 
                                                         <td>
-                                                            <span v-if="index % 2 === 0" class="text-success">Attivo</span>
-                                                            <span v-else class="text-warning">In attesa</span>
+                                                            <span :class="memberStatusTextClass(member.status)">{{ memberStatus(member.status) }}</span>
                                                         </td>
-
-                                                        <!-- td>
-                                                            <span v-if="index % 2 === 0" class="badge badge-success">Attivo</span>
-                                                            <span v-else class="badge badge-warning">In attesa</span>
-                                                        </td -->
 
                                                         <td> 10 </td>
 
@@ -159,7 +150,12 @@
                         </div>
                     </div>
 
-                    <ul class="pagination mb-5"> <li class="page-item page-prev disabled"> <a class="page-link" href="#" tabindex="-1">Prev</a> </li> <li class="page-item active"><a class="page-link" href="#">1</a></li> <li class="page-item"><a class="page-link" href="#">2</a></li> <li class="page-item"><a class="page-link" href="#">3</a></li> <li class="page-item"><a class="page-link" href="#">4</a></li> <li class="page-item"><a class="page-link" href="#">5</a></li> <li class="page-item page-next"> <a class="page-link" href="#">Next</a> </li> </ul>
+                    <pagination
+                    :total="membersTotal"
+                    :per-page="2"
+                    :current-page="currentPage"
+                    @pagechanged="onPageChange"
+                    />
 
                 </div>
             </div>
@@ -173,46 +169,86 @@
     <script type="module" src="/assets/vue/v-services/group-rest.js"></script>
     <script type="module" src="/assets/vue/v-services/toast.js"></script>
 
+    <script type="module" src="/assets/vue/v-group/group-member-status-mixin.js"></script>
+
+    <script src="/assets/vue/v-common/pagination.vue.js"></script>
+
     <script type="module">
+        import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
+        import * as gms from '/assets/vue/v-group/group-member-status-mixin.js';
+
         import * as groupService from '/assets/vue/v-services/group-rest.js';
         import * as toastService from '/assets/vue/v-services/toast.js';
 
         import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
         import { store } from '/assets/vue/v-store/group-store.js';
 
-        //Moment.js
-        moment.locale('it');
-
         var GroupMembersApp = new Vue({
             el: '#v-group-members-app',
             name: "GroupMembers",
+            mixins: [dh.dateHelperMixin, gms.groupMemberStatusMixin],
             components: {
                 'v-modal': VModal,
+                'pagination': VPagination,
             },
             store,
             data: {
                 groupId: ${groupId},
+                groupStatusId: 0,
+                currentPage: 1,
             },
             computed: {
                 //all needed data fields from vuex store
                 //mapped with vuex-map-fields
                 ...mapFields([
-                    'group.groupMembers',
                     'group.groupItem',
+                    'group.groupMembers',
+                    'pagination.total',
+					'pagination.offset',
+					'pagination.max',
+					'sort.sort',
+					'sort.order',
                     'loading',
                     'error',
                     'success',
                     'debug',
                 ]),
+                membersCount() {
+                    if(_.isArray(this.groupMembers))
+                        return _.size(this.groupMembers);
+                    else
+                        return -1;
+                },
+                membersTotal() {
+                    return this.total;
+                },
             },
-            mounted() {
+            async mounted() {
                 this.debug = ${isDebug};
+                this.max=2
                 //will execute at pageload
-                if(this.groupId>0)
-                    this.fetchGroup();
-                this.fetchGroupMembers();
+                if(this.groupId>0) {
+                    await this.fetchGroup()
+                    //if(this.groupItem.administrator)
+                    //    this.groupStatusId = -1
+                    this.fetchGroupMembers(this.groupStatusId);
+                }
             },
             watch: {
+                currentPage: function(newPage, oldPage) {
+                    if(newPage > oldPage)
+                        this.offset = this.max * oldPage
+                    else if(newPage < oldPage)
+                        this.offset = this.max * (newPage -1)
+
+                    this.fetchGroupMembers(this.groupStatusId)
+                },
+                groupStatusId: async function(newId, oldId) {
+                    if(newId != oldId) {
+                        await this.fetchGroupMembers(this.groupStatusId)
+                        this.currentPage = 1
+                    }
+                },
                 error: function (message) {
                     toastService.alertDanger(message)
                 },
@@ -221,6 +257,10 @@
                 }
             },
             methods: {
+                onPageChange(page) {
+                    console.log(page)
+                    this.currentPage = page;
+                },
                 ...Vuex.mapActions([
                     'fetchGroupAction',
                     'fetchGroupMembersAction'
@@ -228,17 +268,8 @@
                 async fetchGroup() {
                     this.fetchGroupAction({service: groupService, groupId: this.groupId});
                 },
-                async fetchGroupMembers() {
-                    this.fetchGroupMembersAction({service: groupService, groupId: this.groupId })
-                },
-                timeFromNow(date) {
-        		    return moment(date).fromNow();
-                },
-                dateTime(date) {
-        		    return moment(date).format('D MMMM YYYY, h:mm');
-                },
-                dateSimple(date) {
-        		    return moment(date).format('D MMMM YYYY');
+                async fetchGroupMembers(groupStatusId = -1) {
+                    await this.fetchGroupMembersAction({service: groupService, groupId: this.groupId, groupStatusId })
                 },
                 initial(string, numChars = 2) {
                     return string.substring(0, numChars).toUpperCase();

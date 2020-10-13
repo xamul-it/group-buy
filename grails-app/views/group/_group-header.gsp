@@ -1,4 +1,5 @@
 
+    <div v-if="groupItem" class="ribbon ribbon-top-right text-danger"><span class="bg-primary">{{ groupItem.category.name }}</span></div>
     <div v-if="groupItem" class="card-body group-pattern-1" :style="'background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/assets/theme/img/categories/category-'+groupItem.category.id+'.jpg) no-repeat center/cover;'">
         <div class="wideget-user">
             <div class="row">

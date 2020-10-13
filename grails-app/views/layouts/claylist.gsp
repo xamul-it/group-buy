@@ -53,8 +53,11 @@
     <asset:stylesheet src="theme/css/gb-style.css"/>
 
 	<!-- JavaScript modules -->
-	<!-- helper -->
+	<!-- modular methods -->
 	<script src="/assets/vue/v-jslib/lodash@4.17.20/lodash.min.js"></script>
+	<!-- date time -->
+    <script src="/assets/vue/v-jslib/moment@2.28.0/moment.js"></script>
+    <script src="/assets/vue/v-jslib/moment@2.28.0/locale/it.js"></script>
 	<!-- network -->
     <script src="/assets/vue/v-jslib/axios@0.20.0/axios.min.js"></script>
 	<!-- vue -->
@@ -68,6 +71,7 @@
 	
 	<!-- Vue common Components -->
 	<script src="/assets/vue/v-common/modal.js"></script>
+	<script type="module" src="/assets/vue/v-common/date-helper-mixin.js"></script>
 	<!-- template for the modal component -->
     <script type="text/x-template" id="modal-template">
       

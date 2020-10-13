@@ -138,6 +138,8 @@
 	<script type="module" src="/assets/vue/v-services/group-rest.js"></script>
 
     <script type="module">
+		import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
+
 		import * as groupService from '/assets/vue/v-services/group-rest.js';
         import * as locationService from '/assets/vue/v-services/location.js';
 		import * as toastService from '/assets/vue/v-services/toast.js';
@@ -145,11 +147,10 @@
 		import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
 		import { store } from '/assets/vue/v-store/group-store.js';
 		
-		moment.locale('it');
-
         var GroupListApp = new Vue({
 			el: '#v-groups-app',
 			name: 'GroupList',
+			mixins: [dh.dateHelperMixin],
 			components: {
 				'v-modal': VModal,
 			},
@@ -265,12 +266,6 @@
 						}
 						
                     };
-				},
-				timeFromNow(date) {
-        		    return moment(date).fromNow();
-                },
-                dateTime(date) {
-        		    return moment(date).format('D MMMM YYYY, h:mm');
 				},
 				addressFormat(deliveryAddress) {
 					let formattedAddress = '';

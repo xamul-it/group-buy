@@ -207,6 +207,10 @@ label .location-gps.fa-spinner {
   margin-left: 3px;
   height: inherit;
 }
+
+.group-head .card-body {
+  min-height: 150px;
+}
 /* end group page */
 
 /* group list */

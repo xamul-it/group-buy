@@ -2,6 +2,7 @@ package gb.rest.v1
 
 import grails.rest.RestfulController
 
+import gb.GroupMember
 import gb.GroupMemberService
 
 class GroupMemberController extends RestfulController<GroupMember> {
