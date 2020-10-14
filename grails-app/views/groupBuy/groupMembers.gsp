@@ -10,6 +10,9 @@
     <script type="module" src="/assets/vue/v-store/group-actions.js"></script>
     <!-- alerts -->
     <script type="module" src="/assets/vue/v-services/toast.js"></script>
+    <!-- vue form validation -->
+	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/vuelidate.min.js"></script>
+	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/validators.min.js"></script>
 
 </head>
 <body>
@@ -31,12 +34,24 @@
                             Inserisci l'indirizzo e-mail del destinatario per inviare l'invito. 
                         </p> 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="recipient-name" placeholder="Email">
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Email"
+                                v-model="newMemberEmail"
+                                @input="$v.newMemberEmail.$touch()">
+
+                                <!-- alerts -->
+                                <div v-if="!$v.newMemberEmail.email && $v.newMemberEmail.minLength" class="alert alert-danger" role="alert">
+                                    Inseirisci un indirizzo email corretto.
+                                </div>
+
+                                <pre v-if="isDebug">{{ $v.newMemberEmail }}</pre>
                         </div>
                     </form>
                 </template>
                 <template v-slot:footer>
-                    <a type="button" class="btn btn-primary" href="#invia">Invia</a> 
+                    <a type="button" :class="{disabled:$v.$invalid}"
+                        class="btn btn-primary text-white"
+                        @click="inviteNewMember()"
+                        :title="$v.$invalid?'Inserisci un indirizzo email':'Invia'">Invia</a> 
 					<a type="button" class="btn btn-secondary" @click="$refs.memberInviteModal.closeModal()">Annulla</a> 
                 </template>
             </v-modal>
@@ -99,11 +114,15 @@
                                                     <tr>
                                                         <th></th>
                                                         <th>Nome</th>
-                                                        <th>Ruolo</th>
-                                                        <th>Status</th>
-                                                        <th>Ordini</th>
+                                                        <!-- th>Ruolo</th -->
+                                                        <sec:ifLoggedIn>
+                                                            <th>Stato</th>
+                                                        </sec:ifLoggedIn>
+                                                        <!-- th>Ordini</th -->
                                                         <th>Iscritto da</th>
-                                                        <th></th>
+                                                        <sec:ifLoggedIn>
+                                                            <th></th>
+                                                        </sec:ifLoggedIn>
                                                     </tr>
                                                     <tr v-for="(member, index) in groupMembers">
                                                         <td class="">
@@ -118,25 +137,31 @@
                                                             <span class="text-dark">{{ member.username }}</span>
                                                         </td>
                                                         
-                                                        <td>
+                                                        <!-- td>
                                                             <span v-if="index === 0" class="text-dark">Amministratore</span>
                                                             <span v-else class="text-dark">Iscritto</span>
-                                                        </td>
+                                                        </td -->
 
-                                                        <td>
-                                                            <span :class="memberStatusTextClass(member.status)">{{ memberStatus(member.status) }}</span>
-                                                        </td>
+                                                        <sec:ifLoggedIn>
+                                                            <td>
+                                                                <span :class="memberStatusTextClass(member.status)">{{ memberStatus(member.status) }}</span>
+                                                            </td>
+                                                        </sec:ifLoggedIn>
 
-                                                        <td> 10 </td>
+                                                        <!-- td> 10 </td -->
 
                                                         <td>{{ dateSimple(member.subscriptionDate) }}</td>
 
+                                                        <sec:ifLoggedIn>
                                                         <td>
-                                                            <a class="btn btn-purple btn-sm text-white" title="scrivi"><i class="fa fa-envelope"></i></a>
+                                                            
                                                             <gb:ifGroupOwner groupId="${groupId}">
-                                                                <a class="btn btn-danger btn-sm text-white" title="elimina"><i class="fa fa-trash-o"></i></a>
+                                                                <a v-if="member.status!=0 && member.status!=3" class="btn btn-success btn-sm text-white" title="Attiva"><i class="fa fa-check"></i></a>
+                                                                <a v-if="member.status!=2 && member.status!=3 && member.status!=1" class="btn btn-primary btn-sm text-white" title="Sospendi"><i class="fa fa-clock-o"></i></a>
+                                                                <a v-if="member.status!=3" class="btn btn-info btn-sm text-white" title="Cancella"><i class="fa fa-times"></i></a>
                                                             </gb:ifGroupOwner>
                                                         </td>
+                                                        </sec:ifLoggedIn>
                                                     </tr>
                                                     
                                                 </tbody>
@@ -163,7 +188,17 @@
     </section>
     <!-- /Group -->
 
-    <section class="sptb bg-white border-top"> <div class="container"> <div class="row"> <div class="col-lg-7 col-xl-6 col-md-12"> <div class="sub-newsletter"> <h3 class="mb-2"><i class="fa fa-paper-plane-o mr-2"></i> Subscribe To Our Newsletter</h3> <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p></div> </div> <div class="col-lg-5 col-xl-6 col-md-12"> <div class="input-group sub-input mt-1"> <input type="text" class="form-control input-lg " placeholder="Enter your Email"> <div class="input-group-append "> <button type="button" class="btn btn-primary btn-lg br-tr-3  br-br-3"> Subscribe </button> </div> </div> </div> </div> </div> </section>
+    <section class="sptb bg-white border-top"> 
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-xl-6 col-md-12">
+                    <div class="sub-newsletter"> 
+                        <h3 class="mb-2"><i class="fa fa-paper-plane-o mr-2"></i> Subscribe To Our Newsletter</h3> <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p></div> </div> <div class="col-lg-5 col-xl-6 col-md-12"> <div class="input-group sub-input mt-1"> <input type="text" class="form-control input-lg " placeholder="Enter your Email"> <div class="input-group-append "> <button type="button" class="btn btn-primary btn-lg br-tr-3  br-br-3"> Subscribe </button> </div> 
+                    </div> 
+                </div>
+            </div> 
+        </div>
+    </section>
     
     <!-- Vue Pages and Components here -->
     <script type="module" src="/assets/vue/v-services/group-rest.js"></script>
@@ -183,6 +218,10 @@
         import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
         import { store } from '/assets/vue/v-store/group-store.js';
 
+        //vuelidate
+        Vue.use(window.vuelidate.default);
+        const { required, minLength, email } = window.validators;
+
         var GroupMembersApp = new Vue({
             el: '#v-group-members-app',
             name: "GroupMembers",
@@ -196,6 +235,14 @@
                 groupId: ${groupId},
                 groupStatusId: 0,
                 currentPage: 1,
+                newMemberEmail: '',
+            },
+            validations: {
+                newMemberEmail: {
+                    required,
+                    email,
+                    minLength: minLength(3),
+                },
             },
             computed: {
                 //all needed data fields from vuex store
@@ -222,15 +269,16 @@
                 membersTotal() {
                     return this.total;
                 },
+                isDebug: function () {
+                    return this.debug
+                },
             },
             async mounted() {
                 this.debug = ${isDebug};
-                this.max=2
                 //will execute at pageload
+                this.max=2
                 if(this.groupId>0) {
                     await this.fetchGroup()
-                    //if(this.groupItem.administrator)
-                    //    this.groupStatusId = -1
                     this.fetchGroupMembers(this.groupStatusId);
                 }
             },
@@ -257,10 +305,6 @@
                 }
             },
             methods: {
-                onPageChange(page) {
-                    console.log(page)
-                    this.currentPage = page;
-                },
                 ...Vuex.mapActions([
                     'fetchGroupAction',
                     'fetchGroupMembersAction'
@@ -274,6 +318,15 @@
                 initial(string, numChars = 2) {
                     return string.substring(0, numChars).toUpperCase();
                 },
+                onPageChange(page) {
+                    console.log(page)
+                    this.currentPage = page;
+                },
+                inviteNewMember() {
+                    this.success = "Invito inviato a "+ this.newMemberEmail
+                    this.newMemberEmail = ''
+                    this.$refs.memberInviteModal.closeModal()
+                }
             },
         })        
     </script>
