@@ -46,8 +46,24 @@ export const fetchGroupMembersAction = async (
 ) => {
   try {
     dispatch("setLoadingState");
-    let { data, headers } = await payload.service.members(payload.groupId);
+    let { data, headers } = await payload.service.members({
+      groupId: payload.groupId,
+      max: getters.getField("pagination.max"),
+      offset: getters.getField("pagination.offset"),
+      sort: getters.getField("sort.sort"),
+      order: getters.getField("sort.order"),
+      q: getters.getField("search.searchQuery"),
+      groupStatusId: payload.groupStatusId,
+    });
     commit("updateField", { path: "group.groupMembers", value: data });
+
+    if (!_.isNumber(headers["x-pagination-total"])) {
+      commit("updateField", {
+        path: "pagination.total",
+        value: _.toNumber(headers["x-pagination-total"]),
+      });
+    }
+    
     // Reset the loading state after fetching
     dispatch("setLoadedState");
   } catch (error) {

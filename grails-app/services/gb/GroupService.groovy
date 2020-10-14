@@ -48,7 +48,10 @@ class GroupService {
         }
         if (userId!=null) {
             q += "(g.publicGroup = true or "
-            //q += "q.members.id = :user or"
+            /*q += "g in (" +
+                    "gm  from GroupMember gm " +
+                    "where gm.user.id = :user) " +
+                    "or "*/
             q += "g.owner.id = :user)"
             qparam.user = (long)userId
         }

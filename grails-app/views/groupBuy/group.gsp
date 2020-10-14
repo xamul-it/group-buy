@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         
-                        <div class="card">
+                        <div class="card overflow-hidden group-head">
 
                             <g:render template="/group/group-header"/>
                             
@@ -203,6 +203,8 @@
 
         <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
         <script type="module">
+            import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
+    
             import * as groupService from '/assets/vue/v-services/group-rest.js';
             import * as categoriesService from '/assets/vue/v-services/categories-rest.js';
             import * as toastService from '/assets/vue/v-services/toast.js';
@@ -216,6 +218,7 @@
             var GroupApp = new Vue({
                 el: '#v-group-app',
                 name: 'Group',
+                mixins: [dh.dateHelperMixin],
                 components: {
                     'v-modal': VModal,
                     //Leaflet
@@ -286,9 +289,6 @@
                     async unsubscribe() {
                         console.log("Unsubscribe from " + this.groupId);
                         this.subscriptionAction({service: groupService, groupId: this.groupId, subscribe: false, mode: 'single'})
-                    },
-                    timeFromNow(date) {
-                        return moment(date).fromNow();
                     },
                 },
             })        

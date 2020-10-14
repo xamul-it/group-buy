@@ -2,10 +2,10 @@
 <!-- TODO i18n -->
 <head>
 	<meta name="layout" content="claylist"/>
-    <title>Gruppo di acquisto</title>
+    <title>Gruppo di acquisto - Ordini</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/locale/it.js"></script>
+
+
 </head>
 <body>
 
@@ -25,52 +25,14 @@
 
     <!-- Group -->
     <section class="sptb">
-        <div class="container" id="v-group-app">
+        <div class="container" id="v-group-orders-app">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body pattern-1">
-                            <div class="wideget-user">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="wideget-user-desc text-center">
-                                            <!-- div class="wideget-user-img">
-                                                <img class="brround" src="/assets/images/faces/male/25.jpg" alt="img">
-                                            </div -->
-                                            <div class="user-wrap wideget-user-info">
-                                                <a href="#" class="text-white"><h4 class="font-weight-semibold">{{ group.name }}</h4></a>
-                                                <div class="wideget-user-rating">
-                                                    <a href="#"><i class="fa fa-star text-warning"></i></a>
-                                                    <a href="#"><i class="fa fa-star text-warning"></i></a>
-                                                    <a href="#"><i class="fa fa-star text-warning"></i></a>
-                                                    <a href="#"><i class="fa fa-star text-warning"></i></a>
-                                                    <a href="#"><i class="fa fa-star-o text-warning mr-1"></i></a> <span class="text-white">5 (XXXX Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 text-center">
-                                        <div class="wideget-user-info ">
-                                            <div class="wideget-user-icons mt-2">
-                                                <a href="#" class="facebook-bg mt-0"><i class="fa fa-facebook"></i></a>
-                                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                                                <a href="#" class="dribbble-bg"><i class="fa fa-dribbble"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="wideget-user-tab">
-                                <div class="tab-menu-heading">
-                                    <div class="tabs-menu1">
-                                        <g:render template="/navigation/theme-group-nav" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                    <div class="card overflow-hidden group-head">
+
+                        <g:render template="/group/group-header"/>
+
                     </div>
 
                     <div class="card mb-0">
@@ -146,10 +108,11 @@
     <!-- script src="/assets/vue/v-group-buy/group.vue.js"></script -->
 
     <script>
-        moment.locale('it');
 
-        var app = new Vue({
-            el: '#v-group-app',
+        var GroupOrdersApp = new Vue({
+            el: '#v-group-orders-app',
+            name: 'GroupList',
+            mixins: [dateHelperMixin],
             data: {
                 group: {},
                 groupOrders: [],
@@ -183,12 +146,6 @@
                     
                     //console.log("orderId", orderId, "orderTotal", this.orderTotals[orderId], this.orderTotals);
                     return this.orderTotals[orderId];
-                },
-                timeFromNow(date) {
-        		    return moment(date).fromNow()
-                },
-                dateTime(date) {
-        		    return moment(date).format('D MMMM YYYY, h:mm')
                 },
                 getGroup() {
                     let url =

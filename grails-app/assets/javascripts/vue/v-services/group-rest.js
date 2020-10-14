@@ -71,7 +71,7 @@ export async function list({
   if (!_.isUndefined(max)) params.append("max", max);
   if (!_.isUndefined(offset)) params.append("offset", offset);
 
-  if (!_.isUndefined(order) && sort != "") params.append("sort", sort);
+  if (!_.isUndefined(sort) && sort != "") params.append("sort", sort);
   if (!_.isUndefined(order) && order != "") params.append("order", order);
 
   if (!_.isUndefined(q) && q != "") params.append("src", q);
@@ -165,9 +165,32 @@ export async function save(payload) {
   return { status, message };
 }
 
-export async function members(id) {
+export async function members({
+  groupId,
+  max,
+  offset = 0,
+  sort = "",
+  order = "",
+  q = "",
+  groupStatusId = -1,
+}) {
+  const params = new URLSearchParams();
+
+  if (!_.isUndefined(max)) params.append("max", max);
+  if (!_.isUndefined(offset)) params.append("offset", offset);
+
+  if (!_.isUndefined(sort) && sort != "") params.append("sort", sort);
+  if (!_.isUndefined(order) && order != "") params.append("order", order);
+
+  if (!_.isUndefined(q) && q != "") params.append("src", q);
+  if (!_.isUndefined(groupStatusId) && groupStatusId != -1)
+    params.append("groupStatusId", groupStatusId);
+
   const { data, headers, status, statusText } = await axiosInstance.get(
-    REST_ENDPOINT + "/" + id + "/members"
+    REST_ENDPOINT + "/" + groupId + "/members",
+    {
+      params,
+    }
   );
 
   console.log(
@@ -181,6 +204,58 @@ export async function members(id) {
   );
   return { data, headers, status };
 }
+
+//----------------------------------------
+/*
+export async function list({
+  max,
+  offset = 0,
+  sort = "",
+  order = "",
+  q = "",
+  latitude = 0.0,
+  longitude = 0.0,
+  categoryId = 0,
+}) {
+  const params = new URLSearchParams();
+
+
+  if (!_.isUndefined(max)) params.append("max", max);
+  if (!_.isUndefined(offset)) params.append("offset", offset);
+
+  if (!_.isUndefined(order) && sort != "") params.append("sort", sort);
+  if (!_.isUndefined(order) && order != "") params.append("order", order);
+
+  if (!_.isUndefined(q) && q != "") params.append("src", q);
+  if (!_.isUndefined(latitude) && latitude != 0.0)
+    params.append("latitude", latitude);
+  if (!_.isUndefined(longitude) && longitude != 0.0)
+    params.append("longitude", longitude);
+  if (!_.isUndefined(categoryId) && categoryId != 0)
+    params.append("categoryId", categoryId);
+
+  const { data, headers, status, statusText } = await axiosInstance.get(
+    REST_ENDPOINT,
+    {
+      params,
+    }
+  );
+
+  console.log(
+    "groups data",
+    data,
+    "params",
+    params.toString(),
+    "headers",
+    headers,
+    "status",
+    status,
+    statusText
+  );
+  return { data, headers };
+}
+*/
+//--------------------------------------
 
 export async function subscribe(id) {
   const { data, headers, status, statusText } = await axiosInstance.put(
