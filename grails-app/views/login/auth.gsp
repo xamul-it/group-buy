@@ -75,12 +75,7 @@
     </section>
     <!--/Login-Section-->
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-
-    <script src="https://unpkg.com/lodash@4.17.19/lodash.js"></script>
-
-    <script src="https://unpkg.com/vuelidate@0.7.5/dist/vuelidate.min.js"></script>
-    <script src="https://unpkg.com/vuelidate@0.7.5/dist/validators.min.js"></script>
+    <g:render template="/includes/js-vuelidate-js"/>
 
     <!-- Vue Pages and Components here -->
     <script src="/assets/vue/v-login/auth.vue.js"></script>

@@ -99,7 +99,7 @@
 
                                         <div class="mail-option"> 
                                             <sec:ifLoggedIn>
-												<div class="btn-group"> <a @click="$refs.memberInviteModal.openModal()" class="btn btn-outline-primary" aria-expanded="false"> <i class="fa fa-user-plus"></i> Invita </a> </div>
+												<div v-if="groupItem.administrator || groupItem.member" class="btn-group"> <a @click="$refs.memberInviteModal.openModal()" class="btn btn-outline-primary" aria-expanded="false"> <i class="fa fa-user-plus"></i> Invita </a> </div>
                             				</sec:ifLoggedIn>
                                             <ul class="unstyled inbox-pagination text-dark">
                                                 <li> <span>1-{{membersCount}} di {{membersTotal}}</span> </li> 
@@ -138,8 +138,7 @@
                                                         </td>
                                                         
                                                         <!-- td>
-                                                            <span v-if="index === 0" class="text-dark">Amministratore</span>
-                                                            <span v-else class="text-dark">Iscritto</span>
+                                                            <span class="text-dark">...</span>
                                                         </td -->
 
                                                         <sec:ifLoggedIn>
@@ -148,15 +147,14 @@
                                                             </td>
                                                         </sec:ifLoggedIn>
 
-                                                        <!-- td> 10 </td -->
+                                                        <!-- td> # </td -->
 
                                                         <td>{{ dateSimple(member.subscriptionDate) }}</td>
 
                                                         <sec:ifLoggedIn>
                                                         <td>
-                                                            
                                                             <gb:ifGroupOwner groupId="${groupId}">
-                                                                <a v-if="member.status!=0 && member.status!=3" class="btn btn-success btn-sm text-white" title="Attiva"><i class="fa fa-check"></i></a>
+                                                                <a v-if="member.status!=0" class="btn btn-success btn-sm text-white" title="Attiva"><i class="fa fa-check"></i></a>
                                                                 <a v-if="member.status!=2 && member.status!=3 && member.status!=1" class="btn btn-primary btn-sm text-white" title="Sospendi"><i class="fa fa-clock-o"></i></a>
                                                                 <a v-if="member.status!=3" class="btn btn-info btn-sm text-white" title="Cancella"><i class="fa fa-times"></i></a>
                                                             </gb:ifGroupOwner>

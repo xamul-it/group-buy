@@ -1,0 +1,19 @@
+model {
+    OrderVoice orderVoice
+}
+
+log.debug "OrderVoice Model is $binding.variables"
+
+json {
+    id orderVoice.id
+    insertDate  orderVoice.insertDate 
+    description orderVoice.description
+
+    //user orderVoice.user
+	
+    quantityRequested orderVoice.quantityRequested
+	quantityShipped orderVoice.quantityShipped
+		
+    estimatedPrice orderVoice.estimatedPrice
+	finalPrice orderVoice.finalPrice
+}

@@ -10,6 +10,7 @@ class UrlMappings {
                 "/changestatus" (controller: 'group', action: 'changestatus')//, method: 'PUT')
                 "/unsubscribe" (controller: 'group', action: 'unsubscribe')//, method: 'PUT')
                 "/members" (controller: 'groupMember', action: 'index', method: 'GET')
+                "/orders" (resources:'order')
             }
             "/$namespace/categories" (resources:'groupCategory')
         }

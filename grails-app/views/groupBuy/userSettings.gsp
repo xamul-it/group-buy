@@ -4,8 +4,7 @@
 	<meta name="layout" content="claylist"/>
     <title>Preferenze</title>
 
-    <script src="https://unpkg.com/vuelidate@0.7.5/dist/vuelidate.min.js"></script>
-    <script src="https://unpkg.com/vuelidate@0.7.5/dist/validators.min.js"></script>
+    <g:render template="/includes/js-vuelidate-js"/>
 
     <!-- Vue Pages and Components here -->
     <!-- script src="/assets/vue/v-group-buy/user-profile.vue.js"></script -->

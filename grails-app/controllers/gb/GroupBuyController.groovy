@@ -6,21 +6,6 @@ class GroupBuyController {
         redirect action: "groupList"
     }
 
-    /*def orders(){
-    }*/
-
-    /*def groups(){
-    }*/
-
-    /*def suppliers(){
-    }*/
-
-    /*def shops(){
-	}*/
-
-    /*def pricelist() { 
-    }*/
-
     def groupList() {
 
     }
@@ -34,7 +19,7 @@ class GroupBuyController {
     }
 
     def groupCreate(){
-
+        
     }
 
     def groupOrders() {

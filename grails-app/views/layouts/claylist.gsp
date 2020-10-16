@@ -52,22 +52,14 @@
 	<!-- Bbox Css -->
     <asset:stylesheet src="theme/css/gb-style.css"/>
 
-	<!-- JavaScript modules -->
-	<!-- modular methods -->
-	<script src="/assets/vue/v-jslib/lodash@4.17.20/lodash.min.js"></script>
-	<!-- date time -->
-    <script src="/assets/vue/v-jslib/moment@2.28.0/moment.js"></script>
-    <script src="/assets/vue/v-jslib/moment@2.28.0/locale/it.js"></script>
-	<!-- network -->
-    <script src="/assets/vue/v-jslib/axios@0.20.0/axios.min.js"></script>
-	<!-- vue -->
-	<script src="/assets/vue/v-jslib/vue@2.6.12/vue.js"></script>
+	<!-- JavaScript libs -->
+	<g:render template="/includes/js-lodash-js"/>
+	<g:render template="/includes/js-moment-js"/>
+	<g:render template="/includes/js-axios-js"/>
+	<g:render template="/includes/js-vue2-js"/>
 	<!-- vue alerts -->
 	<script src="/assets/vue/v-jslib/vue-toasted@1.1.28/vue-toasted.min.js"></script>
-	<!-- vuex app state management -->
-	<script type="module" src="/assets/vue/v-jslib/vuex@3.5.1/vuex.min.js"></script>
-	<script type="module" src="/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js"></script>
-
+	<g:render template="/includes/js-vuex-js"/>
 	
 	<!-- Vue common Components -->
 	<script src="/assets/vue/v-common/modal.js"></script>

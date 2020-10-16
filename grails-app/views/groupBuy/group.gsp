@@ -1,5 +1,4 @@
 <html>
-<!-- TODO i18n -->
     <head>
         <meta name="layout" content="claylist"/>
         <title>Gruppo di acquisto</title>
@@ -10,9 +9,6 @@
 	    <script type="module" src="/assets/vue/v-store/group-actions.js"></script>
         <!-- alerts -->
         <script type="module" src="/assets/vue/v-services/toast.js"></script>
-        <!-- date time helpers -->
-        <script src="/assets/vue/v-jslib/moment@2.28.0/moment.js"></script>
-        <script src="/assets/vue/v-jslib/moment@2.28.0/locale/it.js"></script>
 
     </head>
     <body>
@@ -63,7 +59,7 @@
                                             <div class="profile-log-switch">
                                                 
                                                 <div v-if="groupItem" class="row text-dark">
-                                                    <div class="col-xl-10 col-lg-9 col-md-12 media-heading">
+                                                    <div class="col-xl-11 col-lg-10 col-md-12 media-heading">
                                                         <h3 class="card-title mb-3 font-weight-bold">
                                                             {{ groupItem.name }}
                                                         </h3>
@@ -71,22 +67,21 @@
                                                         <p v-if="groupItem" class="mb-0">{{ groupItem.description }}</p>
                                                         <p></p>
                                                     </div>
-                                                    <div class="col-xl-2 col-lg-3 col-md-12">
+                                                    <div class="col-xl-1 col-lg-2 col-md-12">
                                                         <!-- Members -->
                                                         <a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: groupId)}" >
                                                             <h3 class="card-title mb-3 font-weight-bold">
-                                                                Iscritti <span class="label label-pill badge-default mt-2">20+</span>
+                                                                <span class="label label-pill badge-info mt-2">20 Iscritti</span>
                                                             </h3>
-                                                            <div class="avatar-list avatar-list-stacked">
+                                                            <!-- <div class="avatar-list avatar-list-stacked">
                                                                 <span class="avatar brround cover-image cover-image">AD</span>
                                                                 <span class="avatar brround cover-image cover-image">LU</span>
                                                                 <span class="avatar brround cover-image cover-image">TE</span>
                                                                 <span class="avatar brround cover-image cover-image">AL</span>
                                                                 <span class="avatar brround cover-image cover-image">US</span>
                                                                 <span class="avatar brround cover-image cover-image">+3</span>
-                                                            </div>
+                                                            </div> -->
                                                         </a>
-                                                        <!-- -->
                                                     </div>
                                                 </div>
                                                 <div v-if="groupItem" class="row text-dark">
@@ -152,7 +147,7 @@
                                                 <button v-else-if="groupItem.member" type="button" class="btn btn-secondary btn-block btn-lg" v-on:click="unsubscribe"><i class="fa fa-heart"></i> Lascia gruppo</button>
                                             </div>
                                             <div class="col-md-12 form-group" v-if="groupItem.administrator || groupItem.member">
-                                                <button class="btn btn-outline-primary btn-block btn-lg" onclick="alert('unavailable')"><i class="fa fa-cart-plus"></i> Crea ordine </button>
+                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'./'+groupId+'/order/create'"><i class="fa fa-cart-plus"></i> Crea ordine </a>
                                             </div>
                                             <div class="col-md-12 form-group" v-if="!groupItem.member && !groupItem.administrator">
                                                 <button class="btn btn-outline-primary btn-block btn-lg" onclick="alert('unavailable')"><i class="fa fa-envelope"></i> Contatta l'amministratore </button>
@@ -167,11 +162,6 @@
                                             </div>
                                         </sec:ifNotLoggedIn>
                                 </div>
-                                
-
-
-
-
 
                             </div>
                         </div>
@@ -198,22 +188,17 @@
 
 
         <!-- Vue Pages and Components here -->
-        <script type="module" src="/assets/vue/v-services/group-rest.js"></script>
-        <script type="module" src="/assets/vue/v-services/categories-rest.js"></script>
+        <!-- script type="module" src="/assets/vue/v-services/group-rest.js"></script -->
 
         <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
         <script type="module">
             import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
     
             import * as groupService from '/assets/vue/v-services/group-rest.js';
-            import * as categoriesService from '/assets/vue/v-services/categories-rest.js';
             import * as toastService from '/assets/vue/v-services/toast.js';
             
             import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
             import { store } from '/assets/vue/v-store/group-store.js';
-
-            //Moment.js
-            moment.locale('it');
 
             var GroupApp = new Vue({
                 el: '#v-group-app',

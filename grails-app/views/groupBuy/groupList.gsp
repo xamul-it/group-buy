@@ -10,16 +10,7 @@
 	<script type="module" src="/assets/vue/v-store/group-actions.js"></script>
 	<!-- alerts -->
 	<script type="module" src="/assets/vue/v-services/toast.js"></script>
-	<!-- date time helpers -->
-	<script src="/assets/vue/v-jslib/moment@2.28.0/moment.js"></script>
-    <script src="/assets/vue/v-jslib/moment@2.28.0/locale/it.js"></script>
-	<!-- vue form validation -->
-	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/vuelidate.min.js"></script>
-	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/validators.min.js"></script>
-	<!-- vue-select -->
-	<script type="module" src="/assets/vue/v-jslib/vue-select@3.10.8/vue-select.js"></script>
-	<link rel="stylesheet" href="/assets/vue/v-jslib/vue-select@3.10.8/vue-select.css">
-
+	
 </head>
 <body>
 

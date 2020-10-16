@@ -1,0 +1,23 @@
+model {
+    Order order
+}
+
+log.debug "Order Model is $binding.variables"
+
+json {
+    id order.id
+    groupId order.group.id
+    supplierId order.supplier.id
+
+    supplierName order.supplier.name
+    supplierDescription order.supplier.description
+    
+    voices g.render(template:"/orderVoice/order-voice", collection: order.orderVoice, var: 'orderVoice') 
+
+    //template:"person", collection: family.children, var:'person'
+
+    description order.description
+
+    orderDate order.orderDate
+    shipmentDate order.shipmentDate
+}

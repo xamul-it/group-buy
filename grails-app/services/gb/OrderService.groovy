@@ -6,6 +6,8 @@ interface IOrderService {
 
     Order get(Serializable id)
 
+    Order get(Map args)
+
     List<Order> list(Map args)
 
     Long count()
@@ -24,6 +26,27 @@ abstract class OrderService implements IOrderService {
     @Autowired
     transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
+    Order get(Map params) {
+        def group = Group.findById(params.groupId)
+
+        def order = group ? Order.findByGroupAndId(group, params.id) : null
+    }
+
+    Long count (Map params){
+        def group = Group.findById(params.groupId)
+        def orderCount = 0
+        
+        orderCount = group ? Order.countByGroup(group) : 0
+    }
+
+    List<Order> list (Map params){
+        def group = Group.findById(params.groupId)
+        def ordersList = []
+       
+        ordersList = group ? Order.findAllByGroup(group, params) : []
+        
+        ordersList        
+    }
 
     Order save(Order order) {
         if (!order.id){

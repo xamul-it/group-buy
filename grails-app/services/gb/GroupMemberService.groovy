@@ -14,6 +14,7 @@ class GroupMemberService {
         } else {
             groupCount = group ? GroupMember.countByGroup(group) : 0
         }
+        groupCount
     }
 
     List<GroupMember> list (Map params){

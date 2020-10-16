@@ -92,6 +92,9 @@
         </div>
     </section>
     <!--/Sliders Section-->
+    
+    <g:render template="/includes/js-vue-select-js"/>
+    <g:render template="/includes/js-vuelidate-js"/>
 
     <!-- Vue Pages and Components here -->
     <script type="module" src="/assets/vue/v-services/location.js"></script>
