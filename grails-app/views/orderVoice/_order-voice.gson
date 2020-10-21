@@ -9,6 +9,7 @@ json {
     insertDate  orderVoice.insertDate 
     description orderVoice.description
 
+    user orderVoice.user ? g.render(template:"/user/user", model:[user:orderVoice.user]) : null
     //user orderVoice.user
 	
     quantityRequested orderVoice.quantityRequested

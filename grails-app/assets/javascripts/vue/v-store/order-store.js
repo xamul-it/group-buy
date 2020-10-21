@@ -32,6 +32,9 @@ export const store = new Vuex.Store({
       orderItem: null,
       orderVoices: [],
     },
+    group: {
+      groupItem: null,
+    },
     success: null,
     error: null,
     loading: false,

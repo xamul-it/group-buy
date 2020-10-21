@@ -1,0 +1,7 @@
+model {
+    User user
+}
+
+log.debug "User Model is $binding.variables"
+
+json g.render(template:'user', model:[user:user])

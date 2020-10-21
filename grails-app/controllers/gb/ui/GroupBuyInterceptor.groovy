@@ -1,6 +1,6 @@
-package gb
+package gb.ui
 
-class GroupOrderInterceptor {
+class GroupBuyInterceptor {
 
     boolean before() { true }
 
@@ -9,11 +9,8 @@ class GroupOrderInterceptor {
         if(!model)
             model = [:]
 
-        def groupIdParam = params.groupId?.isInteger() ? params.groupId.toInteger() : 0
+        def groupIdParam = params.id?.isInteger() ? params.id.toInteger() : 0
         model.groupId = groupIdParam
-
-        def orderIdParam = params.orderId?.isInteger() ? params.orderId.toInteger() : 0
-        model.orderId = orderIdParam
 
         def isDebugParam = params.debug == 'true'?:'false'
         model.isDebug = isDebugParam

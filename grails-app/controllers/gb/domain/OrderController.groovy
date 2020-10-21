@@ -1,4 +1,11 @@
-package gb
+package gb.domain
+
+import gb.Order
+import gb.OrderVoice
+import gb.Supplier
+import gb.Group
+import gb.OrderService
+
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*

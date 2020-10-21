@@ -7,14 +7,15 @@ log.debug "Order Model is $binding.variables"
 json {
     id order.id
     groupId order.group.id
-    supplierId order.supplier.id
+    supplierId order.supplier?.id
+
+    group g.render(order.group)
+    //groupDeliveryAddress g.render(order.group.deliveryAddress)
 
     supplierName order.supplier.name
     supplierDescription order.supplier.description
     
-    voices g.render(template:"/orderVoice/order-voice", collection: order.orderVoice, var: 'orderVoice') 
-
-    //template:"person", collection: family.children, var:'person'
+    voices g.render(template:"/orderVoice/order-voice", collection: order.orderVoice?:[], var: 'orderVoice') 
 
     description order.description
 

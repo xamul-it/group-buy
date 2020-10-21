@@ -2,25 +2,13 @@
 <!-- TODO i18n -->
 <head>
 	<meta name="layout" content="claylist"/>
-    <title>Gruppo di acquisto - Ordini</title>
-
-
+    <title>Ordini del gruppo di acquisto</title>
 
 </head>
 <body>
 
     <!--Sliders Section-->
-    <section>
-        <div class="bannerimg cover-image bg-background3" style="background: url(&quot;/assets/theme/img/banners/banner2.jpg&quot;) center center;" >
-            <div class="header-text mb-0">
-                <div class="container">
-                    <div class="text-center text-white">
-                        <h1 class="">Gruppo di acquisto</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <g:render template="/common/theme-header" model="['headerTitle':'Ordini del gruppo di acquisto']"/>
     <!--/Sliders Section-->
 
     <!-- Group -->
@@ -33,6 +21,15 @@
 
                         <g:render template="/group/group-header"/>
 
+                        <div class="card-footer">
+                            <div class="wideget-user-tab">
+                                <div class="tab-menu-heading">
+                                    <div class="tabs-menu1">
+                                        <g:render template="/navigation/theme-group-nav" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card mb-0">
@@ -45,7 +42,7 @@
                                             <table class="table table-bordered table-hover mb-0 text-nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th></th>
+                                                    <!-- th></th -->
                                                     <th>Ordine</th>
                                                     <th>Totale</th>
                                                     <th>Stato</th>
@@ -53,13 +50,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="order in groupOrders">
-                                                    <td>
+
+                                                <tr v-for="order in orderList">
+                                                    <!-- td>
                                                         <label class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
                                                             <span class="custom-control-label"></span>
                                                         </label>
-                                                    </td>
+                                                    </td -->
                                                     <td>
                                                         <div class="media mt-0 mb-0">
                                                             <div class="media-body">
@@ -72,19 +70,21 @@
                                                         </div>
                                                     </td>
                                                     <td class="font-weight-semibold fs-16">
-                                                        &euro; {{ orderTotal(order.id) }}
+                                                        &euro; <!-- {{ orderTotal(order.id) }} -->
                                                     </td>
                                                     <td>
+                                                        
                                                         <a v-if="orderState(order.id)==1" href="#" class="badge badge-primary">Da inviare</a>
                                                         <a v-else-if="orderState(order.id)==2" href="#" class="badge badge-warning">In corso</a>
                                                         <a v-else-if="orderState(order.id)==3" href="#" class="badge badge-success">Consegnato</a>
                                                         <a v-else-if="orderState(order.id)==4" href="#" class="badge badge-danger">Non accettato</a>
+                                                        
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
                                                         <a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-                                                        <a class="btn btn-info btn-sm text-white" data-toggle="tooltip" data-original-title="Save to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                                        <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                                        <a class="btn btn-info btn-sm text-white" data-toggle="tooltip"><i class="fa fa-cart-plus"></i></a>
+                                                        <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
                                                     </td>
                                                 </tr>
 
@@ -104,35 +104,69 @@
 
     <!-- /Group -->
 
-    <!-- Vue Pages and Components here -->
-    <!-- script src="/assets/vue/v-group-buy/group.vue.js"></script -->
+    <script type="module">
+        import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
+        import * as gms from '/assets/vue/v-group/group-member-status-mixin.js';
 
-    <script>
+        import * as groupService from '/assets/vue/v-services/group-rest.js';
+        import * as orderService from '/assets/vue/v-services/order-rest.js';
+        import * as toastService from '/assets/vue/v-services/toast.js';
+
+        import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+        import { store } from '/assets/vue/v-store/order-store.js';
 
         var GroupOrdersApp = new Vue({
             el: '#v-group-orders-app',
-            name: 'GroupList',
-            mixins: [dateHelperMixin],
+            name: 'GroupOrders',
+            mixins: [dh.dateHelperMixin],
+            components: {
+                'v-modal': VModal,
+            },
+            store,
             data: {
-                group: {},
-                groupOrders: [],
-                groupId: 0,
+                groupId: ${groupId},
                 orderStates: [],
-                orderTotals: [],
             },
             computed: {
-                show: function () {
-                    return !this.edit
+                //all needed data fields from vuex store
+                //mapped with vuex-map-fields
+                ...mapFields([
+                    'group.groupItem',
+                    'order.orderList',
+                    'pagination.total',
+					'pagination.offset',
+					'pagination.max',
+					'sort.sort',
+					'sort.order',
+                    'loading',
+                    'error',
+                    'success',
+                    'debug',
+                ]),
+                isDebug: function () {
+                    return this.debug
                 },
             },
-            mounted() {
-                    console.log("query params", "${params}") 
-                    //will execute at pageload
-                    this.groupId = ${params.id?:0};
-                    this.getGroup();
-                    this.getGroupOrders();
+            async mounted() {
+                this.debug = ${isDebug};
+                //will execute at pageload
+                this.max=4
+                if(this.groupId>0) {
+                    await this.fetchGroup()
+                    this.fetchGroupOrders();
+                }
             },
             methods: {
+                ...Vuex.mapActions([
+                    'fetchGroupAction',
+                    'fetchOrderListAction',
+                ]),
+                async fetchGroup() {
+                    this.fetchGroupAction({service: groupService, groupId: this.groupId});
+                },
+                async fetchGroupOrders() {
+                    await this.fetchOrderListAction({service: orderService, groupId: this.groupId})
+                },
                 orderState(orderId) {
                     if(!this.orderStates[orderId])
                         this.orderStates[orderId] = Math.floor(Math.random() * 4) + 1;
@@ -140,52 +174,6 @@
                     //console.log("orderId", orderId, "orderState", this.orderStates[orderId], this.orderStates);
                     return this.orderStates[orderId];
                 },
-                orderTotal(orderId) {
-                    if(!this.orderTotals[orderId])
-                        this.orderTotals[orderId] = ((Math.random() * 100) + 1).toFixed(2);
-                    
-                    //console.log("orderId", orderId, "orderTotal", this.orderTotals[orderId], this.orderTotals);
-                    return this.orderTotals[orderId];
-                },
-                getGroup() {
-                    let url =
-                        "/group/show/"+this.groupId+".json";
-                    //this.showProgress = true;
-                    axios
-                        .get(url)
-                        .then(result => {
-                            console.log("result=", result ); 
-                            data = result.data;
-                            this.group = data;
-                            //this.showProgress = false;
-                        })
-                        .catch(error => {
-                            console.log("error", error);
-                            //this.showProgress = false;
-                        }).then( () => {
-                            console.log("data", this.group);
-                        });
-                },
-                getGroupOrders() {
-                    let url =
-                        "/order/listByGroup.json?groupId="+this.groupId;
-                    //this.showProgress = true;
-                    axios
-                        .get(url)
-                        .then(result => {
-                            console.log("result=", result ); 
-                            data = result.data;
-                            this.groupOrders = data;
-                            //this.showProgress = false;
-                        })
-                        .catch(error => {
-                            console.log("error", error);
-                            //this.showProgress = false;
-                        }).then( () => {
-                            console.log("data", this.groupOrders);
-                        });
-                },
-
             },
         })        
     </script>

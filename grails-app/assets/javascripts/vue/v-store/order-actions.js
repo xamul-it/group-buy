@@ -13,6 +13,27 @@ export const setErrorState = ({ commit }, error) => {
   commit("updateField", { path: "loading", value: false });
 };
 
+export const fetchGroupAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let { data, headers } = await payload.service.show(payload.groupId);
+    commit("updateField", {
+      path: "group.groupItem",
+      value: data,
+    });
+    // Reset the loading state after fetching
+    dispatch("setLoadedState");
+  } catch (error) {
+    if (state.debug) console.log("catch error", error, error.response);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("fetchGroupAction state", state);
+  }
+};
+
 export const fetchOrderListAction = async (
   { commit, dispatch, state, getters },
   payload
@@ -20,7 +41,7 @@ export const fetchOrderListAction = async (
   try {
     dispatch("setLoadingState");
     let { data, headers } = await payload.service.list({
-      groupId: 1,
+      groupId: payload.groupId,
       max: getters.getField("pagination.max"),
       offset: getters.getField("pagination.offset"),
       sort: getters.getField("sort.sort"),

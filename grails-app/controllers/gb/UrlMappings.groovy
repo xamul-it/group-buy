@@ -5,10 +5,6 @@ class UrlMappings {
     static mappings = {
         
         "/"(controller:"groupBuy",action:"index")
-
-        group "/groupBuy", {
-            "/group/$groupId/order/$action?/$orderId?/"(controller:"groupOrder")
-        }
         
         "/info"(view:"/index")
         "500"(view:'/error')

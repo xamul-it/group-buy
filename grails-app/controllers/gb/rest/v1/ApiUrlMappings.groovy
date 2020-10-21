@@ -1,6 +1,6 @@
 package gb.rest.v1
 
-class UrlMappings {
+class ApiUrlMappings {
 
     static mappings = { 
         group "/api", {
