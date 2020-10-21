@@ -62,8 +62,8 @@
                                                         <div class="media mt-0 mb-0">
                                                             <div class="media-body">
                                                                 <div class="card-item-desc ml-4 p-0 mt-2">
-                                                                    <a :href="'#'+order.id" class="text-dark"><h4 class="font-weight-semibold">{{ order.description }}</h4></a>
-                                                                    <a :href="'#'+order.id" :title="dateTime(order.orderDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(order.orderDate) }} </a><br>
+                                                                    <a :href="'/groupBuy/group/1/order/edit/'+order.id" class="text-dark"><h4 class="font-weight-semibold">{{ order.description }}</h4></a>
+                                                                    <a :href="'/groupBuy/group/1/order/edit/'+order.id" :title="dateTime(order.orderDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(order.orderDate) }} </a><br>
                                                                     <a><i class="fa fa-tag mr-1"></i>order label</a>
                                                                 </div>
                                                             </div>
@@ -106,7 +106,6 @@
 
     <script type="module">
         import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
-        import * as gms from '/assets/vue/v-group/group-member-status-mixin.js';
 
         import * as groupService from '/assets/vue/v-services/group-rest.js';
         import * as orderService from '/assets/vue/v-services/order-rest.js';

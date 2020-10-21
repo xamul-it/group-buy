@@ -163,7 +163,7 @@
                         'fetchOrderAction',
                     ]),
                     async fetchOrder() {
-                        await this.fetchOrderAction({service: orderService, groupId: this.groupId, orderId: 13});
+                        await this.fetchOrderAction({service: orderService, groupId: this.groupId, orderId: this.orderId});
                     },
                 }
             });
