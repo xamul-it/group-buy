@@ -140,6 +140,13 @@
 }
 
 /* media queries */
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+}
+
 @media (min-width: 1440px) {
   .container {
     max-width: 1380px;

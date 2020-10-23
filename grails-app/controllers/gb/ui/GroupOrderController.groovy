@@ -16,7 +16,7 @@ class GroupOrderController {
     }
 
     def create() {
-        forward action: "edit", orderId: 13
+        
     }
     
 }

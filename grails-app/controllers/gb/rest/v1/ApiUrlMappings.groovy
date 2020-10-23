@@ -13,6 +13,7 @@ class ApiUrlMappings {
                 "/orders" (resources:'order')
             }
             "/$namespace/categories" (resources:'groupCategory')
+            "/$namespace/suppliers" (resources:'supplier')
         }
     }
     

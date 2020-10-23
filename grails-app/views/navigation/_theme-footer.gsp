@@ -1,6 +1,6 @@
         <!--Footer Section-->
 		<section>
-			<footer class="bg-dark-purple text-white">
+			<footer class="bg-dark-purple text-white no-print">
 				<div class="footer-main">
 					<div class="container">
 						<div class="row">
