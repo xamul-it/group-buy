@@ -94,7 +94,7 @@ class Group {
 		GroupMember gm = GroupMember.find(q , qparam)
 		//this.members.contains(this.springSecurityService.getCurrentUser());
 		if (gm!=null) {
-			isMember = true
+			isMember = (gm.status.equals(MemberStatus.ACTIVE))
 			memberStatus = gm.status
 		}
 		else {

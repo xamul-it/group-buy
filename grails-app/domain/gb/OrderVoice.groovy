@@ -10,6 +10,11 @@ class OrderVoice implements Comparable {
 	Float estimatedPrice
 	Float finalPrice
 
+	transient Boolean isOwner
+
+	static transients = ['isOwner']
+
+
 	@Autowired
 	transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
@@ -36,6 +41,10 @@ class OrderVoice implements Comparable {
 				user= User.get(springSecurityService.getPrincipal().id)
 			}
 		}
+	}
+
+	boolean getIsOwner(){
+		return this.user == this.springSecurityService.getCurrentUser();
 	}
 
 }
