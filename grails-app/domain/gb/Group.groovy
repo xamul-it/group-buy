@@ -32,8 +32,9 @@ class Group {
 	transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
 	transient Boolean isMember
+	transient MemberStatus memberStatus
 
-	static transients = ['member','isMember', 'administrator']
+	static transients = ['member','isMember', 'administrator', 'memberStatus']
 
 	static constraints = {
 		name nullable: false, blank: false, size: 5..20, unique: true
@@ -69,6 +70,13 @@ class Group {
 	}
 	static embedded = ['deliveryAddress']
 
+	MemberStatus getMemberStatus() {
+		if (isMember==null){
+			loadMemberStatus()
+		}
+		return memberStatus
+	}
+
 	/**
 	 * @deprecated use isMember instead
 	 * @return
@@ -77,18 +85,27 @@ class Group {
 		return getIsMember()
 	}
 
+	private loadMemberStatus(){
+		String q ="from GroupMember gm " +
+				"where gm.user.id = :user and gm.group.id= :group"
+		def qparam= [:]
+		qparam.user = this.springSecurityService.getCurrentUser().id
+		qparam.group = id
+		GroupMember gm = GroupMember.find(q , qparam)
+		//this.members.contains(this.springSecurityService.getCurrentUser());
+		if (gm!=null) {
+			isMember = true
+			memberStatus = gm.status
+		}
+		else {
+			isMember = false
+			memberStatus = null
+		}
+	}
+
 	Boolean getIsMember(){
 		if (isMember==null){
-
-			String q ="from GroupMember gm " +
-			"where gm.user.id = :user and gm.group.id= :group"
-			def qparam= [:]
-			qparam.user = this.springSecurityService.getCurrentUser().id
-			qparam.group = id
-
-			//this.members.contains(this.springSecurityService.getCurrentUser());
-			if (GroupMember.find(q , qparam)!=null) isMember = true
-			else isMember = false
+			loadMemberStatus()
 		}
 		return isMember
 	}

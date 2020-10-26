@@ -14,6 +14,7 @@ import gb.Group
 import gb.GroupMember
 import gb.MemberStatus
 import gb.GroupService
+import gb.GroupMemberService
 import gb.User
 
 //Extending the RestfulController super class docs:
@@ -28,6 +29,7 @@ class GroupController extends RestfulController<Group> {
     static responseFormats = ['json']
 
     GroupService groupService
+    GroupMemberService groupMemberService
     transient springSecurityService
     
     GroupController() {
@@ -48,34 +50,7 @@ class GroupController extends RestfulController<Group> {
      */
     @Transactional
     def subscribe(){
-        log.debug "subscribe " + params
-        Group g = queryForResource(params.groupId)
-        GroupMember gm = new GroupMember()
-        gm  = GroupMember.createCriteria().get{
-            eq('group',g)
-            eq('user',springSecurityService.getCurrentUser())
-        }
-        if (gm==null) {
-            if (g.publicGroup) {
-                //verifica se è già iscritto
-                gm = new GroupMember()
-                gm.group = g
-                gm.user = springSecurityService.getCurrentUser()
-                gm.status = MemberStatus.ACTIVE
-                gm.subscriptionDate = new Date()
-                gm.lastUpdate = new Date()
-                g.getMembers().add(gm)
-                saveResource g
-            } else {
-                gm=new GroupMember()
-                gm.status = MemberStatus.INVALID
-            }
-        }else if (!gm.status.equals(MemberStatus.ACTIVE)){
-            gm.status = MemberStatus.ACTIVE
-            gm.lastUpdate = new Date()
-            gm.save()
-        }
-
+        GroupMember gm = groupMemberService.subscribe(params.groupId)
         respond gm.group, [status: CREATED]
     }
 
@@ -100,29 +75,7 @@ class GroupController extends RestfulController<Group> {
      */
     @Transactional
     def changestatus(){
-        log.debug "changestatus " + params
-        Group g = queryForResource(params.groupId)
-        GroupMember gm
-        if (g.owner.equals(springSecurityService.getCurrentUser())){
-            User u = User.get(params.uid)
-            gm  = GroupMember.createCriteria().get{
-                eq('group',g)
-                eq('user', u)
-            }
-
-            if (gm!=null) {
-                //verifica se è già iscritto
-                MemberStatus s = MemberStatus.getById(params.status as Integer)
-                gm.status = s
-                gm.lastUpdate = new Date()
-                saveResource g
-            }
-        }
-        if (gm==null) {
-            //By now return error?
-            gm=new GroupMember()
-            gm.status = MemberStatus.INVALID
-        }
+        GroupMember gm = groupMemberService.changestatus(params.groupId,params.uid,params.status)
         respond gm, [status: CREATED]
     }
 
@@ -139,43 +92,7 @@ class GroupController extends RestfulController<Group> {
      */
     @Transactional
     def inviteUser(){
-        log.debug "inviteUser " + params
-        Group g = queryForResource(params.groupId)
-        GroupMember gm = new GroupMember()
-        GroupMember invite = new GroupMember()
-        //current user is member of group
-        gm  = GroupMember.createCriteria().get{
-            eq('group',g)
-            eq('user',springSecurityService.getCurrentUser())
-            eq('status',MemberStatus.ACTIVE)
-        }
-        if (gm!=null) {
-            //Search user
-            User u = User.findByEmail(params.email)
-            if (u){
-                invite  = GroupMember.createCriteria().get{
-                    eq('group',g)
-                    eq('user',u)
-                }
-                if (invite) {
-                    invite.status = MemberStatus.ACTIVE
-                    invite.lastUpdate = new Date()
-                }else {
-                    invite.group = g
-                    invite.user = springSecurityService.getCurrentUser()
-                    invite.status = MemberStatus.ACTIVE
-                    invite.subscriptionDate = new Date()
-                    invite.lastUpdate = new Date()
-                }
-                g.getMembers().add(invite)
-                saveResource g
-                //Add membership in state active
-            }else{
-                //By now return error?
-                invite=new GroupMember()
-                invite.status = MemberStatus.INVALID
-            }
-        }
+        GroupMember gm = groupMemberService.inviteUser(params.groupId,params.email)
         respond gm, [status: CREATED]
     }
 
@@ -184,22 +101,7 @@ class GroupController extends RestfulController<Group> {
      */
     @Transactional
     def unsubscribe(){
-        log.debug "unsubscribe " + params
-        Group g = queryForResource(params.groupId)
-        GroupMember gm = new GroupMember()
-        gm  = GroupMember.createCriteria().get{
-            eq('group',g)
-            eq('user',springSecurityService.getCurrentUser())
-        }
-        if (gm==null) {
-            gm=new GroupMember()
-            gm.status = MemberStatus.INVALID
-        } else if (!gm.status.equals(MemberStatus.CANCELLED)){
-            gm.status = MemberStatus.CANCELLED
-            gm.lastUpdate = new Date()
-            gm.save()
-        }
-
+        GroupMember gm = groupMemberService.unsubscribe(params.groupId)
         respond gm.group, [status: CREATED]
     }
 

@@ -1,4 +1,5 @@
 package gb
+import grails.gorm.transactions.Transactional
 
 class GroupService {
 
