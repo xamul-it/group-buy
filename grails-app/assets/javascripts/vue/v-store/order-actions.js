@@ -13,27 +13,6 @@ export const setErrorState = ({ commit }, error) => {
   commit("updateField", { path: "loading", value: false });
 };
 
-export const fetchGroupAction = async (
-  { commit, dispatch, state, getters },
-  payload
-) => {
-  try {
-    dispatch("setLoadingState");
-    let { data, headers } = await payload.service.show(payload.groupId);
-    commit("updateField", {
-      path: "group.groupItem",
-      value: data,
-    });
-    // Reset the loading state after fetching
-    dispatch("setLoadedState");
-  } catch (error) {
-    if (state.debug) console.log("catch error", error, error.response);
-    dispatch("setErrorState", error.message);
-  } finally {
-    if (state.debug) console.log("fetchGroupAction state", state);
-  }
-};
-
 export const fetchOrderListAction = async (
   { commit, dispatch, state, getters },
   payload
@@ -103,10 +82,14 @@ export const saveOrderAction = async (
   try {
     dispatch("setLoadingState");
     let r;
-    if (payload.groupId == 0) {
-      r = await payload.service.save(payload.groupItem);
+    if (payload.orderId == 0) {
+      r = await payload.service.save(payload.groupId, payload.orderItem);
     } else {
-      r = await payload.service.update(payload.groupId, payload.groupItem);
+      r = await payload.service.update(
+        payload.groupId,
+        payload.orderId,
+        payload.orderItem
+      );
     }
     // Reset the loading state after fetching
     dispatch("setLoadedState");
@@ -121,58 +104,52 @@ export const saveOrderAction = async (
   }
 };
 
-export const subscriptionAction = async (
+export const fetchSuppliersAction = async (
   { commit, dispatch, state, getters },
   payload
 ) => {
-  console.log("subscription", payload);
   try {
     dispatch("setLoadingState");
-    let r;
+    let { data, headers } = await payload.service.list({
+      max: getters.getField("pagination.max"),
+      offset: getters.getField("pagination.offset"),
+      sort: getters.getField("sort.sort"),
+      order: getters.getField("sort.order"),
+      q: payload.q,
+    });
 
-    if (payload.subscribe) {
-      r = await payload.service.subscribe(payload.groupId);
-      commit("updateField", {
-        path: "success",
-        value: "Richiesta di iscrizione inviata (" + r.status + ")",
-      });
-    } else {
-      r = await payload.service.unsubscribe(payload.groupId);
-      commit("updateField", {
-        path: "success",
-        value: "Richiesta di disiscrizione inviata (" + r.status + ")",
-      });
-    }
+    commit("updateField", {
+      path: "order.suppliers",
+      value: data,
+    });
 
-    if (payload.mode == "single") {
-      commit("updateField", {
-        path: "group.groupItem",
-        value: r.data,
-      });
-    } else {
-      commit("updateGroupInList", { group: r.data });
-    }
+    // Reset the loading state after fetching
+    dispatch("setLoadedState");
+  } catch (error) {
+    console.log("catch error", error);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("fetchSuppliersAction state", state);
+  }
+};
 
+export const fetchGroupAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let { data, headers } = await payload.service.show(payload.groupId);
+    commit("updateField", {
+      path: "group.groupItem",
+      value: data,
+    });
     // Reset the loading state after fetching
     dispatch("setLoadedState");
   } catch (error) {
     if (state.debug) console.log("catch error", error, error.response);
     dispatch("setErrorState", error.message);
   } finally {
-    if (state.debug) console.log("subscription state", state);
+    if (state.debug) console.log("fetchGroupAction state", state);
   }
-};
-
-export const resetSearchAction = (
-  { commit, dispatch, state, getters },
-  payload
-) => {
-  commit("updateField", { path: "search.searchQuery", value: "" });
-  commit("updateField", { path: "search.searchAddress", value: {} });
-  commit("updateField", { path: "search.searchAddressString", value: "" });
-  commit("updateField", { path: "search.searchCategoryId", value: 0 });
-  commit("updateField", { path: "search.searchLatitude", value: 0.0 });
-  commit("updateField", { path: "search.searchLatitude", value: 0.0 });
-  commit("updateField", { path: "search.search", value: true });
-  commit("updateField", { path: "search.searchDirty", value: false });
 };

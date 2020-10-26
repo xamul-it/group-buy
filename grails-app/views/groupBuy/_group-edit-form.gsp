@@ -1,4 +1,4 @@
-<div class="tab-pane active" id="tab-6">
+<div class="tab-pane active">
 
     <pre v-if="isDebug">{{ groupItem }}</pre>
 

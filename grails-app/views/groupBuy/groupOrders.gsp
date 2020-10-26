@@ -32,12 +32,19 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xl-9 col-lg-8 col-md-12">
+
                     <div class="card mb-0">
                         <div class="card-body">
                             <div class="border-0">
                                 <div class="tab-content">
 
-                                    <div class="tab-pane userprof-tab active" id="tab-7">
+                                    <div class="tab-pane userprof-tab active">
                                         <div class="table-responsive border-top">
                                             <table class="table table-bordered table-hover mb-0 text-nowrap">
                                             <thead>
@@ -98,6 +105,25 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-12">
+
+                        <div class="card"> 
+                            <div class="card-body"> 
+                               
+                                <div class="row group-actions" v-if="groupItem">
+                                        <sec:ifLoggedIn>
+                                            <div class="col-md-12 form-group" v-if="groupItem.administrator || groupItem.member">
+                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'./'+groupId+'/order/create'"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
+                                            </div>
+                                        </sec:ifLoggedIn>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
             </div>
         </div>
     </section>

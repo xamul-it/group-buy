@@ -1,5 +1,5 @@
 
-<ul class="nav">
+<ul class="nav no-print">
     <li><a href="${createLink(controller: 'groupBuy', action: 'group', id: groupId)}" class="${controllerName == 'groupBuy' && actionName == 'group' ? 'active' : ''}">Scheda</a></li>
     <sec:ifLoggedIn>
         <gb:ifGroupOwner groupId="${groupId}">

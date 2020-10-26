@@ -26,7 +26,7 @@
                             <div class="card-header"> 
                                 <h3 class="card-title">#ORDINE-{{ orderItem.id }}</h3> 
                                 <div class="card-options">
-                                    <button type="button" class="btn btn-sm btn-danger mr-2"><i class="fa fa-trash-o"></i> Azione tre</button> 
+                                    <button type="button" class="btn btn-sm btn-info mr-2" onclick="javascript:window.print();"><i class="icon icon-printer"></i> Stampa Ordine</button> 
                                 </div>
                             </div>
                             <div class="card-body">
@@ -38,10 +38,10 @@
                                         <address v-if="orderItem.supplier.contactInfo"> {{ orderItem.supplier.contactInfo.email }} <br> {{ orderItem.supplier.contactInfo.phone }}<br> {{ orderItem.supplier.contactInfo.mobile }}</address> 
                                     </div>
                                         
-                                    <!-- div class="col-lg-6 text-right"> 
-                                        <p class="h3">Invoice To</p>
-                                        <address> Street Address<br>State, City<br>Region, Postal Code<br>ctr@example.com </address>
-                                    </div -->
+                                    <div v-if="orderItem.group" class="col-lg-6 text-right"> 
+                                        <p>Consegna in:</p>
+                                        <address v-if="orderItem.group.deliveryAddress"><a target="_blank" :href="'https://www.openstreetmap.org?mlat='+orderItem.group.deliveryAddress.lat+'&mlon='+orderItem.group.deliveryAddress.lon+'#map=17/'+orderItem.group.deliveryAddress.lat+'/'+orderItem.group.deliveryAddress.lon"> {{ orderItem.group.deliveryAddress.address1 }} <br>{{ orderItem.group.deliveryAddress.postalCode }}, {{ orderItem.group.deliveryAddress.city }}</a></address>
+                                    </div>
                                 </div>
 
                                 <div class=" text-dark"> 
@@ -59,7 +59,7 @@
                                                 <th class="text-right">Prezzo</th>
                                             </tr>
                                             
-                                            <tr v-for="v in orderItem.orderVoice">
+                                            <tr v-for="(v, i) in orderItem.orderVoice">
                                                 <td class="text-center">{{ v.id }}</td>
                                                 <td>
                                                     <p class="font-w600 mb-1">Voce:</p>
@@ -68,25 +68,15 @@
                                                 <td class="text-center">1</td>
                                                 <td class="text-right">$X,X00.00</td>
                                             </tr>
-
                                             <tr>
-                                                <td colspan="3" class="font-w600 text-right">Subtotal</td><td class="text-right">$XX,000.00</td>
+                                                <td colspan="3" class="font-weight-semibold text-uppercase text-right">Totale</td><td class="font-weight-semibold text-right">&euro;X,000.00</td>
                                             </tr>
-                                            <tr>
-                                                <td colspan="3" class="font-w600 text-right">Vat Rate</td><td class="text-right">20%</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" class="font-w600 text-right">Vat Due</td><td class="text-right">$X,000.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" class="font-weight-semibold text-uppercase text-right">Total Due</td><td class="font-weight-semibold text-right">$30,000.00</td>
-                                            </tr>
-                                            <tr>
+                                            <!-- tr>
                                                 <td colspan="4" class="text-right">
                                                     <button type="button" class="btn btn-pink"><i class="icon icon-wallet"></i> Paga</button>
                                                     <button type="button" class="btn btn-info" onclick="javascript:window.print();"><i class="icon icon-printer"></i> Stampa Ordine</button> 
                                                 </td>
-                                            </tr>
+                                            </tr -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -96,7 +86,7 @@
 
                     </div>
 
-                    <div class="col-xl-3 col-lg-4 col-md-12">
+                    <div class="col-xl-3 col-lg-4 col-md-12 no-print">
 
                         <div class="card"> 
                             <div class="card-body"> 
@@ -141,6 +131,7 @@
                     //all needed data fields from vuex store
                     //mapped with vuex-map-fields
                     ...mapFields([
+                        'group.groupItem',
                         'order.orderItem',
                         'loading',
                         'error',

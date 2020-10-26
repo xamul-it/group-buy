@@ -2,7 +2,7 @@
 <div id="v-nav-app">
     <v-modal ref="registerLoginModal"></v-modal>
 
-    <div id="sticky-wrapper" class="sticky-wrapper" style="height: 88px;">
+    <div id="sticky-wrapper" class="sticky-wrapper no-print" style="height: 88px;">
 
         <div class="horizontal-main bg-dark-transparent clearfix">
             <div class="horizontal-mainwrapper container clearfix">

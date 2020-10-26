@@ -147,7 +147,7 @@
                                                 <button v-else-if="groupItem.member" type="button" class="btn btn-secondary btn-block btn-lg" v-on:click="unsubscribe"><i class="fa fa-heart"></i> Lascia gruppo</button>
                                             </div>
                                             <div class="col-md-12 form-group" v-if="groupItem.administrator || groupItem.member">
-                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'./'+groupId+'/order/create'"><i class="fa fa-cart-plus"></i> Crea ordine </a>
+                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'./'+groupId+'/order/create'"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
                                             </div>
                                             <div class="col-md-12 form-group" v-if="!groupItem.member && !groupItem.administrator">
                                                 <button class="btn btn-outline-primary btn-block btn-lg" onclick="alert('unavailable')"><i class="fa fa-envelope"></i> Contatta l'amministratore </button>
