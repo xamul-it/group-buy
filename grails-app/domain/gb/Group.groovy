@@ -24,9 +24,9 @@ class Group {
 	String slack
 	String snapchat
 
-	Boolean member; //transient - true if logged user is group member
-
-	Boolean administrator; //transient - true if logged user is group owner
+	transient Boolean member; //transient - true if logged user is group member
+	transient Long memberCount; //transient
+	transient Boolean administrator; //transient - true if logged user is group owner
 
 	@Autowired
 	transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
@@ -34,7 +34,8 @@ class Group {
 	transient Boolean isMember
 	transient MemberStatus memberStatus
 
-	static transients = ['member','isMember', 'administrator', 'memberStatus']
+
+	static transients = ['member','isMember', 'administrator', 'memberStatus', 'memberCount']
 
 	static constraints = {
 		name nullable: false, blank: false, size: 5..20, unique: true
@@ -83,6 +84,10 @@ class Group {
 	 */
 	Boolean getMember(){
 		return getIsMember()
+	}
+
+	Long getMemberCount() {
+		return GroupMember.countByGroup(this)
 	}
 
 	private loadMemberStatus(){

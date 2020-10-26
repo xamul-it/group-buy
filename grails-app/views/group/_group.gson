@@ -49,5 +49,6 @@ json {
     //Transients
     member group.member
     status group.memberStatus
-    administrator group.administrator    
+    administrator group.administrator
+    memberCount group.memberCount
 }
