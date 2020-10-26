@@ -31,7 +31,10 @@ class Group {
 	@Autowired
 	transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
-	static transients = ['member', 'administrator']
+	transient Boolean isMember
+
+	static transients = ['member','isMember', 'administrator']
+
 	static constraints = {
 		name nullable: false, blank: false, size: 5..20, unique: true
 
@@ -66,8 +69,28 @@ class Group {
 	}
 	static embedded = ['deliveryAddress']
 
+	/**
+	 * @deprecated use isMember instead
+	 * @return
+	 */
 	Boolean getMember(){
-		return this.members.contains(this.springSecurityService.getCurrentUser());
+		return getIsMember()
+	}
+
+	Boolean getIsMember(){
+		if (isMember==null){
+
+			String q ="from GroupMember gm " +
+			"where gm.user.id = :user and gm.group.id= :group"
+			def qparam= [:]
+			qparam.user = this.springSecurityService.getCurrentUser().id
+			qparam.group = id
+
+			//this.members.contains(this.springSecurityService.getCurrentUser());
+			if (GroupMember.find(q , qparam)!=null) isMember = true
+			else isMember = false
+		}
+		return isMember
 	}
 
 	boolean getAdministrator(){
