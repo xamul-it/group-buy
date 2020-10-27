@@ -4,4 +4,5 @@ model {
 
 log.debug "Order show Model is $binding.variables order: $order"
 
-json g.render(order, [deep:true])
+//json g.render(order, [deep:true])
+json g.render(template:'order', model: [order:order] )

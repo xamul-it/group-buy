@@ -104,6 +104,43 @@ export const saveOrderAction = async (
   }
 };
 
+export const saveOrderVoiceAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let r;
+    if (payload.orderVoiceId == 0) {
+      r = await payload.service.save(
+        payload.groupId,
+        payload.orderId,
+        payload.orderVoiceItem
+      );
+    } else {
+      r = await payload.service.update(
+        payload.groupId,
+        payload.orderId,
+        payload.orderVoiceId,
+        payload.orderVoiceItem
+      );
+    }
+    // Reset the loading state after fetching
+    dispatch("setLoadedState");
+
+    console.log("saveOrderVoiceAction", r);
+    commit("updateField", {
+      path: "success",
+      value: r.message,
+    });
+    return r.data;
+  } catch (error) {
+    if (state.debug)
+      console.log("catch error", error, error.response, error.response.data);
+    dispatch("setErrorState", error);
+  }
+};
+
 export const fetchSuppliersAction = async (
   { commit, dispatch, state, getters },
   payload

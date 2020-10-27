@@ -10,7 +10,9 @@ class ApiUrlMappings {
                 "/changestatus" (controller: 'group', action: 'changestatus')//, method: 'PUT')
                 "/unsubscribe" (controller: 'group', action: 'unsubscribe')//, method: 'PUT')
                 "/members" (controller: 'groupMember', action: 'index', method: 'GET')
-                "/orders" (resources:'order')
+                "/orders" (resources:'order') {
+                    "/voices" (resources:'orderVoice')
+                }
             }
             "/$namespace/categories" (resources:'groupCategory')
             "/$namespace/suppliers" (resources:'supplier')

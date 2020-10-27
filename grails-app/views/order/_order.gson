@@ -12,6 +12,8 @@ json {
     group g.render(order.group)
     //groupDeliveryAddress g.render(order.group.deliveryAddress)
 
+    supplier g.render(order.supplier)
+
     supplierName order.supplier.name
     supplierDescription order.supplier.description
     

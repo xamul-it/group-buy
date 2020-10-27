@@ -2,24 +2,24 @@ package gb.rest.v1
 
 import grails.rest.RestfulController
 
-import gb.Order
-import gb.OrderService
+import gb.OrderVoice
+import gb.OrderVoiceService
 
-class OrderController extends RestfulController<Order> {
+class OrderVoiceController extends RestfulController<OrderVoice> {
 
     static namespace = 'v1'
     static responseFormats = ['json']
 
-    OrderService orderService
+    OrderVoiceService orderVoiceService
     transient springSecurityService
 
-    OrderController() {
-        super(Order)
+    OrderVoiceController() {
+        super(OrderVoice)
     }
 
     /**
      * Shows a single resource
-     * @param id The id of the resource
+     * @param params
      * @return The rendered resource or a 404 if it doesn't exist
      */
     def show() {
@@ -32,10 +32,10 @@ class OrderController extends RestfulController<Order> {
      * @return List of resources or empty if it doesn't exist
      */
     @Override
-    protected List<Order> listAllResources(Map params) {
-        log.debug "orders listAllResources" + params
-        response.setHeader('X-Pagination-Total', orderService.count(params).toString())
-        orderService.list(params)
+    protected List<OrderVoice> listAllResources(Map params) {
+        log.debug "orderVoices listAllResources" + params
+        response.setHeader('X-Pagination-Total', orderVoiceService.count(params).toString())
+        orderVoiceService.list(params)
     }
 
     /**
@@ -44,8 +44,8 @@ class OrderController extends RestfulController<Order> {
      * @param params
      * @return The resource or null if it doesn't exist
      */
-    protected Order queryForResource(Map params) {
-        orderService.get(params)
+    protected OrderVoice queryForResource(Map params) {
+        orderVoiceService.get(params)
     }
 
 
