@@ -10,6 +10,9 @@ json {
     description orderVoice.description
 
     user orderVoice.user ? g.render(template:"/user/user", model:[user:orderVoice.user]) : null
+
+    isOwner orderVoice.isOwner
+    
     //user orderVoice.user
 	
     quantityRequested orderVoice.quantityRequested

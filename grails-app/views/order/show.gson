@@ -2,6 +2,6 @@ model {
     Order order
 }
 
-log.debug "Model is $binding.variables"
+log.debug "Order show Model is $binding.variables order: $order"
 
 json g.render(order, [deep:true])
