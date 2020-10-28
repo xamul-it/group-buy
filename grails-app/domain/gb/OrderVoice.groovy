@@ -2,7 +2,7 @@ package gb
 
 class OrderVoice implements Comparable {
 	Product product
-	Date insertDate =new Date()
+	Date insertDate = new Date()
 	User user
 	Integer quantityRequested
 	Integer quantityShipped
@@ -11,6 +11,8 @@ class OrderVoice implements Comparable {
 	Float finalPrice
 
 	transient Boolean isOwner
+
+	static belongsTo = [order: Order]
 
 	static transients = ['isOwner']
 
@@ -44,7 +46,7 @@ class OrderVoice implements Comparable {
 	}
 
 	boolean getIsOwner(){
-		return this.user == this.springSecurityService.getCurrentUser();
+		return this.user == this.springSecurityService?.getCurrentUser();
 	}
 
 }
