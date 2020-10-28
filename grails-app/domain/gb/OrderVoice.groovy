@@ -44,7 +44,7 @@ class OrderVoice implements Comparable {
 	}
 
 	boolean getIsOwner(){
-		return this.user == this.springSecurityService.getCurrentUser();
+		return this.user == springSecurityService?.getCurrentUser();
 	}
 
 }
