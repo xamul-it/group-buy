@@ -67,12 +67,12 @@
                                     </div>
                                     
                                 </div>
-
+                                <pre v-if="isDebug">{{ $v }}</pre>
                             </div>
 
                             <div class="card-footer text-right">
                                 <button type="button" class="btn btn-secondary mr-2" onclick="javascript:window.history.back();"><i class="fa fa-times-circle"></i> Annulla</button> 
-                                <button type="submit" class="btn btn-primary mr-2" v-on:click="saveOrder"><i class="fa fa-cart-arrow-down"></i> Crea</button> 
+                                <button type="submit" class="btn btn-primary mr-2" v-on:click="saveOrder" :disabled="$v.$invalid"><i class="fa fa-cart-arrow-down"></i> Crea</button> 
                             </div>
 
                         </div>
@@ -83,6 +83,8 @@
             </div>
         </section>
         <!-- /Group -->
+
+        <g:render template="/includes/js-vuelidate-js"/>
 
         <script type="module">
             import * as ah from '/assets/vue/v-common/alert-helper-mixin.js';
@@ -102,6 +104,10 @@
                 Deselect: null,
             });
             Vue.component('v-select', VueSelect.VueSelect);
+
+            //vuelidate
+            Vue.use(window.vuelidate.default);
+            const { required,requiredIf, requiredUnless, minLength, minValue, helpers } = window.validators;
 
             var OrderCreateApp = new Vue({
                 el: '#v-order-create-app',
@@ -127,6 +133,23 @@
                         'success',
                         'debug',
                     ]),
+                    isDebug: function () {
+                        return this.debug
+                    },
+                },
+                validations: {
+                    orderItem: {
+                        description: {
+                            required,
+                            minLength: minLength(5),
+                        },
+                        supplier: {
+                            id:  {
+                                required,
+                                minValue: minValue(1),
+                            },
+                        },
+                    },
                 },
                 //https://stackoverflow.com/a/53513789
                 async mounted() {
@@ -177,7 +200,7 @@
                         
                         if (!_.isUndefined(order))
                             this.orderItem = order
-                            
+
                         //Dev
                             this.$set(this.orderItem, 'id', 13)
 

@@ -60,7 +60,11 @@
                                             </tr>
                                             
                                             <tr v-for="(v, i) in orderItem.voices">
-                                                <td class="text-center">{{ v.id }}</td>
+                                                <td class="text-center">
+                                                    <span v-if="v.user" class="avatar avatar-md brround cover-image mr-3 h-100">
+                                                        {{ initial(v.user.username) }}
+                                                    </span>
+                                                </td>
                                                 <td>
                                                     <p v-if="!isEditVoice(i)" class="font-w600 mb-1">Voce:</p>
                                                     <div v-if="!isEditVoice(i)" class="text-muted">{{ v.description }} </div>
@@ -207,6 +211,9 @@
                     },
                     isEditVoice(i) {
                         return this.editVoice.i == i
+                    },
+                    initial(string, numChars = 2) {
+                        return string.substring(0, numChars).toUpperCase();
                     },
                     editVoiceNum(i) {
                         this.addVoice = false
