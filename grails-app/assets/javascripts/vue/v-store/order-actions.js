@@ -97,6 +97,7 @@ export const saveOrderAction = async (
       path: "success",
       value: r.message,
     });
+    return r.data;
   } catch (error) {
     if (state.debug)
       console.log("catch error", error, error.response, error.response.data);
@@ -134,6 +135,36 @@ export const saveOrderVoiceAction = async (
       value: r.message,
     });
     return r.data;
+  } catch (error) {
+    if (state.debug)
+      console.log("catch error", error, error.response, error.response.data);
+    dispatch("setErrorState", error);
+  }
+};
+
+export const deleteOrderVoiceAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+
+    //Delete
+    let r = await payload.service.del(
+      payload.groupId,
+      payload.orderId,
+      payload.orderVoiceId
+    );
+    // Reset the loading state after fetching
+    dispatch("setLoadedState");
+
+    console.log("deleteOrderVoiceAction", r);
+    if (r.status == 204) {
+      commit("updateField", {
+        path: "success",
+        value: "Voce eliminata",
+      });
+    }
   } catch (error) {
     if (state.debug)
       console.log("catch error", error, error.response, error.response.data);

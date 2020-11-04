@@ -200,6 +200,7 @@
                     ...Vuex.mapActions([
                         'fetchOrderAction',
                         'saveOrderVoiceAction',
+                        'deleteOrderVoiceAction',
                     ]),
                     async fetchOrder() {
                         await this.fetchOrderAction({service: orderService, groupId: this.groupId, orderId: this.orderId});
@@ -238,6 +239,8 @@
                     },
                     async deleteVoice(orderVoiceId, i) {
                         console.log("deleteVoice",orderVoiceId, i)
+                        await this.deleteOrderVoiceAction({service: orderVoiceService, groupId: this.groupId, orderId: this.orderId, orderVoiceId: orderVoiceId})
+                        this.orderItem.voices.splice(i,1)
                     }
 
                     
