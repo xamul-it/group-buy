@@ -70,6 +70,16 @@ export async function show(groupId, orderId) {
   return { data, headers, status, message };
 }
 
+export async function showByHash(orderHash) {
+  const { data, headers, status, statusText } = await axiosInstance.get(
+    "/api/v1" + ORDERS_ENDPOINT + "/" + orderHash
+  );
+
+  let message = HTTP_CODES_MESSAGES_MAP[status];
+
+  return { data, headers, status, message };
+}
+
 export async function update(groupId, id, payload) {
   console.log(
     "update",

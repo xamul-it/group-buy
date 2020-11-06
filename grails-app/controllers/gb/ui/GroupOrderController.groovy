@@ -18,5 +18,9 @@ class GroupOrderController {
     def create() {
         
     }
+
+    def supplierShow() {
+        log.debug "GroupOrderController.supplierShow $params"
+    }
     
 }

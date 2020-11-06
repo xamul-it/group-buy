@@ -75,6 +75,27 @@ export const fetchOrderAction = async (
   }
 };
 
+export const fetchSupplierOrderAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let { data } = await payload.service.showByHash(payload.orderHash);
+    commit("updateField", {
+      path: "order.orderItem",
+      value: data,
+    });
+    // Reset the loading state after fetching
+    dispatch("setLoadedState");
+  } catch (error) {
+    if (state.debug) console.log("catch error", error, error.response);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("fetchSupplierOrderAction state", state);
+  }
+};
+
 export const saveOrderAction = async (
   { commit, dispatch, state, getters },
   payload

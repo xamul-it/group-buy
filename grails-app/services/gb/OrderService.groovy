@@ -27,9 +27,10 @@ abstract class OrderService implements IOrderService {
     transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
     Order get(Map params) {
+
         def group = Group.findById(params.groupId)
 
-        def order = group ? Order.findByGroupAndId(group, params.id) : null
+        def order = group ? Order.findByGroupAndId(group, params.id) : Order.findById(params.id) //TODO find by Hash
     }
 
     Long count (Map params){
