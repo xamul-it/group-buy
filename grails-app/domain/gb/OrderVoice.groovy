@@ -2,15 +2,18 @@ package gb
 
 class OrderVoice implements Comparable {
 	Product product
-	Date insertDate =new Date()
+	Date insertDate = new Date()
 	User user
 	Integer quantityRequested
 	Integer quantityShipped
 	String description
 	Float estimatedPrice
 	Float finalPrice
+	Order order
 
 	transient Boolean isOwner
+
+	static belongsTo = [order: Order, user: User]
 
 	static transients = ['isOwner']
 
@@ -22,7 +25,7 @@ class OrderVoice implements Comparable {
 
     static constraints = {
 		product nullable: true
-		user nullable: true
+		user nullable: false
 		quantityRequested nullable: true
 		quantityShipped nullable: true
 		description nullable: true
@@ -36,7 +39,7 @@ class OrderVoice implements Comparable {
 
 	def beforeValidate () {
 		if (id==null) {
-			println("Spring OV "+springSecurityService)
+			log.debug("Spring OV "+getSpringSecurityService())
 			if (springSecurityService && springSecurityService.isLoggedIn()) {
 				user= User.get(springSecurityService.getPrincipal().id)
 			}

@@ -1,7 +1,27 @@
 package gb
+import groovy.transform.CompileStatic
 
-class OrderStatus {
+@CompileStatic
+enum OrderStatus {
+    ACTIVE(0,"Attivo"),
+    SENT(1,"Inviato"),
+    ACCEPTED(2, "Accettato"),
+    REJECTED(3,"Rifiutato"),
+    SHIPPED(4,"In consegna"),
+    DELIVERED(5,"Consegnato"),
 
-    static constraints = {
+    final int id
+    final String value
+    private MemberStatus(int id,String value) { this.id = id; this.value=value }
+
+    public static MemberStatus getById(int id) {
+        for(OrderStatus e : values()) {
+            if(e.id.equals(id)) return e;
+        }
+        return OrderStatus.INVALID;
+    }
+
+    public String toString(){
+        return this.value
     }
 }

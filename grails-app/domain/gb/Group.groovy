@@ -91,20 +91,20 @@ class Group {
 	}
 
 	private loadMemberStatus(){
-		String q ="from GroupMember gm " +
-				"where gm.user.id = :user and gm.group.id= :group"
-		def qparam= [:]
-		qparam.user = this.springSecurityService.getCurrentUser().id
-		qparam.group = id
-		GroupMember gm = GroupMember.find(q , qparam)
-		//this.members.contains(this.springSecurityService.getCurrentUser());
-		if (gm!=null) {
-			isMember = (gm.status.equals(MemberStatus.ACTIVE))
-			memberStatus = gm.status
-		}
-		else {
-			isMember = false
-			memberStatus = null
+		isMember = false
+		memberStatus = null
+		if (this.springSecurityService!=null && this.springSecurityService.getCurrentUser()!=null) {
+			String q = "from GroupMember gm " +
+					"where gm.user.id = :user and gm.group.id= :group"
+			def qparam = [:]
+			qparam.user = this.springSecurityService.getCurrentUser().id
+			qparam.group = id
+			GroupMember gm = GroupMember.find(q, qparam)
+			//this.members.contains(this.springSecurityService.getCurrentUser());
+			if (gm != null) {
+				isMember = (gm.status.equals(MemberStatus.ACTIVE))
+				memberStatus = gm.status
+			}
 		}
 	}
 

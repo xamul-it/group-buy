@@ -9,8 +9,13 @@ grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.fii.rejectPublicInvocations = false
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	[pattern: '/',               access: ['permitAll']],
-	[pattern: '/groupBuy/**',    access: ['permitAll']],
+	[pattern: '/',               					access: ['permitAll']],
+	[pattern: '/groupBuy/groupOrders/**',    		access: 'isAuthenticated()'],
+	[pattern: '/groupBuy/group/1/order/edit/**',    access: 'isAuthenticated()'],
+	[pattern: '/groupBuy/group/1/order/create',    access: 'isAuthenticated()'],
+	[pattern: '/groupBuy/**',    					 access: 'isAuthenticated()'],
+
+
 	[pattern: '/error',          access: ['permitAll']],
 	[pattern: '/index',          access: ['permitAll']],
 	[pattern: '/index.gsp',      access: ['permitAll']],
@@ -19,7 +24,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/navigation/**',  access: ['permitAll']],
 	[pattern: '/negozio/**',  access: ['permitAll']],
 	[pattern: '/vetrina/**',  access: ['permitAll']],
-
+/*pagine vecchie*/
 	[pattern: '/securityinfo/**',access: 'ROLE_ADMIN'],
 	[pattern: '/order/**',       access: 'isAuthenticated()'],
 	[pattern: '/orderVoice/**',       access: 'isAuthenticated()'],
@@ -30,6 +35,9 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/timeline/**',    access: 'isAuthenticated()'],
 	[pattern: '/product/**',    access: 'isAuthenticated()'],
 	[pattern: '/shop/**',    access: 'isAuthenticated()'],
+/*pagine vecchie*/
+
+
 	[pattern: '/auth/**',    access: 'isAuthenticated()'],
 	[pattern: '/api/**',    access: 'isAuthenticated()'],
 	[pattern: '/api/v1/**',    access: 'isAuthenticated()'],
