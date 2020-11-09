@@ -18,6 +18,8 @@ update:
 save:
 201 (CREATED)
 422 (UNPROCESSABLE_ENTITY)
+delete:
+204 (NO CONTENT)
 */
 const HTTP_CODES_MESSAGES_MAP = {
   200: "Voce aggiornata",
@@ -116,5 +118,22 @@ export async function save(groupId, orderId, payload) {
 
   let message = HTTP_CODES_MESSAGES_MAP[status];
 
+  return { data, status, message };
+}
+
+export async function del(groupId, orderId, id) {
+  const { data, headers, status, statusText } = await axiosInstance.delete(
+    REST_ENDPOINT +
+      "/" +
+      groupId +
+      ORDERS_ENDPOINT +
+      "/" +
+      orderId +
+      VOICES_ENDPOINT +
+      "/" +
+      id
+  );
+
+  let message = HTTP_CODES_MESSAGES_MAP[status];
   return { data, status, message };
 }

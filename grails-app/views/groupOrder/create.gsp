@@ -49,10 +49,11 @@
                                             <v-select 
                                                 :clearable="false" 
                                                 label="name"
+                                                :reduce="name => name.id"
                                                 :filterable="false"
                                                 :options="suppliers"
                                                 @search="onSearch"
-                                                v-model="orderItem.supplier"
+                                                v-model="orderItem.supplier.id"
                                                 >
                                                 
                                                 <template slot="no-options">
@@ -66,12 +67,12 @@
                                     </div>
                                     
                                 </div>
-
+                                <pre v-if="isDebug">{{ $v }}</pre>
                             </div>
 
                             <div class="card-footer text-right">
                                 <button type="button" class="btn btn-secondary mr-2" onclick="javascript:window.history.back();"><i class="fa fa-times-circle"></i> Annulla</button> 
-                                <button type="submit" class="btn btn-primary mr-2" v-on:click="saveOrder"><i class="fa fa-cart-arrow-down"></i> Crea</button> 
+                                <button type="submit" class="btn btn-primary mr-2" v-on:click="saveOrder" :disabled="$v.$invalid"><i class="fa fa-cart-arrow-down"></i> Crea</button> 
                             </div>
 
                         </div>
@@ -83,11 +84,14 @@
         </section>
         <!-- /Group -->
 
+        <g:render template="/includes/js-vuelidate-js"/>
+
         <script type="module">
             import * as ah from '/assets/vue/v-common/alert-helper-mixin.js';
 
             import * as groupService from '/assets/vue/v-services/group-rest.js';
             import * as orderService from '/assets/vue/v-services/order-rest.js';
+            import * as orderVoiceService from '/assets/vue/v-services/order-voice-rest.js';
             import * as supplierService from '/assets/vue/v-services/supplier-rest.js';
             import * as toastService from '/assets/vue/v-services/toast.js';
 
@@ -100,6 +104,10 @@
                 Deselect: null,
             });
             Vue.component('v-select', VueSelect.VueSelect);
+
+            //vuelidate
+            Vue.use(window.vuelidate.default);
+            const { required,requiredIf, requiredUnless, minLength, minValue, helpers } = window.validators;
 
             var OrderCreateApp = new Vue({
                 el: '#v-order-create-app',
@@ -125,6 +133,23 @@
                         'success',
                         'debug',
                     ]),
+                    isDebug: function () {
+                        return this.debug
+                    },
+                },
+                validations: {
+                    orderItem: {
+                        description: {
+                            required,
+                            minLength: minLength(5),
+                        },
+                        supplier: {
+                            id:  {
+                                required,
+                                minValue: minValue(1),
+                            },
+                        },
+                    },
                 },
                 //https://stackoverflow.com/a/53513789
                 async mounted() {
@@ -132,13 +157,17 @@
                     //will execute at pageload
                     await this.fetchGroup()
                     this.createEmptyOrder()
+                    this.$watch('orderItem', (orderItem) => {
+                        console.log("watch orderItem", orderItem, this.orderItem)
+                        location.href = "/groupBuy/group/"+this.groupItem.id+"/order/edit/" + this.orderItem.id
+                    });
                 },
                 watch: {
                     error: function (error) {
-                        toastService.alertDanger(this.fetchError(error));
+                        toastService.alertDanger(this.fetchError(error))
                     },
                     success: function (message) {
-                        toastService.alertSuccess(message);
+                        toastService.alertSuccess(message)
                     },
                 },
                 methods: {
@@ -146,6 +175,7 @@
                         'fetchGroupAction',
                         'fetchSuppliersAction',
                         'saveOrderAction',
+                        'saveOrderVoiceAction',
                     ]),
                     async fetchSuppliers(search) {
                         console.log('fetchSuppliers',search)
@@ -157,14 +187,23 @@
                     async createEmptyOrder() {
                         this.orderItem = {
                             description: '',
-                            group: this.groupItem,
-                            supplier: null,
+                            group: {id: this.groupItem.id },
+                            supplier: {id: 0},
                             orderDate: new Date(),
                             orderVoice: [],
                         }
                     },
                     async saveOrder() {
-                        this.saveOrderAction({service: orderService, groupId: this.groupId, orderId: this.orderId, orderItem: this.orderItem});
+                        let order = await this.saveOrderAction({service: orderService, groupId: this.groupId, orderId: this.orderId, orderItem: this.orderItem});
+                        //if (this.debug)
+                            console.log("saveOrder", order)
+                        
+                        if (!_.isUndefined(order))
+                            this.orderItem = order
+
+                        //Dev
+                            this.$set(this.orderItem, 'id', 13)
+
                     },
                     onSearch(search, loading) {
                         loading(true);

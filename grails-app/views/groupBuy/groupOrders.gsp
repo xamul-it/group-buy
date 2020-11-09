@@ -71,7 +71,7 @@
                                                                 <div class="card-item-desc ml-4 p-0 mt-2">
                                                                     <a :href="'/groupBuy/group/1/order/edit/'+order.id" class="text-dark"><h4 class="font-weight-semibold">{{ order.description }}</h4></a>
                                                                     <a :href="'/groupBuy/group/1/order/edit/'+order.id" :title="dateTime(order.orderDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(order.orderDate) }} </a><br>
-                                                                    <a><i class="fa fa-tag mr-1"></i>order label</a>
+                                                                    <!-- a><i class="fa fa-tag mr-1"></i>order label</a -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -88,10 +88,10 @@
                                                         
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                                        <a :href="'/groupBuy/group/1/order/edit/'+order.id" class="btn btn-success btn-sm text-white" title="Gestisci"><i class="fa fa-pencil"></i></a>
                                                         <a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-                                                        <a class="btn btn-info btn-sm text-white" data-toggle="tooltip"><i class="fa fa-cart-plus"></i></a>
-                                                        <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                                                        <a :href="'/groupBuy/group/1/order/edit/'+order.id" class="btn btn-info btn-sm text-white" title="Aggiungi voci"><i class="fa fa-cart-plus"></i></a>
+                                                        <!-- a class="btn btn-primary btn-sm text-white" data-toggle="tooltip"><i class="fa fa-eye"></i></a -->
                                                     </td>
                                                 </tr>
 

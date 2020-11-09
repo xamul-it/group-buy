@@ -8,7 +8,6 @@
 
     </head>
     <body>
-        <sec:ifLoggedIn>
         <!--Sliders Section-->
         <g:render template="/common/theme-header" model="['headerTitle':'Ordine']"/>
         <!--/Sliders Section-->
@@ -19,6 +18,5 @@
 
         <g:render template="order-vue"/>
 
-    </sec:ifLoggedIn>
     </body>
 </html>

@@ -75,6 +75,27 @@ export const fetchOrderAction = async (
   }
 };
 
+export const fetchSupplierOrderAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let { data } = await payload.service.showByHash(payload.orderHash);
+    commit("updateField", {
+      path: "order.orderItem",
+      value: data,
+    });
+    // Reset the loading state after fetching
+    dispatch("setLoadedState");
+  } catch (error) {
+    if (state.debug) console.log("catch error", error, error.response);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("fetchSupplierOrderAction state", state);
+  }
+};
+
 export const saveOrderAction = async (
   { commit, dispatch, state, getters },
   payload
@@ -97,6 +118,7 @@ export const saveOrderAction = async (
       path: "success",
       value: r.message,
     });
+    return r.data;
   } catch (error) {
     if (state.debug)
       console.log("catch error", error, error.response, error.response.data);
@@ -134,6 +156,36 @@ export const saveOrderVoiceAction = async (
       value: r.message,
     });
     return r.data;
+  } catch (error) {
+    if (state.debug)
+      console.log("catch error", error, error.response, error.response.data);
+    dispatch("setErrorState", error);
+  }
+};
+
+export const deleteOrderVoiceAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+
+    //Delete
+    let r = await payload.service.del(
+      payload.groupId,
+      payload.orderId,
+      payload.orderVoiceId
+    );
+    // Reset the loading state after fetching
+    dispatch("setLoadedState");
+
+    console.log("deleteOrderVoiceAction", r);
+    if (r.status == 204) {
+      commit("updateField", {
+        path: "success",
+        value: "Voce eliminata",
+      });
+    }
   } catch (error) {
     if (state.debug)
       console.log("catch error", error, error.response, error.response.data);

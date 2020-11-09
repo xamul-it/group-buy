@@ -16,6 +16,7 @@ class ApiUrlMappings {
             }
             "/$namespace/categories" (resources:'groupCategory')
             "/$namespace/suppliers" (resources:'supplier')
+            "/$namespace/orders" (resources:'order', excludes:['index', 'delete', 'update', 'save'])
         }
     }
     
