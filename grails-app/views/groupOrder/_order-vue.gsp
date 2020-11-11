@@ -51,12 +51,12 @@
         },
         //https://stackoverflow.com/a/53513789
         async mounted() {
-            this.debug = ${isDebug};
+            this.debug = ${isDebug}
             //will execute at pageload
             if(this.groupId>0) {
-                await this.fetchOrder();
+                await this.fetchOrder()
             } else {
-                this.fetchSupplierOrder();
+                this.fetchSupplierOrder()
             }
         },
         methods: {
@@ -70,7 +70,7 @@
                 await this.fetchOrderAction({service: orderService, groupId: this.groupId, orderId: this.orderId});
             },
             async fetchSupplierOrder() {
-                await this.fetchSupplierOrderAction({service: orderService, orderHash: this.orderId});
+                await this.fetchSupplierOrderAction({service: orderService, orderHash: '${params?.orderToken?:'no-token'}' });
             },
             isEditVoice(i) {
                 return this.editVoice.i == i

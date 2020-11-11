@@ -30,7 +30,7 @@ abstract class OrderService implements IOrderService {
 
         def group = Group.findById(params.groupId)
 
-        def order = group ? Order.findByGroupAndId(group, params.id) : Order.findById(params.id) //TODO find by Hash
+        def order = group ? Order.findByGroupAndId(group, params.id) : Order.findByToken(params.id)
     }
 
     Long count (Map params){
