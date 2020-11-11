@@ -8,12 +8,14 @@
 
     </head>
     <body>
+        <g:set var="isSupplier" value="${true}" scope="page" />
+
         <!--Sliders Section-->
         <g:render template="/common/theme-header" model="['headerTitle':'Ordine']"/>
         <!--/Sliders Section-->
 
         <!-- Order -->
-        <g:render template="order" />
+        <g:render template="order"/>
         <!-- /Order -->
 
         <g:render template="order-vue"/>
