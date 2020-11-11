@@ -3,6 +3,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 enum OrderStatus {
+    INVALID(-1,"Invalido"),
     ACTIVE(0,"Attivo"),
     SENT(1,"Inviato"),
     ACCEPTED(2, "Accettato"),
@@ -12,9 +13,9 @@ enum OrderStatus {
 
     final int id
     final String value
-    private MemberStatus(int id,String value) { this.id = id; this.value=value }
+    private OrderStatus(int id,String value) { this.id = id; this.value=value }
 
-    public static MemberStatus getById(int id) {
+    public static OrderStatus getById(int id) {
         for(OrderStatus e : values()) {
             if(e.id.equals(id)) return e;
         }
