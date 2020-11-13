@@ -10,8 +10,8 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="keywords" content="">
-	<link rel="icon" href="favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
 	<!-- Title -->
 	<title>Group Buy - <g:layoutTitle default="" /></title>

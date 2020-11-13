@@ -1,5 +1,6 @@
 <script type="module">
-    import * as ah from '/assets/vue/v-common/alert-helper-mixin.js';
+    import * as ahm from '/assets/vue/v-common/alert-helper-mixin.js';
+    import * as osm from '/assets/vue/v-order/order-status-mixin.js';
 
     import * as orderVoiceService from '/assets/vue/v-services/order-voice-rest.js';
     import * as orderService from '/assets/vue/v-services/order-rest.js';
@@ -11,7 +12,7 @@
     var OrderEditApp = new Vue({
         el: '#v-order-edit-app',
         name: 'OrderEdit',
-        mixins: [ah.alertHelperMixin],
+        mixins: [ahm.alertHelperMixin,osm.orderStatusMixin],
         components: {
             'v-modal': VModal,
         },

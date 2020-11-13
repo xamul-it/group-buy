@@ -64,4 +64,15 @@ abstract class OrderService implements IOrderService {
         order.save()
     }
 
+    Order changeStatusTo(Map params, OrderStatus orderStatus) {
+
+        def group = Group.findById(params.groupId)
+
+        def order = group ? Order.findByGroupAndId(group, params.id) : Order.findByToken(params.id)
+
+        order.status = orderStatus
+        order.save()
+    }
+
+
 }

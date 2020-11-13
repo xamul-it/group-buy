@@ -1,8 +1,11 @@
 package gb.rest.v1
 
+import grails.gorm.transactions.Transactional
+
 import grails.rest.RestfulController
 
 import gb.Order
+import gb.OrderStatus
 import gb.OrderService
 
 class OrderController extends RestfulController<Order> {
@@ -48,6 +51,49 @@ class OrderController extends RestfulController<Order> {
         orderService.get(params)
     }
 
+    /**
+     * Sets order status to SENT
+     */
+    @Transactional
+    def sent() {
+        def o = orderService.changeStatusTo(params, OrderStatus.SENT)
+        respond o, [status: OK]
+    }
 
+    /**
+     * Sets order status to ACCEPTED
+     */
+    @Transactional
+    def accepted() {
+        def o = orderService.changeStatusTo(params, OrderStatus.ACCEPTED)
+        respond o, [status: OK]
+    }
+
+    /**
+     * Sets order status to REJECTED
+     */
+    @Transactional
+    def rejected() {
+        def o = orderService.changeStatusTo(params, OrderStatus.REJECTED)
+        respond o, [status: OK]
+    }
+
+    /**
+     * Sets order status to SHIPPED
+     */
+    @Transactional
+    def shipped() {
+        def o = orderService.changeStatusTo(params, OrderStatus.SHIPPED)
+        respond o, [status: OK]
+    }
+
+    /**
+     * Sets order status to DELIVERED
+     */
+    @Transactional
+    def delivered() {
+        def o = orderService.changeStatusTo(params, OrderStatus.DELIVERED)
+        respond o, [status: OK]
+    }
 
 }

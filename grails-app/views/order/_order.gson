@@ -10,7 +10,6 @@ json {
     supplierId order.supplier?.id
 
     group g.render(order.group)
-    //groupDeliveryAddress g.render(order.group.deliveryAddress)
 
     supplier g.render(order.supplier)
 
@@ -23,4 +22,9 @@ json {
 
     orderDate order.orderDate
     shipmentDate order.shipmentDate
+
+    status {
+        id order.status?order.status.id:-1
+        value order.status?order.status.value:'-'
+    }
 }

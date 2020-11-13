@@ -157,8 +157,11 @@
                                             <div class="col-md-12 form-group">
                                                 <button type="button" class="btn btn-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()">  <i class="fa fa-heart-o"></i> Iscriviti al gruppo</button>
                                             </div>
-                                            <div class="col-md-12 form-group">
+                                            <!-- div class="col-md-12 form-group">
                                                 <button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-envelope"></i> Contatta l'amministratore </button>
+                                            </div -->
+                                            <div class="col-md-12 form-group">
+                                                <button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-shopping-cart"></i> Nuovo ordine </button>
                                             </div>
                                         </sec:ifNotLoggedIn>
                                 </div>

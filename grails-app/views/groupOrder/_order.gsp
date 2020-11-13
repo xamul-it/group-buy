@@ -10,7 +10,7 @@
                     <div class="card-header"> 
                         <h3 class="card-title">#ORDINE-{{ orderItem.id }}</h3> 
                         <div class="card-options">
-                            <button type="button" class="btn btn-sm btn-info mr-2" onclick="javascript:window.print();"><i class="icon icon-printer"></i> Stampa</button> 
+                            <span class="badge " :class="orderStatusBadgeClass(orderItem.status.id)">{{ orderItem.status.value }}</span>
                         </div>
                     </div>
                     <div class="card-body">
@@ -117,13 +117,13 @@
                             <div class="col-md-12 form-group" >
                                 <g:if test="${isSupplier == true}">
                                     <button type="button" class="btn btn-success btn-block btn-lg" v-on:click=""> <i class="fa fa-handshake-o"></i> Accetta ordine </button>
-                                    <button type="button" class="btn btn-danger btn-block btn-lg" v-on:click=""> <i class="fa fa-times-circle"></i> Rifiuta ordine </button>
-                                    <button type="button" class="btn btn-secondary btn-block btn-lg" v-on:click=""> <i class="fa fa-pencil"></i> Modifica ordine </button>
+                                    <button type="button" class="btn btn-outline-danger btn-block btn-lg" v-on:click=""> <i class="fa fa-times-circle"></i> Rifiuta ordine </button>
                                 </g:if>
                                 <g:else>
-                                    <button  type="button" class="btn btn-primary btn-block btn-lg" v-on:click="">  <i class="fa fa-envelope-o"></i> Invia &nbsp;</button>
+                                    <button type="button" class="btn btn-primary btn-block btn-lg" v-on:click="">  <i class="fa fa-envelope-o"></i> Invia &nbsp;</button>
                                     <button type="button" class="btn btn-secondary btn-block btn-lg" v-on:click=""> <i class="fa fa-times-circle"></i> Annulla </button>
                                 </g:else>
+                                    <button type="button" class="btn btn-outline-info btn-block btn-lg" onclick="javascript:window.print();"><i class="icon icon-printer"></i> Stampa</button> 
                             </div>
                         </div>
 

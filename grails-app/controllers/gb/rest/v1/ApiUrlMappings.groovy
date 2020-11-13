@@ -13,6 +13,7 @@ class ApiUrlMappings {
                 "/orders" (resources:'order') {
                     "/voices" (resources:'orderVoice')
                 }
+                "/orders/$id/sent" (controller:'order', action:"sent")
             }
             "/$namespace/categories" (resources:'groupCategory')
             "/$namespace/suppliers" (resources:'supplier')

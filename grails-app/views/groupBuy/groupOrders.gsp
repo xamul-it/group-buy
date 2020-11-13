@@ -80,16 +80,14 @@
                                                         &euro; <!-- {{ orderTotal(order.id) }} -->
                                                     </td>
                                                     <td>
-                                                        
-                                                        <a v-if="orderState(order.id)==1" href="#" class="badge badge-primary">Da inviare</a>
-                                                        <a v-else-if="orderState(order.id)==2" href="#" class="badge badge-warning">In corso</a>
-                                                        <a v-else-if="orderState(order.id)==3" href="#" class="badge badge-success">Consegnato</a>
-                                                        <a v-else-if="orderState(order.id)==4" href="#" class="badge badge-danger">Non accettato</a>
+
+                                                        <span class="badge " :class="orderStatusBadgeClass(order.status.id)">{{ order.status.value }}</span>
+                                                        <!-- badge-primary -->
                                                         
                                                     </td>
                                                     <td>
-                                                        <a :href="'/groupBuy/group/1/order/edit/'+order.id" class="btn btn-success btn-sm text-white" title="Gestisci"><i class="fa fa-pencil"></i></a>
-                                                        <a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                        <a v-if="order.status.id == 0" :href="'/groupBuy/group/1/order/edit/'+order.id" class="btn btn-success btn-sm text-white" title="Gestisci"><i class="fa fa-pencil"></i></a>
+                                                        <a v-if="order.status.id == 0" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
                                                         <a :href="'/groupBuy/group/1/order/edit/'+order.id" class="btn btn-info btn-sm text-white" title="Aggiungi voci"><i class="fa fa-cart-plus"></i></a>
                                                         <!-- a class="btn btn-primary btn-sm text-white" data-toggle="tooltip"><i class="fa fa-eye"></i></a -->
                                                     </td>
@@ -114,7 +112,7 @@
                                 <div class="row group-actions" v-if="groupItem">
                                         <sec:ifLoggedIn>
                                             <div class="col-md-12 form-group" v-if="groupItem.administrator || groupItem.member">
-                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'./'+groupId+'/order/create'"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
+                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'/groupBuy/group/'+groupId+'/order/create'"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
                                             </div>
                                         </sec:ifLoggedIn>
                                 </div>
@@ -132,6 +130,7 @@
 
     <script type="module">
         import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
+        import * as osm from '/assets/vue/v-order/order-status-mixin.js';
 
         import * as groupService from '/assets/vue/v-services/group-rest.js';
         import * as orderService from '/assets/vue/v-services/order-rest.js';
@@ -143,7 +142,7 @@
         var GroupOrdersApp = new Vue({
             el: '#v-group-orders-app',
             name: 'GroupOrders',
-            mixins: [dh.dateHelperMixin],
+            mixins: [dh.dateHelperMixin,osm.orderStatusMixin],
             components: {
                 'v-modal': VModal,
             },
