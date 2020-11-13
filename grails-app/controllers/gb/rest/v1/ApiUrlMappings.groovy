@@ -13,11 +13,13 @@ class ApiUrlMappings {
                 "/orders" (resources:'order') {
                     "/voices" (resources:'orderVoice')
                 }
-                "/orders/$id/sent" (controller:'order', action:"sent")
+                "/orders/$id/$action(.$format)?" (controller:'order', excludes:['index', 'delete', 'update', 'save', 'list'])
             }
             "/$namespace/categories" (resources:'groupCategory')
             "/$namespace/suppliers" (resources:'supplier')
-            "/$namespace/orders" (resources:'order', excludes:['index', 'delete', 'update', 'save'])
+            "/$namespace/orders" (resources:'order', excludes:['index', 'delete', 'update', 'save', 'list'])
+            "/$namespace/orders/$id/$action(.$format)?" (controller:'order', excludes:['index', 'delete', 'update', 'save', 'list'])
+
         }
     }
     

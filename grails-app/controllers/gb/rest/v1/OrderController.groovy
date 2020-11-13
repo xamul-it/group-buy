@@ -57,7 +57,7 @@ class OrderController extends RestfulController<Order> {
     @Transactional
     def sent() {
         def o = orderService.changeStatusTo(params, OrderStatus.SENT)
-        respond o, [status: OK]
+        respond o
     }
 
     /**
@@ -66,7 +66,7 @@ class OrderController extends RestfulController<Order> {
     @Transactional
     def accepted() {
         def o = orderService.changeStatusTo(params, OrderStatus.ACCEPTED)
-        respond o, [status: OK]
+        respond o
     }
 
     /**

@@ -139,6 +139,18 @@
   float: right;
 }
 
+.badge-blue {
+  color: #fff;
+  background-color: #467fcf;
+  border-color: #467fcf;
+}
+
+.badge-gray {
+  color: #fff;
+  background-color: #868e96;
+  border-color: #868e96;
+}
+
 /* media queries */
 @media print {
   .no-print,

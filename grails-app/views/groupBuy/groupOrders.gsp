@@ -86,9 +86,9 @@
                                                         
                                                     </td>
                                                     <td>
-                                                        <a v-if="order.status.id == 0" :href="'/groupBuy/group/1/order/edit/'+order.id" class="btn btn-success btn-sm text-white" title="Gestisci"><i class="fa fa-pencil"></i></a>
-                                                        <a v-if="order.status.id == 0" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-                                                        <a :href="'/groupBuy/group/1/order/edit/'+order.id" class="btn btn-info btn-sm text-white" title="Aggiungi voci"><i class="fa fa-cart-plus"></i></a>
+                                                        <a v-if="canEdit(order.status.id)" :href="'/groupBuy/group/1/order/edit/'+order.id" class="btn btn-success btn-sm text-white" title="Gestisci"><i class="fa fa-pencil"></i></a>
+                                                        <a v-if="canEdit(order.status.id)" :href="'#'" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                        <a v-if="canEdit(order.status.id)" :href="'/groupBuy/group/1/order/edit/'+order.id" class="btn btn-primary btn-sm text-white" title="Aggiungi voci"><i class="fa fa-cart-plus"></i></a>
                                                         <!-- a class="btn btn-primary btn-sm text-white" data-toggle="tooltip"><i class="fa fa-eye"></i></a -->
                                                     </td>
                                                 </tr>
@@ -129,7 +129,7 @@
     <!-- /Group -->
 
     <script type="module">
-        import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
+        import * as dhm from '/assets/vue/v-common/date-helper-mixin.js';
         import * as osm from '/assets/vue/v-order/order-status-mixin.js';
 
         import * as groupService from '/assets/vue/v-services/group-rest.js';
@@ -142,7 +142,7 @@
         var GroupOrdersApp = new Vue({
             el: '#v-group-orders-app',
             name: 'GroupOrders',
-            mixins: [dh.dateHelperMixin,osm.orderStatusMixin],
+            mixins: [dhm.dateHelperMixin,osm.orderStatusMixin],
             components: {
                 'v-modal': VModal,
             },

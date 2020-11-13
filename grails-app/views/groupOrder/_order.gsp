@@ -10,7 +10,7 @@
                     <div class="card-header"> 
                         <h3 class="card-title">#ORDINE-{{ orderItem.id }}</h3> 
                         <div class="card-options">
-                            <span class="badge " :class="orderStatusBadgeClass(orderItem.status.id)">{{ orderItem.status.value }}</span>
+                            <span class="badge" :class="orderStatusBtnClass(orderItem.status.id)">{{ orderItem.status.value }}</span>
                         </div>
                     </div>
                     <div class="card-body">
@@ -39,19 +39,18 @@
                                 <tbody>
                                     <tr>
                                         <g:if test="${isSupplier != true}">
-                                            <th class="text-center "></th>
+                                            <th class="text-center "><!-- avatar --></th>
                                         </g:if>
                                         <th>Descrizione</th>
                                         <th class="text-center">Quantità</th>
                                         <g:if test="${isSupplier != true}">
-                                            <th class="text-right"></th>
+                                            <th v-if="canEdit(orderItem.status.id)" class="text-right no-print"><!-- actions --></th>
                                         </g:if>
-                                        
                                     </tr>
                                     
                                     <tr v-for="(v, i) in orderItem.voices">
                                         <g:if test="${isSupplier != true}">
-                                            <td class="text-center">
+                                            <td class="text-center ">
                                                 <span v-if="v.user" class="avatar avatar-md brround cover-image mr-3 h-100">
                                                     {{ initial(v.user.username) }}
                                                 </span>
@@ -66,17 +65,17 @@
                                             <input v-else type="number" min="1" v-model="editVoice.quantityRequested" class="form-control text-center h-5" placeholder="1">
                                         </td>
                                         <g:if test="${isSupplier != true}">
-                                            <td class="text-right"> 
+                                            <td v-if="canEdit(orderItem.status.id)" class="text-right no-print">
                                                 <a v-if="v.isOwner && !isEditVoice(i)" @click="deleteVoice(v.id, i)" class="btn btn-danger btn-sm text-white" title="Elimina"><i class="fa fa-trash-o"></i></a>
                                                 <a v-if="v.isOwner && !isEditVoice(i)" @click="editVoiceNum(i)" class="btn btn-info btn-sm text-white" title="Modifica"><i class="fa fa-pencil"></i></a>
                                                 
                                                 <a v-if="v.isOwner && isEditVoice(i)" @click="resetEditVoice()" class="btn btn-secondary btn-sm text-white" title="Annulla"><i class="fa fa-times"></i></a>
-                                                <a v-if="v.isOwner && isEditVoice(i)" @click="updateVoice(v.id, i)" class="btn btn-primary btn-sm text-white" title="Salva"><i class="fa fa-check"></i></a>  
+                                                <a v-if="v.isOwner && isEditVoice(i)" @click="updateVoice(v.id, i)" class="btn btn-primary btn-sm text-white" title="Salva"><i class="fa fa-check"></i></a> 
                                             </td>
                                         </g:if>
                                     </tr>
                                     <g:if test="${isSupplier != true}">
-                                        <tr v-if="addVoice">
+                                        <tr v-if="addVoice && canEdit(orderItem.status.id)">
                                             <td class="text-center"></td>
                                             <td>
                                                 <input type="text" v-model="editVoice.description" class="form-control text-center h-5" placeholder="Descrizione voce">
@@ -92,8 +91,8 @@
                                     </g:if>
 
                                     <g:if test="${isSupplier != true}">
-                                        <tr>
-                                            <td colspan="4" class="text-right"> 
+                                        <tr v-if="canEdit(orderItem.status.id)">
+                                            <td colspan="4" class="text-right no-print"> 
                                                 <button :disabled="addVoice" @click="addVoice = !addVoice" type="button" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Aggiungi</button>                                                     
                                             </td>
                                         </tr>
@@ -116,12 +115,13 @@
                         <div class="row group-actions">
                             <div class="col-md-12 form-group" >
                                 <g:if test="${isSupplier == true}">
-                                    <button type="button" class="btn btn-success btn-block btn-lg" v-on:click=""> <i class="fa fa-handshake-o"></i> Accetta ordine </button>
-                                    <button type="button" class="btn btn-outline-danger btn-block btn-lg" v-on:click=""> <i class="fa fa-times-circle"></i> Rifiuta ordine </button>
+                                    <button v-if="orderItem.status.id < 2" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(2)" v-on:click=""> <i class="fa fa-handshake-o"></i> Accetta ordine </button>
+                                    <button v-if="orderItem.status.id < 2" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnOutlineClass(3)" v-on:click=""> <i class="fa fa-times-circle"></i> Rifiuta ordine </button>
+
+                                    <button v-if="orderItem.status.id == 2" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(4)" v-on:click=""> <i class="fa fa-truck"></i> Consegna ordine </button>
                                 </g:if>
                                 <g:else>
-                                    <button type="button" class="btn btn-primary btn-block btn-lg" v-on:click="">  <i class="fa fa-envelope-o"></i> Invia &nbsp;</button>
-                                    <button type="button" class="btn btn-secondary btn-block btn-lg" v-on:click=""> <i class="fa fa-times-circle"></i> Annulla </button>
+                                    <button v-if="canEdit(orderItem.status.id)" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(1)" v-on:click="">  <i class="fa fa-envelope-o"></i> Invia &nbsp;</button>
                                 </g:else>
                                     <button type="button" class="btn btn-outline-info btn-block btn-lg" onclick="javascript:window.print();"><i class="icon icon-printer"></i> Stampa</button> 
                             </div>
