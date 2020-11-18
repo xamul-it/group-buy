@@ -20,6 +20,7 @@
         data: {
             groupId: ${groupId},
             orderId: ${orderId},
+            orderToken: '${params?.orderToken?:'no-token'}',
             addVoice: false,
             editVoice: {
                 i: -1,
@@ -27,7 +28,8 @@
                 description: '',
                 quantityRequested: 1,
                 order: ${orderId},
-            }
+            },
+            orderStatusAction: orderService.ORDER_STATUS
         },
         computed: {
             //all needed data fields from vuex store
@@ -66,12 +68,21 @@
                 'fetchSupplierOrderAction',
                 'saveOrderVoiceAction',
                 'deleteOrderVoiceAction',
+                'changeOrderStatusAction',
+                'changeSupplierOrderStatusAction',
             ]),
+            async changeOrderStatus(status) {
+                if(this.groupId>0) {
+                    await this.changeOrderStatusAction({service: orderService, groupId: this.groupId, orderId: this.orderId, status: status})
+                } else {
+                    await this.changeSupplierOrderStatusAction({service: orderService, orderToken: this.orderToken, status: status})
+                }
+            },
             async fetchOrder() {
                 await this.fetchOrderAction({service: orderService, groupId: this.groupId, orderId: this.orderId});
             },
             async fetchSupplierOrder() {
-                await this.fetchSupplierOrderAction({service: orderService, orderHash: '${params?.orderToken?:'no-token'}' });
+                await this.fetchSupplierOrderAction({service: orderService, orderHash: this.orderToken });
             },
             isEditVoice(i) {
                 return this.editVoice.i == i

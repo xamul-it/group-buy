@@ -107,3 +107,25 @@ export async function save(groupId, payload) {
 
   return { status, message };
 }
+
+export const ORDER_STATUS = {
+  SENT: "sent",
+  ACCEPTED: "accepted",
+  REJECTED: "rejected",
+  SHIPPED: "shipped",
+  DELIVERED: "delivered",
+};
+
+export async function changeStatusById(groupId, id, action) {
+  const { data, headers, status, statusText } = await axiosInstance.put(
+    REST_ENDPOINT + "/" + groupId + ORDERS_ENDPOINT + "/" + id + "/" + action
+  );
+  return { data, headers, status, statusText };
+}
+
+export async function changeStatusByHash(orderToken, action) {
+  const { data, headers, status, statusText } = await axiosInstance.put(
+    "/api/v1" + ORDERS_ENDPOINT + "/" + orderToken + "/" + action
+  );
+  return { data, headers, status, statusText };
+}
