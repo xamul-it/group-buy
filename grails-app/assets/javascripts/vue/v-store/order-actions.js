@@ -242,3 +242,56 @@ export const fetchGroupAction = async (
     if (state.debug) console.log("fetchGroupAction state", state);
   }
 };
+
+export const changeOrderStatusAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let { data, headers } = await payload.service.changeStatusById(
+      payload.groupId,
+      payload.orderId,
+      payload.status
+    );
+
+    commit("updateField", {
+      path: "order.orderItem",
+      value: data,
+    });
+
+    // Reset the loading state after fetching
+    dispatch("setLoadedState");
+  } catch (error) {
+    if (state.debug) console.log("catch error", error, error.response);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("changeOrderStatus state", state);
+  }
+};
+
+export const changeSupplierOrderStatusAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let { data, headers } = await payload.service.changeStatusByHash(
+      payload.orderToken,
+      payload.status
+    );
+
+    commit("updateField", {
+      path: "order.orderItem",
+      value: data,
+    });
+
+    // Reset the loading state after fetching
+    dispatch("setLoadedState");
+  } catch (error) {
+    if (state.debug) console.log("catch error", error, error.response);
+    dispatch("setErrorState", error.message);
+  } finally {
+    if (state.debug) console.log("changeOrderStatus state", state);
+  }
+};

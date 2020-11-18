@@ -115,13 +115,15 @@
                         <div class="row group-actions">
                             <div class="col-md-12 form-group" >
                                 <g:if test="${isSupplier == true}">
-                                    <button v-if="orderItem.status.id < 2" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(2)" v-on:click=""> <i class="fa fa-handshake-o"></i> Accetta ordine </button>
-                                    <button v-if="orderItem.status.id < 2" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnOutlineClass(3)" v-on:click=""> <i class="fa fa-times-circle"></i> Rifiuta ordine </button>
+                                    <button v-if="orderItem.status.id < 2" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(2)" @click="changeOrderStatus(orderStatusAction.ACCEPTED)"> <i class="fa fa-handshake-o"></i> Accetta ordine </button>
+                                    <button v-if="orderItem.status.id < 2" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnOutlineClass(3)" @click="changeOrderStatus(orderStatusAction.REJECTED)"> <i class="fa fa-times-circle"></i> Rifiuta ordine </button>
 
-                                    <button v-if="orderItem.status.id == 2" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(4)" v-on:click=""> <i class="fa fa-truck"></i> Consegna ordine </button>
+                                    <button v-if="orderItem.status.id == 2" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(4)" @click="changeOrderStatus(orderStatusAction.SHIPPED)"> <i class="fa fa-truck"></i> Consegna ordine </button>
                                 </g:if>
                                 <g:else>
-                                    <button v-if="canEdit(orderItem.status.id)" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(1)" v-on:click="">  <i class="fa fa-envelope-o"></i> Invia &nbsp;</button>
+                                    <button v-if="canEdit(orderItem.status.id)" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(1)" @click="changeOrderStatus(orderStatusAction.SENT)">  <i class="fa fa-envelope-o"></i> Invia &nbsp;</button>
+
+                                    <button v-if="orderItem.status.id == 4 || orderItem.status.id == 3" type="button" class="btn btn-block btn-lg" :class="orderStatusBtnClass(5)" @click="changeOrderStatus(orderStatusAction.DELIVERED)">  <i class="fa fa-check"></i> Consegnato &nbsp;</button>
                                 </g:else>
                                     <button type="button" class="btn btn-outline-info btn-block btn-lg" onclick="javascript:window.print();"><i class="icon icon-printer"></i> Stampa</button> 
                             </div>
