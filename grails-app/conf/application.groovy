@@ -13,7 +13,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/groupBuy/groupOrders/**',    		access: 'isAuthenticated()'],
 	[pattern: '/groupBuy/group/1/order/edit/**',    access: 'isAuthenticated()'],
 	[pattern: '/groupBuy/group/1/order/create',    access: 'isAuthenticated()'],
-	[pattern: '/groupBuy/**',    					 access: 'isAuthenticated()'],
+	[pattern: '/groupOrder/supplierShow',			access: ['permitAll']],
+	[pattern: '/groupOrder/**',						access: 'isAuthenticated()'],
 
 
 	[pattern: '/error',          access: ['permitAll']],

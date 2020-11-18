@@ -39,7 +39,7 @@ class OrderVoice implements Comparable {
 
 	def beforeValidate () {
 		if (id==null) {
-			log.debug("Spring OV "+getSpringSecurityService())
+			log.debug("Spring OV "+springSecurityService)
 			if (springSecurityService && springSecurityService.isLoggedIn()) {
 				user= User.get(springSecurityService.getPrincipal().id)
 			}

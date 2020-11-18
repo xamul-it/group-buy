@@ -3,7 +3,18 @@ package gb.ui
 class GroupBuyController {
 
     def index() {
+
         redirect action: "groupList"
+    }
+
+    def mail() {
+        sendMail {
+            from "groupbuy"
+            to "fred@g2one.com"
+            subject "Hello Fred"
+            body 'How are you?'
+        }
+        render "OK!"
     }
 
     def groupList() {
@@ -15,18 +26,18 @@ class GroupBuyController {
     }
 
     def groupEdit(){
-        
+
     }
 
     def groupCreate(){
-        
+
     }
 
     def groupOrders() {
 
     }
 
-    def groupMembers() {        
+    def groupMembers() {
 
     }
 
@@ -37,5 +48,5 @@ class GroupBuyController {
     def userSettings() {
 
     }
-    
+
 }

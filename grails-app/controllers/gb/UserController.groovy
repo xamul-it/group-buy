@@ -22,6 +22,7 @@ class UserController {
         respond new User(params)
     }
 
+    //test
     def save(User user) {
         if (user == null) {
             notFound()
