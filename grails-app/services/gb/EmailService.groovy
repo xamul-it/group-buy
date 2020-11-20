@@ -18,9 +18,12 @@ class EmailService {
         def toGroup = Group.get(2) //TODO get the group 
 
         sendMail {
+            multipart true
             to toEmail
-            subject "Invito al gruppo"
-            body( view:"/email/groupInvite", 		
+            subject "Invito al gruppo: ${toGroup.name}"
+            text( view:"/email/groupInvitePlain", 		
+                    model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,basePath:basePath])
+            html( view:"/email/groupInvite", 		
                     model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,basePath:basePath])
         }
     }
