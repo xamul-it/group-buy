@@ -191,9 +191,17 @@ environments:
 ---
 grails:
   mail:
-    port: 3025
-    host: vm8783.seewebcloud.it
-    serverURL: "http://localhost:8080/${appName}"
+    port: 3025 #port: 1025
+    host: vm8783.seewebcloud.it #host: localhost
+    #username: "noreply@group-buy.it"
+    #password: "group-buy@noreply"
+    props:
+      ["mail.smtp.auth": "false", "mail.debug": "true"]
+      #"mail.smtp.socketFactory.port": "465",
+      #"mail.smtp.socketFactory.class": "javax.net.ssl.SSLSocketFactory",
+      #"mail.smtp.socketFactory.fallback": "false",
+      #"mail.smtp.starttls.enable": "true",
+    serverURL: "http://localhost:8080/"
 ---
 grails:
   plugin:

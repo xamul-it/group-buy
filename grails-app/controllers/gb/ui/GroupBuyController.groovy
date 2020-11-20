@@ -1,6 +1,10 @@
 package gb.ui
 
+import gb.EmailService
+
 class GroupBuyController {
+
+    EmailService emailService
 
     def index() {
 
@@ -8,13 +12,8 @@ class GroupBuyController {
     }
 
     def mail() {
-        sendMail {
-            from "groupbuy"
-            to "fred@g2one.com"
-            subject "Hello Fred"
-            body 'How are you?'
-        }
-        render "OK!"
+        emailService.groupInvite()
+        render "Email sent!"
     }
 
     def groupList() {
