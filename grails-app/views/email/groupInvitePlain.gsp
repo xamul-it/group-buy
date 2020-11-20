@@ -1,7 +1,7 @@
 
-<%@ page contentType="text/plain"%>
+<%@ page contentType="text/plain;charset=UTF-8"%>
 
-${toEmail}
+${toEmail.encodeAsRaw()}
 
 Sei stato invitato a partecipare al gruppo d'acquisto.
 
@@ -9,7 +9,7 @@ ${toGroup.name}
 
 ${toGroup.description}
 
-Ricevi questa mail perché ${fromUsername} ti ha invitato a partecipare al gruppo d'acquisto.
+Ricevi questa mail perché ${fromUsername.encodeAsRaw()} ti ha invitato a partecipare al gruppo d'acquisto.
 
 Iscriviti ora: ${basePath}/groupBuy/group/${toGroup.id}
 
