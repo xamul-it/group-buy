@@ -9,6 +9,7 @@ class ApiUrlMappings {
                 "/memberstatuslist" (controller: 'group', action: 'memberStatusList')//, method: 'PUT')
                 "/changestatus" (controller: 'group', action: 'changestatus')//, method: 'PUT')
                 "/unsubscribe" (controller: 'group', action: 'unsubscribe')//, method: 'PUT')
+                "/invite" (controller: 'group', action: 'invite')
                 "/members" (controller: 'groupMember', action: 'index', method: 'GET')
                 "/orders" (resources:'order') {
                     "/voices" (resources:'orderVoice')

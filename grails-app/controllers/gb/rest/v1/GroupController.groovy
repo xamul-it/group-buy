@@ -91,9 +91,11 @@ class GroupController extends RestfulController<Group> {
      *  2) User is not present in the system a new partial subscription needs to be craeted
      */
     @Transactional
-    def inviteUser(){
-        GroupMember gm = groupMemberService.inviteUser(params.groupId,params.email)
-        respond gm, [status: CREATED]
+    def invite(){
+        log.debug "invite $params $request.JSON"
+        //GroupMember gm = groupMemberService.inviteUser(params.groupId,params.email,params.invite)
+        //respond gm, [status: CREATED]
+        respond request.JSON
     }
 
     /**

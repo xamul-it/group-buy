@@ -63,7 +63,7 @@ export const fetchGroupMembersAction = async (
         value: _.toNumber(headers["x-pagination-total"]),
       });
     }
-    
+
     // Reset the loading state after fetching
     dispatch("setLoadedState");
   } catch (error) {
@@ -313,6 +313,30 @@ export const subscriptionAction = async (
     dispatch("setErrorState", error.message);
   } finally {
     if (state.debug) console.log("subscription state", state);
+  }
+};
+
+export const inviteToGroupAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let r = await payload.service.invite(payload.groupId, {
+      email: payload.invite.email,
+      inviteText: payload.invite.inviteText,
+      payload: payload.invite,
+    });
+    // Reset the loading state after
+    dispatch("setLoadedState");
+    commit("updateField", {
+      path: "success",
+      value: r.message,
+    });
+  } catch (error) {
+    if (state.debug)
+      console.log("catch error", error, error.response, error.response.data);
+    dispatch("setErrorState", error);
   }
 };
 

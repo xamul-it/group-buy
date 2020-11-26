@@ -42,15 +42,20 @@
                                 <div v-if="!$v.newMemberEmail.email && $v.newMemberEmail.minLength" class="alert alert-danger" role="alert">
                                     Inseirisci un indirizzo email corretto.
                                 </div>
-
                                 <pre v-if="isDebug">{{ $v.newMemberEmail }}</pre>
+
+                                <div class="form-group">
+                                    <label for="message-text" class="form-control-label">Messagggio:</label> 
+                                    <textarea v-model="newMemberMessage" class="form-control" id="message-text"></textarea>
+                                </div>
+                                
                         </div>
                     </form>
                 </template>
                 <template v-slot:footer>
                     <a type="button" :class="{disabled:$v.$invalid}"
                         class="btn btn-primary text-white"
-                        @click="inviteNewMember()"
+                        @click="inviteToGroup()"
                         :title="$v.$invalid?'Inserisci un indirizzo email':'Invia'">Invia</a> 
 					<a type="button" class="btn btn-secondary" @click="$refs.memberInviteModal.closeModal()">Annulla</a> 
                 </template>
@@ -234,6 +239,7 @@
                 groupStatusId: 0,
                 currentPage: 1,
                 newMemberEmail: '',
+                newMemberMessage: 'Partecipa al gruppo d\'acquisto',
             },
             validations: {
                 newMemberEmail: {
@@ -305,8 +311,20 @@
             methods: {
                 ...Vuex.mapActions([
                     'fetchGroupAction',
-                    'fetchGroupMembersAction'
+                    'fetchGroupMembersAction',
+                    'inviteToGroupAction'
                 ]),
+                async inviteToGroup() {
+                    await this.inviteToGroupAction({service: groupService, groupId: this.groupId, invite: { email: this.newMemberEmail, inviteText: this.newMemberMessage }})
+                    this.$refs.memberInviteModal.closeModal()
+                    this.newMemberEmail = ''
+                    this.newMemberMessage = 'Partecipa al gruppo d\'acquisto'
+                },
+                inviteNewMember() {
+                    this.success = "Invito inviato a "+ this.newMemberEmail
+                    this.newMemberEmail = ''
+                    this.$refs.memberInviteModal.closeModal()
+                },
                 async fetchGroup() {
                     this.fetchGroupAction({service: groupService, groupId: this.groupId});
                 },
@@ -320,11 +338,6 @@
                     console.log(page)
                     this.currentPage = page;
                 },
-                inviteNewMember() {
-                    this.success = "Invito inviato a "+ this.newMemberEmail
-                    this.newMemberEmail = ''
-                    this.$refs.memberInviteModal.closeModal()
-                }
             },
         })        
     </script>

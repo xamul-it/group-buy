@@ -290,3 +290,29 @@ export async function unsubscribe(id) {
   );
   return { data, headers, status, statusText };
 }
+
+export async function invite(id, { email, inviteText, payload }) {
+  const params = new URLSearchParams();
+  if (!_.isUndefined(email)) params.append("email", email);
+  if (!_.isUndefined(inviteText)) params.append("inviteText", inviteText);
+
+  console.log("update", REST_ENDPOINT + "/" + id + "/invite", params, payload);
+  const { data, headers, status, statusText } = await axiosInstance.post(
+    REST_ENDPOINT + "/" + id + "/invite",
+    payload
+  );
+
+  let message = HTTP_CODES_MESSAGES_MAP[status];
+  console.log(
+    "data",
+    data,
+    "headers",
+    headers,
+    "status",
+    status,
+    statusText,
+    message
+  );
+
+  return { status, message };
+}
