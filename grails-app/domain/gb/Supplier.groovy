@@ -15,6 +15,7 @@ class Supplier {
 
     Address shippingAddress
     ContactInfo contactInfo
+    DeliveryInfo deliveryInfo
     User creator
     User owner
     String name
@@ -39,7 +40,7 @@ class Supplier {
     static mapping = {
         discriminator value: "supplier"
     }
-    static embedded = ['shippingAddress','contactInfo']
+    static embedded = ['shippingAddress','contactInfo','deliveryInfo']
 
     def beforeValidate () {
         if (id==null) {
