@@ -21,6 +21,8 @@ class Supplier {
     String name
     String description
 
+    static hasOne = [category: SupplierCategory]
+
     @Autowired
     transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
@@ -28,13 +30,13 @@ class Supplier {
         creator nullable:false
         shippingAddress nullable:true
         owner nullable:true
-        name nullable: false, blank: false, size: 5..20, unique: true/*,
+        name nullable: false, blank: false, size: 5..200, unique: false/*,
                 validator: { val, obj ->
                     obj.springSecurityService && (obj.creator.id == obj.springSecurityService.getPrincipal().id ||
                             (obj.owner != null && obj.owner.id == obj.springSecurityService.getPrincipal().id)
                     )
                 }*/
-        description nullable: false, blank: false, size: 5..200
+        description nullable: false, blank: false, size: 5..2000
     }
 
     static mapping = {

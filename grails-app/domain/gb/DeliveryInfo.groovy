@@ -9,10 +9,10 @@ class DeliveryInfo {
     String deliveryFee
 
     static constraints = {
-        bookTimes nullable:true, blank:true, size: 1..255
-        deliveryTimes nullable:true, blank:true, size: 1..255
-        deliveryInfo nullable:true, blank:true, size: 1..255
-        paymentInfo nullable:true, blank:true, size: 1..255
-        deliveryFee nullable:true, blank:true, size: 1..255
+        bookTimes nullable:true, blank:true, size: 1..500
+        deliveryTimes nullable:true, blank:true, size: 1..500
+        deliveryInfo nullable:true, blank:true, size: 1..500
+        paymentInfo nullable:true, blank:true, size: 1..500
+        deliveryFee nullable:true, blank:true, size: 1..500
     }
 }

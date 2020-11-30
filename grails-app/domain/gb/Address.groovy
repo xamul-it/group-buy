@@ -11,9 +11,9 @@ class Address {
     Double lon
 
     static constraints = {
-        city nullable:false, blank:false, size: 2..35
-        address1 nullable:false, blank:false, size: 2..35
-        address2 nullable:true, blank:true, size: 2..35
+        city nullable:false, blank:false, size: 2..200
+        address1 nullable:false, blank:false, size: 2..200
+        address2 nullable:true, blank:true, size: 2..200
         postalCode nullable:false, blank:false, size: 5..5
         district nullable:false, blank:false, size: 2..2
         countryCode nullable:false, blank:false, size: 2..2
