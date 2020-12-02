@@ -1,0 +1,7 @@
+model {
+    List<SupplierCategory> supplierCategoryList
+}
+
+log.debug "Model is $binding.variables"
+
+json g.render(supplierCategoryList?:[], [deep:false])

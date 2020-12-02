@@ -5,16 +5,18 @@ import {
   updateField,
 } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
 
-import * as orderActions from "/assets/vue/v-store/order-actions.js";
+import * as supplierActions from "/assets/vue/v-store/supplier-actions.js";
+import * as commonActions from "/assets/vue/v-store/actions/common-actions.js";
+import * as searchActions from "/assets/vue/v-store/actions/search-actions.js";
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    id: "Order-store",
+    id: "Supplier-store",
     pagination: {
       total: 0,
-      max: 4, //The maximum number to list
+      max: 12, //The maximum number to list
       offset: 0, //The offset from the first result to list from
     },
     sort: {
@@ -23,18 +25,19 @@ export const store = new Vuex.Store({
     },
     search: {
       searchQuery: "",
+      searchAddress: {},
+      searchAddressString: "",
+      searchCategoryId: 0,
+      searchLatitude: 0.0,
+      searchLongitude: 0.0,
       search: false,
       searchDirty: false,
       reset: false,
     },
-    order: {
-      orderList: [],
-      orderItem: null,
-      orderVoices: [],
-      suppliers: [],
-    },
-    group: {
-      groupItem: null,
+    supplier: {
+      supplierCategories: [],
+      supplierList: [],
+      supplierItem: null,
     },
     success: null,
     error: null,
@@ -49,6 +52,8 @@ export const store = new Vuex.Store({
     updateField,
   },
   actions: {
-    ...orderActions,
+    ...supplierActions,
+    ...commonActions,
+    ...searchActions,
   },
 });

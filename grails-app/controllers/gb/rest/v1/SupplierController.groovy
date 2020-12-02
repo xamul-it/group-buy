@@ -24,10 +24,12 @@ class SupplierController extends RestfulController<Supplier> {
      */
     @Override
     protected List<Supplier> listAllResources(Map params) {
-        if(params.q)
+        if(params.q) {
             supplierService.autocomplete(params.q)
-        else
+        } else {
+            response.setHeader('X-Pagination-Total', supplierService.count(params).toString())
             supplierService.list(params)
+        }
     }
 
 }

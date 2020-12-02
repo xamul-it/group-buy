@@ -6,18 +6,17 @@
 
         <div class="horizontal-main bg-dark-transparent clearfix">
             <div class="horizontal-mainwrapper container clearfix">
-                <div class="desktoplogo"> <a href="/"><img src="/assets/theme/img/brand/logo1.png"
-                            alt=""></a> </div>
-                <div class="desktoplogo-1"> <a href="/"><img src="/assets/theme/img/brand/logo.png"
-                            alt=""></a> </div>
+                <div class="desktoplogo"> <a href="/"><img src="/assets/theme/img/brand/logo1.png" alt=""></a> </div>
+                <div class="desktoplogo-1"> <a href="/"><img src="/assets/theme/img/brand/logo.png" alt=""></a> </div>
                 <!--Nav-->
                 <nav class="horizontalMenu clearfix d-md-flex">
                     <div class="overlapblackbg"></div>
                     <ul class="horizontalMenu-list">
 
-                        <li aria-haspopup="true"><a href="${createLink(controller: 'groupBuy', action: 'groupList')}">Gruppi</a></li>
+                        <li><a href="${createLink(controller: 'groupBuy', action: 'groupList')}">Gruppi</a></li>
+                        <li><a href="${createLink(controller: 'supplier', action: 'list')}">Attivit&agrave;</a></li>
                         <!-- Blog -->
-                        <li aria-haspopup="true"><a href="https://www.group-buy.it/#blog"> Blog<span class="wsarrow"></span></a></li>
+                        <li><a href="https://www.group-buy.it/#blog"> Blog<span class="wsarrow"></span></a></li>
                         <!-- how it works -->
                         <!-- li aria-haspopup="true"><span class="horizontalMenu-click"><i
                                     class="horizontalMenu-arrow fa fa-angle-down"></i></span><a href="#"

@@ -1,4 +1,4 @@
-package gb.domain
+package gb.ui
 
 import gb.Supplier
 import gb.SupplierService
@@ -13,26 +13,20 @@ class SupplierController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def list() {}
+
+    def get() {}
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         response.setHeader('X-Pagination-Total', supplierService.count().toString())
         respond supplierService.list(params), model:[supplierCount: supplierService.count()]
     }
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        response.setHeader('X-Pagination-Total', supplierService.count().toString())
-        respond  supplierService.list(params), model:[supplierCount: supplierService.count()]
-    }
-
     def autocomplete(String query) {
         params.max = 10
         def lista = supplierService.autocomplete(query)
         render (lista ? lista as JSON : "")
-    }
-
-    def get(Long id) {
-        respond supplierService.get(id)
     }
 
     def show(Long id) {

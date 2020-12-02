@@ -1,0 +1,54 @@
+model {
+    Supplier supplier
+}
+
+json {
+    id supplier.id
+    name supplier.name
+    description supplier.description
+
+    shippingAddress {
+        address1 supplier.shippingAddress.address1
+        address2 supplier.shippingAddress.address2
+        city supplier.shippingAddress.city
+        district supplier.shippingAddress.district
+        postalCode supplier.shippingAddress.postalCode
+        countryCode supplier.shippingAddress.countryCode
+        lat	supplier.shippingAddress.lat
+        lon	supplier.shippingAddress.lon
+    }
+
+    contactInfo {
+        phone1 supplier.contactInfo.phone1
+        phone2 supplier.contactInfo.phone2
+        email supplier.contactInfo.email
+        web supplier.contactInfo.web
+    }
+
+    deliveryInfo {
+        paymentInfo supplier.deliveryInfo?supplier.deliveryInfo.paymentInfo:''
+        bookTimes supplier.deliveryInfo?supplier.deliveryInfo.bookTimes:''
+        deliveryTimes supplier.deliveryInfo?supplier.deliveryInfo.deliveryTimes:''
+        deliveryInfo supplier.deliveryInfo?supplier.deliveryInfo.deliveryInfo:''
+        deliveryFee supplier.deliveryInfo?supplier.deliveryInfo.deliveryFee:''
+    }
+
+    category {
+        id supplier.category.id
+        name supplier.category.name
+    } 
+
+    owner {
+        id supplier.owner.id
+        username supplier.owner.username
+        email supplier.owner.email
+    }
+
+    creator {
+        id supplier.creator.id
+        username supplier.creator.username
+        email supplier.creator.email
+    }
+
+
+}

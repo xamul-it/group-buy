@@ -1,0 +1,7 @@
+model {
+    List<Supplier> supplierList
+}
+
+log.debug "Model is $binding.variables"
+
+json g.render(template:'supplier', collection: supplierList, var: 'supplier')

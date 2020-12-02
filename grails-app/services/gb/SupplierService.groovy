@@ -31,6 +31,10 @@ abstract class SupplierService implements ISupplierService {
     void onSupplierPreInsert(PreInsertEvent event) {
     }
 
+    Long count (Map params){
+        Supplier.count()
+    }
+
     List<Supplier> autocomplete(String query) {
         def l = Supplier.findAllByNameLike("%"+query+"%")
         def newl = l.collect {
