@@ -93,10 +93,9 @@ class GroupController extends RestfulController<Group> {
     @Transactional
     def invite(){
         log.debug "invite $params $request.JSON"
-        //TODO send email
-        //GroupMember gm = groupMemberService.inviteUser(params.groupId,params.email,params.invite)
-        //respond gm, [status: CREATED]
-        respond request.JSON
+        def payload = request.JSON
+        GroupMember gm = groupMemberService.inviteUser(params.groupId,payload.email,payload.inviteText)
+        respond gm, [status: CREATED]
     }
 
     /**

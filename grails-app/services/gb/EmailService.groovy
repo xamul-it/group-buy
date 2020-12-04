@@ -8,10 +8,14 @@ class EmailService {
 
     grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
-    def groupInvite(String toEmail) {
+    //DEV
+    def groupInvite() {
+        groupInvite("invited@emaildomain.com", "Sei stato invitato a partecipare al gruppo d'acquisto")
+    }
+
+    def groupInvite(String toEmail, String message) {
         def basePath = grailsApplication.config.getProperty('grails.mail.serverURL')
-        
-        toEmail = "invited@emaildomain.com" //TODO get toEmail
+
         def user = null
         if (springSecurityService && springSecurityService.isLoggedIn()) {
             user = User.get(springSecurityService.getPrincipal().id)
@@ -28,9 +32,9 @@ class EmailService {
             to toEmail
             subject emailSubject
             text( view:"/email/groupInvitePlain", 		
-                    model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,basePath:basePath])
+                    model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
             html( view:"/email/groupInvite", 		
-                    model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,basePath:basePath])
+                    model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
         }
     }
 }

@@ -5,6 +5,7 @@ class GroupMemberService {
 
     @Autowired
     transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
+    EmailService emailService
 
     Long count (Map params){
         def group = Group.findById(params.groupId)
@@ -130,7 +131,7 @@ class GroupMemberService {
      *  2) User is not present in the system a new partial subscription needs to be craeted
      */
     @Transactional
-    GroupMember inviteUser(groupId, email){
+    GroupMember inviteUser(groupId, email, inviteText){
         log.debug "inviteUser " + groupId
         Group g = Group.get(groupId)
         GroupMember gm = new GroupMember()
@@ -162,13 +163,14 @@ class GroupMemberService {
                 g.getMembers().add(invite)
                 g.save()
                 //Add membership in state active
-            }else{
+            } else {
                 //By now return error?
-                invite=new GroupMember()
+                invite = new GroupMember()
                 invite.status = MemberStatus.INVALID
             }
+            emailService.groupInvite(email, inviteText)
         }
-         return gm
+        return gm
     }
 
     /**

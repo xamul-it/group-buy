@@ -89,7 +89,12 @@
 														<div class="card-footer">
 															<div class="item-card9-footer d-flex">
 																<div class="item-card9-cost">
-																	<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</a>
+																	<sec:ifLoggedIn>
+																		<a :href="'./supplier/'+supplier.id+'/order'" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</a>
+																	</sec:ifLoggedIn>
+																	<sec:ifNotLoggedIn>
+																		<button @click="$refs.registerLoginModal.openModal()" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</button>
+																	</sec:ifNotLoggedIn>
 																	
 																</div>
 																<div class="ml-auto">

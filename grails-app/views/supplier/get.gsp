@@ -6,7 +6,7 @@
     </head>
     <body>
         <div class="app" id="v-supplier-app" v-cloak>
-        
+
         <!--Sliders Section-->
         <g:render template="/common/theme-header" model="['headerTitle':'{{ supplierItem.name }}']"/>
         <!--/Sliders Section-->
@@ -55,7 +55,6 @@
                                                             <span class="font-weight-semibold"><i class="fa fa-truck mr-1"></i><!-- i class="fa fa-clock-o mr-1"></i --></span> {{ supplierItem.deliveryInfo.deliveryTimes }} <br/>
                                                             <span class="font-weight-semibold"><!-- i class="fa fa-truck mr-1"></i --><i class="fa fa-percent mr-1"></i></span> {{ supplierItem.deliveryInfo.deliveryFee }} <br/>
                                                             <span class="font-weight-semibold"><!-- i class="fa fa-calculator mr-1"></i --><i class="fa fa-money mr-1"></i></span> {{ supplierItem.deliveryInfo.paymentInfo }} <br/>
-
 
                                                         </p>
                                                     </div>
@@ -113,7 +112,7 @@
                                 <div class="row group-actions">
                                         <sec:ifLoggedIn>
                                             <div class="col-md-12 form-group">
-                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'#orderFromSupplier/'+supplierId+'/'"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
+                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'./'+supplierId+'/order'"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
                                             </div>
                                         </sec:ifLoggedIn>
                                         <sec:ifNotLoggedIn>

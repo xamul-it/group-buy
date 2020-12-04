@@ -6,6 +6,7 @@ import {
 } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
 
 import * as orderActions from "/assets/vue/v-store/order-actions.js";
+import * as sharedActions from "/assets/vue/v-store/actions/shared-actions.js";
 
 Vue.use(Vuex);
 
@@ -36,6 +37,9 @@ export const store = new Vuex.Store({
     group: {
       groupItem: null,
     },
+    supplier: {
+      supplierItem: null,
+    },
     success: null,
     error: null,
     loading: false,
@@ -50,5 +54,6 @@ export const store = new Vuex.Store({
   },
   actions: {
     ...orderActions,
+    ...sharedActions,
   },
 });

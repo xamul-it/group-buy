@@ -327,7 +327,7 @@
 													style="line-height: 1.2; font-size: 12px; color: #626262; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 14px;">
 													<p
 														style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;">
-														Sei stato invitato a partecipare al gruppo d'acquisto.</p>
+														${message}</p>
 												</div>
 											</div>
 											<!--[if mso]></td></tr></table><![endif]-->

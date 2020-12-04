@@ -17,6 +17,8 @@ class SupplierController {
 
     def get() {}
 
+    def order() {}
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         response.setHeader('X-Pagination-Total', supplierService.count().toString())

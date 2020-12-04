@@ -8,6 +8,7 @@ import {
 import * as supplierActions from "/assets/vue/v-store/supplier-actions.js";
 import * as commonActions from "/assets/vue/v-store/actions/common-actions.js";
 import * as searchActions from "/assets/vue/v-store/actions/search-actions.js";
+import * as sharedActions from "/assets/vue/v-store/actions/shared-actions.js";
 
 Vue.use(Vuex);
 
@@ -55,5 +56,6 @@ export const store = new Vuex.Store({
     ...supplierActions,
     ...commonActions,
     ...searchActions,
+    ...sharedActions,
   },
 });

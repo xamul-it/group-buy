@@ -181,7 +181,7 @@ export const fetchSupplierListAction = async (
     if (state.debug) console.log("fetchSupplierListAction state", state);
   }
 };
-
+/*
 export const fetchSupplierAction = async (
   { commit, dispatch, state, getters },
   payload
@@ -202,3 +202,4 @@ export const fetchSupplierAction = async (
     if (state.debug) console.log("fetchSupplierAction state", state);
   }
 };
+*/

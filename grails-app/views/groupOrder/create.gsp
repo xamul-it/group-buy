@@ -1,10 +1,7 @@
 <html>
     <head>
         <meta name="layout" content="claylist"/>
-        <title>Ordine</title>
-
-        <!-- alerts -->
-        <script type="module" src="/assets/vue/v-services/toast.js"></script>
+        <title>Nuovo ordine</title>
 
         <g:render template="/includes/js-vue-select-js"/>
 
@@ -12,7 +9,7 @@
     <body>
         <sec:ifLoggedIn>
         <!--Sliders Section-->
-        <g:render template="/common/theme-header" model="['headerTitle':'Ordine']"/>
+        <g:render template="/common/theme-header" model="['headerTitle':'Nuovo ordine']"/>
         <!--/Sliders Section-->
 
         <!-- Order -->
