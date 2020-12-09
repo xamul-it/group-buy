@@ -8,7 +8,6 @@ class GroupBuyController {
 
     def index() {
 
-        redirect action: "groupList"
     }
 
     def mail() {

@@ -8,6 +8,8 @@
     </head>
     <body>
         <div id="v-order-create-app" v-cloak>
+            <vue-title prefix="Group Buy" :title="pageTitle"/></vue-title>
+
             <sec:ifLoggedIn>
             <!--Sliders Section-->
             <g:render template="/common/theme-header" model="['headerTitle':'{{ pageTitle }}']"/>
@@ -83,7 +85,6 @@
 
             <script type="module">
                 import * as ah from '/assets/vue/v-common/alert-helper-mixin.js';
-                //import * as tm from '/assets/vue/v-common/title-mixin.js';
 
                 import * as groupService from '/assets/vue/v-services/group-rest.js';
                 import * as orderService from '/assets/vue/v-services/order-rest.js';
@@ -91,15 +92,9 @@
                 import * as supplierService from '/assets/vue/v-services/supplier-rest.js';
                 import * as toastService from '/assets/vue/v-services/toast.js';
 
+                import VueTitle from "/assets/vue/v-common/title.vue.js"
                 import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
                 import { store } from '/assets/vue/v-store/order-store.js';
-
-                //vue-select
-                // Set the components prop default to return our fresh components 
-                VueSelect.VueSelect.props.components.default = () => ({
-                    Deselect: null,
-                });
-                Vue.component('v-select', VueSelect.VueSelect);
 
                 //vuelidate
                 Vue.use(window.vuelidate.default);
@@ -111,6 +106,7 @@
                     mixins: [ah.alertHelperMixin],
                     components: {
                         'v-modal': VModal,
+                        'vue-title': VueTitle,
                     },
                     store,
                     data: {
