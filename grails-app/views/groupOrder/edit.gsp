@@ -2,23 +2,19 @@
     <head>
         <meta name="layout" content="claylist"/>
         <title>Ordine</title>
-
-        <!-- alerts -->
-        <script type="module" src="/assets/vue/v-services/toast.js"></script>
-
     </head>
     <body>
         <sec:ifLoggedIn>
-        <!--Sliders Section-->
-        <g:render template="/common/theme-header" model="['headerTitle':'Ordine']"/>
-        <!--/Sliders Section-->
+            <!--Sliders Section-->
+            <g:render template="/common/theme-header" model="['headerTitle':'Ordine']"/>
+            <!--/Sliders Section-->
 
-        <!-- Order -->
-        <g:render template="order" />
-        <!-- /Order -->
+            <!-- Order -->
+            <g:render template="order" />
+            <!-- /Order -->
 
-        <g:render template="order-vue"/>
+            <g:render template="order-vue"/>
 
-    </sec:ifLoggedIn>
+        </sec:ifLoggedIn>
     </body>
 </html>

@@ -52,8 +52,8 @@
 									<!-- /Vue -->
 									</g:else>
 
-									<hr class="divider">
-									<div class="pt-3 pb-3">
+									<!-- hr class="divider" -->
+									<%/* div class="pt-3 pb-3">
 										<div class="text-center">
 											<div class="btn-group mt-2 mb-2">
 												<a href="https://www.facebook.com/" class="btn btn-icon brround">
@@ -71,7 +71,8 @@
 												</a>
 											</div>
 										</div>
-									</div>                                            
+									</div */%>
+									                                        
 								</div>
 							</div>
 

@@ -1,4 +1,4 @@
-//require moment@2.28.0/moment.js & /moment@2.28.0/locale/it.js
+//require moment@2.29.1/moment.js & /moment@2.29.1/locale/it.js
 
 //Moment.js
 moment.locale("it");

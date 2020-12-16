@@ -1,16 +1,7 @@
 <html>
-<!-- TODO i18n -->
 <head>
 	<meta name="layout" content="claylist"/>
     <title>Gruppi di acquisto</title>
-
-	<!-- vuex store -->
-	<script type="module" src="/assets/vue/v-store/group-store.js"></script>
-	<!-- actions -->
-	<script type="module" src="/assets/vue/v-store/group-actions.js"></script>
-	<!-- alerts -->
-	<script type="module" src="/assets/vue/v-services/toast.js"></script>
-	
 </head>
 <body>
 
@@ -126,7 +117,6 @@
 		<!--Group Listing-->
 
 	<!-- Vue Pages and Components here -->
-	<script type="module" src="/assets/vue/v-services/group-rest.js"></script>
 
     <script type="module">
 		import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
@@ -135,7 +125,7 @@
         import * as locationService from '/assets/vue/v-services/location.js';
 		import * as toastService from '/assets/vue/v-services/toast.js';
 		
-		import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+		import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
 		import { store } from '/assets/vue/v-store/group-store.js';
 		
         var GroupListApp = new Vue({

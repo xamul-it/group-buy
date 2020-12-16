@@ -1,5 +1,4 @@
 <html>
-<!-- TODO i18n -->
 <head>
 	<meta name="layout" content="claylist"/>
     <title>Ordini del gruppo di acquisto</title>
@@ -11,7 +10,7 @@
     <g:render template="/common/theme-header" model="['headerTitle':'Ordini del gruppo di acquisto']"/>
     <!--/Sliders Section-->
 
-    <!-- Group -->
+    <!-- Group orders -->
     <section class="sptb">
         <div class="container" id="v-group-orders-app">
             <div class="row">
@@ -19,7 +18,7 @@
 
                     <div class="card overflow-hidden group-head">
 
-                        <g:render template="/group/group-header"/>
+                        <g:render template="/group/group-subheader"/>
 
                         <div class="card-footer">
                             <div class="wideget-user-tab">
@@ -126,7 +125,7 @@
         </div>
     </section>
 
-    <!-- /Group -->
+    <!-- /Group orders -->
 
     <script type="module">
         import * as dhm from '/assets/vue/v-common/date-helper-mixin.js';
@@ -136,7 +135,7 @@
         import * as orderService from '/assets/vue/v-services/order-rest.js';
         import * as toastService from '/assets/vue/v-services/toast.js';
 
-        import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+        import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
         import { store } from '/assets/vue/v-store/order-store.js';
 
         var GroupOrdersApp = new Vue({

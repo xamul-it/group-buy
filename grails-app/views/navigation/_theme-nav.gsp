@@ -16,7 +16,7 @@
                         <li><a href="${createLink(controller: 'groupBuy', action: 'groupList')}">Gruppi</a></li>
                         <li><a href="${createLink(controller: 'supplier', action: 'list')}">Attivit&agrave;</a></li>
                         <!-- Blog -->
-                        <li><a href="https://www.group-buy.it/#blog"> Blog<span class="wsarrow"></span></a></li>
+                        <!-- li><a href="https://www.group-buy.it/#blog"> Blog<span class="wsarrow"></span></a></li -->
                         <!-- how it works -->
                         <!-- li aria-haspopup="true"><span class="horizontalMenu-click"><i
                                     class="horizontalMenu-arrow fa fa-angle-down"></i></span><a href="#"

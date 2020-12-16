@@ -37,7 +37,7 @@ var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
                 <div class="submit">
                     <input type="submit" :disabled="$v.$invalid" class="btn btn-primary btn-block" :value="inputParams.forgotPasswordSubmit" id="loginButton_submit">
                 </div>
-                <div class="text-center text-dark mb-0"> Forget it, <a :href="urls.loginAuthUrl">send me backto the sign in</a>.</div>
+                <div class="text-center text-dark mb-0"> Annulla, <a :href="urls.loginAuthUrl">torna al Log in</a>.</div>
 
             </form>
 

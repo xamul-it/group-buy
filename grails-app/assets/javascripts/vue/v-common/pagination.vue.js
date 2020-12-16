@@ -3,23 +3,23 @@ const { drop, every, forEach, get, isArray, map, set } = _;
 //import { drop, every, forEach, get, isArray, map, set } from 'lodash';
 
 var VPagination = Vue.component("VPagination", {
+    name: "v-pagination",
     template: `<ul class="pagination mb-5">
 
-      <li class="page-item page-prev" :class="{ disabled: isInFirstPage }">
-        <a @click="onClickPreviousPage" tabindex="-1" class="page-link btn"><</a>
+      <li class="page-item page-prev" :class="{ disabled: isInFirstPage || disablePagination }">
+        <a @click="onClickPreviousPage" tabindex="-1" class="page-link btn" ><</a>
       </li>
 
       <li v-for="page in pages" class="page-item" 
-        :class="{ active: isPageActive(page.name), disabled: page.isDisabled }">
+        :class="{ active: isPageActive(page.name), disabled: page.isDisabled || disablePagination }">
         <a @click="onClickPage(page.name)" class="btn page-link">{{ page.name }}</a>
       </li>
 
-      <li class="page-item page-next" :class="{ disabled: isInLastPage }">
+      <li class="page-item page-next" :class="{ disabled: isInLastPage || disablePagination }">
         <a @click="onClickPreviousPage" tabindex="-1" class="page-link btn">></a>
       </li>
-
+    
     </ul>`,
-
   props: {
     maxVisibleButtons: {
       type: Number,
@@ -39,7 +39,11 @@ var VPagination = Vue.component("VPagination", {
       type: Number,
       required: true
     },
-    
+    disablePagination: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
   },
   computed: {
     paginationStart: function () {
@@ -122,3 +126,5 @@ var VPagination = Vue.component("VPagination", {
  },
   
 });
+
+export default VPagination;

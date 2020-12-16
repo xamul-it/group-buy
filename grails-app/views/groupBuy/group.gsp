@@ -2,14 +2,6 @@
     <head>
         <meta name="layout" content="claylist"/>
         <title>Gruppo di acquisto</title>
-
-        <!-- vuex store -->
-	    <script type="module" src="/assets/vue/v-store/group-store.js"></script>
-	    <!-- actions -->
-	    <script type="module" src="/assets/vue/v-store/group-actions.js"></script>
-        <!-- alerts -->
-        <script type="module" src="/assets/vue/v-services/toast.js"></script>
-
     </head>
     <body>
 
@@ -26,7 +18,7 @@
                         
                         <div class="card overflow-hidden group-head">
 
-                            <g:render template="/group/group-header"/>
+                            <g:render template="/group/group-subheader"/>
                             
                             <div class="card-footer">
                                 <div class="wideget-user-tab">
@@ -176,22 +168,9 @@
         </section>
         <!-- /Group -->
 
-
-
-        <!-- link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" /-->
-        <link rel="stylesheet" href="/assets/vue/v-jslib/leaflet@1.7.1/leaflet.css" />
-
-        <!--
-        <script type="module" src="/assets/vue/v-jslib/leaflet@1.7.1/leaflet-src.esm.js"></script>
-        <script type="module" src="/assets/vue/v-jslib/vue2-leaflet@2.5.2/vue2-leaflet.min.js"></script>
-        -->
-
-        <script src="//unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-        <script src="//unpkg.com/vue2-leaflet@2.5.2/dist/vue2-leaflet.min.js"></script>
-
+        <g:render template="/includes/js-leaflet-js"/>
 
         <!-- Vue Pages and Components here -->
-        <!-- script type="module" src="/assets/vue/v-services/group-rest.js"></script -->
 
         <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
         <script type="module">

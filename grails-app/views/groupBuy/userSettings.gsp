@@ -4,11 +4,6 @@
 	<meta name="layout" content="claylist"/>
     <title>Preferenze</title>
 
-    <g:render template="/includes/js-vuelidate-js"/>
-
-    <!-- Vue Pages and Components here -->
-    <!-- script src="/assets/vue/v-group-buy/user-profile.vue.js"></script -->
-
 </head>
 <body>
 
@@ -104,6 +99,8 @@
         </div>
     </section>
     <!-- /User Dashboard -->
+
+    <g:render template="/includes/js-vuelidate-js"/>
 
     <script>
         Vue.use(window.vuelidate.default);

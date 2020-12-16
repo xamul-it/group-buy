@@ -10,6 +10,10 @@ class GroupBuyController {
 
     }
 
+    def adout() {
+
+    }
+
     def mail() {
         emailService.groupInvite()
         render "Email sent!"

@@ -1,20 +1,12 @@
-<link rel="stylesheet" href="/assets/vue/v-jslib/leaflet@1.7.1/leaflet.css" />
-
-<!--
-<script type="module" src="/assets/vue/v-jslib/leaflet@1.7.1/leaflet-src.esm.js"></script>
-<script type="module" src="/assets/vue/v-jslib/vue2-leaflet@2.5.2/vue2-leaflet.min.js"></script>
--->
-
-<script src="//unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="//unpkg.com/vue2-leaflet@2.5.2/dist/vue2-leaflet.min.js"></script>
+<g:render template="/includes/js-leaflet-js"/>
+<g:render template="/includes/js-vuelidate-js"/>
+<g:render template="/includes/js-vue-select-js"/>
 
 <!-- Vue Pages and Components here -->
-<script type="module" src="/assets/vue/v-services/group-rest.js"></script>
-<script type="module" src="/assets/vue/v-services/categories-rest.js"></script>
-<script type="module" src="/assets/vue/v-services/location.js"></script>
 
 <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
 <script type="module">
+
     import * as groupService from '/assets/vue/v-services/group-rest.js';
     import * as categoriesService from '/assets/vue/v-services/categories-rest.js';
     import * as locationService from '/assets/vue/v-services/location.js';
@@ -22,10 +14,9 @@
     
     import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
     import { store } from '/assets/vue/v-store/group-store.js';
-    //import { VueSelect.VueSelect } from '/assets/vue/v-jslib/vue-select@3.10.8/vue-select.js';
 
     //vue-select
-    // Set the components prop default to return our fresh components 
+    //Set the components prop default to return our fresh components 
     VueSelect.VueSelect.props.components.default = () => ({
         Deselect: null,
     });

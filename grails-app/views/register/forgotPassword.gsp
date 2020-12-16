@@ -45,26 +45,26 @@
 									<!-- /Vue -->
 									</g:else>
 
-                                    <hr class="divider">
-                                    <div class="pt-3 pb-3">
-                                        <div class="text-center">
-                                            <div class="btn-group mt-2 mb-2">
-                                                <a href="https://www.facebook.com/" class="btn btn-icon brround">
-                                                    <span class="fa fa-facebook"></span>
-                                                </a>
-                                            </div>
-                                            <div class="btn-group mt-2 mb-2">
-                                                <a href="https://www.google.com/gmail/" class="btn btn-icon brround">
-                                                    <span class="fa fa-google"></span>
-                                                </a>
-                                            </div>
-                                            <div class="btn-group mt-2 mb-2">
-                                                <a href="https://twitter.com/" class="btn  btn-icon brround">
-                                                    <span class="fa fa-twitter"></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>                                            
+                                    <!-- hr class="divider" -->
+									<%/* div class="pt-3 pb-3">
+										<div class="text-center">
+											<div class="btn-group mt-2 mb-2">
+												<a href="https://www.facebook.com/" class="btn btn-icon brround">
+													<span class="fa fa-facebook"></span>
+												</a>
+											</div>
+											<div class="btn-group mt-2 mb-2">
+												<a href="https://www.google.com/gmail/" class="btn btn-icon brround">
+													<span class="fa fa-google"></span>
+												</a>
+											</div>
+											<div class="btn-group mt-2 mb-2">
+												<a href="https://twitter.com/" class="btn  btn-icon brround">
+													<span class="fa fa-twitter"></span>
+												</a>
+											</div>
+										</div>
+									</div */%>                                          
                                 </div>
                             </div>
 

@@ -6,7 +6,7 @@
     import * as orderService from '/assets/vue/v-services/order-rest.js';
     import * as toastService from '/assets/vue/v-services/toast.js';
 
-    import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+    import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
     import { store } from '/assets/vue/v-store/order-store.js';
 
     var OrderEditApp = new Vue({

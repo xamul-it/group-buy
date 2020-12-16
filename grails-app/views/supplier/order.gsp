@@ -92,8 +92,8 @@
                 import * as supplierService from '/assets/vue/v-services/supplier-rest.js';
                 import * as toastService from '/assets/vue/v-services/toast.js';
 
-                import VueTitle from "/assets/vue/v-common/title.vue.js"
-                import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+                import VueTitle from '/assets/vue/v-common/title.vue.js'
+                import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
                 import { store } from '/assets/vue/v-store/order-store.js';
 
                 //vuelidate

@@ -1,18 +1,10 @@
 <html>
-<!-- TODO i18n -->
     <head>
         <meta name="layout" content="claylist"/>
         <title>Gruppo di acquisto</title>
 
-        <!-- vuex store -->
-	    <script type="module" src="/assets/vue/v-store/group-store.js"></script>
-	    <!-- actions -->
-	    <script type="module" src="/assets/vue/v-store/group-actions.js"></script>
-        <!-- alerts -->
-        <script type="module" src="/assets/vue/v-services/toast.js"></script>
         <g:render template="/includes/js-vuelidate-js"/>
         <g:render template="/includes/js-vue-select-js"/>
-
     </head>
     <body>
 
@@ -30,7 +22,7 @@
                             
                             <div class="card overflow-hidden group-head">
 
-                                <g:render template="/group/group-header"/>
+                                <g:render template="/group/group-subheader"/>
 
                                 <div class="card-footer">
                                     <div class="wideget-user-tab">

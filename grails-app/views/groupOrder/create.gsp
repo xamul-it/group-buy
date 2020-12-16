@@ -2,9 +2,6 @@
     <head>
         <meta name="layout" content="claylist"/>
         <title>Nuovo ordine</title>
-
-        <g:render template="/includes/js-vue-select-js"/>
-
     </head>
     <body>
         <sec:ifLoggedIn>
@@ -81,6 +78,7 @@
         </section>
         <!-- /Group -->
 
+        <g:render template="/includes/js-vue-select-js"/>
         <g:render template="/includes/js-vuelidate-js"/>
 
         <script type="module">
@@ -92,7 +90,7 @@
             import * as supplierService from '/assets/vue/v-services/supplier-rest.js';
             import * as toastService from '/assets/vue/v-services/toast.js';
 
-            import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+            import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
             import { store } from '/assets/vue/v-store/order-store.js';
 
             //vue-select

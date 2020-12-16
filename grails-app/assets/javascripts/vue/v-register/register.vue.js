@@ -85,7 +85,7 @@ var VRegisterRegister = Vue.component("VRegisterRegister", {
                 <div class="submit">
                     <input type="submit" :disabled="$v.$invalid" class="btn btn-primary btn-block" :value="inputParams.registerSubmit" id="loginButton_submit">
                 </div>
-                <p class="text-dark mb-0">Already have an account?<a :href="urls.loginUrl" class="text-primary ml-1">Sign In</a></p>
+                <p class="text-dark mb-0">Gi&agrave; registrato?<a :href="urls.loginUrl" class="text-primary ml-1">Log In</a></p>
 
             </form>
 

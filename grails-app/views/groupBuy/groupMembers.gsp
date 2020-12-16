@@ -1,18 +1,7 @@
 <html>
-<!-- TODO i18n -->
 <head>
 	<meta name="layout" content="claylist"/>
     <title>Gruppo di acquisto - Iscritti</title>
-
-    <!-- vuex store -->
-    <script type="module" src="/assets/vue/v-store/group-store.js"></script>
-    <!-- actions -->
-    <script type="module" src="/assets/vue/v-store/group-actions.js"></script>
-    <!-- alerts -->
-    <script type="module" src="/assets/vue/v-services/toast.js"></script>
-    <!-- vue form validation -->
-	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/vuelidate.min.js"></script>
-	<script src="/assets/vue/v-jslib/vuelidate@0.7.5/validators.min.js"></script>
 
 </head>
 <body>
@@ -21,7 +10,7 @@
     <g:render template="/common/theme-header" model="['headerTitle':'Iscritti al gruppo']"/>
     <!--/Sliders Section-->
 
-    <!-- Group -->
+    <!-- Group members -->
     <section class="sptb">
         <div class="container" id="v-group-members-app" v-cloak>
             <v-modal ref="memberInviteModal" :click-to-close="false">
@@ -65,7 +54,7 @@
 
                     <div class="card overflow-hidden group-head">
 
-                        <g:render template="/group/group-header"/>
+                        <g:render template="/group/group-subheader"/>
 
                         <div class="card-footer">
                             <div class="wideget-user-tab">
@@ -182,6 +171,7 @@
                     :total="membersTotal"
                     :per-page="2"
                     :current-page="currentPage"
+                    :disable-pagination="loading"
                     @pagechanged="onPageChange"
                     />
 
@@ -189,36 +179,21 @@
             </div>
         </div>
     </section>
-    <!-- /Group -->
-
-    <section class="sptb bg-white border-top"> 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 col-xl-6 col-md-12">
-                    <div class="sub-newsletter"> 
-                        <h3 class="mb-2"><i class="fa fa-paper-plane-o mr-2"></i> Subscribe To Our Newsletter</h3> <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p></div> </div> <div class="col-lg-5 col-xl-6 col-md-12"> <div class="input-group sub-input mt-1"> <input type="text" class="form-control input-lg " placeholder="Enter your Email"> <div class="input-group-append "> <button type="button" class="btn btn-primary btn-lg br-tr-3  br-br-3"> Subscribe </button> </div> 
-                    </div> 
-                </div>
-            </div> 
-        </div>
-    </section>
+    <!-- /Group members -->
     
+	<g:render template="/includes/js-vuelidate-js"/>
+
     <!-- Vue Pages and Components here -->
-    <script type="module" src="/assets/vue/v-services/group-rest.js"></script>
-    <script type="module" src="/assets/vue/v-services/toast.js"></script>
-
-    <script type="module" src="/assets/vue/v-group/group-member-status-mixin.js"></script>
-
-    <script src="/assets/vue/v-common/pagination.vue.js"></script>
 
     <script type="module">
         import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
         import * as gms from '/assets/vue/v-group/group-member-status-mixin.js';
 
+        import VPagination from '/assets/vue/v-common/pagination.vue.js';
         import * as groupService from '/assets/vue/v-services/group-rest.js';
         import * as toastService from '/assets/vue/v-services/toast.js';
 
-        import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+        import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
         import { store } from '/assets/vue/v-store/group-store.js';
 
         //vuelidate
@@ -287,13 +262,13 @@
                 }
             },
             watch: {
-                currentPage: function(newPage, oldPage) {
+                currentPage: async function(newPage, oldPage) {
                     if(newPage > oldPage)
                         this.offset = this.max * oldPage
                     else if(newPage < oldPage)
                         this.offset = this.max * (newPage -1)
 
-                    this.fetchGroupMembers(this.groupStatusId)
+                    await this.fetchGroupMembers(this.groupStatusId)
                 },
                 groupStatusId: async function(newId, oldId) {
                     if(newId != oldId) {

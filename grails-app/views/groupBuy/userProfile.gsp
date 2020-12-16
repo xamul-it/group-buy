@@ -1,14 +1,7 @@
 <html>
-<!-- TODO i18n -->
 <head>
 	<meta name="layout" content="claylist"/>
     <title>Profilo utente</title>
-
-    <script src="https://unpkg.com/vuelidate@0.7.5/dist/vuelidate.min.js"></script>
-    <script src="https://unpkg.com/vuelidate@0.7.5/dist/validators.min.js"></script>
-
-    <!-- Vue Pages and Components here -->
-    <!-- script src="/assets/vue/v-group-buy/user-profile.vue.js"></script -->
 
 </head>
 <body>
@@ -116,6 +109,8 @@
         </div>
     </section>
     <!-- /User Dashboard -->
+
+    <g:render template="/includes/js-vuelidate-js"/>
 
     <script>
         Vue.use(window.vuelidate.default);
