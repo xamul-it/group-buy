@@ -3,7 +3,7 @@
         <meta name="layout" content="claylist"/>
         <title>Nuovo ordine</title>
 
-        <g:render template="/includes/js-vue-select-js"/>
+        
 
     </head>
     <body>
@@ -81,6 +81,8 @@
             </section>
             <!-- /Order -->
         </div>
+        
+            <g:render template="/includes/js-vue-select-js"/>
             <g:render template="/includes/js-vuelidate-js"/>
 
             <script type="module">

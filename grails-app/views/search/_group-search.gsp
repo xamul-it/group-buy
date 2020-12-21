@@ -97,8 +97,6 @@
     <g:render template="/includes/js-vuelidate-js"/>
 
     <!-- Vue Pages and Components here -->
-    <script type="module" src="/assets/vue/v-services/location.js"></script>
-    <script type="module" src="/assets/vue/v-services/categories-rest.js"></script>
 
     <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
     <script type="module">
@@ -106,7 +104,7 @@
         import * as categoriesService from '/assets/vue/v-services/categories-rest.js';
         import * as toastService from '/assets/vue/v-services/toast.js';
 
-        import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+        import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
         import { store } from '/assets/vue/v-store/group-store.js';
 
         //vue-select
