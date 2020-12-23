@@ -1,4 +1,4 @@
-//require axios @0.19.2
+//require axios
 
 //https://operations.osmfoundation.org/policies/nominatim/
 const REVERSE_ENDPOINT = "https://nominatim.openstreetmap.org/reverse"; //https://nominatim.org/release-docs/develop/api/Reverse/
