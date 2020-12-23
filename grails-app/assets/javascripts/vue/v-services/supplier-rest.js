@@ -34,7 +34,16 @@ DELETE      /api/v1/suppliers/${id}      delete
 */
 //https://docs.grails.org/latest/guide/REST.html#extendingRestfulController
 
-export async function list({ max, offset = 0, sort = "", order = "", q = "" }) {
+export async function list({ 
+  max,
+  offset = 0,
+  sort = "",
+  order = "",
+  q = "",
+  latitude = 0.0,
+  longitude = 0.0,
+  categoryId = 0,
+ }) {
   const params = new URLSearchParams();
 
   console.log(
@@ -48,7 +57,13 @@ export async function list({ max, offset = 0, sort = "", order = "", q = "" }) {
     "order",
     order,
     "q",
-    q
+    q,
+    "latitude",
+    latitude,
+    "longitude",
+    longitude,
+    "categoryId",
+    categoryId
   );
 
   if (!_.isUndefined(max)) params.append("max", max);
@@ -57,7 +72,13 @@ export async function list({ max, offset = 0, sort = "", order = "", q = "" }) {
   if (!_.isUndefined(sort) && sort != "") params.append("sort", sort);
   if (!_.isUndefined(order) && order != "") params.append("order", order);
 
-  if (!_.isUndefined(q) && q != "") params.append("q", q);
+  if (!_.isUndefined(q) && q != "") params.append("src", q);
+  if (!_.isUndefined(latitude) && latitude != 0.0)
+    params.append("latitude", latitude);
+  if (!_.isUndefined(longitude) && longitude != 0.0)
+    params.append("longitude", longitude);
+  if (!_.isUndefined(categoryId) && categoryId != 0)
+    params.append("categoryId", categoryId);
 
   const { data, headers, status, statusText } = await axiosInstance.get(
     REST_ENDPOINT,
@@ -67,7 +88,7 @@ export async function list({ max, offset = 0, sort = "", order = "", q = "" }) {
   );
 
   console.log(
-    "orders data",
+    "supplier data",
     data,
     "params",
     params.toString(),

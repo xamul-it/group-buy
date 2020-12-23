@@ -246,7 +246,7 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
       }
     },
     async search(lbSearch = false) {
-      if(lbSearch) {
+      if(typeof lbSearch === 'boolean' && lbSearch) {
         await this.fetchAddress()
       }
       this.$emit('search')
