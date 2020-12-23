@@ -1,28 +1,83 @@
 <html>
-<!-- TODO i18n -->
 <head>
 	<meta name="layout" content="claylist"/>
     <title>Attività commerciali</title>
-	
 </head>
 <body>
 
-	<!--Sliders Section-->
-	<g:render template="/search/supplier-search" />
-    <!--/Sliders Section-->
+	<div class="app" id="v-suppliers-app" v-cloak>
 
-    <!--Supplier listing-->
+		<!--Sliders Section-->
+		<section class="theme-header">
+			<div class="bannerimg cover-image bg-background sptb-1" >
+
+				<div class="header-text1 mb-0">
+				
+					<div class="container">
+
+						<div class="row">
+							<div class="col-xl-9 col-lg-12 col-md-12 d-block mx-auto">
+								<div class="search-background bg-transparent">
+
+									<vue-lb-search-form ref="lbSearchForm"
+										:options="supplierCategories"
+										label="name"
+										select-placeholder="Categorie"
+										keyword-placeholder="Nome negozio o Keyword"
+										address-placeholder="Luogo / indirizzo"
+										use-position-text="Usa la mia posizione"
+										search-enabled-text="Cerca"
+										search-disabled-text="Inserire una keyword o un indirizzo"
+										reset-search-text="Annulla ricerca"
+										:is-debug="isDebug"
+										@search="searchSuppliers"
+										@keyword-changed="keywordChanged"
+										@address-changed="addressChanged"
+										@select-changed="categoryChanged"
+										@dirty-changed="dirtyChanged"
+										@latitude-changed="latitudeChanged"
+										@longitude-changed="longitudeChanged"
+										@error="handleError"
+										>
+									</vue-search-form>
+
+								</div>
+
+							</div>
+						</div>
+				
+					</div>
+				</div><!-- /header-text --> 
+
+			</div>
+		</section>
+		<!--/Sliders Section-->
+
+    	<!--Supplier listing-->
 		<section class="sptb">
-			<div class="container" id="v-suppliers-app" v-cloak>
+			<div class="container">
 				<v-modal ref="registerLoginModal"></v-modal>
 				<div class="row">
+
+					<div v-if="suppliersCount==0 && !supplierListLoaded" class="col-md-12 col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="jumbotron">
+									<h1 class="display-3">Dove sei?</h1>
+									<p class="lead">Inserisci il tuo indirizzo o posizione per vedere le attività nelle vicinanze.</p>
+									<p class="lead m-0"> <a @click="$refs.lbSearchForm.search(true)" class="btn btn-primary btn-lg text-white" role="button">Cerca nelle vicinanze</a> </p>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div v-if="suppliersCount==0 && supplierListLoaded" class="col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-body">
 								<div class="jumbotron">
 									<h1 class="display-3">Ops!</h1>
 									<p class="lead">Nessuna attività trovata, prova una nuova ricerca.</p>
-									<p class="lead m-0"> <a @click="resetSearch()" class="btn btn-primary btn-lg text-white" role="button">Annulla ricerca</a> </p>
+									<p class="lead m-0"> <a @click="$refs.lbSearchForm.resetSearch()" class="btn btn-primary btn-lg text-white" role="button">Annulla ricerca</a> </p>
 								</div>
 							</div>
 						</div>
@@ -39,11 +94,11 @@
 											<div class="bg-white p-5 item2-gl-nav d-flex">
 												<h6 class="mb-0 mt-2"> 1 - {{suppliersCount}} di {{ suppliersTotal }}</h6>
                                                 <div class="nav item2-gl-menu ml-auto"></div>
-												<!-- ul class="nav item2-gl-menu ml-auto">
+												<%/*!-- ul class="nav item2-gl-menu ml-auto">
 													<li class=""><a href="#tab-11" class="active show" data-toggle="tab" title="List style"><i class="fa fa-list"></i></a></li>
 													<li><a href="#tab-12" data-toggle="tab" class="" title="Grid"><i class="fa fa-th"></i></a></li>
-												</ul -->
-												<!-- div class="d-flex">
+												</ul --*/%>
+												<%/*!-- div class="d-flex">
 													<label class="mr-2 mt-1 mb-sm-1" style="white-space: nowrap;">Ordina per:</label>
 													<select name="sort" 
 														class="form-control select-sm w-70"
@@ -53,7 +108,7 @@
 														<option value="oldest">Più vecchio</option>
 														<option value="nearest">Più vicino</option>
 													</select>
-												</div -->
+												</div --*/%>
 											</div>
 										</div>
 									</div>
@@ -117,54 +172,6 @@
 											</div>
 										</div>
 
-										<%/* 
-										<div class="tab-pane active" id="tab-11">
-                                            <!-- /list item -->
-											<div v-for="(group, index) in supplierList" class="card overflow-hidden">
-												<div class="d-md-flex">
-													<div class="item-card9-img">
-														<div class="arrow-ribbon bg-primary">{{ group.category.name }}</div>
-														<div class="item-card9-imgs">
-															<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id"></a>
-															<img :src="'/assets/theme/img/categories/category-'+group.category.id+'.jpg'" :alt="group.category.name" :title="group.category.name" class="cover-image">
-														</div>
-														<div class="item-card9-icons">
-															<sec:ifNotLoggedIn>
-																<a class="item-card9-icons1 subscription" style="cursor:pointer" @click="$refs.registerLoginModal.openModal()"> <i class="fa fa fa-heart-o"></i></a>
-															</sec:ifNotLoggedIn>
-															<sec:ifLoggedIn>
-																<a v-if="group.administrator" class="item-card9-icons1 ownership" title="Amministra gruppo"
-																	:href="'${createLink(controller: 'groupBuy', action: 'groupEdit')}/' + group.id"> <i class="fa fa fa-group"></i></a>
-																<a v-else v-on="!group.member ? { click:()=>subscribe(group.id, index) }:{ click:()=>unsubscribe(group.id, index) }" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer"> <i class="fa fa fa-heart-o"></i></a>
-                            								</sec:ifLoggedIn>
-
-														</div>
-													</div>
-													<div class="card border-0 mb-0">
-														<div class="card-body ">
-															<div class="item-card9">
-																<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id" class="text-dark"><h4 class="font-weight-semibold mt-1">{{ group.name }}</h4></a>
-																<p class="mb-0 leading-tight text-dark">{{ group.description }}</p>
-															</div>
-														</div>
-														<div class="card-footer pt-4 pb-4">
-															<div class="item-card2-footer d-sm-flex">
-
-																<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id" title="Creato"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </a>
-
-																<div class="ml-auto">
-																	<a class="location" :title="addressFormat(group.deliveryAddress)"><i class="fa fa-map-marker text-muted mr-1"></i> {{ group.deliveryAddress.city }}</a>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-                                            <!-- /list item -->
-											
-										</div>
-										*/%>
-										
 									</div>
 								</div>
 
@@ -177,15 +184,24 @@
 			</div>
 		</section>
 		<!--Supplier Listing-->
+	</div>
+
+	<g:render template="/includes/js-vuelidate-js"/>
+	<g:render template="/includes/js-vue-select-js"/>
 
     <script type="module">
 		import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
 
 		import * as supplierService from '/assets/vue/v-services/supplier-rest.js';
+		import * as supplierCategoriesService from '/assets/vue/v-services/common/read-only-resource-rest.js';
+		supplierCategoriesService.setResourceEndpoint("supplierCategories");
+		supplierCategoriesService.set404Message("Nessuna categoria trovata");
+
         import * as locationService from '/assets/vue/v-services/location.js';
 		import * as toastService from '/assets/vue/v-services/toast.js';
 		
-		import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
+		import VueLBSearchForm from '/assets/vue/v-common/location-based-search-form.vue.js'
+		import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
 		import { store } from '/assets/vue/v-store/supplier-store.js';
 		
         var SupplierListApp = new Vue({
@@ -194,6 +210,7 @@
 			mixins: [dh.dateHelperMixin],
 			components: {
 				'v-modal': VModal,
+				'vue-lb-search-form': VueLBSearchForm,
 			},
 			store,
             data: {
@@ -204,20 +221,30 @@
 				//all needed data fields from vuex store
                 //mapped with vuex-map-fields
                 ...mapFields([
+					'supplier.supplierCategories',
 					'supplier.supplierList',
 					'pagination.total',
 					'pagination.offset',
 					'pagination.max',
 					'sort.sort',
 					'sort.order',
-					'search.search',
-					'search.searchDirty',
-					'search.reset',
+					'search.searchQuery',
+                    'search.searchAddressString',
+                    'search.searchCategoryId',
+                    'search.searchLatitude',
+                    'search.searchLongitude',
+                    'search.search',
+                    'search.searchDirty',
+                    'search.reset',
 					'loading',
 					'error',
 					'success',
-                    'debug',
+					'debug',
+					'geolocationSupported',
 				]),
+				isDebug: function () {
+                    return this.debug
+                },
                 suppliersCount() {
 					console.log('suppliersCount', this.supplierList)
                     if(_.isArray(this.supplierList))
@@ -274,15 +301,62 @@
             async mounted() {
 				this.debug = ${isDebug};
 				//will execute at pageload
-				await this.fetchSupplierList(true);
-				this.supplierListLoaded = true
-				this.infiniteScroll();
-            },
+				this.supplierCategories = [{id:0, name:"Tutte le categorie"}]
+                this.fetchSupplierCategories();
+
+				//TODO ask for position
+
+				//await this.fetchSupplierList(true);
+				//this.supplierListLoaded = true
+				//this.infiniteScroll();
+			},
             methods: {
 				...Vuex.mapActions([
+					'fetchSupplierCategoriesAction',
 					'fetchSupplierListAction',
 					'fetchCoordinatesAction',
-                ]),
+				]),
+				keywordChanged(newKeyword) {
+					this.searchQuery = newKeyword;
+				},
+				addressChanged(newAddress) {
+					console.log("addressChanged", newAddress)
+					this.searchAddressString = newAddress;
+				},
+				categoryChanged(newCategory) {
+					this.searchCategoryId = newCategory;
+				},
+				latitudeChanged(newLatitude) {
+					this.searchLatitude = newLatitude;
+				},
+				longitudeChanged(newLongitude) {
+					this.searchLongitude = newLongitude;
+				},
+				dirtyChanged(newDirtyState) {
+					console.log("dirtyChanged", newDirtyState)
+				},
+				handleError(errorMessage) {
+					this.error = errorMessage;
+				},
+				async fetchSupplierCategories() {
+					this.fetchSupplierCategoriesAction({service: supplierCategoriesService})
+				},
+				async searchSuppliers() {
+                    //if(this.isDebug)
+                        console.log("searchSuppliers");
+					/*
+                    if(!_.isUndefined(this.searchAddressString) && this.searchAddressString != "") {
+                        //get coordinates for searchAddressString
+                        await this.fetchCoordinatesAction({service: locationService, addressString: this.searchAddressString});
+                    }
+
+                    // toggle serch
+					this.search = true;
+					*/
+					await this.fetchSupplierList(true);
+					this.supplierListLoaded = true
+					//this.infiniteScroll();
+                },
 				async fetchSupplierList(/*boolean*/ reload = false) {
 					await this.fetchSupplierListAction({service: supplierService, reload: reload})
 				},
@@ -313,9 +387,6 @@
 					
 					return formattedAddress
 				},
-				resetSearch() {
-					this.reset = true
-                },
             },
         })        
     </script>
