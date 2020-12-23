@@ -191,7 +191,7 @@ environments:
 ---
 grails:
   mail:
-    port: 3025 #port: 1025
+    port: 1025 #port: 1025
     host: vm8783.seewebcloud.it #host: localhost
     #username: "noreply@group-buy.it"
     #password: "group-buy@noreply"

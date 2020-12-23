@@ -1,0 +1,2 @@
+"id";"version";"password_expired";"username";"account_locked";"password";"account_expired";"enabled";"email"
+1;0;"0";"admin@group-buy.it";"0";"{bcrypt}$2a$10$T4iu.k3sFy1ruYHFt2pAtOsVpMBG/U5hZQ9UVMeQKIvGybw8.MRBa";"0";"1";"admin@group-buy.it"
