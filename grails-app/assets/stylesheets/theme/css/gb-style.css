@@ -151,6 +151,32 @@
   border-color: #868e96;
 }
 
+/* Mobile navigation icons */
+
+.mobile-nav-icon-button {
+  font-size: 28px;
+  line-height: 30px;             
+  transition: all 0.4s ease-in-out 0s;
+  z-index: 102;
+  padding: 11px 14px;
+}
+.mobile-nav-icon-button .fa,
+.mobile-nav-icon-button .mdi,
+.mobile-nav-icon-button .zmdi {
+  vertical-align: top;
+  margin-top: 4px;
+}
+.mobile-nav-icon-button-left {
+  position: absolute;
+  top: 0px;
+  left: 5px;
+}
+.mobile-nav-icon-button-right {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
+
 /* media queries */
 @media print {
   .no-print,
@@ -442,3 +468,5 @@ label .location-gps.fa-spinner {
   font-size: 12px;
 }
 /* end forms */
+
+

@@ -4,7 +4,7 @@
         <title>Group-buy</title>
     </head>
     <body>
-        <div id="v-gb-app" v-cloak>
+        <div>
             <!--Sliders Section-->
             <g:render template="/common/theme-header" model="['headerTitle':'Group-buy']"/>
             <!--/Sliders Section-->
@@ -12,12 +12,11 @@
             <!-- What -->
             <section class="sptb">
                 <div class="container">
-                    <v-modal ref="registerLoginModal"></v-modal>
                     
                     <div class="container">
                         <div class="text-justify">
                             <h2 class="mb-4">Cos'&egrave; Group-buy?</h2>
-                            <h4 class="leading-normal"> PER AVVICINARE I NEGOZI AI CLIENTI MANTENENDO LE DISTANZE</h4>
+                            <h4 class="leading-normal"> PER AVVICINARE I NEGOZI AI CLIENTI MANTENENDO LE DISTANZE </h4>
                             <p class="leading-normal">
                                 Cerchiamo di mantenere vivo il commercio al dettaglio in un periodo in cui il commercio elettronico rischia di distruggere il tessuto commerciale al dettaglio e il legame umano che si crea tra negoziante e cliente.
                             </p>
@@ -30,8 +29,6 @@
                         </div>
                     </div>
 
-                    
-                    
                 </div>
             </section>
             <!-- /What -->
@@ -205,26 +202,7 @@
             </section>
             <!-- /Why -->
 
-
         </div>
-
-        <!-- require vue@2.6.11 lodash@4.17.19 axios@0.19.2 -->
-        <script type="module">
-
-            var GBApp = new Vue({
-                el: '#v-gb-app',
-                name: 'GB',
-                mixins: [],
-                components: {
-                    'v-modal': VModal,
-                },
-                data: {},
-                computed: {},
-                mounted() {},
-                watch: {},
-                methods: {},
-            })        
-        </script>
 
     </body>
 </html>

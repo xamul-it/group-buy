@@ -77,8 +77,6 @@
 
 		<g:render template="/navigation/theme-topbar" />
 
-		<g:render template="/navigation/theme-nav" />
-
         <g:layoutBody/>
 
         <g:render template="/navigation/theme-footer" />
