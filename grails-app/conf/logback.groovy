@@ -32,12 +32,12 @@ if (Environment.isDevelopmentMode() && targetDir != null) {
             pattern = "%level %logger - %msg%n"
         }
     }
-    logger 'StackTrace', ERROR, ['FULL_STACKTRACE'], false
-    //logger 'org.springframework.security', DEBUG, ['STDOUT'], false
-    //logger 'grails.plugin.springsecurity', DEBUG, ['STDOUT'], false
+    logger 'StackTrace', ERROR, ['FULL_STACKTRACE'], true
+    logger 'org.springframework.security', DEBUG, ['STDOUT'], true
+    logger 'grails.plugin.springsecurity', DEBUG, ['STDOUT'], true
     logger 'org.codehaus.groovy.grails.web.mapping', DEBUG, ['STDOUT'], false
     logger 'grails.views', DEBUG, ['STDOUT'], false
-    logger 'gb', DEBUG, ['STDOUT'], false
+    logger 'gb', DEBUG, ['STDOUT'], true
 }
 root(ERROR, ['STDOUT'])
 

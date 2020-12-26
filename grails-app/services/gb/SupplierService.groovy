@@ -31,9 +31,6 @@ abstract class SupplierService implements ISupplierService {
     void onSupplierPreInsert(PreInsertEvent event) {
     }
 
-    Long count (Map params){
-        Supplier.count()
-    }
 
     List<Supplier> autocomplete(String query) {
         def l = Supplier.findAllByNameLike("%"+query+"%")
@@ -85,6 +82,64 @@ abstract class SupplierService implements ISupplierService {
         }
         return supplier.save()
 
+    }
+
+    /**
+     *
+     * @param params
+     *  latitude
+     *  longitude
+     *  src
+     * @return
+     */
+    def query(Map params){
+        def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
+        log.debug "QUERY by user $userId and $params"
+        def qparam= [:]
+        String q = "from Supplier as s where 1=1 "
+        if (params.src) {
+            q += "and (s.description like :src or " + "s.name like :src ) "
+            qparam.src = "%$params.src%"
+        }
+        if (params.latitude && params.longitude) {
+
+//            Latitude: 1 deg = 110.574 km
+//            Longitude: 1 deg = 111.320*cos(latitude) km
+
+            q += "and (abs(s.lat - :latitude)< 0.1 and abs(s.lon - :longitude)< 0.1) "
+            qparam.latitude = Double.valueOf(params.latitude)
+            qparam.longitude = Double.valueOf(params.longitude)
+        }
+        if (params.categoryId) {
+            q += "and s.category.id=  :categoryId "
+            qparam.categoryId = "$params.categoryId".toLong()
+        }
+        q += "order by (ABS(s.lat-$params.latitude) + ABS(s.lon-$params.longitude)) asc"
+        log.debug("$params.categoryId : $qparam.categoryId Query $q Params: $qparam")
+        return [qparam,q]
+    }
+
+    Long count (Map params){
+        def l
+        def qparam= [:]
+        String q
+        (qparam,q) = query(params)
+        def r = Supplier.executeQuery("select count(s) "+q , qparam);
+        return r[0]
+    }
+
+    List<Supplier> list(Map params){
+        def l
+        def qparam= [:]
+        String q
+        (qparam,q) = query(params)
+
+        qparam.max=params.max
+        qparam.offset=params.offset
+        def res = Supplier.findAll(q , qparam)
+        log.debug("Risultato "+params.src!=null ? "++ $params.src":"--"+" $res")
+
+        return res
     }
 
 }
