@@ -87,5 +87,8 @@
 					</div>
 				</div>
 			</div>
+
+			<g:render template="/navigation/theme-nav" />
+
 		</div>
 		<!--/Topbar-->
