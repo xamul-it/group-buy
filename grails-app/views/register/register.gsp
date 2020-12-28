@@ -8,27 +8,37 @@
 	<!--Sliders Section-->
     <g:render template="/common/theme-header" model="['headerTitle':message(code:'spring.security.ui.register.title')]"/>
     <!--/Sliders Section-->
+	flash> <g:message code="${flash}" args="${flash}"
+			   default="${flash}"/>
+----
 
-    <!--Register-Section-->
+	<s2ui:formContainer type='register' focus='username' width='800px'>
+	<s2ui:form beanName='registerCommand'>
+		${registerCommand.errors['password']}
+	<s2ui:textFieldRow name='password' size='40' labelCodeDefault='E-mail'/>
+	</s2ui:form>
+	</s2ui:formContainer>
+	>flash
+	<!--Register-Section-->
     <section class="sptb">
         <div class="container customerpage">
             <div class="row">
                 <div class="col-lg-5 col-xl-4 col-md-6 d-block mx-auto">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-md-12 register-right">
-                           
+
 							<div class="single-page  w-100  p-0">
 								<div class="wrapper wrapper2" id="v-login-auth-app">
 									<g:if test='${emailSent}'>
 										<br/>
 										<p class="text-dark mb-0">
-											<g:message code='spring.security.ui.register.sent'/>	
+											<g:message code='spring.security.ui.register.sent'/>
 										</p>
 										<br/>
 									</g:if>
 									<g:else>
 									<!-- Vue -->
-										<v-register-register 
+										<v-register-register
 											:urls="{
 													'registerUrl':'<g:createLink controller="register" action="register" />',
 													'loginUrl':'<g:createLink controller="login" action="auth" />'
@@ -42,10 +52,13 @@
 														'registerSubmit':'${message(code:'spring.security.ui.register.submit')}',
 														'loginforgotPassword':'${message(code:'spring.security.ui.login.forgotPassword')}',
 														'loginRegister':'${message(code:'spring.security.ui.login.register')}',
-														'usernameParameter':'${securityConfig.apf.usernameParameter}', 
+														'usernameParameter':'${securityConfig.apf.usernameParameter}',
 														'emailParameter':'email',
 														'passwordParameter':'${securityConfig.apf.passwordParameter}',
 														'passwordAgainParameter':'password2',
+														'email':'${registerCommand.email}',
+														'emailError':'${registerCommand.errors['email']!=null ? true : false}',
+														'passwordError':'${registerCommand.errors['password']!=null ? true : false}'
 														}"
 											v-slot:default="sp">
 										</v-register-register>
@@ -72,7 +85,7 @@
 											</div>
 										</div>
 									</div */%>
-									                                        
+
 								</div>
 							</div>
 
@@ -94,7 +107,7 @@
 
     <script>
         Vue.use(window.vuelidate.default);
-		
+
 		Vue.component('password', Password);
 
         var app = new Vue({
@@ -104,7 +117,7 @@
             },
             data: {
             },
-        })        
+        })
     </script>
 
 </body>
