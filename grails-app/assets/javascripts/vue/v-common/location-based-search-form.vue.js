@@ -81,7 +81,7 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
                 </div>
                 
                 <div v-if="$v.$anyDirty" class="col-xl-1 col-lg-1 col-md-12 mb-0">
-                    <button class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0"
+                    <button class="btn btn-lg btn-block btn-secondary br-tl-md-0 br-bl-md-0"
                         @click="resetSearch"
                         :title="resetSearchText" 
                         ><i class="fa fa-times-circle"></i></button>
@@ -177,28 +177,28 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
         this.$emit('address-changed', this.address);
       },
       keyword: function(newKeyword) {
-          if(!_.isUndefined(newKeyword) && newKeyword!= "" ) {
-              this.setSearchDirty()
-          }
-          this.$emit('keyword-changed', this.keyword);
+        if(!_.isUndefined(newKeyword) && newKeyword!= "" ) {
+            this.setSearchDirty()
+        }
+        this.$emit('keyword-changed', this.keyword);
       },
       optionId: function(newId) {
-          if(newId>0) {
-              this.setSearchDirty()
-          }
-          this.$emit('select-changed', this.optionId);
+        if(newId>0) {
+            this.setSearchDirty()
+        }
+        this.$emit('select-changed', this.optionId);
       },
       locationLat: function(newLocationLat) {
-          if(newLocationLat!=0.0) {
-              this.setSearchDirty()
-          }
-          this.$emit('latitude-changed', this.locationLat);
+        if(newLocationLat!=0.0) {
+            this.setSearchDirty()
+        }
+        this.$emit('latitude-changed', this.locationLat);
       },
       locationLon: function(newLocationLon) {
-          if(newLocationLon!=0.0) {
-              this.setSearchDirty()
-          }
-          this.$emit('longitude-changed', this.locationLon);
+        if(newLocationLon!=0.0) {
+            this.setSearchDirty()
+        }
+        this.$emit('longitude-changed', this.locationLon);
       },
       searchDirty: function(newDirtyState) {
         this.$emit('dirty-changed', this.searchDirty);
