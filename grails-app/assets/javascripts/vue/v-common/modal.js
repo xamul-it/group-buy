@@ -13,11 +13,13 @@ const VModal = Vue.component("VModal", {
 			role="dialog" 
 			style="display: block;" 
 			aria-modal="true"
-			v-on:click.prevent="clickToClose ? showDialog=false: null">
-
+			v-on:click="clickToClose ? showDialog=false: null"
+			>
+			<!-- v-on:click.prevent="clickToClose ? showDialog=false: null" -->
+			  
 			<transition name="modal-dialog" @after-leave="closeModal()">
 
-				<div v-if="showDialog" class="modal-dialog" role="document">
+				<div v-if="showDialog" class="modal-dialog">
 					<div class="modal-content"> 
 						<div class="modal-header">
 							<slot name="header">
