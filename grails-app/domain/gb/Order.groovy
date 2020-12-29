@@ -2,7 +2,6 @@ package gb
 import java.util.UUID
 
 class Order {
-
 	SortedSet orderVoice
 	Supplier supplier
 	Date orderDate
@@ -10,13 +9,12 @@ class Order {
 	String deliveryType
 	String description
 	OrderStatus status
+	User user
 	String token
 	transient String statusName
 
 
 	transient springSecurityService
-
-//	transient IUserService userService;
 
 	static belongsTo = [group: Group]
 	
@@ -29,6 +27,7 @@ class Order {
 		deliveryType nullable: true
 		token nullable:true
 		status nullable:true
+		user nullable:false
     }
 	
 	static mapping = {
@@ -48,4 +47,14 @@ class Order {
 		}
 
 	}
+
+	def afterInsert(){
+	}
+
+	def beforeValidate () {
+		if (id==null) {
+			user= User.get(springSecurityService.getPrincipal().id)
+		}
+	}
+
 }

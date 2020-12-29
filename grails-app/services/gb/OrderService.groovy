@@ -65,13 +65,21 @@ abstract class OrderService implements IOrderService {
     }
 
     Order changeStatusTo(Map params, OrderStatus orderStatus) {
-
         def group = Group.findById(params.groupId)
-
         def order = group ? Order.findByGroupAndId(group, params.id) : Order.findByToken(params.id)
-
         order.status = orderStatus
+        OrderStatusLog statusLog = new OrderStatusLog(order: order,
+                status: orderStatus,
+                date:new Date(),
+                user:springSecurityService.getCurrentUser()).save()
         order.save()
+    }
+
+    List<OrderStatusLog> statusLog (Map params){
+        def order = OderStatusLog.findById(params.orderId)
+        def ordersList = []
+        ordersList = group ? OrderStatusLog.findAllByOrder(order, params) : []
+        ordersList
     }
 
 

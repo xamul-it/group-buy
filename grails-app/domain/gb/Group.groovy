@@ -28,7 +28,6 @@ class Group {
 	transient Long memberCount; //transient
 	transient Boolean administrator; //transient - true if logged user is group owner
 
-	@Autowired
 	transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
 	transient Boolean isMember
@@ -38,7 +37,7 @@ class Group {
 	static transients = ['member','isMember', 'administrator', 'memberStatus', 'memberCount']
 
 	static constraints = {
-		name nullable: false, blank: false, size: 5..20, unique: true
+		name nullable: false, blank: false, size: 5..255, unique: true
 
 		facebook size: 5..255, nullable: true
 		twitter size: 5..255, nullable: true

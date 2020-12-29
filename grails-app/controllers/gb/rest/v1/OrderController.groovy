@@ -5,6 +5,7 @@ import grails.gorm.transactions.Transactional
 import grails.rest.RestfulController
 
 import gb.Order
+import gb.OrderStatusLog
 import gb.OrderStatus
 import gb.OrderService
 
@@ -95,5 +96,28 @@ class OrderController extends RestfulController<Order> {
         def o = orderService.changeStatusTo(params, OrderStatus.DELIVERED)
         respond o, [status: OK]
     }
+
+    /**
+     * Sets order status to DELIVERED
+     */
+    @Transactional
+    def statusLog() {
+        def o = orderService.statusLog(params)
+        respond o, [status: OK]
+    }
+
+    @Override
+    protected Order createResource() {
+        Order order = resource.newInstance()
+        order.springSecurityService = springSecurityService
+        bindData order, getObjectToBind()
+        OrderStatusLog statusLog = new OrderStatusLog(order: order,
+                status: OrderStatus.ACTIVE,
+                date:new Date(),
+                user:1).save()
+
+        order
+    }
+
 
 }

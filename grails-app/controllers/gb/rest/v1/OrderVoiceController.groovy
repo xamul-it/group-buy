@@ -48,6 +48,13 @@ class OrderVoiceController extends RestfulController<OrderVoice> {
         orderVoiceService.get(params)
     }
 
+    protected OrderVoice createResource() {
+        OrderVoice orderVoice = resource.newInstance()
+        orderVoice.springSecurityService = springSecurityService
+        bindData orderVoice, getObjectToBind()
+
+        orderVoice
+    }
 
 
 }
