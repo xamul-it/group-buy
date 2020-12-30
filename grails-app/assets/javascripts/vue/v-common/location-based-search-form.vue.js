@@ -245,9 +245,28 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
         this.locationLoading = false
       }
     },
+    async fetchCoordinates() {
+      try {
+        this.locationLat = 0.0
+        this.locationLon = 0.0
+        let coords = await locationService.coordinatesByAddress(this.address);
+        if (!_.isNumber(coords.latitude)) {
+          coords.latitude = _.toNumber(coords.latitude);
+          coords.longitude = _.toNumber(coords.longitude);
+        }
+        this.locationLat = coords.latitude
+        this.locationLon = coords.longitude
+      } catch (error) {
+        this.$emit('error', error.message)
+      }
+    },
     async search(lbSearch = false) {
       if(typeof lbSearch === 'boolean' && lbSearch) {
         await this.fetchAddress()
+      } else {
+        if(!_.isUndefined(this.address) && this.address != "") {
+          await this.fetchCoordinates()
+        }
       }
       this.$emit('search')
     },
