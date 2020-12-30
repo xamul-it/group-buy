@@ -427,7 +427,7 @@ label .location-gps.fa-spinner {
 }
 /* end vue-select */
 
-/* login form */
+/* login register forgot password forms */
 .single-page .wrapper label.custom-control.custom-checkbox {
   top: 0px;
   margin-bottom: 0.25rem;
@@ -447,9 +447,17 @@ label .location-gps.fa-spinner {
   input[type="checkbox"] {
   user-select: none !important;
   pointer-events: none !important;
+  width: auto;
 }
 
-/* end login form */
+.single-page .wrapper input.custom-checkbox {
+  width: auto;
+}
+
+.single-page .wrapper label.custom-control.custom-checkbox .custom-control-label a {
+  pointer-events: auto !important;
+}
+/* end login register forgot password forms */
 
 /* forms */
 .custom-switch {

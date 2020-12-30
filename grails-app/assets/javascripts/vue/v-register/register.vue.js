@@ -99,7 +99,7 @@ var VRegisterRegister = Vue.component("VRegisterRegister", {
                   
                   <label class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" :name="tos" id="tos" checked="checked" v-model="tos">
-                    <span class="custom-control-label">Accetto i termini di servizio.</span>
+                    <span class="custom-control-label">Ho letto e accetto i <a href="/groupBuy/tos" target="_blank">termini di servizio</a>.</span>
                   </label>
 
                 </div>
@@ -108,7 +108,7 @@ var VRegisterRegister = Vue.component("VRegisterRegister", {
                   
                   <label class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" :name="privacy" id="privacy" checked="checked" v-model="privacy">
-                    <span class="custom-control-label">Acconsento al trattamento dei dati.</span>
+                    <span class="custom-control-label">Acconsento al trattamento dei dati secondo l'<a href="/groupBuy/privacy" target="_blank">informativa privacy</a>.</span>
                   </label>
 
                 </div>
