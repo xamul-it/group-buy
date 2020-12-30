@@ -209,10 +209,6 @@ var VRegisterRegister = Vue.component("VRegisterRegister", {
     }
   },
   methods: {
-    onSubmit(e) {
-      console.log(e);
-      //submit form
-    },
     onFieldFocus(e){
       e.target.removeAttribute('readonly')
     },

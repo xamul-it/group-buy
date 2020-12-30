@@ -1,16 +1,14 @@
 //vuelidate
-const { required, minLength } = window.validators;
+const { required, minLength, maxLength } = window.validators;
 // import { required, minLength } from 'vuelidate/lib/validators'
 
 //lodash
-const { drop, every, forEach, get, isArray, map, set } = _;
+const { drop, every, forEach, get, isArray, map, set, isUndefined } = _;
 //import { drop, every, forEach, get, isArray, map, set } from 'lodash';
 
 var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
   template: `
         <div class="vue-template">
-            <slot v-bind:$v="$v" v-bind:$props="$props">
-            </slot>
 
             <form action="/register/forgotPassword" 
                 class="card-body"
@@ -20,6 +18,8 @@ var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
                 id="forgotPasswordForm"
                 autocomplete="off"
                 >
+                <input type="hidden" name="SYNCHRONIZER_TOKEN" :value="inputFields.synchronizerToken" id="SYNCHRONIZER_TOKEN" />
+					      <input type="hidden" name="SYNCHRONIZER_URI" :value="inputFields.synchronizerUri" id="SYNCHRONIZER_URI" />
 
                 <h3 class="pb-2">{{inputParams.forgotPasswordDescription}}</h3>
 
@@ -27,10 +27,16 @@ var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
                     <input :name="inputParams.usernameParameter"
                         type="text" 
                         required="required"
+                        readonly="readonly"
+                        @focus="onFieldFocus"
                         @input="$v.username.$touch()"
                         v-model="username"
                         >
                         <label>{{inputParams.loginUsername}}</label>
+
+                        <p class="input-alert" v-if="errors.usernameErrorNotFound">Nessun utente &egrave; stato trovato con questo nome utente.</p>
+                        <p class="input-alert" v-if="errors.usernameErrorNoEmail">Non abbiamo nessuna email registrata per il tuo account.</p>
+
                 </div>
                 <!-- pre>{{$v.username}}</pre -->
 
@@ -49,6 +55,12 @@ var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
     inputParams: {
       required: true,
     },
+    errors: {
+      required: true,
+    },
+    inputFields: {
+      required: true,
+    },
     urls: {
       required: true,
     },
@@ -65,6 +77,7 @@ var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
     username: {
       required,
       minLength: minLength(3),
+      maxLength: maxLength(64),
     },
   },
 
@@ -84,14 +97,15 @@ var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
         };
       });
     }
+    if(!isUndefined(this.inputFields)){
+      if(!isUndefined(this.inputFields.username) && this.inputFields.username != "") {
+        this.username = this.inputFields.username
+      }
+    }
   },
   methods: {
-    onSubmit(e) {
-      console.log(e);
-      //submit form
-    },
-    rememberMeToggle(e) {
-      console.log(e);
+    onFieldFocus(e){
+      e.target.removeAttribute('readonly')
     },
   },
 });

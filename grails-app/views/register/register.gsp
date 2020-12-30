@@ -43,7 +43,7 @@
 												:urls="{
 														'registerUrl':'<g:createLink controller="register" action="register" />',
 														'loginUrl':'<g:createLink controller="login" action="auth" />'
-														}"
+												}"
 												:input-params="{
 															'registerHeader':'${message(code:'spring.security.ui.register.header')}',
 															'loginUsername':'${message(code:'spring.security.ui.login.username')}',
@@ -57,7 +57,7 @@
 															'emailParameter':'email',
 															'passwordParameter':'${securityConfig.apf.passwordParameter}',
 															'passwordAgainParameter':'password2',
-															}"
+												}"
 												:errors="{
 														'usernameError':${usernameError},
 														'usernameErrorUnique':${usernameErrorUnique},
