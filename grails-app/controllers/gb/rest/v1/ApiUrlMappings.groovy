@@ -16,6 +16,8 @@ class ApiUrlMappings {
                 }
                 "/orders/$id/$action(.$format)?" (controller:'order', excludes:['index', 'delete', 'update', 'save', 'list'])
             }
+            "/$namespace/users" (resources:'user')
+            "/$namespace/users/$action(.$format)?" (controller:'user', excludes:['index', 'show', 'delete', 'update', 'save', 'list'])
             "/$namespace/categories" (resources:'groupCategory')
             "/$namespace/groupCategories" (resources:'groupCategory')
             "/$namespace/supplierCategories" (resources:'supplierCategory')

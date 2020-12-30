@@ -2,6 +2,50 @@ package gb
 
 import grails.gorm.services.Service
 
+
+interface IUserService {
+
+    User get()
+
+    User get(Serializable id)
+
+    User get(Map args)
+
+    List<User> list(Map args)
+
+    Long count()
+
+    void delete(Serializable id)
+
+    User save(User user)
+
+}
+
+@Service(User)
+abstract class UserService implements IUserService { 
+
+    @Autowired
+    transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
+
+    User get(Map params) {
+        User.get(params.id)
+    }
+
+    User get() {
+        log.debug "\n\n"
+        log.debug "$springSecurityService"
+        log.debug "  ${springSecurityService.isLoggedIn()}"
+        log.debug "     ${springSecurityService.principal}"
+        log.debug "         ${springSecurityService.principal.id}"
+        log.debug "\n\n"
+        if (springSecurityService.isLoggedIn()) {
+            User.get(springSecurityService.principal.id)
+        }
+    }
+
+}
+
+/*
 @Service(User)
 interface UserService {
 
@@ -15,4 +59,4 @@ interface UserService {
 
     User save(User user)
 
-}
+}*/
