@@ -64,7 +64,7 @@
 
 												<ul>
 													<li>
-														<a href="${createLink(controller: 'groupBuy', action: 'userProfile')}" class="dropdown-item"> 
+														<a href="${createLink(controller: 'groupBuy', action: 'user')}" class="dropdown-item"> 
 															<i class="fa fa-address-card-o dropdown-icon"></i>Profilo 
 														</a>
 													</li>

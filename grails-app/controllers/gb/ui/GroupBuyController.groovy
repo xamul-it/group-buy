@@ -51,4 +51,8 @@ class GroupBuyController {
 
     }
 
+    def user() {
+        
+    }
+
 }

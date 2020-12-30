@@ -1,7 +1,7 @@
 
 
     <div class="item1-links  mb-0"> 
-        <a href="${createLink(controller: 'groupBuy', action: 'userProfile')}" class="${controllerName == 'groupBuy' && actionName == 'userProfile' ? 'active' : ''} d-flex border-bottom"> 
+        <a href="${createLink(controller: 'groupBuy', action: 'user')}" class="${controllerName == 'groupBuy' && actionName == 'user' ? 'active' : ''} d-flex border-bottom"> 
             <span class="icon1 mr-3"><i class="icon icon-user"></i></span> Profilo 
         </a> 
         <a href="${createLink(controller: 'groupBuy', action: 'userSettings')}"  class="${controllerName == 'groupBuy' && actionName == 'userSettings' ? 'active' : ''} d-flex  border-bottom">
