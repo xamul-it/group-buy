@@ -3,32 +3,38 @@
 <head>
 	<meta name="layout" content="claylist"/>
     <title>${message(code:'spring.security.ui.login.title')}</title>
+    <%
+        loginMessageText = flash.message
+        loginMessage = loginMessageText!=null ? true : false
+        loginErrorText = flash.error
+        loginError = loginErrorText!=null ? true : false
+	%>
 </head>
 <body>
 
-    <!--Sliders Section-->
-    <g:render template="/common/theme-header" model="['headerTitle':message(code:'spring.security.ui.login.title')]"/>
-    <!--/Sliders Section-->
+    <div id="v-login-auth-app" vcloak>
+        <!--Sliders Section-->
+        <g:render template="/common/theme-header" model="['headerTitle':message(code:'spring.security.ui.login.title')]"/>
+        <!--/Sliders Section-->
 
-    <!--Login-Section-->
-    <section class="sptb">
-        <div class="container customerpage">
-            <div class="row">
-                <div class="col-lg-5 col-xl-4 col-md-6 d-block mx-auto">
-                    <div class="row">
-                        <div class="col-xl-12 col-md-12 col-md-12 register-right">
-                            
-                            <div class="single-page  w-100  p-0">
-                                <div class="wrapper wrapper2" id="v-login-auth-app">
+        <!--Login-Section-->
+        <section class="sptb">
+            <div class="container customerpage">
+                <div class="row">
+                    <div class="col-lg-5 col-xl-4 col-md-6 d-block mx-auto">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-md-12 register-right">
+                                
+                                <div class="single-page w-100 p-0">
+                                    <div class="wrapper wrapper2">
 
-                                <!-- Vue -->
-                                    <!-- style="background-color:#ffcccc" -->
-                                    <v-login-auth 
-                                        :urls="{
-                                                'registerUrl':'<g:createLink controller="register" action="register" />',
-                                                'forgotPasswordUrl':'<g:createLink controller="register" action="forgotPassword" />'
-                                                }"
-                                        :input-params="{
+                                    <!-- Vue -->
+                                        <v-login-auth 
+                                            :urls="{
+                                                    'registerUrl':'<g:createLink controller="register" action="register" />',
+                                                    'forgotPasswordUrl':'<g:createLink controller="register" action="forgotPassword" />'
+                                                    }"
+                                            :input-params="{
                                                     'loginSignin':'${message(code:'spring.security.ui.login.signin')}',
                                                     'loginUsername':'${message(code:'spring.security.ui.login.username')}',
                                                     'loginPassword':'${message(code:'spring.security.ui.login.password')}',
@@ -39,41 +45,52 @@
                                                     'usernameParameter':'${securityConfig.apf.usernameParameter}', 
                                                     'passwordParameter':'${securityConfig.apf.passwordParameter}',
                                                     'rememberMeParameter':'${securityConfig.rememberMe.parameter}'
-                                                    }"
-                                        v-slot:default="sp">
-                                    </v-login-auth>
-                                <!-- /Vue -->
+                                            }"
+                                            :errors="{
+                                                    'loginMessage':${loginMessage},
+                                                    'loginMessageText':'${loginMessageText}',
+                                                    'loginError':${loginError},
+                                                    'loginErrorText':'${loginErrorText}',
+                                            }"
+                                            :input-fields="{
+                                                'username':'',
+                                            }"
+                                            >
+                                        </v-login-auth>
+                                    <!-- /Vue -->
 
-                                    <!-- hr class="divider" -->
-									<%/* div class="pt-3 pb-3">
-										<div class="text-center">
-											<div class="btn-group mt-2 mb-2">
-												<a href="https://www.facebook.com/" class="btn btn-icon brround">
-													<span class="fa fa-facebook"></span>
-												</a>
-											</div>
-											<div class="btn-group mt-2 mb-2">
-												<a href="https://www.google.com/gmail/" class="btn btn-icon brround">
-													<span class="fa fa-google"></span>
-												</a>
-											</div>
-											<div class="btn-group mt-2 mb-2">
-												<a href="https://twitter.com/" class="btn  btn-icon brround">
-													<span class="fa fa-twitter"></span>
-												</a>
-											</div>
-										</div>
-									</div */%>                                            
+                                        <!-- hr class="divider" -->
+                                        <%/* div class="pt-3 pb-3">
+                                            <div class="text-center">
+                                                <div class="btn-group mt-2 mb-2">
+                                                    <a href="https://www.facebook.com/" class="btn btn-icon brround">
+                                                        <span class="fa fa-facebook"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="btn-group mt-2 mb-2">
+                                                    <a href="https://www.google.com/gmail/" class="btn btn-icon brround">
+                                                        <span class="fa fa-google"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="btn-group mt-2 mb-2">
+                                                    <a href="https://twitter.com/" class="btn  btn-icon brround">
+                                                        <span class="fa fa-twitter"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div */%>                                            
+                                    </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--/Login-Section-->
+        </section>
+        <!--/Login-Section-->
+
+    </div>
 
     <g:render template="/includes/js-vuelidate-js"/>
 

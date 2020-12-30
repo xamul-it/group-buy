@@ -15,7 +15,7 @@
 </head>
 <body>
 	
-	<div id="v-login-auth-app" vcloak>
+	<div id="v-register-register-app" vcloak>
 
 		<!--Sliders Section-->
 		<g:render template="/common/theme-header" model="['headerTitle':message(code:'spring.security.ui.register.title')]"/>
@@ -29,7 +29,7 @@
 						<div class="row">
 							<div class="col-xl-12 col-md-12 col-md-12 register-right">
 
-								<div class="single-page  w-100  p-0">
+								<div class="single-page w-100 p-0">
 									<div class="wrapper wrapper2">
 										<g:if test='${emailSent}'>
 											<br/>
@@ -120,7 +120,7 @@
 		Vue.component('password', Password);
 
         var app = new Vue({
-            el: '#v-login-auth-app',
+            el: '#v-register-register-app',
             components: {
 				'register-register': VRegisterRegister,
             },

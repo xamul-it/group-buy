@@ -3,7 +3,7 @@ const { required, minLength } = window.validators;
 // import { required, minLength } from 'vuelidate/lib/validators'
 
 //lodash
-const { drop, every, forEach, get, isArray, map, set } = _;
+const { drop, every, forEach, get, isArray, map, set, isUndefined } = _;
 //import { drop, every, forEach, get, isArray, map, set } from 'lodash';
 
 var VLoginAuth = Vue.component("VLoginAuth", {
@@ -31,6 +31,9 @@ var VLoginAuth = Vue.component("VLoginAuth", {
                         v-model="username"
                         v-focus>
                         <label>{{inputParams.loginUsername}}</label>
+
+                        <p class="input-alert" v-if="errors.loginMessage">{{ errors.loginMessageText }}</p>
+                        <p class="input-alert" v-if="errors.loginError">{{ errors.loginErrorText }}</p>
                 </div>
                 <!-- pre>{{$v.username}}</pre -->
             
@@ -71,6 +74,12 @@ var VLoginAuth = Vue.component("VLoginAuth", {
 
   props: {
     inputParams: {
+      required: true,
+    },
+    errors: {
+      required: true,
+    },
+    inputFields: {
       required: true,
     },
     urls: {
@@ -114,14 +123,14 @@ var VLoginAuth = Vue.component("VLoginAuth", {
         };
       });
     }
+    if(!isUndefined(this.inputFields)){
+      if(!isUndefined(this.inputFields.username) && this.inputFields.username != "") {
+        this.username = this.inputFields.username
+      }
+    }
   },
   methods: {
-    onSubmit(e) {
-      console.log(e);
-      //submit form
-    },
     toggleRememberMe(e) {
-      console.log("toggleRememberMe", e.target);
       this.rememberMe = !this.rememberMe;
     },
   },
