@@ -32,31 +32,9 @@ abstract class UserService implements IUserService {
     }
 
     User get() {
-        log.debug "\n\n"
-        log.debug "$springSecurityService"
-        log.debug "  ${springSecurityService.isLoggedIn()}"
-        log.debug "     ${springSecurityService.principal}"
-        log.debug "         ${springSecurityService.principal.id}"
-        log.debug "\n\n"
         if (springSecurityService.isLoggedIn()) {
             User.get(springSecurityService.principal.id)
         }
     }
 
 }
-
-/*
-@Service(User)
-interface UserService {
-
-    User get(Serializable id)
-
-    List<User> list(Map args)
-
-    Long count()
-
-    void delete(Serializable id)
-
-    User save(User user)
-
-}*/

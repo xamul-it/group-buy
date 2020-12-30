@@ -270,7 +270,7 @@
 								break;
 							case 'nearest':
 								this.sort = 'nearest';
-								await this.fetchCoordinatesAction({service: locationService});
+								$refs.lbSearchForm.search(true);
 								//TODO
 								break;
 							default:
@@ -358,7 +358,13 @@
 					//this.infiniteScroll();
                 },
 				async fetchSupplierList(/*boolean*/ reload = false) {
-					await this.fetchSupplierListAction({service: supplierService, reload: reload})
+					try {
+						await this.fetchSupplierListAction({service: supplierService, reload: reload})
+					} catch (error) {
+						console.log(error)
+					} finally {
+						this.supplierListLoaded = true
+					}
 				},
                 infiniteScroll() {
                     window.onscroll = () => {

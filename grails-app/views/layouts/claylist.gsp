@@ -31,9 +31,6 @@
     <asset:stylesheet src="theme/plugins/Horizontal2/Horizontal-menu/dropdown-effects/fade-down.css"/>
     <asset:stylesheet src="theme/plugins/Horizontal2/Horizontal-menu/horizontal.css"/>
 
-	<!--Select2 Plugin -->
-	<!-- link href="../../assets/plugins/select2/select2.min.css" rel="stylesheet" / -->
-
 	<!-- Cookie css -->
 	<!-- link href="../../assets/plugins/cookie/cookie.css" rel="stylesheet" -->
 
