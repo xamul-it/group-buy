@@ -207,11 +207,6 @@ var VRegisterRegister = Vue.component("VRegisterRegister", {
         this.email = this.inputFields.email
       }
     }
-    //Test
-    this.username = "admin@admin.it"
-    this.email = "aaa@aa.it"
-    this.password = this.password2 = "000000@a"
-    
   },
   methods: {
     onSubmit(e) {
