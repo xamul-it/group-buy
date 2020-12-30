@@ -49,7 +49,7 @@
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="form-group"> 
-                                                <label class="form-label">Nome</label> 
+                                                <label class="form-label">Nome utente</label> 
                                                 <input type="text" class="form-control" placeholder="Nome" v-model="userItem.username">
                                             </div>
                                         </div>

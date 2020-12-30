@@ -55,4 +55,12 @@ class GroupBuyController {
         
     }
 
+    def tos() {
+
+    }
+
+    def privacy() {
+        
+    }
+
 }
