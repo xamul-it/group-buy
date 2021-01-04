@@ -1,6 +1,7 @@
 package gb.ui
 
 import gb.EmailService
+import gb.Order
 
 class GroupBuyController {
 
@@ -15,8 +16,16 @@ class GroupBuyController {
     }
 
     def mail() {
-        emailService.groupInvite()
-        render "Email sent!"
+        //emailService.groupInvite()
+        Order order = Order.get(34)
+        if (order==null) {
+            order.list()[0]
+            render "Missing order!"
+        }
+        else {
+            emailService.orderStatusChange(order)
+            render "Email sent!"
+        }
     }
 
     def groupList() {

@@ -1,4 +1,3 @@
-<%@ page contentType="text/html"%>
 <!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -12,7 +11,7 @@
 	<!--[if !mso]><!-->
 	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
 	<!--<![endif]-->
-	<title></title>
+	<title>&nbsp;</title>
 	<!--[if !mso]><!-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
 	<!--<![endif]-->
@@ -198,8 +197,8 @@
 													style="line-height: 1.5; font-size: 12px; color: #ffffff; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 18px;">
 													<p
 														style="font-size: 14px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 21px; margin: 0;">
-														<strong><span style="font-size: 30px;">Partecipa al
-																gruppo<br /></span></strong></p>
+														<strong><span style="font-size: 30px;">Ordine nr. ${order.id}
+																<br /></span></strong></p>
 												</div>
 											</div>
 											<!--[if mso]></td></tr></table><![endif]-->
@@ -316,7 +315,7 @@
 													<p
 														style="font-size: 18px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 22px; margin: 0;">
 														<span style="font-size: 18px;"><strong><span
-																	style="">${toEmail}</span></strong></span></p>
+																	style="">Ordine Nr. ${order.id}</span></strong></span></p>
 												</div>
 											</div>
 											<!--[if mso]></td></tr></table><![endif]-->
@@ -350,12 +349,11 @@
 											<div align="left" class="button-container"
 												style="padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:35px;">
 												<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 35px" align="left"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://www.group-buy.it" style="height:33pt; width:193.5pt; v-text-anchor:middle;" arcsize="10%" strokeweight="0.75pt" strokecolor="#E17370" fillcolor="#e67605"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:Tahoma, sans-serif; font-size:16px"><![endif]--><a
-													href="${basePath}/groupBuy/group/${toGroup.id}"
+													href="${basePath}groupBuy/group/${order.group.id}/order/edit/${order.id}"
 													style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #e67605; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width: auto; width: auto; border-top: 1px solid #E17370; border-right: 1px solid #E17370; border-bottom: 1px solid #E17370; border-left: 1px solid #E17370; padding-top: 5px; padding-bottom: 5px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;"
 													target="_blank"><span
 														style="padding-left:30px;padding-right:30px;font-size:16px;display:inline-block;"><span
-															style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;">Partecipa
-															adesso</span></span></a>
+															style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;">Vedi i dettagli</span></span></a>
 												<!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
 											</div>
 											<!--[if (!mso)&(!IE)]><!-->
@@ -488,7 +486,7 @@
 												<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 5px;padding-left: 5px;" align="center"><![endif]-->
 												<div style="font-size:1px;line-height:5px"> </div><a
 													href="${basePath}/groupBuy/group/${toGroup.id}" style="outline:none" tabindex="-1"
-													target="_blank"> <img align="center" alt="${toGroup.name}" title="${toGroup.name}" border="0"
+													target="_blank"> <img align="center" alt="${toGroup.name}" border="0"
 														class="center fixedwidth fullwidthOnMobile"
 														src="${basePath}/assets/theme/img/categories/category-${toGroup.category.id}.jpg"
 														style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 191px; display: block;"
@@ -704,8 +702,8 @@
 													style="line-height: 1.8; font-size: 12px; color: #393d47; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 22px;">
 													<p
 														style="font-size: 14px; line-height: 1.8; word-break: break-word; mso-line-height-alt: 25px; margin: 0;">
-														Ricevi questa mail perché ${fromUsername} ti ha invitato a partecipare al
-														gruppo d'acquisto. </p>
+														Ricevi questa mail perché ${fromUsername} partecipi al
+														gruppo d'acquisto che ha appena inviato un ordine al negozio ... . </p>
 												</div>
 											</div>
 											<!--[if mso]></td></tr></table><![endif]-->
