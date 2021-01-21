@@ -44,10 +44,17 @@ abstract class OrderService implements IOrderService {
     }
 
     List<Order> list (Map params){
-        def group = Group.findById(params.groupId)
         def ordersList = []
-       
-        ordersList = group ? Order.findAllByGroup(group, params) : []
+
+        if(params.groupId) {
+            def group = Group.findById(params.groupId)
+            ordersList = group ? Order.findAllByGroup(group, params) : []
+        } else {
+            //TODO if user logged in and no params.groupId return user's orders list
+            //placeholder code:
+            def group = Group.findById(1)
+            ordersList = group ? Order.findAllByGroup(group, params) : []
+        }
         
         ordersList        
     }

@@ -7,13 +7,7 @@ class GroupBuyController {
 
     EmailService emailService
 
-    def index() {
-
-    }
-
-    def adout() {
-
-    }
+    
 
     def mail() {
         //emailService.groupInvite()
@@ -52,17 +46,23 @@ class GroupBuyController {
 
     }
 
-    def userProfile() {
-
-    }
-
-    def userSettings() {
-
-    }
+    //user
 
     def user() {
-        
+        redirect controller: "user", action: "profile"
     }
+
+    //pages
+    
+    def index() {
+
+    }
+
+    def adout() {
+
+    }
+
+    //terms
 
     def tos() {
 

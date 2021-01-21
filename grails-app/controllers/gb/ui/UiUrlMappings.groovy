@@ -14,6 +14,7 @@ class UiUrlMappings {
             "/supplier/$supplierId?" (controller:"supplier", action: "get")
             "/supplier/$supplierId/$supplierName?" (controller:"supplier", action: "get")
             "/supplier/$supplierId/order" (controller:"supplier", action: "order")
+            "/user/$action?/$userId?/"(controller:"user")
         }
         
     }

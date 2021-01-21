@@ -3,7 +3,8 @@
 const axiosInstance = axios.create({});
 
 //RESTFUL ENDPOINTS
-const REST_ENDPOINT = "/api/v1/groups";
+const REST_NAMESPACE = "/api/v1"
+const REST_ENDPOINT = REST_NAMESPACE + "/groups";
 const ORDERS_ENDPOINT = "/orders";
 
 //RESTFUL codes
@@ -50,14 +51,24 @@ export async function list({
   if (!_.isUndefined(sort) && sort != "") params.append("sort", sort);
   if (!_.isUndefined(order) && order != "") params.append("order", order);
 
-  const { data, headers, status, statusText } = await axiosInstance.get(
-    REST_ENDPOINT + "/" + groupId + ORDERS_ENDPOINT,
-    {
-      params,
-    }
-  );
+  let resp = {}; //{ data, headers, status, statusText } 
+  if(groupId) {
+      resp = await axiosInstance.get(
+      REST_ENDPOINT + "/" + groupId + ORDERS_ENDPOINT,
+      {
+        params,
+      }
+    );
+  } else {
+      resp = await axiosInstance.get(
+      REST_NAMESPACE + ORDERS_ENDPOINT,
+      {
+        params,
+      }
+    );
+  }
 
-  return { data, headers };
+  return resp //{ data, headers };
 }
 
 export async function show(groupId, orderId) {

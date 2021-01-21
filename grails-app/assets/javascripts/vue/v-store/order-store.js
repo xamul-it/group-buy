@@ -34,6 +34,9 @@ export const store = new Vuex.Store({
       orderVoices: [],
       suppliers: [],
     },
+    user: {
+      userItem: null,
+    },
     group: {
       groupItem: null,
     },
