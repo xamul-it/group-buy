@@ -7,6 +7,7 @@ import {
 
 import * as orderActions from "/assets/vue/v-store/order-actions.js";
 import * as sharedActions from "/assets/vue/v-store/actions/shared-actions.js";
+import * as userActions from "/assets/vue/v-store/actions/user-actions.js";
 
 Vue.use(Vuex);
 
@@ -58,5 +59,6 @@ export const store = new Vuex.Store({
   actions: {
     ...orderActions,
     ...sharedActions,
+    ...userActions,
   },
 });

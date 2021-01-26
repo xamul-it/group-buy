@@ -5,8 +5,7 @@ import {
   updateField,
 } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
 
-import * as userActions from "/assets/vue/v-store/user-actions.js";
-import * as commonActions from "/assets/vue/v-store/actions/common-actions.js";
+import * as userActions from "/assets/vue/v-store/actions/user-actions.js";
 
 Vue.use(Vuex);
 
@@ -38,6 +37,5 @@ export const store = new Vuex.Store({
   },
   actions: {
     ...userActions,
-    ...commonActions,
   },
 });

@@ -6,6 +6,7 @@ import {
 } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
 
 import * as groupActions from "/assets/vue/v-store/group-actions.js";
+import * as userActions from "/assets/vue/v-store/actions/user-actions.js";
 
 Vue.use(Vuex);
 
@@ -38,6 +39,9 @@ export const store = new Vuex.Store({
       groupItem: null,
       groupMembers: [],
     },
+    user: {
+      userItem: null,
+    },
     success: null,
     error: null,
     loading: false,
@@ -61,5 +65,6 @@ export const store = new Vuex.Store({
   },
   actions: {
     ...groupActions,
+    ...userActions,
   },
 });

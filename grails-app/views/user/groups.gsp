@@ -1,14 +1,14 @@
 <html>
     <head>
         <meta name="layout" content="claylist"/>
-        <title>I miei ordini</title>
+        <title>I miei gruppi</title>
     </head>
     <body>
 
-        <div id="v-user-orders-app" vcloak>
+        <div id="v-user-groups-app" vcloak>
 
             <!--Sliders Section-->
-            <g:render template="/common/theme-header" model="['headerTitle':'I miei ordini']"/>
+            <g:render template="/common/theme-header" model="['headerTitle':'I miei gruppi']"/>
             <!--/Sliders Section-->
 
             <!-- User Dashboard -->
@@ -25,6 +25,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12">
 
                             <div class="card mb-0">
+
                                 <div class="card-body">
                                     <div class="border-0">
                                         <div class="tab-content">
@@ -35,15 +36,15 @@
                                                     <thead>
                                                         <tr>
                                                             <!-- th></th -->
-                                                            <th>Ordine</th>
-                                                            <th>Totale</th>
-                                                            <th>Stato</th>
+                                                            <th>Gruppo</th>
+                                                            <th>Indirizzo</th>
+                                                            <th>Info</th>
                                                             <th>&nbsp;</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
 
-                                                        <tr v-for="order in orderList">
+                                                        <tr v-for="group in groupList">
                                                             <!-- td>
                                                                 <label class="custom-control custom-checkbox">
                                                                     <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
@@ -51,30 +52,25 @@
                                                                 </label>
                                                             </td -->
                                                             <td>
-                                                                <div class="media mt-0 mb-0">
+                                                                <div class="mt-0 mb-0">
                                                                     <div class="media-body">
-                                                                        <div class="card-item-desc ml-4 p-0 mt-2">
-                                                                            <a :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" class="text-dark"><h4 class="font-weight-semibold">{{ order.description }}</h4></a>
-                                                                            <a :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" :title="dateTime(order.orderDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(order.orderDate) }} </a><br>
+                                                                        <div class="card-item-desc ml-4 p-0 mt-2 text-dark">
+                                                                            <a :href="'/groupBuy/group/'+group.id"><h4 class="font-weight-semibold">{{ group.name }}</h4><p>{{ group.description }}</p></a>
+                                                                            Creato: <a :href="'/groupBuy/group/'+group.id" :title="dateTime(group.creationDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </a><br>
                                                                             <!-- a><i class="fa fa-tag mr-1"></i>order label</a -->
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="font-weight-semibold fs-16">
-                                                                &euro; <!-- {{ orderTotal(order.id) }} -->
+                                                            <td class="mt-0 mb-0">
+                                                                <a class="location" :title="addressFormat(group.deliveryAddress)"><i class="fa fa-map-marker text-muted mr-1"></i> {{ group.deliveryAddress.city }}</a> <br/> {{addressFormat(group.deliveryAddress)}}
                                                             </td>
                                                             <td>
-
-                                                                <span class="badge " :class="orderStatusBadgeClass(order.status.id)">{{ order.status.value }}</span>
-                                                                <!-- badge-primary -->
+                                                                <p><span class="label label-pill badge-info mt-2">{{ group.memberCount }} Iscritti</span></p>
+                                                                <p><span class="label label-pill badge-light mt-2">{{ Math.floor(Math.random() * 10) +1 }} Ordini</span></p>
+                                                            </td>
+                                                            <td>
                                                                 
-                                                            </td>
-                                                            <td>
-                                                                <a v-if="canEdit(order.status.id)" :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" class="btn btn-success btn-sm text-white" title="Gestisci"><i class="fa fa-pencil"></i></a>
-                                                                <a v-if="canEdit(order.status.id)" :href="'#'" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-                                                                <a v-if="canEdit(order.status.id)" :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" class="btn btn-primary btn-sm text-white" title="Aggiungi voci"><i class="fa fa-cart-plus"></i></a>
-                                                                <!-- a class="btn btn-primary btn-sm text-white" data-toggle="tooltip"><i class="fa fa-eye"></i></a -->
                                                             </td>
                                                         </tr>
 
@@ -86,7 +82,9 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
+
                         </div>
 
                     </div>
@@ -100,19 +98,18 @@
 
         <script type="module">
             import * as dhm from '/assets/vue/v-common/date-helper-mixin.js';
-            import * as osm from '/assets/vue/v-order/order-status-mixin.js';
 
             import * as userService from '/assets/vue/v-services/user-rest.js';
-            import * as orderService from '/assets/vue/v-services/order-rest.js';
+            import * as groupService from '/assets/vue/v-services/group-rest.js';
             import * as toastService from '/assets/vue/v-services/toast.js';
 
             import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
-            import { store } from '/assets/vue/v-store/order-store.js';
+            import { store } from '/assets/vue/v-store/group-store.js';
 
-            var UserOrdersApp = new Vue({
-                el: '#v-user-orders-app',
-                name: 'UserOrders',
-                mixins: [dhm.dateHelperMixin,osm.orderStatusMixin],
+            var UserGroupsApp = new Vue({
+                el: '#v-user-groups-app',
+                name: 'UserGroups',
+                mixins: [dhm.dateHelperMixin],
                 components: {
                     'v-modal': VModal,
                 },
@@ -125,7 +122,7 @@
                     //mapped with vuex-map-fields
                     ...mapFields([
                         'user.userItem',
-                        'order.orderList',
+                        'group.groupList',
                         'pagination.total',
                         'pagination.offset',
                         'pagination.max',
@@ -144,7 +141,7 @@
                     this.debug = ${isDebug};
                     //will execute at pageload
                     this.fetchUser();
-                    this.fetchUserOrdes();
+                    this.fetchUserGroups();
                     
                 },
                 watch: {
@@ -162,13 +159,27 @@
                 methods: {
                     ...Vuex.mapActions([
                         'fetchUserAction',
-                        'fetchOrderListAction'
+                        'fetchGroupListAction'
                     ]),
                     async fetchUser() {
                         await this.fetchUserAction({service: userService});
                     },
-                    async fetchUserOrdes() {
-                        await this.fetchOrderListAction({service: orderService});
+                    async fetchUserGroups() {
+                        await this.fetchGroupListAction({service: groupService, reload: true})
+                    },
+                    addressFormat(deliveryAddress) {
+                        let formattedAddress = '';
+
+                        formattedAddress = '';
+                        formattedAddress += deliveryAddress.address1 ? deliveryAddress.address1:'';
+                        formattedAddress += deliveryAddress.address2 ? ' '+deliveryAddress.address2:'';
+                        formattedAddress += formattedAddress.length>0?', ':'';
+                        formattedAddress += deliveryAddress.postalCode ? deliveryAddress.postalCode:'';
+                        formattedAddress += deliveryAddress.city ? ' '+deliveryAddress.city:'';
+                        formattedAddress += formattedAddress.length>0?', ':'';
+                        formattedAddress += deliveryAddress.countryCode ? deliveryAddress.countryCode:'';
+                        
+                        return formattedAddress
                     },
                 },
             })        
