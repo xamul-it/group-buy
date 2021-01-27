@@ -3,8 +3,6 @@
         <meta name="layout" content="claylist"/>
         <title>Nuovo ordine</title>
 
-        
-
     </head>
     <body>
         <div id="v-order-create-app" v-cloak>
@@ -32,35 +30,34 @@
                                     
                                     <div class="row "> 
 
-                                        <div class="col-sm-6 col-md-6">
+                                        <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label text-dark">Descrizione</label>
                                                 <input type="text" 
                                                     class="form-control"
                                                     placeholder="Inserisci una breve descrizione dell'ordine"
                                                     v-model="orderItem.description">
-                                                
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <div class="form-label">Gruppo</div>
-                                                <div class="row gutters-xs"> 
-                                                    <div class="col-3">
-                                                        <label class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input" name="example-radios" value="option1" checked=""> 
-                                                            <span class="custom-control-label">Gruppo 1</span> 
-                                                        </label> 
+                                        <div class="col-sm-12 col-md-12">
+
+                                            <div class="list-group"> 
+                                                <label class="form-label text-dark">Seleziona gruppo</label>
+
+                                                <div v-for="group in groupList" @click="selectGroup(group.id)" :class="{ active: isGroupSelected(group.id) }" class="list-group-item list-group-item-action flex-column align-items-start">
+                                                    <div class="d-flex w-100 justify-content-between">
+                                                        <h5 class="mb-1">{{ group.name }}</h5>
+                                                        <small><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </small>
                                                     </div>
-                                                    <div class="col-3">
-                                                    <label class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input" name="example-radios" value="option2"> 
-                                                        <span class="custom-control-label">Gruppo 2</span> 
-                                                    </label>
-                                                    </div>
+                                                    <p class="mb-1">{{ group.description }}</p>
+                                                    <small>
+                                                        <i class="fa fa-map-marker text-muted mr-1"></i> {{addressFormat(group.deliveryAddress)}}
+                                                    </small>
                                                 </div>
+        
                                             </div>
+
                                         </div>
                                         
                                     </div>
@@ -87,10 +84,10 @@
 
             <script type="module">
                 import * as ah from '/assets/vue/v-common/alert-helper-mixin.js';
+                import * as dhm from '/assets/vue/v-common/date-helper-mixin.js';
 
                 import * as groupService from '/assets/vue/v-services/group-rest.js';
                 import * as orderService from '/assets/vue/v-services/order-rest.js';
-                import * as orderVoiceService from '/assets/vue/v-services/order-voice-rest.js';
                 import * as supplierService from '/assets/vue/v-services/supplier-rest.js';
                 import * as toastService from '/assets/vue/v-services/toast.js';
 
@@ -105,7 +102,7 @@
                 var OrderCreateApp = new Vue({
                     el: '#v-order-create-app',
                     name: 'OrderCreate',
-                    mixins: [ah.alertHelperMixin],
+                    mixins: [ah.alertHelperMixin,dhm.dateHelperMixin],
                     components: {
                         'v-modal': VModal,
                         'vue-title': VueTitle,
@@ -120,6 +117,7 @@
                         //all needed data fields from vuex store
                         //mapped with vuex-map-fields
                         ...mapFields([
+                            'group.groupList',
                             'supplier.supplierItem',
                             'order.orderItem',
                             'order.suppliers',
@@ -151,10 +149,11 @@
                         this.debug = ${isDebug};
                         //will execute at pageload
                         await this.fetchSupplier()
+                        await this.fetchUserGroups()
                         this.createEmptyOrder()
                         this.$watch('orderItem', (orderItem) => {
                             console.log("watch orderItem", orderItem, this.orderItem)
-                            location.href = "/groupBuy/group/"+this.groupItem.id+"/order/edit/" + this.orderItem.id
+                            location.href = "/groupBuy/group/"+this.orderItem.group.id+"/order/edit/" + this.orderItem.id
                         });
                     },
                     watch: {
@@ -171,12 +170,11 @@
                     methods: {
                         ...Vuex.mapActions([
                             'fetchSupplierAction',
+                            'fetchGroupListAction',
                             'saveOrderAction',
-                            'saveOrderVoiceAction',
                         ]),
-                        async fetchGroups(search) {
-                            console.log('fetchGroups',search)
-                            //this.fetchGroupsAction({service: supplierService, q: search})
+                        async fetchUserGroups() {
+                            await this.fetchGroupListAction({service: groupService, reload: true})
                         },
                         async fetchSupplier() {
                             await this.fetchSupplierAction({service: supplierService, supplierId: this.supplierId});
@@ -191,25 +189,30 @@
                             }
                         },
                         async saveOrder() {
-                            let order = await this.saveOrderAction({service: orderService, groupId: this.groupId, orderId: this.orderId, orderItem: this.orderItem});
-                            //if (this.debug)
-                                console.log("saveOrder", order)
+                            await this.saveOrderAction({service: orderService, groupId: this.orderItem.group.id, orderId: this.orderId, orderItem: this.orderItem});
+                        },
+                        addressFormat(deliveryAddress) {
+                            let formattedAddress = '';
+
+                            formattedAddress = '';
+                            formattedAddress += deliveryAddress.address1 ? deliveryAddress.address1:'';
+                            formattedAddress += deliveryAddress.address2 ? ' '+deliveryAddress.address2:'';
+                            formattedAddress += formattedAddress.length>0?', ':'';
+                            formattedAddress += deliveryAddress.postalCode ? deliveryAddress.postalCode:'';
+                            formattedAddress += deliveryAddress.city ? ' '+deliveryAddress.city:'';
+                            formattedAddress += formattedAddress.length>0?', ':'';
+                            formattedAddress += deliveryAddress.countryCode ? deliveryAddress.countryCode:'';
                             
-                            if (!_.isUndefined(order))
-                                this.orderItem = order
-
-                            //Dev
-                                this.$set(this.orderItem, 'id', 13)
-
+                            return formattedAddress
                         },
-                        onSearch(search, loading) {
-                            loading(true);
-                            this.search(loading, search, this);
+                        selectGroup(id) {
+                            if (!_.isUndefined(id) && !isNaN(id) && id > 0) 
+                                this.orderItem.group.id = id
                         },
-                        search: _.debounce(async (loading, search, vm) => {
-                                    await vm.fetchSuppliers(search)
-                                    loading(false)
-                                }, 350)
+                        isGroupSelected(id) {
+                            if (!_.isUndefined(id) && !isNaN(id) && id > 0) 
+                                return this.orderItem.group.id == id
+                        }
                     }
                 });
 

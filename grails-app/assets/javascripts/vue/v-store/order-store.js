@@ -8,6 +8,8 @@ import {
 import * as orderActions from "/assets/vue/v-store/order-actions.js";
 import * as sharedActions from "/assets/vue/v-store/actions/shared-actions.js";
 import * as userActions from "/assets/vue/v-store/actions/user-actions.js";
+import * as groupActions from "/assets/vue/v-store/group-actions.js";
+
 
 Vue.use(Vuex);
 
@@ -40,6 +42,7 @@ export const store = new Vuex.Store({
     },
     group: {
       groupItem: null,
+      groupList: [],
     },
     supplier: {
       supplierItem: null,
@@ -60,5 +63,6 @@ export const store = new Vuex.Store({
     ...orderActions,
     ...sharedActions,
     ...userActions,
+    ...groupActions,
   },
 });

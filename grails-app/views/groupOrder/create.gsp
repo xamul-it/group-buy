@@ -170,7 +170,6 @@
                         'fetchGroupAction',
                         'fetchSuppliersAction',
                         'saveOrderAction',
-                        'saveOrderVoiceAction',
                     ]),
                     async fetchSuppliers(search) {
                         console.log('fetchSuppliers',search)
