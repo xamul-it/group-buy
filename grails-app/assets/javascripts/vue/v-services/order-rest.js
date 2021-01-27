@@ -116,7 +116,7 @@ export async function save(groupId, payload) {
 
   let message = HTTP_CODES_MESSAGES_MAP[status];
 
-  return { status, message };
+  return { status, message, data };
 }
 
 export const ORDER_STATUS = {

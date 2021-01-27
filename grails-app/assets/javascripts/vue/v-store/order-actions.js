@@ -112,13 +112,20 @@ export const saveOrderAction = async (
         payload.orderItem
       );
     }
+
+    console.log(r);
+    
+    commit("updateField", {
+      path: "order.orderItem",
+      value: r.data,
+    });
+
     // Reset the loading state after fetching
     dispatch("setLoadedState");
     commit("updateField", {
       path: "success",
       value: r.message,
     });
-    return r.data;
   } catch (error) {
     if (state.debug)
       console.log("catch error", error, error.response, error.response.data);

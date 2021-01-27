@@ -88,7 +88,10 @@
                 return this.editVoice.i == i
             },
             initial(string, numChars = 2) {
-                return string.substring(0, numChars).toUpperCase();
+                if (!_.isUndefined(string)) 
+                    return string.substring(0, numChars).toUpperCase();
+                else
+                    return "-";
             },
             editVoiceNum(i) {
                 this.addVoice = false

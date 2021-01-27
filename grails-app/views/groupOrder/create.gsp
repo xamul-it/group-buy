@@ -189,16 +189,7 @@
                         }
                     },
                     async saveOrder() {
-                        let order = await this.saveOrderAction({service: orderService, groupId: this.groupId, orderId: this.orderId, orderItem: this.orderItem});
-                        //if (this.debug)
-                            console.log("saveOrder", order)
-                        
-                        if (!_.isUndefined(order))
-                            this.orderItem = order
-
-                        //Dev
-                            this.$set(this.orderItem, 'id', 13)
-
+                        await this.saveOrderAction({service: orderService, groupId: this.groupId, orderId: this.orderId, orderItem: this.orderItem});
                     },
                     onSearch(search, loading) {
                         loading(true);
