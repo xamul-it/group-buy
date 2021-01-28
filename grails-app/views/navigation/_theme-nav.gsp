@@ -5,7 +5,7 @@
             <!--Mobile Nav-->
             <div class="horizontal-header clearfix ">
                 <div class="container"> 
-                    <a href="${createLink(controller: 'groupBuy', action: 'groupList')}" class=" mobile-nav-icon-button mobile-nav-icon-button-left" title="Gruppi"><i class="zmdi zmdi-accounts"></i></a>
+                    <a href="${createLink(controller: 'group', action: 'list')}" class=" mobile-nav-icon-button mobile-nav-icon-button-left" title="Gruppi"><i class="zmdi zmdi-accounts"></i></a>
                     <span class="smllogo"><img src="/assets/theme/img/brand/logo.png" alt="Group-buy" width="120"></span> 
                     <a href="${createLink(controller: 'supplier', action: 'list')}" class=" mobile-nav-icon-button mobile-nav-icon-button-right" title="Attività"><i class="zmdi zmdi-store"></i></a>
                 </div>

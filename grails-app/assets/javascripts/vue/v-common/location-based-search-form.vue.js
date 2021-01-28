@@ -105,6 +105,11 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
       required: false,
       default: '',
     },
+    defaultAddress: {
+      type: String,
+      required: false,
+      default: null,
+    },
     usePositionText: {
       type: String,
       required: false,
@@ -169,11 +174,19 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
           minLength: minLength(2),
       },
   },
+  mounted() {
+    console.log(this.$options.name + " mounted - defaultAddress: "+ this.defaultAddress)
+    if(!_.isUndefined(this.defaultAddress) && this.defaultAddress!= "") {
+      this.address = this.defaultAddress
+    }
+  },
   watch: {
       address: function (newAddress) {
         if(!_.isUndefined(newAddress) && newAddress != "" ) {
           this.setSearchDirty()
-        } 
+        } else if(newAddress == "") {
+          this.resetLocationCoordinates()
+        }
         this.$emit('address-changed', this.address);
       },
       keyword: function(newKeyword) {
@@ -224,6 +237,13 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
   methods: {
     async fetchAddress() {
       try {
+        await this.fetchCurrentAddress()
+      } catch (error) {
+        this.$emit('error', error.message)
+      }
+    },
+    async fetchCurrentAddress() {
+      try {
         this.locationLoading = true;
         let {
           currentCoordinates,
@@ -240,7 +260,8 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
         this.locationLon = currentCoordinates.longitude
 
       } catch (error) {
-        this.$emit('error', error.message)
+        console.log("fetchCurrentAddress",error)
+        throw error
       } finally {
         this.locationLoading = false
       }
@@ -262,13 +283,24 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
     },
     async search(lbSearch = false) {
       if(typeof lbSearch === 'boolean' && lbSearch) {
-        await this.fetchAddress()
+        try {
+          await this.fetchCurrentAddress()
+        } catch (error) {
+          this.$emit('error', error.message)
+          if(!_.isUndefined(this.address) && this.address != "") {
+            await this.fetchCoordinates()
+          }
+        }
       } else {
         if(!_.isUndefined(this.address) && this.address != "") {
           await this.fetchCoordinates()
         }
       }
       this.$emit('search')
+    },
+    resetLocationCoordinates() {
+      this.locationLat = 0.0
+      this.locationLon = 0.0
     },
     setSearchDirty(dirty = true) {
       if(!this.searchDirty && dirty) {
@@ -285,8 +317,9 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
       this.address = ''
       this.locationAddress = {}
       this.optionId = 0
-      this.locationLat = 0.0
-      this.locationLon = 0.0
+      this.resetLocationCoordinates()
+      //this.locationLat = 0.0
+      //this.locationLon = 0.0
       this.locationLoading = false
       this.resetSearchDirty()
       //https://github.com/vuelidate/vuelidate/issues/132#issuecomment-660859862

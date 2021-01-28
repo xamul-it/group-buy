@@ -15,9 +15,6 @@ class SupplierInterceptor {
         def supplierIdParam = params.supplierId?.isInteger() ? params.supplierId.toInteger() : 0
         model.supplierId = supplierIdParam
 
-        def isDebugParam = params.debug == 'true'?:'false'
-        model.isDebug = isDebugParam
-
         true 
     }
 

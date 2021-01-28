@@ -15,9 +15,6 @@ class GroupOrderInterceptor {
         def orderIdParam = params.orderId?.isInteger() ? params.orderId.toInteger() : 0
         model.orderId = orderIdParam
 
-        def isDebugParam = params.debug == 'true'?:'false'
-        model.isDebug = isDebugParam
-
         true 
     }
 

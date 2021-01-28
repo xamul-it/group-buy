@@ -287,13 +287,13 @@ export const subscriptionAction = async (
       r = await payload.service.subscribe(payload.groupId);
       commit("updateField", {
         path: "success",
-        value: "Richiesta di iscrizione inviata (" + r.status + ")",
+        value: "Richiesta di iscrizione inviata",
       });
     } else {
       r = await payload.service.unsubscribe(payload.groupId);
       commit("updateField", {
         path: "success",
-        value: "Richiesta di disiscrizione inviata (" + r.status + ")",
+        value: "Richiesta di disiscrizione inviata",
       });
     }
 

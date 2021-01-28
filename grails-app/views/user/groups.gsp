@@ -98,6 +98,7 @@
 
         <script type="module">
             import * as dhm from '/assets/vue/v-common/date-helper-mixin.js';
+            import * as ah from '/assets/vue/v-common/address-helper-mixin.js';
 
             import * as userService from '/assets/vue/v-services/user-rest.js';
             import * as groupService from '/assets/vue/v-services/group-rest.js';
@@ -109,7 +110,7 @@
             var UserGroupsApp = new Vue({
                 el: '#v-user-groups-app',
                 name: 'UserGroups',
-                mixins: [dhm.dateHelperMixin],
+                mixins: [dhm.dateHelperMixin,ah.addressHelperMixin],
                 components: {
                     'v-modal': VModal,
                 },

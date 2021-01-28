@@ -25,6 +25,7 @@
 										select-placeholder="Categorie"
 										keyword-placeholder="Nome negozio o Keyword"
 										address-placeholder="Luogo / indirizzo"
+										default-address="Piazza del Duomo, 20122, Milano"
 										use-position-text="Usa la mia posizione"
 										search-enabled-text="Cerca"
 										search-disabled-text="Inserire una keyword o un indirizzo"
@@ -52,6 +53,8 @@
 			</div>
 		</section>
 		<!--/Sliders Section-->
+
+		
 
     	<!--Supplier listing-->
 		<section class="sptb">
@@ -121,7 +124,7 @@
 													<div class="card overflow-hidden">
 														<div class="item-card9-img">
 															<div class="arrow-ribbon bg-info">{{ supplier.category.name }}</div>
-															<div class="item-card9-imgs"> <a :href="'./supplier/'+supplier.id"></a> <img
+															<div class="item-card9-imgs"> <a :href="'./supplier/'+supplier.id+'/'+supplier.name"></a> <img
 																	:src="'/assets/theme/img/categories/supplier/category-'+supplier.category.id+'.jpg'" alt="img" class="cover-image"> </div>
 															<!-- div class="item-card9-icons"> <a href="#" class="item-card9-icons1 wishlist"> <i
 																		class="fa fa fa-heart-o"></i></a> </div -->
@@ -191,6 +194,7 @@
 
     <script type="module">
 		import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
+		import * as ah from '/assets/vue/v-common/address-helper-mixin.js';
 
 		import * as supplierService from '/assets/vue/v-services/supplier-rest.js';
 		import * as supplierCategoriesService from '/assets/vue/v-services/common/read-only-resource-rest.js';
@@ -207,7 +211,7 @@
         var SupplierListApp = new Vue({
 			el: '#v-suppliers-app',
 			name: 'SupplierList',
-			mixins: [dh.dateHelperMixin],
+			mixins: [dh.dateHelperMixin,ah.addressHelperMixin],
 			components: {
 				'v-modal': VModal,
 				'vue-lb-search-form': VueLBSearchForm,
@@ -215,6 +219,7 @@
 			store,
             data: {
 				sortOrder: '',
+				supplierListLoading: false,
 				supplierListLoaded: false,
 			},
             computed: {
@@ -270,7 +275,7 @@
 								break;
 							case 'nearest':
 								this.sort = 'nearest';
-								$refs.lbSearchForm.search(true);
+								this.$refs.lbSearchForm.search(true);
 								//TODO
 								break;
 							default:
@@ -304,11 +309,9 @@
 				this.supplierCategories = [{id:0, name:"Tutte le categorie"}]
                 this.fetchSupplierCategories();
 
-				//TODO ask for position
-
-				//await this.fetchSupplierList(true);
-				//this.supplierListLoaded = true
-				//this.infiniteScroll();
+				await this.$refs.lbSearchForm.search(true);
+				//TODO test infinite scroll		
+				this.infiniteScroll();
 			},
             methods: {
 				...Vuex.mapActions([
@@ -342,26 +345,13 @@
 					this.fetchSupplierCategoriesAction({service: supplierCategoriesService})
 				},
 				async searchSuppliers() {
-                    //if(this.isDebug)
-                        console.log("searchSuppliers");
-					/*
-                    if(!_.isUndefined(this.searchAddressString) && this.searchAddressString != "") {
-                        //get coordinates for searchAddressString
-                        await this.fetchCoordinatesAction({service: locationService, addressString: this.searchAddressString});
-                    }
-
-                    // toggle serch
-					this.search = true;
-					*/
 					await this.fetchSupplierList(true);
-					this.supplierListLoaded = true
-					//this.infiniteScroll();
                 },
 				async fetchSupplierList(/*boolean*/ reload = false) {
 					try {
 						await this.fetchSupplierListAction({service: supplierService, reload: reload})
 					} catch (error) {
-						console.log(error)
+						console.log("fetchSupplierList",error)
 					} finally {
 						this.supplierListLoaded = true
 					}
@@ -378,20 +368,6 @@
 						}
 						
                     };
-				},
-				addressFormat(deliveryAddress) {
-					let formattedAddress = '';
-
-					formattedAddress = '';
-                    formattedAddress += deliveryAddress.address1 ? deliveryAddress.address1:'';
-                    formattedAddress += deliveryAddress.address2 ? ' '+deliveryAddress.address2:'';
-                    formattedAddress += formattedAddress.length>0?', ':'';
-                    formattedAddress += deliveryAddress.postalCode ? deliveryAddress.postalCode:'';
-                    formattedAddress += deliveryAddress.city ? ' '+deliveryAddress.city:'';
-                    formattedAddress += formattedAddress.length>0?', ':'';
-					formattedAddress += deliveryAddress.countryCode ? deliveryAddress.countryCode:'';
-					
-					return formattedAddress
 				},
             },
         })        

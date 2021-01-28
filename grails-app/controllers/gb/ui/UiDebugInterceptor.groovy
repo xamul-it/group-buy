@@ -1,16 +1,19 @@
 package gb.ui
 
-class UserInterceptor {
+class UiDebugInterceptor {
+
+    public UiDebugInterceptor() {
+        matchAll().excludes(namespace: 'v1').excludes(controller: 'sitemap').excludes(controller: 'auth')
+    }
 
     boolean before() { true }
 
     boolean after() { 
 
+        log.debug("UiDebugInterceptor after $params")
+
         if(!model)
             model = [:]
-
-        //def userIdParam = params.id?.isInteger() ? params.id.toInteger() : 0
-        //model.userId = userIdParam
 
         def isDebugParam = params.debug == 'true'?:'false'
         model.isDebug = isDebugParam
