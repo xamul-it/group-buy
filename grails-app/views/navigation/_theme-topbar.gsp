@@ -65,14 +65,19 @@
 												<ul>
 													<li>
 														<a href="${createLink(controller: 'groupBuy', action: 'user')}" class="dropdown-item"> 
-															<i class="fa fa-address-card-o dropdown-icon"></i>Profilo 
+															<i class="icon icon-user dropdown-icon"></i>Profilo															 
 														</a>
 													</li>
-													<!-- li>
-														<a href="${createLink(controller: 'groupBuy', action: 'userSettings')}" class="dropdown-item"> 
-															<i class="dropdown-icon icon icon-settings"></i> Preferenze
+													<li>
+														<a href="${createLink(controller: 'user', action: 'orders')}" class="dropdown-item"> 
+															<i class="icon icon-basket dropdown-icon"></i>Ordini 
 														</a>
-													</li -->
+													</li>
+													<li>
+														<a href="${createLink(controller: 'user', action: 'groups')}" class="dropdown-item"> 
+															<i class="icon icon-share dropdown-icon"></i>Gruppi 
+														</a>
+													</li>
 												</ul>
 
 											</li>

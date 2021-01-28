@@ -12,8 +12,6 @@
             </div>
             <!--/Mobile Nav-->
 
-            
-
             <!--Desktop Nav-->
             <div id="sticky-wrapper" class="sticky-wrapper no-print" style="height: 88px;">
 
@@ -26,20 +24,10 @@
                             <div class="overlapblackbg"></div>
                             <ul class="horizontalMenu-list">
 
-                                <li><a href="${createLink(controller: 'groupBuy', action: 'groupList')}">Gruppi</a></li>
+                                <li><a href="${createLink(controller: 'group', action: 'list')}">Gruppi</a></li>
                                 <li><a href="${createLink(controller: 'supplier', action: 'list')}">Attivit&agrave;</a></li>
                                 <!-- Blog -->
                                 <!-- li><a href="https://www.group-buy.it/#blog"> Blog<span class="wsarrow"></span></a></li -->
-                                <!-- how it works -->
-                                <%/*!-- li aria-haspopup="true"><span class="horizontalMenu-click"><i
-                                            class="horizontalMenu-arrow fa fa-angle-down"></i></span><a href="#"
-                                        class="active">Come funziona <span class="fa fa-caret-down m-0"></span></a>
-                                    <ul class="sub-menu">
-                                        <li aria-haspopup="true" class="active"><a href="#">Come funziona 1</a></li>
-                                        <li aria-haspopup="true"><a href="#">Come funziona 2</a></li>
-                                        <li aria-haspopup="true"><a href="#">Come funziona 3</a></li>
-                                    </ul>
-                                </li --*/%>
                             </ul>
                             <ul class="mb-0">
                                 <li aria-haspopup="true" class="mt-5 d-none d-lg-block "> 

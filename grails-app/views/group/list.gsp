@@ -21,7 +21,7 @@
 
 									<div class="text-left text-white mb-6">
 										<h1 class="mb-1 d-none d-md-block">
-											Trova gruppi di acquisto in zona e partedipa 
+											Trova gruppi di acquisto in zona e partecipa 
 											<br/> o crea il tuo adesso.
 										</h1>
 									</div>
