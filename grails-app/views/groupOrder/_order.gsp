@@ -29,7 +29,7 @@
                         </div>
 
                         <div class=" text-dark"> 
-                            <p class="mb-1 mt-5"><span class="font-weight-semibold">Data :</span> {{ orderItem.orderDate }} </p>
+                            <p class="mb-1 mt-5"><span class="font-weight-semibold">Data :</span> {{ dateSimple(orderItem.orderDate) }} </p>
                             <p><span class="font-weight-semibold">Data consegna :</span> 15th July 2021</p>
                         </div>
 

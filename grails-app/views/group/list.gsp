@@ -11,7 +11,7 @@
 		<section class="theme-header">
 			<div class="bannerimg cover-image bg-background sptb-1" >
 
-				<div class="header-text1 mb-0">
+				<div class="header-text1 slide-header-text mt-0 mb-0">
 				
 					<div class="container">
 
@@ -19,6 +19,13 @@
 							<div class="col-xl-9 col-lg-12 col-md-12 d-block mx-auto">
 								<div class="search-background bg-transparent">
 
+									<div class="text-left text-white mb-6">
+										<h1 class="mb-1 d-none d-md-block">
+											Trova gruppi di acquisto in zona e partedipa 
+											<br/> o crea il tuo adesso.
+										</h1>
+									</div>
+									
 									<vue-lb-search-form ref="lbSearchForm"
 										:options="groupCategories"
 										label="name"
