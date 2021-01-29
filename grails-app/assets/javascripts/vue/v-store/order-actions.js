@@ -37,10 +37,19 @@ export const fetchOrderListAction = async (
         value: _.concat(getters.getField("order.orderList"), data),
       });
     }
-    commit("updateField", {
-      path: "pagination.total",
-      value: headers["x-pagination-total"],
-    });
+
+    if (!_.isNumber(headers["x-pagination-total"])) {
+      commit("updateField", {
+        path: "pagination.total",
+        value: _.toNumber(headers["x-pagination-total"]),
+      });
+    } else {
+      commit("updateField", {
+        path: "pagination.total",
+        value: headers["x-pagination-total"],
+      });
+    }
+
     // Reset the loading state after fetching
     dispatch("setLoadedState");
   } catch (error) {

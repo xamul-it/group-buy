@@ -37,10 +37,19 @@ abstract class OrderService implements IOrderService {
     }
 
     Long count (Map params){
-        def group = Group.findById(params.groupId)
         def orderCount = 0
-        
-        orderCount = group ? Order.countByGroup(group) : 0
+
+        if(params.groupId) {
+            def group = Group.findById(params.groupId)
+            orderCount = group ? Order.countByGroup(group) : 0
+        } else {
+            //TODO if user logged in and no params.groupId return user's orders list
+            //placeholder code:
+            def group = Group.findById(1)
+            orderCount = group ? Order.countByGroup(group) : 0
+        }
+
+        orderCount
     }
 
     List<Order> list (Map params){

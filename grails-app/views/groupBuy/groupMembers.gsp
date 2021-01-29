@@ -93,7 +93,7 @@
 
                                         <div class="mail-option"> 
                                             <sec:ifLoggedIn>
-												<div v-if="groupItem.administrator || groupItem.member" class="btn-group"> <a @click="$refs.memberInviteModal.openModal()" class="btn btn-outline-primary" aria-expanded="false"> <i class="fa fa-user-plus"></i> Invita </a> </div>
+												<div v-if="groupItem" class="btn-group"> <a v-if="groupItem.administrator || groupItem.member" @click="$refs.memberInviteModal.openModal()" class="btn btn-outline-primary" aria-expanded="false"> <i class="fa fa-user-plus"></i> Invita </a> </div>
                             				</sec:ifLoggedIn>
                                             <ul class="unstyled inbox-pagination text-dark">
                                                 <li> <span>1-{{membersCount}} di {{membersTotal}}</span> </li> 

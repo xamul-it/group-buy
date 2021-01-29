@@ -36,7 +36,7 @@
                                                         <tr>
                                                             <!-- th></th -->
                                                             <th>Ordine</th>
-                                                            <th>Totale</th>
+                                                            <!-- th>Totale</th -->
                                                             <th>Stato</th>
                                                             <th>&nbsp;</th>
                                                         </tr>
@@ -61,9 +61,9 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="font-weight-semibold fs-16">
-                                                                &euro; <!-- {{ orderTotal(order.id) }} -->
-                                                            </td>
+                                                            <!-- td class="font-weight-semibold fs-16">
+                                                                &euro; <!-- {{ orderTotal(order.id) }} -- >
+                                                            </td -->
                                                             <td>
 
                                                                 <span class="badge " :class="orderStatusBadgeClass(order.status.id)">{{ order.status.value }}</span>
@@ -87,6 +87,14 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <pagination
+                            :total="ordersTotal"
+                            :per-page="4"
+                            :current-page="currentPage"
+                            :disable-pagination="loading"
+                            @pagechanged="onPageChange"
+                            />
                         </div>
 
                     </div>
@@ -99,9 +107,11 @@
     <g:render template="/includes/js-vuelidate-js"/>
 
         <script type="module">
-            import * as dhm from '/assets/vue/v-common/date-helper-mixin.js';
-            import * as osm from '/assets/vue/v-order/order-status-mixin.js';
+            import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
+            import * as ph from '/assets/vue/v-common/pagination-helper-mixin.js';
+            import * as os from '/assets/vue/v-order/order-status-mixin.js';
 
+            import VPagination from '/assets/vue/v-common/pagination.vue.js';
             import * as userService from '/assets/vue/v-services/user-rest.js';
             import * as orderService from '/assets/vue/v-services/order-rest.js';
             import * as toastService from '/assets/vue/v-services/toast.js';
@@ -112,13 +122,15 @@
             var UserOrdersApp = new Vue({
                 el: '#v-user-orders-app',
                 name: 'UserOrders',
-                mixins: [dhm.dateHelperMixin,osm.orderStatusMixin],
+                mixins: [dh.dateHelperMixin,ph.paginationHelperMixin,os.orderStatusMixin],
                 components: {
                     'v-modal': VModal,
+                    'pagination': VPagination,
                 },
                 store,
                 data: {
                     //userId: ${userId},
+                    currentPage: 1,
                 },
                 computed: {
                     //all needed data fields from vuex store
@@ -136,6 +148,9 @@
                         'success',
                         'debug',
                     ]),
+                    ordersTotal() {
+                        return this.total;
+                    },
                     isDebug: function () {
                         return this.debug
                     },
@@ -168,7 +183,10 @@
                         await this.fetchUserAction({service: userService});
                     },
                     async fetchUserOrdes() {
-                        await this.fetchOrderListAction({service: orderService});
+                        await this.fetchOrderListAction({service: orderService, reload: true});
+                    },
+                    async loadPage() {
+                        await this.fetchUserOrdes()
                     },
                 },
             })        
