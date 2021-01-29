@@ -4,8 +4,9 @@ class UiUrlMappings {
 
     static mappings = { 
 
+        "/group/$groupId/orders/" (controller:"group", action: "orders")
+
         group "/groupBuy", {
-            "/group/$id/$groupName?" (controller:"groupBuy", action: "group")
             "/group/$groupId/order/$action?/$orderId?/"(controller:"groupOrder")
             "/order/$orderToken?"(controller:"groupOrder",action:"supplierShow")
             //suppliers near group address  
@@ -16,6 +17,8 @@ class UiUrlMappings {
             "/supplier/$supplierId/order" (controller:"supplier", action: "order")
             "/user/$action?/$userId?/"(controller:"user")
         }
+
+        
         
     }
     

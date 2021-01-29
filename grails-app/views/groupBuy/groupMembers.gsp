@@ -187,6 +187,7 @@
 
     <script type="module">
         import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
+        import * as ph from '/assets/vue/v-common/pagination-helper-mixin.js';
         import * as gms from '/assets/vue/v-group/group-member-status-mixin.js';
 
         import VPagination from '/assets/vue/v-common/pagination.vue.js';
@@ -203,7 +204,7 @@
         var GroupMembersApp = new Vue({
             el: '#v-group-members-app',
             name: "GroupMembers",
-            mixins: [dh.dateHelperMixin, gms.groupMemberStatusMixin],
+            mixins: [dh.dateHelperMixin, ph.paginationHelperMixin, gms.groupMemberStatusMixin],
             components: {
                 'v-modal': VModal,
                 'pagination': VPagination,
@@ -262,14 +263,6 @@
                 }
             },
             watch: {
-                currentPage: async function(newPage, oldPage) {
-                    if(newPage > oldPage)
-                        this.offset = this.max * oldPage
-                    else if(newPage < oldPage)
-                        this.offset = this.max * (newPage -1)
-
-                    await this.fetchGroupMembers(this.groupStatusId)
-                },
                 groupStatusId: async function(newId, oldId) {
                     if(newId != oldId) {
                         await this.fetchGroupMembers(this.groupStatusId)
@@ -309,9 +302,8 @@
                 initial(string, numChars = 2) {
                     return string.substring(0, numChars).toUpperCase();
                 },
-                onPageChange(page) {
-                    console.log(page)
-                    this.currentPage = page;
+                async loadPage() {
+                    await this.fetchGroupMembers(this.groupStatusId)
                 },
             },
         })        

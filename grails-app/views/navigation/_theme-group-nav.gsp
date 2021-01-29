@@ -7,5 +7,5 @@
         </gb:ifGroupOwner>
     </sec:ifLoggedIn>
     <li><a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: groupId)}" class="${controllerName == 'groupBuy' && actionName == 'groupMembers' ? 'active' : ''}">Iscritti</a></li>
-    <li><a href="${createLink(controller: 'groupBuy', action: 'groupOrders', id: groupId)}" class="${controllerName == 'groupBuy' && actionName == 'groupOrders' ? 'active' : ''}">Ordini</a></li>
+    <li><a href="/group/${groupId}/orders" class="${controllerName == 'group' && actionName == 'orders' ? 'active' : ''}">Ordini</a></li>
 </ul>
