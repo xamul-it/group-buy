@@ -6,7 +6,7 @@ class UiUrlMappings {
 
         "/group/$groupId/orders/" (controller:"group", action: "orders")
 
-        "/order/create" (controller:"groupOrder", action: create)
+        "/order/create" (controller:"groupOrder", action: "create")
 
         group "/groupBuy", {
             "/group/$groupId/order/$action?/$orderId?/"(controller:"groupOrder")
