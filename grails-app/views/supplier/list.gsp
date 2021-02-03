@@ -131,19 +131,19 @@
 													<div class="card overflow-hidden">
 														<div class="item-card9-img">
 															<div class="arrow-ribbon bg-info">{{ supplier.category.name }}</div>
-															<div class="item-card9-imgs"> <a :href="'./supplier/'+supplier.id+'/'+supplier.name"></a> <img
+															<div class="item-card9-imgs"> <a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)"></a> <img
 																	:src="'/assets/theme/img/categories/supplier/category-'+supplier.category.id+'.jpg'" alt="img" class="cover-image"> </div>
 															<!-- div class="item-card9-icons"> <a href="#" class="item-card9-icons1 wishlist"> <i
 																		class="fa fa fa-heart-o"></i></a> </div -->
 														</div>
 														<div class="card-body">
 															<div class="item-card9 text-dark">
-															<em>Categoria:</em> <a :href="'./supplier/'+supplier.id"> {{ supplier.category.name }}</a>
-																<a :href="'./supplier/'+supplier.id" class="text-dark mt-2">
+															<em>Categoria:</em> <a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)"> {{ supplier.category.name }}</a>
+																<a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)" class="text-dark mt-2">
 																	<h4 class="font-weight-semibold mt-1">{{ supplier.name }} </h4>
 																</a>
 																<!-- p class="text-dark">{{ supplier.description }}</p -->
-																<div class="item-card9-desc"> <a href="#" class="mr-4"><span class=""><i
+																<div class="item-card9-desc"> <a target="_blank" :href="'https://www.openstreetmap.org/?mlat='+supplier.shippingAddress.lat+'&mlon='+supplier.shippingAddress.lon+'#map=19/'+supplier.shippingAddress.lat+'/'+supplier.shippingAddress.lon" class="mr-4"><span class=""><i
 																				class="fa fa-map-marker text-muted mr-1"></i> {{ supplier.shippingAddress.address1 }} {{ supplier.shippingAddress.city }}</span></a> 
 																				<!-- a href="#"
 																		class=""><span class=""><i class="fa fa-calendar-o text-muted mr-1"></i>
@@ -200,7 +200,6 @@
 	<g:render template="/includes/js-vue-select-js"/>
 
     <script type="module">
-		import * as dh from '/assets/vue/v-common/date-helper-mixin.js';
 		import * as ah from '/assets/vue/v-common/address-helper-mixin.js';
 
 		import * as supplierService from '/assets/vue/v-services/supplier-rest.js';
@@ -208,7 +207,6 @@
 		supplierCategoriesService.setResourceEndpoint("supplierCategories");
 		supplierCategoriesService.set404Message("Nessuna categoria trovata");
 
-        import * as locationService from '/assets/vue/v-services/location.js';
 		import * as toastService from '/assets/vue/v-services/toast.js';
 		
 		import VueLBSearchForm from '/assets/vue/v-common/location-based-search-form.vue.js'
@@ -218,7 +216,7 @@
         var SupplierListApp = new Vue({
 			el: '#v-suppliers-app',
 			name: 'SupplierList',
-			mixins: [dh.dateHelperMixin,ah.addressHelperMixin],
+			mixins: [ah.addressHelperMixin],
 			components: {
 				'v-modal': VModal,
 				'vue-lb-search-form': VueLBSearchForm,
@@ -294,15 +292,6 @@
 						this.fetchSupplierList(true)
 					}
 				},
-				search: function(search) {
-					//Trigger search action
-					if(search) {
-						if(this.searchDirty)
-							this.searchDirty = false
-						this.fetchSupplierList(true);
-					}
-					this.search = false
-				},
 				error: function (message) {
 					toastService.alertDanger(message)
 				},
@@ -324,7 +313,6 @@
 				...Vuex.mapActions([
 					'fetchSupplierCategoriesAction',
 					'fetchSupplierListAction',
-					'fetchCoordinatesAction',
 				]),
 				keywordChanged(newKeyword) {
 					this.searchQuery = newKeyword;
