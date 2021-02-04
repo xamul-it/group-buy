@@ -65,9 +65,10 @@
 			<section class="sptb">
 				<div class="container">
 					<v-modal ref="registerLoginModal"></v-modal>
+					
 					<div class="row">
 
-						<div v-if="groupsCount==0 && !groupListLoaded" class="col-md-12 col-lg-12">
+						<div v-if="groupsCount==0 && !groupListLoaded" class="col-xl-12 col-lg-12 col-md-12">
 							<div class="card">
 								<div class="card-body">
 									<div class="jumbotron">
@@ -79,7 +80,7 @@
 							</div>
 						</div>
 
-						<div v-if="groupsCount==0 && groupListLoaded" class="col-md-12 col-lg-12">
+						<div v-if="groupsCount==0 && groupListLoaded" class="col-xl-12 col-lg-12 col-md-12">
 							<div class="card">
 								<div class="card-body">
 									<div class="jumbotron">
@@ -90,36 +91,45 @@
 								</div>
 							</div>
 						</div>
-
-						<!--Group lists-->
+					
+						<!--Group filters toolbar -->
 						<div v-if="groupsCount>0" class="col-xl-12 col-lg-12 col-md-12">
+							
+							<div class=" mb-0">
+								<div class="">
+									<div class="bg-white p-5 item2-gl-nav d-flex">
+										<h6 class="mb-0 mt-2"> 1 - {{groupsCount}} di {{ groupsTotal }}</h6>
+										<div class="nav item2-gl-menu ml-auto"></div>
+										<!-- ul class="nav item2-gl-menu ml-auto">
+											<li class=""><a href="#tab-11" class="active show" data-toggle="tab" title="List style"><i class="fa fa-list"></i></a></li>
+											<li><a href="#tab-12" data-toggle="tab" class="" title="Grid"><i class="fa fa-th"></i></a></li>
+										</ul -->
+										<div class="d-flex">
+											<label class="mr-2 mt-1 mb-sm-1" style="white-space: nowrap;">Ordina per:</label>
+											<select name="sort" 
+												class="form-control select-sm w-70"
+												v-model="sortOrder"
+												:disabled="searchDirty">
+												<option value="newest">Più recente</option>
+												<option value="oldest">Più vecchio</option>
+												<option value="nearest">Più vicino</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--/Group filters toolbar -->
+
+					</div>
+
+					<div class="row">
+						<!--Group lists-->
+						<div v-if="groupsCount>0" class="col-xl-9 col-lg-8 col-md-12">
 							<div class=" mb-lg-0">
 								<div class="">
 									<div class="item2-gl ">
-										<!-- filters toolbar-->
-										<div class=" mb-0">
-											<div class="">
-												<div class="bg-white p-5 item2-gl-nav d-flex">
-													<h6 class="mb-0 mt-2"> 1 - {{groupsCount}} di {{ groupsTotal }}</h6>
-													<div class="nav item2-gl-menu ml-auto"></div>
-													<!-- ul class="nav item2-gl-menu ml-auto">
-														<li class=""><a href="#tab-11" class="active show" data-toggle="tab" title="List style"><i class="fa fa-list"></i></a></li>
-														<li><a href="#tab-12" data-toggle="tab" class="" title="Grid"><i class="fa fa-th"></i></a></li>
-													</ul -->
-													<div class="d-flex">
-														<label class="mr-2 mt-1 mb-sm-1" style="white-space: nowrap;">Ordina per:</label>
-														<select name="sort" 
-															class="form-control select-sm w-70"
-															v-model="sortOrder"
-															:disabled="searchDirty">
-															<option value="newest">Più recente</option>
-															<option value="oldest">Più vecchio</option>
-															<option value="nearest">Più vicino</option>
-														</select>
-													</div>
-												</div>
-											</div>
-										</div>
+										
 										<!-- list -->
 										<div class="tab-content">
 											<div class="tab-pane active" id="tab-11">
@@ -169,6 +179,10 @@
 											</div>
 											
 										</div>
+
+
+										
+										
 									</div>
 
 								</div>
@@ -176,6 +190,31 @@
 						</div>
 						<!--/Group lists-->
 						
+						<div v-if="groupsCount>0" class="col-xl-3 col-lg-4 col-md-12">
+							<div class="item2-gl ">
+								<div class="tab-content"> 
+									<div class="card"> 
+
+										<div class="card-body"> 
+										
+											<div class="row group-actions">
+													<sec:ifLoggedIn>
+														<div class="col-md-12 form-group">
+															<a class="btn btn-outline-primary btn-block btn-lg" href="/order/create"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
+														</div>
+													</sec:ifLoggedIn>
+													<sec:ifNotLoggedIn>
+														<div class="col-md-12 form-group">
+															<button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-shopping-cart"></i> Nuovo ordine </button>
+														</div>
+													</sec:ifNotLoggedIn>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
