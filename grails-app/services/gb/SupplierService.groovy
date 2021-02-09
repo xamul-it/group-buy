@@ -89,6 +89,8 @@ abstract class SupplierService implements ISupplierService {
      * @param params
      *  latitude
      *  longitude
+     * Latitude: 1 deg = 110.574 km
+     * Longitude: 1 deg = 111.320*cos(latitude) km
      *  src
      * @return
      */
@@ -103,8 +105,6 @@ abstract class SupplierService implements ISupplierService {
         }
         if (params.latitude && params.longitude) {
 
-//            Latitude: 1 deg = 110.574 km
-//            Longitude: 1 deg = 111.320*cos(latitude) km
 
             q += "and (abs(s.lat - :latitude)< 0.1 and abs(s.lon - :longitude)< 0.1) "
             qparam.latitude = Double.valueOf(params.latitude)
@@ -114,7 +114,7 @@ abstract class SupplierService implements ISupplierService {
             q += "and s.category.id=  :categoryId "
             qparam.categoryId = "$params.categoryId".toLong()
         }
-        q += "order by (ABS(s.lat-$params.latitude) + ABS(s.lon-$params.longitude)) asc"
+        q += "order by (ABS(s.lat-$params.latitude) + ABS(s.lon-$params.longitude)) asc, RAND()"
         log.debug("$params.categoryId : $qparam.categoryId Query $q Params: $qparam")
         return [qparam,q]
     }
