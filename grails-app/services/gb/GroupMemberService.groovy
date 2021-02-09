@@ -73,6 +73,7 @@ class GroupMemberService {
             gm.lastUpdate = new Date()
             gm.save()
         }
+        gm.group.isMember=null
         return gm
     }
 
