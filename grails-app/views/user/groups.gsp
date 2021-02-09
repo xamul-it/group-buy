@@ -5,7 +5,7 @@
     </head>
     <body>
 
-        <div id="v-user-groups-app" vcloak>
+        <div id="v-user-groups-app" v-cloak>
 
             <!--Sliders Section-->
             <g:render template="/common/theme-header" model="['headerTitle':'I miei gruppi']"/>

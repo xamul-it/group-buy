@@ -5,7 +5,7 @@
     </head>
     <body>
 
-        <div id="v-user-orders-app" vcloak>
+        <div id="v-user-orders-app" v-cloak>
 
             <!--Sliders Section-->
             <g:render template="/common/theme-header" model="['headerTitle':'I miei ordini']"/>

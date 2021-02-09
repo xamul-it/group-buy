@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <div id="v-login-auth-app" vcloak>
+    <div id="v-login-auth-app" v-cloak>
         <!--Sliders Section-->
         <g:render template="/common/theme-header" model="['headerTitle':message(code:'spring.security.ui.login.title')]"/>
         <!--/Sliders Section-->

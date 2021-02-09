@@ -14,7 +14,7 @@
 </head>
 <body>
 
-	<div id="v-register-forgot-password-app" vcloak>
+	<div id="v-register-forgot-password-app" v-cloak>
 
 		<!--Sliders Section-->
 		<g:render template="/common/theme-header" model="['headerTitle':message(code:'spring.security.ui.forgotPassword.title')]"/>

@@ -15,7 +15,7 @@
 </head>
 <body>
 	
-	<div id="v-register-register-app" vcloak>
+	<div id="v-register-register-app" v-cloak>
 
 		<!--Sliders Section-->
 		<g:render template="/common/theme-header" model="['headerTitle':message(code:'spring.security.ui.register.title')]"/>

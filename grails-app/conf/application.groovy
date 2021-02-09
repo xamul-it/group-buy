@@ -7,6 +7,7 @@ grails.plugin.springsecurity.authority.className = 'gb.Role'
 
 grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+grails.plugin.springsecurity.apf.storeLastUsername = true
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               					access: ['permitAll']],

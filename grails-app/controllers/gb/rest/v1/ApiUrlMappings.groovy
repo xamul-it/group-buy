@@ -18,7 +18,6 @@ class ApiUrlMappings {
             }
             "/$namespace/users" (resources:'user')
             "/$namespace/users/$action(.$format)?" (controller:'user', excludes:['index', 'show', 'delete', 'update', 'save', 'list'])
-            //"/$namespace/categories" (resources:'groupCategory')
             "/$namespace/groupCategories" (resources:'groupCategory')
             "/$namespace/supplierCategories" (resources:'supplierCategory')
             "/$namespace/suppliers" (resources:'supplier')
