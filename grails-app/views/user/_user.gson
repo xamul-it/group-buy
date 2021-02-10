@@ -6,4 +6,6 @@ json {
     username user.username? user.username : ''
     email user.email? user.email : ''
     //enabled user.enabled 
+    password_new user.password_new
+
 }

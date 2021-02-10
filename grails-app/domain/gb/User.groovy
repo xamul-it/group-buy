@@ -14,6 +14,7 @@ class User implements Serializable {
     String username
     String email
     String password
+    transient String password_new
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
