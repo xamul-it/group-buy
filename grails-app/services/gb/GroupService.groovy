@@ -29,9 +29,9 @@ class GroupService {
         def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
         log.debug "QUERY by user $userId and $params"
         def qparam= [:]
-        String q = "from Group as g where 1=1 and "
+        String q = "from Group as g where 1=1 "
         if (params.src) {
-            q += "(g.description like :src or " + "g.name like :src ) and "
+            q += " and (g.description like :src or " + "g.name like :src )"
             qparam.src = "%$params.src%"
         }
         if (params.latitude && params.longitude) {
@@ -39,22 +39,29 @@ class GroupService {
 //            Latitude: 1 deg = 110.574 km
 //            Longitude: 1 deg = 111.320*cos(latitude) km
 
-            q += "(abs(g.lat - :latitude)< 0.1 and abs(g.lon - :longitude)< 0.1) and "
+            q += " and (abs(g.lat - :latitude)< 0.1 and abs(g.lon - :longitude)< 0.1)"
             qparam.latitude = Double.valueOf(params.latitude)
             qparam.longitude = Double.valueOf(params.longitude)
         }
         if (params.categoryId) {
-            q += "g.category.id=  :categoryId and "
+            q += " and g.category.id=  :categoryId"
             qparam.categoryId = "$params.categoryId".toLong()
         }
         if (userId!=null) {
-            q += "(g.publicGroup = true or "
-            /*q += "g in (" +
+            if (params.userId && (params.userId as long) = userId){
+                q += " and g.owner.id = :user"
+                qparam.user = (long) userId
+            }else {
+                q += " and (g.publicGroup = true or "
+                /*q += "g in (" +
                     "gm  from GroupMember gm " +
                     "where gm.user.id = :user) " +
                     "or "*/
-            q += "g.owner.id = :user)"
-            qparam.user = (long)userId
+                q += "g.owner.id = :user)"
+                qparam.user = (long) userId
+            }
+        } else {
+            q += " and g.publicGroup = true "
         }
         if (params.sort){
             if (params.sort=="creationDate"){
