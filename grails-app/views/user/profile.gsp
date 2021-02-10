@@ -23,53 +23,80 @@
                         </div>
 
                         <div class="col-xl-9 col-lg-12 col-md-12">
-                            <div class="card mb-0">
-                                <div class="card-header">
-                                    <h3 class="card-title">Gestisci il tuo profilo</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div v-if="userItem" class="row">
 
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group"> 
-                                                <label class="form-label">Nome utente</label> 
-                                                <input class="form-control"
-                                                        readonly="readonly"
-                                                        type="text" 
-                                                        placeholder="Nome" 
-                                                        v-model="userItem.username">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group"> 
-                                                <label class="form-label">E-mail</label> 
-                                                <input class="form-control"
-                                                        type="email" 
-                                                        placeholder="Email" 
-                                                        v-model="userItem.email"
-                                                        autocomplete="off"
-                                                        @focus="$v.userItem.email.$touch()">
-
-                                                <p class="input-alert" v-if="!$v.userItem.email.email && $v.userItem.email.$error">Si prega di fornire un indirizzo e-mail valido.</p>
-                                                <p class="input-alert" v-if="!$v.userItem.email.required && $v.userItem.email.$error">Questo campo non deve essere vuoto.</p>
-                                            </div>
-                                        </div>
-
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Gestisci il tuo profilo</h3>
                                     </div>
+                                    <div class="card-body">
+                                        <div v-if="userItem" class="row">
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group"> 
+                                                    <label class="form-label">Nome utente</label> 
+                                                    <input class="form-control"
+                                                            readonly="readonly"
+                                                            type="text" 
+                                                            placeholder="Nome" 
+                                                            v-model="userItem.username">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group"> 
+                                                    <label class="form-label">E-mail</label> 
+                                                    <input class="form-control"
+                                                            type="email" 
+                                                            placeholder="Email" 
+                                                            v-model="userItem.email"
+                                                            autocomplete="off"
+                                                            @input="$v.userItem.email.$touch()"
+                                                            >
+
+                                                    <p class="input-alert" v-if="!$v.userItem.email.email && $v.userItem.email.$error">Si prega di fornire un indirizzo e-mail valido.</p>
+                                                    <p class="input-alert" v-if="!$v.userItem.email.required && $v.userItem.email.$error">Questo campo non deve essere vuoto.</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-footer"> 
+                                        <button type="submit" :disabled="!$v.$anyDirty || $v.$invalid" class="btn btn-primary" @click="saveUser">Aggiorna profilo</button>
+                                    </div>
+
                                 </div>
-                                <div class="card-footer"> 
-                                    <button type="submit" class="btn btn-primary" @click="saveUser">Aggiorna profilo</button>
-                                </div>
-                            </div>
+
+                                <pre v-if="isDebug">{{$v}}</pre>
+
+                                <vue-user-password-form v-if="userItem" 
+                                    ref="UserPasswordForm"
+                                    :is-debug="isDebug"
+                                    :username="userItem.username"
+                                    :email="userItem.email"
+                                    @update-password="updatePassword"
+                                    @password-changed="passwordChanged"
+                                    @password_new-changed="passwordNewChanged"
+                                    
+                                >
+                                </vue-user-password-form>
+
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- /User Dashboard -->
+            <!--/User Dashboard -->
         
         </div>
 
+        <style>
+            .card .card-body .Password {
+                max-width: 100%;
+            }
+        </style>
+        
         <g:render template="/includes/js-vuelidate-js"/>
+
+        <script src="https://cdn.jsdelivr.net/npm/zxcvbn@4.4.2/dist/zxcvbn.js"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/vue-password-strength-meter@1.7.2/dist/vue-password-strength-meter.js"></script>
 
         <script type="module">
             import * as ah from '/assets/vue/v-common/alert-helper-mixin.js';
@@ -77,6 +104,7 @@
             import * as userService from '/assets/vue/v-services/user-rest.js';
             import * as toastService from '/assets/vue/v-services/toast.js';
             
+            import VueUserPasswordForm from '/assets/vue/v-user/password-form.vue.js'
             import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
             import { store } from '/assets/vue/v-store/user-store.js';
 
@@ -87,9 +115,12 @@
                 el: '#v-user-app',
                 name: 'User',
                 mixins: [ah.alertHelperMixin],
+                components: {
+				    'vue-user-password-form': VueUserPasswordForm,
+			    },
                 store,
                 data: {
-                    //userId: ${userId},
+                    password: '',
                 },
                 validations: {
                     userItem: {
@@ -101,18 +132,6 @@
                         email:  {
                             required,
                             email,
-                        },
-                        password: {
-                            required,
-                            minLength: minLength(8),
-                            maxLength: maxLength(64),
-                            isNotSameAsUsername: not(sameAs("username")),
-                            isNotSameAsEmail: not(sameAs("email")),
-                        },
-                        password2: {
-                            sameAs: sameAs((vm) => {
-                                return vm.password;
-                            }),
                         },
                     },
                 },
@@ -158,6 +177,15 @@
                     },
                     async saveUser() {
                         this.saveUserAction({service: userService, userId: this.userItem.id, userItem: this.userItem});
+                    },
+                    async updatePassword() {
+                        console.log("updatePassword",this.password,this.userItem.password_new)
+                    },
+                    passwordChanged(newPassword) {
+                        this.password = newPassword;
+                    },
+                    passwordNewChanged(newPassword_new) {
+                        this.userItem.password_new = newPassword_new;
                     },
                 },
             })        
