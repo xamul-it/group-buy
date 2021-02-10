@@ -7,28 +7,60 @@ class GroupMemberService {
     transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
     EmailService emailService
 
-    Long count (Map params){
-        def group = Group.findById(params.groupId)
-        def groupCount = 0
-        if(params.groupStatusId) {
-            def groupStatusId = params.groupStatusId?.isInteger() ? params.groupStatusId.toInteger() : 0
-            group ? GroupMember.countByGroupAndStatus(group, groupStatusId) : 0
-        } else {
-            groupCount = group ? GroupMember.countByGroup(group) : 0
+
+    def query(Map params){
+        def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
+        log.debug "QUERY by user $userId and $params"
+        def qparam= [:]
+        String q = "from GroupMember as g where 1=1"
+        if (params.q) {
+            q += " and g.user.username like :src"
+            qparam.src = "%$params.q%"
         }
-        groupCount
+
+        if (params.statusId) {
+            q += " and g.status=  :statusId"
+            qparam.statusId = MemberStatus.getById(params.statusId as Integer)
+        }
+/*        if (userId!=null) {
+            q += "(g.publicGroup = true or "
+            q += "g.owner.id = :user)"
+            qparam.user = (long)userId
+        }
+ */       if (params.sort){
+            if (params.sort=="name"){
+                q += " order by g.user.username $params.order"
+            }
+        }
+        log.debug("$params.categoryId : $qparam.categoryId Query $q Params: $qparam")
+        return [qparam,q]
+    }
+
+
+
+    Long count (Map params){
+        Long count (Map params){
+            def l
+            def qparam= [:]
+            String q
+            (qparam,q) = query(params)
+            def r = GroupMember.executeQuery("select count(g) "+q , qparam);
+            return r[0]
+        }
     }
 
     List<GroupMember> list (Map params){
-        def group = Group.findById(params.groupId)
-        def groupMemberList = []
-        if(params.groupStatusId) {
-            def groupStatusId = params.groupStatusId?.isInteger() ? params.groupStatusId.toInteger() : 0
-            groupMemberList = group ? GroupMember.findAllByGroupAndStatus(group, groupStatusId, params) : []
-        } else {
-            groupMemberList = group ? GroupMember.findAllByGroup(group, params) : []
-        }
-        groupMemberList        
+        def l
+        def qparam= [:]
+        String q
+        (qparam,q) = query(params)
+
+        qparam.max=params.max
+        qparam.offset=params.offset
+        def res = GroupMember.findAll(q , qparam)
+        log.debug("Risultato "+params.src!=null ? "++ $params.src":"--"+" $res")
+
+        return res
     }
 
     /**
