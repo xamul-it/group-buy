@@ -7,8 +7,7 @@ class GroupMemberService {
     transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
     EmailService emailService
 
-
-    def query(Map params){
+    def query(Map params) {
         def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
         log.debug "QUERY by user $userId and $params"
         def qparam= [:]
@@ -36,17 +35,13 @@ class GroupMemberService {
         return [qparam,q]
     }
 
-
-
-    Long count (Map params){
-        Long count (Map params){
-            def l
-            def qparam= [:]
-            String q
-            (qparam,q) = query(params)
-            def r = GroupMember.executeQuery("select count(g) "+q , qparam);
-            return r[0]
-        }
+    Long count(Map params) {
+        def l
+        def qparam= [:]
+        String q
+        (qparam,q) = query(params)
+        def r = GroupMember.executeQuery("select count(g) "+q , qparam);
+        return r[0]
     }
 
     List<GroupMember> list (Map params){
