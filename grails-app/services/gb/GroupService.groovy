@@ -48,7 +48,7 @@ class GroupService {
             qparam.categoryId = "$params.categoryId".toLong()
         }
         if (userId!=null) {
-            if (params.userId && (params.userId as long) = userId){
+            if (params.userId && ((params.userId as long) == userId)){
                 q += " and g.owner.id = :user"
                 qparam.user = (long) userId
             }else {

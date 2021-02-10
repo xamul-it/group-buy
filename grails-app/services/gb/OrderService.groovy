@@ -38,7 +38,7 @@ abstract class OrderService implements IOrderService {
             order = group ? Order.findByGroupAndId(group, params.id) : Order.findByToken(params.id)
         else
             order = new Order()
-        log.debug "QUERY by user $gm and $order"
+        log.debug "Order QUERY  by user $gm and $order"
         return order
     }
 
@@ -61,10 +61,9 @@ abstract class OrderService implements IOrderService {
         qparam.userId = "$userId".toLong()
         if (params.groupId) {
             q += "and s.group.id=  :groupId "
-            qparam.groupId = "$params.categoryId".toLong()
+            qparam.groupId = "$params.groupId".toLong()
         }
         q += "order by orderDate desc"
-        log.debug("$params.categoryId : $qparam.categoryId Query $q Params: $qparam")
         return [qparam,q]
     }
 
