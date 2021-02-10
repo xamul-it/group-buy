@@ -25,7 +25,7 @@
                             </div>
                             <div class="card-body">
                                 <ul class="list-unstyled widget-spec mb-0">
-                                    <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Seleziona l'<a href="">attivit&aacute;</a> &nbsp; presso cui effettuare l'ordine </li>
+                                    <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Seleziona l'<a href="/groupBuy/suppliers">attivit&aacute;</a> &nbsp; presso cui effettuare l'ordine </li>
                                     <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Clicca sul bottone &nbsp; <a href="#ordinaora" name="ordinaora" class="btn btn-primary btn-sm mr-2"><i class="fa fa-shopping-cart"></i> Ordina ora</a>
                                     <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Inserisci una descrizione (utile per tutti i partecipanti al gruppo) </li>
                                     <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Seleziona il tuo gruppo </li>
