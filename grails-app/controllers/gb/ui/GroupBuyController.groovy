@@ -72,4 +72,8 @@ class GroupBuyController {
         
     }
 
+    def cookie() {
+        
+    }
+
 }

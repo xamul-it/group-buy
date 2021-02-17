@@ -104,7 +104,7 @@
 
                     <pagination
                     :total="ordersTotal"
-                    :per-page="4"
+                    :per-page="max"
                     :current-page="currentPage"
                     :disable-pagination="loading"
                     @pagechanged="onPageChange"
@@ -189,7 +189,7 @@
             async mounted() {
                 this.debug = ${isDebug};
                 //will execute at pageload
-                this.max=4
+                this.max=8
                 if(this.groupId>0) {
                     await this.fetchGroup()
                     this.fetchGroupOrders();

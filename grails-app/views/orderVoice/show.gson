@@ -1,0 +1,8 @@
+model {
+    OrderVoice orderVoice
+}
+
+log.debug "OrderVoice show Model is $binding.variables orderVoice: $orderVoice"
+
+//json g.render(order, [deep:true])
+json g.render(template:'order-voice', model: [orderVoice:orderVoice] )

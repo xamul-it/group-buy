@@ -36,3 +36,25 @@ export const saveUserAction = async (
     dispatch("setErrorState", error);
   }
 };
+
+export const updateUserPasswordAction = async (
+  { commit, dispatch, state, getters },
+  payload
+) => {
+  try {
+    dispatch("setLoadingState");
+    let u = await payload.service.updateUserPassword(
+      payload.formData,
+      payload.postHeaders
+    );
+    dispatch("setLoadedState");
+    commit("updateField", {
+      path: "success",
+      value: u.message,
+    });
+  } catch (error) {
+    if (state.debug)
+      console.log("catch error", error, error.response, error.response.data);
+    dispatch("setErrorState", error);
+  }
+};

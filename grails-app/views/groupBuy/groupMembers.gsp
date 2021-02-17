@@ -169,7 +169,7 @@
 
                     <pagination
                     :total="membersTotal"
-                    :per-page="2"
+                    :per-page="max"
                     :current-page="currentPage"
                     :disable-pagination="loading"
                     @pagechanged="onPageChange"
@@ -256,7 +256,7 @@
             async mounted() {
                 this.debug = ${isDebug};
                 //will execute at pageload
-                this.max=2
+                this.max=12
                 if(this.groupId>0) {
                     await this.fetchGroup()
                     this.fetchGroupMembers(this.groupStatusId);

@@ -72,7 +72,7 @@
                                     :is-debug="isDebug"
                                     :username="userItem.username"
                                     :email="userItem.email"
-                                    @update-password="updatePassword"
+                                    @update-password="updateUserPassword"
                                     @password-changed="passwordChanged"
                                     @password_new-changed="passwordNewChanged"
                                     
@@ -170,7 +170,8 @@
                 methods: {
                     ...Vuex.mapActions([
                         'fetchUserAction',
-                        'saveUserAction'
+                        'saveUserAction',
+                        'updateUserPasswordAction'
                     ]),
                     async fetchUser() {
                         await this.fetchUserAction({service: userService});
@@ -178,8 +179,13 @@
                     async saveUser() {
                         this.saveUserAction({service: userService, userId: this.userItem.id, userItem: this.userItem});
                     },
-                    async updatePassword() {
-                        console.log("updatePassword",this.password,this.userItem.password_new)
+                    async updateUserPassword() {
+                        let bodyFormData = new FormData();
+                        bodyFormData.append('username', this.userItem.username);
+                        bodyFormData.append('password', this.password);
+                        bodyFormData.append('password_new', this.userItem.password_new);
+                        const headers = {'Content-Type': 'multipart/form-data' }
+                        this.updateUserPasswordAction({service: userService, formData: bodyFormData, postHeaders: headers});
                     },
                     passwordChanged(newPassword) {
                         this.password = newPassword;
