@@ -31,16 +31,6 @@
                                     <div class="row "> 
 
                                         <div class="col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label text-dark">Descrizione</label>
-                                                <input type="text" 
-                                                    class="form-control"
-                                                    placeholder="Inserisci una breve descrizione dell'ordine"
-                                                    v-model="orderItem.description">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-12 col-md-12">
 
                                             <div class="list-group"> 
                                                 <label class="form-label text-dark">Seleziona gruppo</label>
@@ -58,6 +48,16 @@
         
                                             </div>
 
+                                        </div>
+
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label text-dark">Descrizione</label>
+                                                <input type="text" 
+                                                    class="form-control"
+                                                    placeholder="Inserisci una breve descrizione dell'ordine"
+                                                    v-model="orderItem.description">
+                                            </div>
                                         </div>
                                         
                                     </div>
@@ -181,7 +181,7 @@
                         },
                         async createEmptyOrder() {
                             this.orderItem = {
-                                description: '',
+                                description: "Ordine per "+this.supplierItem.name,
                                 group: {id: 0 },
                                 supplier: {id: this.supplierItem.id},
                                 orderDate: new Date(),

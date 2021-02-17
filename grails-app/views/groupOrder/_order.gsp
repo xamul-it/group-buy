@@ -18,7 +18,7 @@
                         <div class="row "> 
                             <div v-if="orderItem.supplier" class="col-lg-6 "> 
                                 <p class="h3">{{ orderItem.supplier.name }}</p>
-                                <p>{{ orderItem.supplier.description }}</p>
+                                <!-- p>{{ orderItem.supplier.description }}</p -->
                                 <address v-if="orderItem.supplier.contactInfo"> {{ orderItem.supplier.contactInfo.email }} <br> {{ orderItem.supplier.contactInfo.phone }}<br> {{ orderItem.supplier.contactInfo.mobile }}</address> 
                             </div>
                                 
@@ -30,11 +30,10 @@
 
                         <div class=" text-dark"> 
                             <p class="mb-1 mt-5"><span class="font-weight-semibold">Data :</span> {{ dateSimple(orderItem.orderDate) }} </p>
-                            <p><span class="font-weight-semibold">Data consegna :</span> 15th July 2021</p>
+                            <!-- p><span class="font-weight-semibold">Data consegna :</span> 15th July 2021</p -->
                         </div>
 
                         <div v-if="orderItem.voices" class="table-responsive push"> 
-                        ${isSupplier}
                             <table class="table table-bordered table-hover text-nowrap">
                                 <tbody>
                                     <tr>
