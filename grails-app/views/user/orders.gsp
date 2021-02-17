@@ -90,7 +90,7 @@
 
                             <pagination
                             :total="ordersTotal"
-                            :per-page="4"
+                            :per-page="max"
                             :current-page="currentPage"
                             :disable-pagination="loading"
                             @pagechanged="onPageChange"
@@ -158,6 +158,7 @@
                 mounted() {
                     this.debug = ${isDebug};
                     //will execute at pageload
+                    this.max=8
                     this.fetchUser();
                     this.fetchUserOrdes();
                     
