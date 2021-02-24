@@ -196,7 +196,6 @@ class GroupMemberService {
                 invite = new GroupMember()
                 invite.status = MemberStatus.INVALID
             }
-            emailService.groupInvite(email, inviteText)
         }
         return gm
     }

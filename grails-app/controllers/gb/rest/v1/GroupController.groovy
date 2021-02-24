@@ -15,6 +15,7 @@ import gb.GroupMember
 import gb.MemberStatus
 import gb.GroupService
 import gb.GroupMemberService
+import gb.EmailService
 import gb.User
 
 //Extending the RestfulController super class docs:
@@ -30,6 +31,7 @@ class GroupController extends RestfulController<Group> {
 
     GroupService groupService
     GroupMemberService groupMemberService
+    EmailService emailService
     transient springSecurityService
     
     GroupController() {
@@ -51,6 +53,7 @@ class GroupController extends RestfulController<Group> {
     @Transactional
     def subscribe(){
         GroupMember gm = groupMemberService.subscribe(params.groupId)
+        emailService.subscribe(gm)
         respond gm.group, [status: CREATED]
     }
 
@@ -95,6 +98,7 @@ class GroupController extends RestfulController<Group> {
         log.debug "invite $params $request.JSON"
         def payload = request.JSON
         GroupMember gm = groupMemberService.inviteUser(params.groupId,payload.email,payload.inviteText)
+        emailService.groupInvite(gm, payload.email, payload.inviteText)
         respond gm, [status: CREATED]
     }
 
@@ -104,6 +108,7 @@ class GroupController extends RestfulController<Group> {
     @Transactional
     def unsubscribe(){
         GroupMember gm = groupMemberService.unsubscribe(params.groupId)
+        emailService.unsubscribe(gm)
         respond gm.group, [status: CREATED]
     }
 

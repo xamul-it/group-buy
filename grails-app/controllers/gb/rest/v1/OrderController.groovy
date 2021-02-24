@@ -8,6 +8,7 @@ import gb.Order
 import gb.OrderStatusLog
 import gb.OrderStatus
 import gb.OrderService
+import gb.EmailService
 
 class OrderController extends RestfulController<Order> {
 
@@ -15,6 +16,7 @@ class OrderController extends RestfulController<Order> {
     static responseFormats = ['json']
 
     OrderService orderService
+    EmailService emailService
     transient springSecurityService
 
     OrderController() {
@@ -58,6 +60,9 @@ class OrderController extends RestfulController<Order> {
     @Transactional
     def sent() {
         def o = orderService.changeStatusTo(params, OrderStatus.SENT)
+        emailService.orderStatusChange(o)
+        emailService.sentToSupplier(o)
+        log.debug("\n mailService: " + emailService)
         respond o
     }
 
@@ -67,6 +72,7 @@ class OrderController extends RestfulController<Order> {
     @Transactional
     def accepted() {
         def o = orderService.changeStatusTo(params, OrderStatus.ACCEPTED)
+        emailService.orderStatusChange(o)
         respond o
     }
 
@@ -76,6 +82,7 @@ class OrderController extends RestfulController<Order> {
     @Transactional
     def rejected() {
         def o = orderService.changeStatusTo(params, OrderStatus.REJECTED)
+        emailService.orderStatusChange(o)
         respond o, [status: OK]
     }
 
@@ -85,6 +92,7 @@ class OrderController extends RestfulController<Order> {
     @Transactional
     def shipped() {
         def o = orderService.changeStatusTo(params, OrderStatus.SHIPPED)
+        emailService.orderStatusChange(o)
         respond o
     }
 
@@ -94,6 +102,7 @@ class OrderController extends RestfulController<Order> {
     @Transactional
     def delivered() {
         def o = orderService.changeStatusTo(params, OrderStatus.DELIVERED)
+        emailService.orderStatusChange(o)
         respond o, [status: OK]
     }
 
@@ -113,11 +122,16 @@ class OrderController extends RestfulController<Order> {
         bindData order, getObjectToBind()
         OrderStatusLog statusLog = new OrderStatusLog(order: order,
                 status: OrderStatus.ACTIVE,
-                date:new Date(),
-                user:1).save()
+                date: new Date(),
+                user: 1).save()
 
         order
     }
 
-
+    @Override
+    protected Order saveResource(Order order) {
+        orderService.save(order)
+        emailService.orderStatusChange(order)
+        order
+    }
 }

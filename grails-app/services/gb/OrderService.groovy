@@ -105,7 +105,7 @@ abstract class OrderService implements IOrderService {
             if (order.group) order.group.springSecurityService = springSecurityService
             order.orderVoice.each(){ it.springSecurityService=springSecurityService }
         }
-        emailService.orderStatusChange(order)
+//        emailService.orderStatusChange(order)
         log.debug("OrderService springSecurityService:"+springSecurityService +" mailService"+emailService )
         order.save()
     }
@@ -119,7 +119,7 @@ abstract class OrderService implements IOrderService {
                 status: orderStatus,
                 date:new Date(),
                 user:springSecurityService.getCurrentUser()).save()
-        emailService.orderStatusChange(order)
+        //emailService.orderStatusChange(order)
         log.debug("\nOrderService springSecurityService: "+springSecurityService +
                 " mailService: "+emailService+
                 " groupService: "+groupService+
