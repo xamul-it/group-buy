@@ -15,7 +15,7 @@
                     
                     <div class="container">
                         <div class="text-justify">
-                            <h2 class="mb-4">Informativa privacy</h2>
+                            <h2 class="mb-4">Informativa sulla Privacy e Protezione dei Dati Personali</h2>
                             <h4 class="leading-normal"> Punto 1 </h4>
                             <p class="leading-normal">
                                 Cerchiamo di mantenere vivo il commercio al dettaglio in un periodo in cui il commercio elettronico rischia di distruggere il tessuto commerciale al dettaglio e il legame umano che si crea tra negoziante e cliente.
