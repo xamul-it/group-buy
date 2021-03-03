@@ -45,10 +45,8 @@ abstract class OrderService implements IOrderService {
     /**
      *
      * @param params
-     *  latitude
-     *  longitude
-     * Latitude: 1 deg = 110.574 km
-     * Longitude: 1 deg = 111.320*cos(latitude) km
+     *  paras.groupId = id del gruppo da cui recuperare gli ordini
+     *
      *  src
      * @return
      */

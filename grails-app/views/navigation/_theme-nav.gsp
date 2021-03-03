@@ -6,8 +6,10 @@
             <div class="horizontal-header clearfix ">
                 <div class="container"> 
                     <a href="${createLink(controller: 'group', action: 'list')}" class=" mobile-nav-icon-button mobile-nav-icon-button-left" title="Gruppi"><i class="zmdi zmdi-accounts"></i></a>
-                    <span class="smllogo"><img src="/assets/theme/img/brand/logo.png" alt="Group-buy" width="120"></span> 
+                    <span class="smllogo"><img src="/assets/theme/img/brand/logo.png" alt="Group-buy" width="120"></span>
                     <a href="${createLink(controller: 'supplier', action: 'list')}" class=" mobile-nav-icon-button mobile-nav-icon-button-right" title="Attività"><i class="zmdi zmdi-store"></i></a>
+                    <span class="smllogo"><img src="/assets/theme/img/brand/logo.png" alt="Group-buy" width="120"></span>
+                    <a href="${createLink(controller: 'user', action: 'orders')}" class=" mobile-nav-icon-button mobile-nav-icon-button-right" title="Gruppi"><i class="zmdi zmdi-store"></i></a>
                 </div>
             </div>
             <!--/Mobile Nav-->
@@ -26,6 +28,8 @@
 
                                 <li><a href="${createLink(controller: 'group', action: 'list')}">Gruppi</a></li>
                                 <li><a href="${createLink(controller: 'supplier', action: 'list')}">Attivit&agrave;</a></li>
+                                <li><a href="${createLink(controller: 'user', action: 'orders')}" >I miei ordin</a></li>
+
                                 <!-- Blog -->
                                 <!-- li><a href="https://www.group-buy.it/#blog"> Blog<span class="wsarrow"></span></a></li -->
                             </ul>

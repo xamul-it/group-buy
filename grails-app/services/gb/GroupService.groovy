@@ -53,15 +53,16 @@ class GroupService {
                 qparam.user = (long) userId
             }else {
                 q += " and (g.publicGroup = true or "
-                /*q += "g in (" +
-                    "gm  from GroupMember gm " +
-                    "where gm.user.id = :user) " +
-                    "or "*/
+                q += "g in (" +
+                    "gr from GroupMember gm, Group gr " +
+                    "where gm.user.id = :user and " +
+                        ") " +
+                    "or "
                 q += "g.owner.id = :user)"
                 qparam.user = (long) userId
             }
         } else {
-            q += " and g.publicGroup = true "
+            q += " and g.publicGroup = true"
         }
         if (params.sort){
             if (params.sort=="creationDate"){
