@@ -14,7 +14,7 @@ class UrlMappings {
         "/$controller/$action?/$id?(.$format)?"{
             constraints {
                 controller(validator: {
-                    return !(it in ['groupOrder'])
+                    return !(it in ['groupOrder','emailTest'])
                 })
             }
         }
