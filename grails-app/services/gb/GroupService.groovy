@@ -47,22 +47,20 @@ class GroupService {
             q += " and g.category.id=  :categoryId"
             qparam.categoryId = "$params.categoryId".toLong()
         }
-        if (userId!=null) {
-            if (params.userId && ((params.userId as long) == userId)){
-                q += " and g.owner.id = :user"
-                qparam.user = (long) userId
-            }else {
+        if (userId!=0) {
+            if (!params.userId || ((params.userId as long) != userId))
                 q += " and (g.publicGroup = true or "
-                q += "g in (" +
+            else q += " and ("
+            q += "g in (" +
                     "select gr from GroupMember gm, Group gr " +
                     "where gm.user.id = :user and gm.group.id = gr.id and " +
-                        "gm.status=:status" +
-                        ") " +
+                    "gm.status=:status" +
+                    ") " +
                     "or "
-                q += "g.owner.id = :user)"
-                qparam.user = (long) userId
-                qparam.status = MemberStatus.ACTIVE
-            }
+            q += "g.owner.id = :user)"
+            qparam.user = (long) userId
+            qparam.status = MemberStatus.ACTIVE
+
         } else {
             q += " and g.publicGroup = true"
         }
