@@ -28,7 +28,17 @@ class EmailTestController {
     transient springSecurityService
 
     def index() {
-        render "EmailTestController index"
+        render '''<html>
+                    <body>
+                        <h3>Group</h3>
+                        <p><a href="emailTest/subscribe">subscribe</a></p>
+                        <p><a href="emailTest/unsubscribe">unsubscribe</a></p>
+                        <p><a href="emailTest/invite">invite</a></p>
+
+                        <h3>Order</h3>
+                        <p><a href="emailTest/sent">sent</a></p>
+                    </body>
+                  </html>'''
     }
 
     @Transactional
