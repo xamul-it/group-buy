@@ -8,7 +8,10 @@
 <script type="module">
 
     import * as groupService from '/assets/vue/v-services/group-rest.js';
-    import * as categoriesService from '/assets/vue/v-services/categories-rest.js';
+    import * as categoriesService from '/assets/vue/v-services/common/read-only-resource-rest.js';
+	categoriesService.setResourceEndpoint("groupCategories");
+	categoriesService.set404Message("Nessuna categoria trovata");
+
     import * as locationService from '/assets/vue/v-services/location.js';
     import * as toastService from '/assets/vue/v-services/toast.js';
     
