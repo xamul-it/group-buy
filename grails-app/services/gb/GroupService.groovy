@@ -54,12 +54,14 @@ class GroupService {
             }else {
                 q += " and (g.publicGroup = true or "
                 q += "g in (" +
-                    "gr from GroupMember gm, Group gr " +
-                    "where gm.user.id = :user and " +
+                    "select gr from GroupMember gm, Group gr " +
+                    "where gm.user.id = :user and gm.group.id = gr.id and " +
+                        "gm.status=:status" +
                         ") " +
                     "or "
                 q += "g.owner.id = :user)"
                 qparam.user = (long) userId
+                qparam.status = MemberStatus.ACTIVE
             }
         } else {
             q += " and g.publicGroup = true"
