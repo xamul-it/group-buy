@@ -28,7 +28,7 @@
 
                                 <li><a href="${createLink(controller: 'group', action: 'list')}">Gruppi</a></li>
                                 <li><a href="${createLink(controller: 'supplier', action: 'list')}">Attivit&agrave;</a></li>
-                                <li><a href="${createLink(controller: 'user', action: 'orders')}" >I miei ordin</a></li>
+                                <li><a href="${createLink(controller: 'user', action: 'orders')}" >I miei ordini</a></li>
 
                                 <!-- Blog -->
                                 <!-- li><a href="https://www.group-buy.it/#blog"> Blog<span class="wsarrow"></span></a></li -->

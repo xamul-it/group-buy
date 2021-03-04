@@ -34,7 +34,7 @@ class GroupService {
             q += " and (g.description like :src or " + "g.name like :src )"
             qparam.src = "%$params.src%"
         }
-        if (params.latitude && params.longitude) {
+        /*if (params.latitude && params.longitude) {
 
 //            Latitude: 1 deg = 110.574 km
 //            Longitude: 1 deg = 111.320*cos(latitude) km
@@ -42,7 +42,7 @@ class GroupService {
             q += " and (abs(g.lat - :latitude)< 0.1 and abs(g.lon - :longitude)< 0.1)"
             qparam.latitude = Double.valueOf(params.latitude)
             qparam.longitude = Double.valueOf(params.longitude)
-        }
+        }*/
         if (params.categoryId) {
             q += " and g.category.id=  :categoryId"
             qparam.categoryId = "$params.categoryId".toLong()

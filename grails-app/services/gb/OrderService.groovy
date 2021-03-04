@@ -61,6 +61,14 @@ abstract class OrderService implements IOrderService {
             q += "and s.group.id=  :groupId "
             qparam.groupId = "$params.groupId".toLong()
         }
+        q += "and (s.group in (" +
+                "select gr from GroupMember gm, Group gr " +
+                "where gm.user.id = :user and gm.group.id = gr.id and " +
+                "gm.status=:status" +
+                ") " +
+                "or s.group.owner.id = :user) "
+        qparam.user = (long) userId
+        qparam.status = MemberStatus.ACTIVE
         q += "order by orderDate desc"
         return [qparam,q]
     }
