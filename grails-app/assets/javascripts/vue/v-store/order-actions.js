@@ -25,6 +25,7 @@ export const fetchOrderListAction = async (
       offset: getters.getField("pagination.offset"),
       sort: getters.getField("sort.sort"),
       order: getters.getField("sort.order"),
+      userId: getters.getField("user.userId"),
     });
     if (payload.reload) {
       commit("updateField", {
@@ -123,7 +124,7 @@ export const saveOrderAction = async (
     }
 
     console.log(r);
-    
+
     commit("updateField", {
       path: "order.orderItem",
       value: r.data,

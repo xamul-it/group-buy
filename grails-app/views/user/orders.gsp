@@ -137,6 +137,7 @@
                     //mapped with vuex-map-fields
                     ...mapFields([
                         'user.userItem',
+                        'user.userId',
                         'order.orderList',
                         'pagination.total',
                         'pagination.offset',
@@ -155,11 +156,12 @@
                         return this.debug
                     },
                 },
-                mounted() {
+                async mounted() {
                     this.debug = ${isDebug};
                     //will execute at pageload
                     this.max=8
-                    this.fetchUser();
+                    await this.fetchUser();
+                    this.userId = this.userItem.id;
                     this.fetchUserOrdes();
                     
                 },

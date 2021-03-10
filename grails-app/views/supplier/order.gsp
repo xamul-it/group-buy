@@ -89,6 +89,7 @@
                 import * as groupService from '/assets/vue/v-services/group-rest.js';
                 import * as orderService from '/assets/vue/v-services/order-rest.js';
                 import * as supplierService from '/assets/vue/v-services/supplier-rest.js';
+                import * as userService from '/assets/vue/v-services/user-rest.js';
                 import * as toastService from '/assets/vue/v-services/toast.js';
 
                 import VueTitle from '/assets/vue/v-common/title.vue.js'
@@ -117,6 +118,8 @@
                         //all needed data fields from vuex store
                         //mapped with vuex-map-fields
                         ...mapFields([
+                            'user.userItem',
+                            'user.userId',
                             'group.groupList',
                             'supplier.supplierItem',
                             'order.orderItem',
@@ -149,6 +152,8 @@
                         this.debug = ${isDebug};
                         //will execute at pageload
                         await this.fetchSupplier()
+                        await this.fetchUser();
+                        this.userId = this.userItem.id;
                         await this.fetchUserGroups()
                         this.createEmptyOrder()
                         this.$watch('orderItem', (orderItem) => {
@@ -169,10 +174,14 @@
                     },
                     methods: {
                         ...Vuex.mapActions([
+                            'fetchUserAction',
                             'fetchSupplierAction',
                             'fetchGroupListAction',
                             'saveOrderAction',
                         ]),
+                        async fetchUser() {
+                            await this.fetchUserAction({service: userService});
+                        },
                         async fetchUserGroups() {
                             await this.fetchGroupListAction({service: groupService, reload: true})
                         },

@@ -24,6 +24,7 @@ export const store = new Vuex.Store({
     },
     user: {
       userItem: null,
+      userId: 0,
     },
     success: null,
     error: null,

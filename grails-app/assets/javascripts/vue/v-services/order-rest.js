@@ -3,7 +3,7 @@
 const axiosInstance = axios.create({});
 
 //RESTFUL ENDPOINTS
-const REST_NAMESPACE = "/api/v1"
+const REST_NAMESPACE = "/api/v1";
 const REST_ENDPOINT = REST_NAMESPACE + "/groups";
 const ORDERS_ENDPOINT = "/orders";
 
@@ -42,6 +42,7 @@ export async function list({
   offset = 0,
   sort = "",
   order = "",
+  userId = 0,
 }) {
   const params = new URLSearchParams();
 
@@ -51,24 +52,23 @@ export async function list({
   if (!_.isUndefined(sort) && sort != "") params.append("sort", sort);
   if (!_.isUndefined(order) && order != "") params.append("order", order);
 
-  let resp = {}; //{ data, headers, status, statusText } 
-  if(groupId) {
-      resp = await axiosInstance.get(
+  if (!_.isUndefined(userId) && userId != 0) params.append("userId", userId);
+
+  let resp = {}; //{ data, headers, status, statusText }
+  if (groupId) {
+    resp = await axiosInstance.get(
       REST_ENDPOINT + "/" + groupId + ORDERS_ENDPOINT,
       {
         params,
       }
     );
   } else {
-      resp = await axiosInstance.get(
-      REST_NAMESPACE + ORDERS_ENDPOINT,
-      {
-        params,
-      }
-    );
+    resp = await axiosInstance.get(REST_NAMESPACE + ORDERS_ENDPOINT, {
+      params,
+    });
   }
 
-  return resp //{ data, headers };
+  return resp; //{ data, headers };
 }
 
 export async function show(groupId, orderId) {

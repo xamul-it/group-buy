@@ -10,7 +10,6 @@ import * as sharedActions from "/assets/vue/v-store/actions/shared-actions.js";
 import * as userActions from "/assets/vue/v-store/actions/user-actions.js";
 import * as groupActions from "/assets/vue/v-store/group-actions.js";
 
-
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -18,7 +17,7 @@ export const store = new Vuex.Store({
     id: "Order-store",
     pagination: {
       total: 0,
-      max: 4, //The maximum number to list
+      max: 10, //The maximum number to list
       offset: 0, //The offset from the first result to list from
     },
     sort: {
@@ -39,6 +38,7 @@ export const store = new Vuex.Store({
     },
     user: {
       userItem: null,
+      userId: 0,
     },
     group: {
       groupItem: null,

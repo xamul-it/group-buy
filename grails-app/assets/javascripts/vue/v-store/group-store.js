@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
     id: "Group-store",
     pagination: {
       total: 0,
-      max: 4, //The maximum number to list
+      max: 10, //The maximum number to list
       offset: 0, //The offset from the first result to list from
     },
     sort: {
@@ -41,6 +41,7 @@ export const store = new Vuex.Store({
     },
     user: {
       userItem: null,
+      userId: 0,
     },
     success: null,
     error: null,

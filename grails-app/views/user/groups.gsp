@@ -123,6 +123,7 @@
                     //mapped with vuex-map-fields
                     ...mapFields([
                         'user.userItem',
+                        'user.userId',
                         'group.groupList',
                         'pagination.total',
                         'pagination.offset',
@@ -138,12 +139,12 @@
                         return this.debug
                     },
                 },
-                mounted() {
+                async mounted() {
                     this.debug = ${isDebug};
                     //will execute at pageload
-                    this.fetchUser();
+                    await this.fetchUser();
+                    this.userId = this.userItem.id;
                     this.fetchUserGroups();
-                    
                 },
                 watch: {
                     error: function (message) {
@@ -166,6 +167,7 @@
                         await this.fetchUserAction({service: userService});
                     },
                     async fetchUserGroups() {
+                        
                         await this.fetchGroupListAction({service: groupService, reload: true})
                     },
                     addressFormat(deliveryAddress) {
