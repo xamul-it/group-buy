@@ -20,9 +20,7 @@
 
                 <pre v-if="isDebug">{{ $v.groupItem.name }}</pre>
             </div>
-        </div>
 
-        <div class="col-sm-6 col-md-6">
             <div class="form-group">
                 <label class="form-label text-dark">Categoria</label>
                 <v-select 
@@ -36,13 +34,6 @@
                     </template>
                 </v-select>
 
-                <!-- select class="form-control w-100"
-                    v-model="groupItem.category.id">
-                    <optgroup label="Categorie">
-                        <option v-for="category in groupCategories" :value="category.id">{{ category.name }}</option>
-                    </optgroup>
-                </select -->
-
                 <!-- alerts -->
                 <div v-if="!$v.groupItem.category.id.required || !$v.groupItem.category.id.minValue && $v.groupItem.category.id.$error" class="alert alert-danger" role="alert">
                     Scegli una categoria per il gruppo.
@@ -50,15 +41,13 @@
 
                 <pre v-if="isDebug">{{ $v.groupItem.category.id }}</pre>
             </div>
+
         </div>
 
-    </div>
-    <div class="row">
-
-        <div class="col-md-12">
+        <div class="col-sm-6 col-md-6">
             <div class="form-group">
                 <label class="form-label text-dark">Descrizione</label>
-                <textarea rows="5" class="form-control" placeholder="Inserisci qui la descrizione del tuo gruppo"
+                <textarea rows="4" class="form-control" placeholder="Inserisci qui la descrizione del tuo gruppo"
                     @input="$v.groupItem.description.$touch()"
                     v-model="groupItem.description" ></textarea>
                 <!-- alerts -->
@@ -69,14 +58,17 @@
                 <pre v-if="isDebug">{{ $v.groupItem.description }}</pre>
             </div>
         </div>
-        
-        <div class="col-md-12">
+
+    </div>
+    <div class="row">
+
+        <div class="col-sm-6 col-md-6">
             <div class="form-group ">
-                <div class="row">
-                    <div class="col-md-1">
+                <div class="row no-gutters">
+                    <div class="col-md-2">
                         <label class="form-label text-dark">Visibilità:</label>
                     </div>
-                    <div class="col-md-11">
+                    <div class="col-md-10">
                         <div class="custom-controls-stacked d-md-flex">
                             <label class="custom-control custom-radio mr-4">
                                 <input type="radio" class="custom-control-input" name="public-group" value="true" v-model="groupItem.publicGroup">
@@ -92,10 +84,25 @@
             </div>
         </div>
 
+        <div class="col-sm-6 col-md-6">
+            <div class="form-group">
+                <button 
+                    type="button" 
+                    title="Verifica indirizzo" 
+                    class="btn btn-outline-primary"
+                    v-on:click="fetchCoordinates"
+                    :disabled="$v.groupItem.deliveryAddress.address1.$invalid && $v.groupItem.deliveryAddress.city.$invalid"
+                    >
+                    Verifica indirizzo
+                </button>
+            </div>
+        </div>
+
     </div>
     <div class="row"> 
 
-        <div class="col-md-12" v-if="groupItem.deliveryAddress">
+        <div class="col-sm-6 col-md-6" v-if="groupItem.deliveryAddress">
+
             <div class="form-group">
                 <label class="form-label text-dark">Indirizzo di consegna 
                     <span v-if="geolocationSupported" @click="fetchAddress" title="Usa la mia posizione">
@@ -116,76 +123,70 @@
 
                 <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.address1 }}</pre>
             </div>
-        </div>
-        <div class="col-sm-6 col-md-4" v-if="groupItem.deliveryAddress">
-            <div class="form-group">
-                <label class="form-label text-dark">Citt&agrave;</label>
-                <input type="text" class="form-control" placeholder="Citt&agrave;"
-                    @input="$v.groupItem.deliveryAddress.city.$touch()"
-                    v-model="groupItem.deliveryAddress.city"
-                    >
-                <!-- alerts -->
-                <div v-if="!$v.groupItem.deliveryAddress.city.minLength || !$v.groupItem.deliveryAddress.city.required && $v.groupItem.deliveryAddress.city.$error" class="alert alert-danger" role="alert">
-                    Inseirisci la città.
+            <div class="row no-gutters">
+
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <label class="form-label text-dark">Citt&agrave;</label>
+                        <input type="text" class="form-control" placeholder="Citt&agrave;"
+                            @input="$v.groupItem.deliveryAddress.city.$touch()"
+                            v-model="groupItem.deliveryAddress.city"
+                            >
+                        <!-- alerts -->
+                        <div v-if="!$v.groupItem.deliveryAddress.city.minLength || !$v.groupItem.deliveryAddress.city.required && $v.groupItem.deliveryAddress.city.$error" class="alert alert-danger" role="alert">
+                            Inseirisci la città.
+                        </div>
+
+                        <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.city }}</pre>
+                    </div>
                 </div>
 
-                <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.city }}</pre>
+                
+
             </div>
-        </div>
-        <div class="col-sm-6 col-md-3" v-if="groupItem.deliveryAddress">
-            <div class="form-group">
-                <label class="form-label text-dark">Codice postale</label>
-                <input type="number" class="form-control" placeholder="CAP"
-                    @input="$v.groupItem.deliveryAddress.postalCode.$touch()"
-                    v-model="groupItem.deliveryAddress.postalCode">
-                <!-- alerts -->
-                <div v-if="!$v.groupItem.deliveryAddress.postalCode.required && $v.groupItem.deliveryAddress.postalCode.$error" class="alert alert-danger" role="alert">
-                    Inseirisci il CAP.
+            <div class="row no-gutters">
+
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label class="form-label text-dark">Codice postale</label>
+                        <input type="number" class="form-control" placeholder="CAP"
+                            @input="$v.groupItem.deliveryAddress.postalCode.$touch()"
+                            v-model="groupItem.deliveryAddress.postalCode">
+                        <!-- alerts -->
+                        <div v-if="!$v.groupItem.deliveryAddress.postalCode.required && $v.groupItem.deliveryAddress.postalCode.$error" class="alert alert-danger" role="alert">
+                            Inseirisci il CAP.
+                        </div>
+
+                        <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.postalCode }}</pre>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label class="form-label text-dark">Provincia</label>
+                        <input type="text"  class="form-control" placeholder="Provincia"
+                            @input="$v.groupItem.deliveryAddress.district.$touch()"
+                            v-model="groupItem.deliveryAddress.district">
+                        <!-- alerts -->
+                        <div v-if="!$v.groupItem.deliveryAddress.district.required && $v.groupItem.deliveryAddress.district.$error" class="alert alert-danger" role="alert">
+                            Inseirisci la provincia.
+                        </div>
+
+                        <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.district }}</pre>
+                    </div>
                 </div>
 
-                <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.postalCode }}</pre>
             </div>
-        </div>
-        <div class="col-md-5" v-if="groupItem.deliveryAddress">
-            <div class="form-group">
-                <label class="form-label text-dark">Provincia</label>
-                <input type="text"  class="form-control" placeholder="Provincia"
-                    @input="$v.groupItem.deliveryAddress.district.$touch()"
-                    v-model="groupItem.deliveryAddress.district">
-                <!-- alerts -->
-                <div v-if="!$v.groupItem.deliveryAddress.district.required && $v.groupItem.deliveryAddress.district.$error" class="alert alert-danger" role="alert">
-                    Inseirisci la provincia.
-                </div>
 
-                <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.district }}</pre>
-            </div>
-        </div>
+        </div><!-- /col -->
 
-    </div>
-    <div class="row"> 
-
-        <div class="col-md-12">
-            <div class="form-group">
-                <button 
-                    type="button" 
-                    title="Verifica indirizzo" 
-                    class="btn btn-outline-primary"
-                    v-on:click="fetchCoordinates"
-                    :disabled="$v.groupItem.deliveryAddress.address1.$invalid && $v.groupItem.deliveryAddress.city.$invalid"
-                    >
-                    Verifica indirizzo
-                </button>
-            </div>
-        </div>
-
-        <div class="col-md-12" v-if="showMap">
+        <div class="col-sm-6 col-md-6" v-if="showMap">
             <div class="form-group">
                 <l-map
                     v-if="showMap"
                     :zoom="16"
                     :center="center"
                     :options="{ zoomSnap: 0.5 }"
-                    style="height: 400px"
+                    style="height: 300px"
                     >
                         <l-marker :lat-lng="markerLatLng"></l-marker>
                         <l-tile-layer
@@ -195,8 +196,9 @@
                 </l-map>
             </div>
         </div>
-        
+
     </div>
+    
     <div class="row group-social" v-if="groupItem">
 
         <div class="col-md-6 col-lg-4 form-group">
