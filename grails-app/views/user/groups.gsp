@@ -85,8 +85,15 @@
 
                             </div>
 
-                        </div>
+                            <pagination
+                            :total="groupsTotal"
+                            :per-page="max"
+                            :current-page="currentPage"
+                            :disable-pagination="loading"
+                            @pagechanged="onPageChange"
+                            />
 
+                        </div>
                     </div>
                 </div>
             </section>
@@ -98,8 +105,10 @@
 
         <script type="module">
             import * as dhm from '/assets/vue/v-common/date-helper-mixin.js';
+            import * as ph from '/assets/vue/v-common/pagination-helper-mixin.js';
             import * as ah from '/assets/vue/v-common/address-helper-mixin.js';
 
+            import VPagination from '/assets/vue/v-common/pagination.vue.js';
             import * as userService from '/assets/vue/v-services/user-rest.js';
             import * as groupService from '/assets/vue/v-services/group-rest.js';
             import * as toastService from '/assets/vue/v-services/toast.js';
@@ -110,13 +119,15 @@
             var UserGroupsApp = new Vue({
                 el: '#v-user-groups-app',
                 name: 'UserGroups',
-                mixins: [dhm.dateHelperMixin,ah.addressHelperMixin],
+                mixins: [dhm.dateHelperMixin,ph.paginationHelperMixin,ah.addressHelperMixin],
                 components: {
                     'v-modal': VModal,
+                    'pagination': VPagination,
                 },
                 store,
                 data: {
                     //userId: ${userId},
+                    currentPage: 1,
                 },
                 computed: {
                     //all needed data fields from vuex store
@@ -135,6 +146,9 @@
                         'success',
                         'debug',
                     ]),
+                    groupsTotal() {
+                        return this.total;
+                    },
                     isDebug: function () {
                         return this.debug
                     },
@@ -169,6 +183,9 @@
                     async fetchUserGroups() {
                         
                         await this.fetchGroupListAction({service: groupService, reload: true})
+                    },
+                    async loadPage() {
+                        await this.fetchUserGroups()
                     },
                     addressFormat(deliveryAddress) {
                         let formattedAddress = '';
