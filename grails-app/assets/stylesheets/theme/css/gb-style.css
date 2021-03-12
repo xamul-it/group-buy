@@ -155,7 +155,7 @@
 
 .mobile-nav-icon-button {
   font-size: 28px;
-  line-height: 30px;             
+  line-height: 30px;
   transition: all 0.4s ease-in-out 0s;
   z-index: 102;
   padding: 11px 14px;
@@ -302,6 +302,11 @@ label .location-gps.fa-spinner {
 
 .whatsapp-bg {
   background: #25d366;
+  color: #fff;
+}
+
+.github-bg {
+  background: #000000;
   color: #fff;
 }
 /* end social */
@@ -454,7 +459,11 @@ label .location-gps.fa-spinner {
   width: auto;
 }
 
-.single-page .wrapper label.custom-control.custom-checkbox .custom-control-label a {
+.single-page
+  .wrapper
+  label.custom-control.custom-checkbox
+  .custom-control-label
+  a {
   pointer-events: auto !important;
 }
 /* end login register forgot password forms */
@@ -476,5 +485,3 @@ label .location-gps.fa-spinner {
   font-size: 12px;
 }
 /* end forms */
-
-

@@ -5,31 +5,34 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-3 col-md-12">
-								<h6>About</h6>
+								<h6>Group buy</h6>
 								<hr class="deep-purple  accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<p>Un servizio gratuito che consente in modo semplice di gestire ordini da gruppi di acquisto ai negozi della propria zona.</p>
 								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum .</p>
 							</div>
 							<div class="col-lg-2 col-md-12">
-								<h6>Our Services</h6>
+								<h6>&nbsp;</h6>
 								<hr class="deep-purple text-primary accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<ul class="list-unstyled mb-0">
-									<li><a href="javascript:;">Chi siamo</a></li>
+									<li><a href="/chisiamo">Chi siamo</a></li>
 									<li><a href="javascript:;">Contatti</a></li>
 									<li><a href="javascript:;">Supporto</a></li>
-									<li><a href="/groupBuy/tos">Termini di Servizio</a></li>
-									<li><a href="/groupBuy/privacy">Regole della Privacy</a></li>
-									<li><a href="/groupBuy/cookie">Uso dei Cookie</a></li>
+									<li><a href="/tos">Termini di Servizio</a></li>
+									<li><a href="/privacy">Regole della Privacy</a></li>
+									<li><a href="/cookie">Uso dei Cookie</a></li>
 								</ul>
 							</div>
 
 							<div class="col-lg-3 col-md-12">
-								<h6>Contact</h6>
+								<h6>Info</h6>
 								<hr class="deep-purple  text-primary accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<ul class="list-unstyled mb-0">
 									<li>
-										<a href="#"><i class="fa fa-home mr-3 text-primary"></i> Milano, 20100,
-											IT</a>
+										<a href="#"><i class="fa fa-home mr-3 text-primary"></i>  
+										Viale Umbria, 49 
+										<br/>
+										20135 Milano IT
+										</a>
 									</li>
 									<li>
 										<a href="#"><i class="fa fa-envelope mr-3 text-primary"></i>
@@ -37,9 +40,9 @@
 									<li>
 										<a href="#"><i class="fa fa-phone mr-3 text-primary"></i> + 01 234 567 88</a>
 									</li>
-									<li>
+									<!-- li>
 										<a href="#"><i class="fa fa-print mr-3 text-primary"></i> + 01 234 567 89</a>
-									</li>
+									</li -->
 								</ul>
 								<ul class="list-unstyled list-inline mt-3">
 									<li class="list-inline-item">
@@ -60,7 +63,7 @@
 								</ul>
 							</div>
 							<div class="col-lg-4 col-md-12">
-								<h6>Contatti</h6>
+								<h6>Scrivici</h6>
 								<hr class="deep-purple  text-primary accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<div class="clearfix"></div>
 								<div class="input-group w-70 mb-1">
