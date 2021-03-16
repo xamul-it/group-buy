@@ -110,8 +110,6 @@ environments:
   development:
     dataSource:
       logSql: true
-      #dbCreate: create-drop
-      #url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
       dbCreate: update
       pooled: true
       jmxExport: true
@@ -169,7 +167,13 @@ environments:
   production:
     dataSource:
       dbCreate: none
-      url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+      pooled: true
+      jmxExport: true
+      driverClassName: com.mysql.jdbc.Driver
+      username: groupbuy
+      password: gr0up-buy!
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      url: jdbc:mysql://ptah07.seeweb.it:3306/gb-prod
       properties:
         jmxEnabled: true
         initialSize: 5
