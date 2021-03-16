@@ -173,7 +173,7 @@ environments:
       username: groupbuy
       password: gr0up-buy!
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-      url: jdbc:mysql://ptah07.seeweb.it:3306/gb-prod
+      url: jdbc:mysql://ptah07.seeweb.it:3306/gb_prod
       properties:
         jmxEnabled: true
         initialSize: 5
