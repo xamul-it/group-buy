@@ -21,15 +21,15 @@
 								<div class="clearfix">
 									<ul class="contact border-left">
 										<li class="dropdown mr-5">
-											<a href="https://www.group-buy.it/?page_id=50" class="text-dark" data-toggle="dropdown"><span>Chi siamo</span>
+											<a href="/chisiamo" class="text-dark"><span>Chi siamo</span>
 											</a>
 										</li>
 										<li class="dropdown mr-5">
-											<a href="https://www.group-buy.it" class="text-dark"
+											<a href="/contatti" class="text-dark"
 												data-toggle="dropdown"><span>Contatti</span></a>
 										</li>
 										<li class="dropdown">
-											<a href="https://www.group-buy.it/" class="text-dark"
+											<a href="/supporto" class="text-dark"
 												data-toggle="dropdown"><span>Supporto</span></a>
 										</li>
 									</ul>

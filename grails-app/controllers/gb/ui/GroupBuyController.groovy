@@ -7,21 +7,6 @@ class GroupBuyController {
 
     EmailService emailService
 
-    
-
-    def mail() {
-        //emailService.groupInvite()
-        Order order = Order.get(34)
-        if (order==null) {
-            order.list()[0]
-            render "Missing order!"
-        }
-        else {
-            emailService.orderStatusChange(order)
-            render "Email sent!"
-        }
-    }
-
     def groupList() {
 
     }
@@ -56,24 +41,6 @@ class GroupBuyController {
     
     def index() {
 
-    }
-
-    def adout() {
-
-    }
-
-    //terms
-
-    def tos() {
-
-    }
-
-    def privacy() {
-        
-    }
-
-    def cookie() {
-        
     }
 
 }
