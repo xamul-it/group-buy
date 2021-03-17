@@ -3,7 +3,6 @@
         <meta name="layout" content="claylist"/>
         <title>Gruppo di acquisto</title>
 
-        <g:render template="/includes/js-vuelidate-js"/>
         <g:render template="/includes/js-vue-select-js"/>
     </head>
     <body>

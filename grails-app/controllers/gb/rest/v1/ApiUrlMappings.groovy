@@ -23,6 +23,7 @@ class ApiUrlMappings {
             "/$namespace/suppliers" (resources:'supplier')
             "/$namespace/orders" (resources:'order', excludes:['delete', 'update', 'save', 'list', 'show'])
             "/$namespace/orders/$id/$action(.$format)?" (controller:'order', excludes:['index', 'delete', 'update', 'save', 'list'])
+            "/$namespace/contact/$action(.$format)?" (controller:'contact')
 
         }
     }

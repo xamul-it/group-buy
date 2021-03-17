@@ -199,7 +199,6 @@
 		<!--Supplier Listing-->
 	</div>
 
-	<g:render template="/includes/js-vuelidate-js"/>
 	<g:render template="/includes/js-vue-select-js"/>
 
     <script type="module">

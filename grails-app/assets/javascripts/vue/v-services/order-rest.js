@@ -1,4 +1,5 @@
-//require axios @0.19.2 lodash@4.17.19
+//require axios
+//require lodash
 
 const axiosInstance = axios.create({});
 

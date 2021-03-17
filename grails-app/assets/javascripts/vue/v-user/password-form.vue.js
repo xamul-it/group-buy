@@ -1,18 +1,5 @@
-//vuelidate
-Vue.use(window.vuelidate.default);
-const {
-  required,
-  email,
-  minLength,
-  maxLength,
-  sameAs,
-  not,
-} = window.validators;
-// import { required, minLength } from 'vuelidate/lib/validators'
-
-//lodash
-const { drop, every, forEach, get, isArray, map, set, isUndefined } = _;
-//import { drop, every, forEach, get, isArray, map, set } from 'lodash';
+//require vuelidate
+//require lodash
 
 Vue.component("password", Password);
 

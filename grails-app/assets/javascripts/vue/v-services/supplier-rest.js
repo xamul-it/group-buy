@@ -1,4 +1,5 @@
-//require axios @0.19.2 lodash@4.17.19
+//require axios
+//require lodash
 
 const axiosInstance = axios.create({});
 
@@ -34,7 +35,7 @@ DELETE      /api/v1/suppliers/${id}      delete
 */
 //https://docs.grails.org/latest/guide/REST.html#extendingRestfulController
 
-export async function list({ 
+export async function list({
   max,
   offset = 0,
   sort = "",
@@ -43,7 +44,7 @@ export async function list({
   latitude = 0.0,
   longitude = 0.0,
   categoryId = 0,
- }) {
+}) {
   const params = new URLSearchParams();
 
   console.log(

@@ -1,5 +1,4 @@
 <g:render template="/includes/js-leaflet-js"/>
-<g:render template="/includes/js-vuelidate-js"/>
 <g:render template="/includes/js-vue-select-js"/>
 
 <!-- Vue Pages and Components here -->
@@ -25,10 +24,8 @@
     });
     Vue.component('v-select', VueSelect.VueSelect);
 
-    //vuelidate
-    Vue.use(window.vuelidate.default);
-    const { required, minLength, minValue } = window.validators;
-    //Moment.js
+    //require vuelidate
+    //require Moment.js
     moment.locale('it');
 
     var app = new Vue({

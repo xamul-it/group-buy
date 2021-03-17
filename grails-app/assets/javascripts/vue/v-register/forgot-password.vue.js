@@ -1,10 +1,5 @@
-//vuelidate
-const { required, minLength, maxLength } = window.validators;
-// import { required, minLength } from 'vuelidate/lib/validators'
-
-//lodash
-const { drop, every, forEach, get, isArray, map, set, isUndefined } = _;
-//import { drop, every, forEach, get, isArray, map, set } from 'lodash';
+//require vuelidate
+//require lodash
 
 var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
   template: `
@@ -97,15 +92,18 @@ var VRegisterForgotPassword = Vue.component("VRegisterForgotPassword", {
         };
       });
     }
-    if(!isUndefined(this.inputFields)){
-      if(!isUndefined(this.inputFields.username) && this.inputFields.username != "") {
-        this.username = this.inputFields.username
+    if (!isUndefined(this.inputFields)) {
+      if (
+        !isUndefined(this.inputFields.username) &&
+        this.inputFields.username != ""
+      ) {
+        this.username = this.inputFields.username;
       }
     }
   },
   methods: {
-    onFieldFocus(e){
-      e.target.removeAttribute('readonly')
+    onFieldFocus(e) {
+      e.target.removeAttribute("readonly");
     },
   },
 });

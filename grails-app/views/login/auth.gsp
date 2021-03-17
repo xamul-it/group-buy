@@ -92,14 +92,10 @@
 
     </div>
 
-    <g:render template="/includes/js-vuelidate-js"/>
-
     <!-- Vue Pages and Components here -->
     <script src="/assets/vue/v-login/auth.vue.js"></script>
 
-    <script>
-        Vue.use(window.vuelidate.default);
-        
+    <script>        
         // Register a global custom directive called `v-focus`
         Vue.directive('focus', {
             // When the bound element is inserted into the DOM...

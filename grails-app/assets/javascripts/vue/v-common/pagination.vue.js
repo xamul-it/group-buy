@@ -1,10 +1,8 @@
-//lodash
-const { drop, every, forEach, get, isArray, map, set } = _;
-//import { drop, every, forEach, get, isArray, map, set } from 'lodash';
+//require lodash
 
 var VPagination = Vue.component("VPagination", {
-    name: "v-pagination",
-    template: `<ul class="pagination mb-5">
+  name: "v-pagination",
+  template: `<ul class="pagination mb-5">
 
       <li class="page-item page-prev" :class="{ disabled: isInFirstPage || disablePagination }">
         <a @click="onClickPreviousPage" tabindex="-1" class="page-link btn" ><</a>
@@ -24,74 +22,72 @@ var VPagination = Vue.component("VPagination", {
     maxVisibleButtons: {
       type: Number,
       required: false,
-      default: 3
+      default: 3,
     },
     total: {
       type: Number,
-      required: true
+      required: true,
     },
     perPage: {
       type: Number,
       default: 10,
-      required: true
+      required: true,
     },
     currentPage: {
       type: Number,
-      required: true
+      required: true,
     },
     disablePagination: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     paginationStart: function () {
-        if (this.opts.chunksNavigation === 'scroll') {
-            return this.firstPage;
-        }
+      if (this.opts.chunksNavigation === "scroll") {
+        return this.firstPage;
+      }
 
-        return ((this.currentChunk - 1) * this.opts.chunk) + 1;
+      return (this.currentChunk - 1) * this.opts.chunk + 1;
     },
     pagesInCurrentChunk: function () {
-        return this.paginationStart + this.opts.chunk <= this.totalPages ?
-            this.opts.chunk :
-            this.totalPages - this.paginationStart + 1;
-
+      return this.paginationStart + this.opts.chunk <= this.totalPages
+        ? this.opts.chunk
+        : this.totalPages - this.paginationStart + 1;
     },
     totalPages() {
-        return this.total ? Math.ceil(this.total / this.perPage) : 1;
+      return this.total ? Math.ceil(this.total / this.perPage) : 1;
     },
     startPage() {
-      let startPage = 1
+      let startPage = 1;
       if (this.currentPage === 1) {
         return startPage;
       }
 
-      if (this.currentPage === this.totalPages) { 
-        startPage = this.totalPages - this.maxVisibleButtons +1
-        if(startPage>0)
-          return startPage
-        else
-          return 1
+      if (this.currentPage === this.totalPages) {
+        startPage = this.totalPages - this.maxVisibleButtons + 1;
+        if (startPage > 0) return startPage;
+        else return 1;
       }
 
       startPage = this.currentPage - 1;
-      if(startPage>0)
-        return startPage
-      else
-        return 1
+      if (startPage > 0) return startPage;
+      else return 1;
     },
     endPage() {
-      return Math.min(this.startPage + this.maxVisibleButtons - 1, this.totalPages);
+      return Math.min(
+        this.startPage + this.maxVisibleButtons - 1,
+        this.totalPages
+      );
     },
     pages() {
       const range = [];
 
-      for (let i = this.startPage; i <= this.endPage; i+= 1 ) {
+      for (let i = this.startPage; i <= this.endPage; i += 1) {
         range.push({
           name: i,
-          isDisabled: i === this.currentPage 
+          isDisabled: i === this.currentPage,
         });
       }
 
@@ -103,28 +99,27 @@ var VPagination = Vue.component("VPagination", {
     isInLastPage() {
       return this.currentPage === this.totalPages;
     },
-  },  
+  },
   methods: {
     onClickFirstPage() {
-      this.$emit('pagechanged', 1);
+      this.$emit("pagechanged", 1);
     },
     onClickPreviousPage() {
-      this.$emit('pagechanged', this.currentPage - 1);
+      this.$emit("pagechanged", this.currentPage - 1);
     },
     onClickPage(page) {
-      this.$emit('pagechanged', page);
+      this.$emit("pagechanged", page);
     },
     onClickNextPage() {
-      this.$emit('pagechanged', this.currentPage + 1);
+      this.$emit("pagechanged", this.currentPage + 1);
     },
     onClickLastPage() {
-      this.$emit('pagechanged', this.totalPages);    
+      this.$emit("pagechanged", this.totalPages);
     },
     isPageActive(page) {
       return this.currentPage === page;
     },
- },
-  
+  },
 });
 
 export default VPagination;

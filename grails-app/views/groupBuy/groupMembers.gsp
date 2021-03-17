@@ -181,8 +181,6 @@
     </section>
     <!-- /Group members -->
     
-	<g:render template="/includes/js-vuelidate-js"/>
-
     <!-- Vue Pages and Components here -->
 
     <script type="module">
@@ -197,10 +195,8 @@
         import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
         import { store } from '/assets/vue/v-store/group-store.js';
 
-        //vuelidate
-        Vue.use(window.vuelidate.default);
-        const { required, minLength, email } = window.validators;
-
+        //require vuelidate
+        
         var GroupMembersApp = new Vue({
             el: '#v-group-members-app',
             name: "GroupMembers",

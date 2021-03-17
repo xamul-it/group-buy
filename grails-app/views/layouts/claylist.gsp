@@ -54,6 +54,7 @@
 	<g:render template="/includes/js-moment-js"/>
 	<g:render template="/includes/js-axios-js"/>
 	<g:render template="/includes/js-vue2-js"/>
+	<g:render template="/includes/js-vuelidate-js"/>
 	<!-- vue alerts -->
 	<script src="/assets/vue/v-jslib/vue-toasted@1.1.28/vue-toasted.min.js"></script>
 	<g:render template="/includes/js-vuex-js"/>

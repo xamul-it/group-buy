@@ -101,8 +101,6 @@
         
         </div>
 
-    <g:render template="/includes/js-vuelidate-js"/>
-
         <script type="module">
             import * as dhm from '/assets/vue/v-common/date-helper-mixin.js';
             import * as ph from '/assets/vue/v-common/pagination-helper-mixin.js';

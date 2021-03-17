@@ -152,4 +152,19 @@ class EmailService implements IEmailService {
     }
 
 
+    def contact(String fromEmail, String messageText) {
+        def user = null
+        if (springSecurityService && springSecurityService.isLoggedIn()) {
+            user = User.get(springSecurityService.getPrincipal().id)
+        }
+
+        sendMail {
+            //multipart true
+            to "default@site.com"
+            from fromEmail
+            subject "Richiesta di contatto da Group-buy"
+            text( view:"/email/contactPlain", 		
+                    model:[fromEmail:fromEmail,messageText:messageText])
+        }
+    }
 }

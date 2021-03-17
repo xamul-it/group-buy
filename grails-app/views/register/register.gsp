@@ -106,8 +106,6 @@
 
 	</div>
 
-	<g:render template="/includes/js-vuelidate-js"/>
-
 	<script src="https://cdn.jsdelivr.net/npm/zxcvbn@4.4.2/dist/zxcvbn.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue-password-strength-meter@1.7.2/dist/vue-password-strength-meter.js"></script>
 
@@ -115,14 +113,12 @@
     <script src="/assets/vue/v-register/register.vue.js"></script>
 
     <script>
-        Vue.use(window.vuelidate.default);
-
 		Vue.component('password', Password);
 
         var app = new Vue({
             el: '#v-register-register-app',
             components: {
-				'register-register': VRegisterRegister,
+				'v-register-register': VRegisterRegister,
             },
             data: {
             },

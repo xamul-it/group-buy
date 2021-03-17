@@ -80,7 +80,6 @@
         </div>
         
             <g:render template="/includes/js-vue-select-js"/>
-            <g:render template="/includes/js-vuelidate-js"/>
 
             <script type="module">
                 import * as ah from '/assets/vue/v-common/alert-helper-mixin.js';
@@ -95,10 +94,6 @@
                 import VueTitle from '/assets/vue/v-common/title.vue.js'
                 import { mapFields } from '/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js';
                 import { store } from '/assets/vue/v-store/order-store.js';
-
-                //vuelidate
-                Vue.use(window.vuelidate.default);
-                const { required,requiredIf, requiredUnless, minLength, minValue, helpers } = window.validators;
 
                 var OrderCreateApp = new Vue({
                     el: '#v-order-create-app',

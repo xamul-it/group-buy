@@ -1,10 +1,5 @@
-//vuelidate
-const { required, minLength } = window.validators;
-// import { required, minLength } from 'vuelidate/lib/validators'
-
-//lodash
-const { drop, every, forEach, get, isArray, map, set, isUndefined } = _;
-//import { drop, every, forEach, get, isArray, map, set } from 'lodash';
+//require vuelidate
+//require lodash
 
 var VLoginAuth = Vue.component("VLoginAuth", {
   template: `
@@ -123,9 +118,12 @@ var VLoginAuth = Vue.component("VLoginAuth", {
         };
       });
     }
-    if(!isUndefined(this.inputFields)){
-      if(!isUndefined(this.inputFields.username) && this.inputFields.username != "") {
-        this.username = this.inputFields.username
+    if (!isUndefined(this.inputFields)) {
+      if (
+        !isUndefined(this.inputFields.username) &&
+        this.inputFields.username != ""
+      ) {
+        this.username = this.inputFields.username;
       }
     }
   },

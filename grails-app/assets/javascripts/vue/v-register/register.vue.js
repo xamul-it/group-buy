@@ -1,10 +1,5 @@
-//vuelidate
-const { required, email, minLength, maxLength, sameAs, not } = window.validators;
-// import { required, minLength } from 'vuelidate/lib/validators'
-
-//lodash
-const { drop, every, forEach, get, isArray, map, set, isUndefined } = _;
-//import { drop, every, forEach, get, isArray, map, set } from 'lodash';
+//require vuelidate
+//require lodash
 
 var VRegisterRegister = Vue.component("VRegisterRegister", {
   template: `
@@ -175,11 +170,11 @@ var VRegisterRegister = Vue.component("VRegisterRegister", {
       }),
     },
     tos: {
-      accepted: val => val === true
+      accepted: (val) => val === true,
     },
     privacy: {
-      accepted: val => val === true
-    }
+      accepted: (val) => val === true,
+    },
     //https://lobotuerto.com/blog/how-to-validate-a-required-boolean-with-vuelidate/
   },
 
@@ -199,18 +194,24 @@ var VRegisterRegister = Vue.component("VRegisterRegister", {
         };
       });
     }
-    if(!isUndefined(this.inputFields)){
-      if(!isUndefined(this.inputFields.username) && this.inputFields.username != "") {
-        this.username = this.inputFields.username
+    if (!isUndefined(this.inputFields)) {
+      if (
+        !isUndefined(this.inputFields.username) &&
+        this.inputFields.username != ""
+      ) {
+        this.username = this.inputFields.username;
       }
-      if(!isUndefined(this.inputFields.email) && this.inputFields.email != "") {
-        this.email = this.inputFields.email
+      if (
+        !isUndefined(this.inputFields.email) &&
+        this.inputFields.email != ""
+      ) {
+        this.email = this.inputFields.email;
       }
     }
   },
   methods: {
-    onFieldFocus(e){
-      e.target.removeAttribute('readonly')
+    onFieldFocus(e) {
+      e.target.removeAttribute("readonly");
     },
     toggleTos(e) {
       this.tos = !this.tos;

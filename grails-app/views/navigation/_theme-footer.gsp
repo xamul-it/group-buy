@@ -66,15 +66,11 @@
 								<h6>Scrivici</h6>
 								<hr class="deep-purple  text-primary accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<div class="clearfix"></div>
-								<div class="input-group w-70 mb-1">
-									<input type="text" class="form-control br-tl-3  br-bl-3 " placeholder="Email">
-								</div>
-								<div class="input-group w-70 mb-1">
-									<textarea rows="3" class="form-control" placeholder="Messaggio"></textarea>
-								</div>
-								<div class="input-group w-70">
-									<button type="button" class="btn btn-primary br-tr-3  br-br-3"> Invia
-									</button>
+								<div id="v-contact-contact-app" v-cloak>
+
+									<v-contact-contact></v-contact-contact>
+									<!-- v-contact-contact :contact-service="contactService"></v-contact-contact -->
+
 								</div>
 							</div>
 						</div>
@@ -93,3 +89,19 @@
 			</footer>
 		</section>
 		<!--Footer Section-->
+
+
+		<!-- Vue Pages and Components here -->
+
+		<script type="module">
+			import VContact from '/assets/vue/v-contact/contact.vue.js';
+
+			var app = new Vue({
+				el: '#v-contact-contact-app',
+				components: {
+					'v-contact-contact': VContact,
+				},
+				data: {
+				},
+			})
+		</script>

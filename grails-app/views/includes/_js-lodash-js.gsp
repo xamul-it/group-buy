@@ -8,3 +8,6 @@
 <g:if env="development">
     <script src="/assets/vue/v-jslib/lodash@4.17.20/lodash.js"></script>
 </g:if>
+<script>
+    const { drop, every, forEach, get, isArray, map, set, isUndefined } = _;
+</script>

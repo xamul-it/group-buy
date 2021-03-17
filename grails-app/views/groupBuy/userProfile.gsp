@@ -110,11 +110,9 @@
     </section>
     <!-- /User Dashboard -->
 
-    <g:render template="/includes/js-vuelidate-js"/>
-
     <script>
-        Vue.use(window.vuelidate.default);
-
+        //require vuelidate
+        
         var app = new Vue({
             el: '#v-user-data-app',
             components: {

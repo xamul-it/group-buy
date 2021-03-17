@@ -93,8 +93,6 @@
             }
         </style>
         
-        <g:render template="/includes/js-vuelidate-js"/>
-
         <script src="https://cdn.jsdelivr.net/npm/zxcvbn@4.4.2/dist/zxcvbn.js"></script>
 	    <script src="https://cdn.jsdelivr.net/npm/vue-password-strength-meter@1.7.2/dist/vue-password-strength-meter.js"></script>
 
@@ -108,8 +106,7 @@
             import { mapFields } from "/assets/vue/v-jslib/vuex-map-fields@1.4.0/index.esm.js";
             import { store } from '/assets/vue/v-store/user-store.js';
 
-            Vue.use(window.vuelidate.default);
-            const { required, minLength, maxLength, email, sameAs, not } = window.validators;
+            //require vuelidate
 
             var UserApp = new Vue({
                 el: '#v-user-app',

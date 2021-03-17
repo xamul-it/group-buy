@@ -99,14 +99,10 @@
 		
 	</div>
 
-    <g:render template="/includes/js-vuelidate-js"/>
-
     <!-- Vue Pages and Components here -->
     <script src="/assets/vue/v-register/forgot-password.vue.js"></script>
 
     <script>
-        Vue.use(window.vuelidate.default);
-
         var app = new Vue({
             el: '#v-register-forgot-password-app',
             components: {

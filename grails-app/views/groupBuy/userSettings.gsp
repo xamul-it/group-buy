@@ -100,13 +100,5 @@
     </section>
     <!-- /User Dashboard -->
 
-    <g:render template="/includes/js-vuelidate-js"/>
-
-    <script>
-        Vue.use(window.vuelidate.default);
-
-         
-    </script>
-
 </body>
 </html>

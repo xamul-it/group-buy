@@ -1,4 +1,5 @@
-//require axios, lodash
+//require axios
+//require lodash
 
 const axiosInstance = axios.create({});
 
@@ -31,7 +32,7 @@ export function setResourceEndpoint(endpoint) {
 }
 
 export function set404Message(message) {
-  http_codes_messages_map[404] = message
+  http_codes_messages_map[404] = message;
 }
 
 export async function list(max, offset, sort, order) {
@@ -50,9 +51,11 @@ export async function list(max, offset, sort, order) {
     }
   );
 
-  let message = http_codes_messages_map[status]?http_codes_messages_map[status]:HTTP_CODES_MESSAGES_MAP[status];
+  let message = http_codes_messages_map[status]
+    ? http_codes_messages_map[status]
+    : HTTP_CODES_MESSAGES_MAP[status];
   console.log(
-    rest_endpoint+" data",
+    rest_endpoint + " data",
     data,
     "params",
     params.toString(),
@@ -70,9 +73,11 @@ export async function show(id) {
     rest_endpoint + "/" + id
   );
 
-  let message = http_codes_messages_map[status]?http_codes_messages_map[status]:HTTP_CODES_MESSAGES_MAP[status];
+  let message = http_codes_messages_map[status]
+    ? http_codes_messages_map[status]
+    : HTTP_CODES_MESSAGES_MAP[status];
   console.log(
-    rest_endpoint+" data",
+    rest_endpoint + " data",
     data,
     "headers",
     headers,
