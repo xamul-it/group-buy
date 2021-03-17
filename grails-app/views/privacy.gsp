@@ -1,12 +1,12 @@
 <html>
     <head>
         <meta name="layout" content="claylist"/>
-        <title>Group-buy privacy</title>
+        <title>Privacy</title>
     </head>
     <body>
         <div>
             <!--Sliders Section-->
-            <g:render template="/common/theme-header" model="['headerTitle':'Group-buy privacy']"/>
+            <g:render template="/common/theme-header" model="['headerTitle':'Privacy']"/>
             <!--/Sliders Section-->
 
             <!-- Tos -->

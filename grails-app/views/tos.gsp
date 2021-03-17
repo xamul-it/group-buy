@@ -1,12 +1,12 @@
 <html>
     <head>
         <meta name="layout" content="claylist"/>
-        <title>Group-buy</title>
+        <title>Termini di servizio</title>
     </head>
     <body>
         <div>
             <!--Sliders Section-->
-            <g:render template="/common/theme-header" model="['headerTitle':'Group-buy termini di servizio']"/>
+            <g:render template="/common/theme-header" model="['headerTitle':'Termini di servizio']"/>
             <!--/Sliders Section-->
 
             <!-- Tos -->
@@ -17,7 +17,7 @@
                         <div class="text-justify">
                             <h2 class="mb-4">Condizioni Generali e Termini del Servizio</h2>
                             <p class="leading-normal">
-                                Il sito web in versione desktop e mobile e applicazioni group-buy.it (di seguito: “Sito e App”) sono di proprietà di ILZ, con sede in viale Umbria, 49, 20135 Milano MI, (di seguito: “Titolare”).
+                                Il sito web in versione desktop e mobile e applicazioni <g:message code="site.title"/>.it (di seguito: “Sito e App”) sono di proprietà di ILZ, con sede in viale Umbria, 49, 20135 Milano MI, (di seguito: “Titolare”).
                                 L'accesso a Sito e App e le informazioni relative a tutti i servizi comporta il rispetto e l'accettazione di tutte le presenti Condizioni Generali d’Uso (di seguito: “Condizioni”).
                                 Per questo motivo, si consiglia di leggere attentamente il contenuto se si desidera accedere e utilizzare le informazioni ai fini dei servizi offerti da Sito e App. 
                             </p>
@@ -30,7 +30,7 @@
                                 I Servizi offerti attraverso Sito e App sono in gran parte gratuiti; tuttavia, l'utilizzo di alcuni di questi è soggetto a prestazione economica tramite l’acquisto di opzioni a pagamento.
                                 Per opzioni a pagamento (di seguito: “Opzioni a Pagamento”) si intende l’acquisto da parte dell’Utente privato di funzionalità aggiuntive descritte specificatamente all’interno di Sito e App.
                                 <br/><br/>
-                                Ogni questione relativa alla fatturazione, ivi comprese le ipotesi di cambi o rettifiche di intestazioni e importi ed emissione di note di credito, dovrà essere gestita dall’Utente contattando direttamente l'amministrazione al seguente riferimento: amministrazione@group-buy.it 
+                                Ogni questione relativa alla fatturazione, ivi comprese le ipotesi di cambi o rettifiche di intestazioni e importi ed emissione di note di credito, dovrà essere gestita dall’Utente contattando direttamente l'amministrazione al seguente riferimento: <g:message code="site.contact.email.office"/>
                             </p>
                             <h4 class="leading-normal"> Tipologia di Utenti </h4>
                             <p class="leading-normal">

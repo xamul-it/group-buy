@@ -1,12 +1,12 @@
 <html>
     <head>
         <meta name="layout" content="claylist"/>
-        <title>Group-buy cookie</title>
+        <title>Cookie</title>
     </head>
     <body>
         <div>
             <!--Sliders Section-->
-            <g:render template="/common/theme-header" model="['headerTitle':'Group-buy cookie']"/>
+            <g:render template="/common/theme-header" model="['headerTitle':'Cookie']"/>
             <!--/Sliders Section-->
 
             <!-- Tos -->

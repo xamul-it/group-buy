@@ -1,12 +1,12 @@
 <html>
     <head>
         <meta name="layout" content="claylist"/>
-        <title>Nuovo ordine</title>
+        <title><g:message code="order.new"/></title>
 
     </head>
     <body>
         <div id="v-order-create-app" v-cloak>
-            <vue-title prefix="Group Buy" :title="pageTitle"/></vue-title>
+            <vue-title prefix="${g.message(code:'site.title')}" :title="pageTitle"/></vue-title>
 
             <sec:ifLoggedIn>
             <!--Sliders Section-->
@@ -24,7 +24,7 @@
 
                             <div class="card mb-0">
                                 <div class="card-header"> 
-                                    <h3 class="card-title">Nuovo ordine</h3> 
+                                    <h3 class="card-title"><g:message code="order.new"/></h3> 
                                 </div>
                                 <div class="card-body">
                                     
@@ -33,7 +33,7 @@
                                         <div class="col-sm-12 col-md-12">
 
                                             <div class="list-group"> 
-                                                <label class="form-label text-dark">Seleziona gruppo</label>
+                                                <label class="form-label text-dark"><g:message code="order.groupSelect"/></label>
 
                                                 <div v-for="group in groupList" @click="selectGroup(group.id)" :class="{ active: isGroupSelected(group.id) }" class="list-group-item list-group-item-action flex-column align-items-start">
                                                     <div class="d-flex w-100 justify-content-between">
@@ -52,10 +52,10 @@
 
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label class="form-label text-dark">Descrizione</label>
+                                                <label class="form-label text-dark"><g:message code="order.description"/></label>
                                                 <input type="text" 
                                                     class="form-control"
-                                                    placeholder="Inserisci una breve descrizione dell'ordine"
+                                                    placeholder="${g.message(code:'order.description.tip')}"
                                                     v-model="orderItem.description">
                                             </div>
                                         </div>
@@ -65,8 +65,8 @@
                                 </div>
 
                                 <div class="card-footer text-right">
-                                    <button type="button" class="btn btn-secondary mr-2" onclick="javascript:window.history.back();"><i class="fa fa-times-circle"></i> Annulla</button> 
-                                    <button type="submit" class="btn btn-primary mr-2" v-on:click="saveOrder" :disabled="$v.$invalid"><i class="fa fa-cart-arrow-down"></i> Crea</button> 
+                                    <button type="button" class="btn btn-secondary mr-2" onclick="javascript:window.history.back();"><i class="fa fa-times-circle"></i> <g:message code="button.cancel"/> </button> 
+                                    <button type="submit" class="btn btn-primary mr-2" v-on:click="saveOrder" :disabled="$v.$invalid"><i class="fa fa-cart-arrow-down"></i> <g:message code="button.create"/> </button> 
                                 </div>
 
                             </div>

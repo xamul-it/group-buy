@@ -14,7 +14,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
 	<!-- Title -->
-	<title>Group Buy - <g:layoutTitle default="" /></title>
+	<title><g:message code="site.title"/> - <g:layoutTitle default="" /></title>
 
 	<!-- Bootstrap Css -->
 	<asset:stylesheet src="bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" />

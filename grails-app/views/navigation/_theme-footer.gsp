@@ -5,7 +5,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-3 col-md-12">
-								<h6>Group buy</h6>
+								<h6><g:message code="site.title"/></h6>
 								<hr class="deep-purple  accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<p>Un servizio gratuito che consente in modo semplice di gestire ordini da gruppi di acquisto ai negozi della propria zona.</p>
 								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum .</p>
@@ -14,12 +14,12 @@
 								<h6>&nbsp;</h6>
 								<hr class="deep-purple text-primary accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<ul class="list-unstyled mb-0">
-									<li><a href="/chisiamo">Chi siamo</a></li>
-									<li><a href="javascript:;">Contatti</a></li>
-									<li><a href="javascript:;">Supporto</a></li>
-									<li><a href="/tos">Termini di Servizio</a></li>
-									<li><a href="/privacy">Regole della Privacy</a></li>
-									<li><a href="/cookie">Uso dei Cookie</a></li>
+									<li><a href="/chisiamo"> <g:message code="site.menu.aboutus"/> </a></li>
+									<li><a href="javascript:;"> <g:message code="site.menu.contacts"/> </a></li>
+									<li><a href="javascript:;"> <g:message code="site.menu.support"/> </a></li>
+									<li><a href="/tos"> <g:message code="site.menu.tos"/> </a></li>
+									<li><a href="/privacy"> <g:message code="site.menu.privacy"/> </a></li>
+									<li><a href="/cookie"> <g:message code="site.menu.cookie"/> </a></li>
 								</ul>
 							</div>
 
@@ -35,14 +35,10 @@
 										</a>
 									</li>
 									<li>
-										<a href="#"><i class="fa fa-envelope mr-3 text-primary"></i>
-											info@group-buy.it</a></li>
-									<li>
-										<a href="#"><i class="fa fa-phone mr-3 text-primary"></i> + 01 234 567 88</a>
+										<a href="mailto:${g.message(code:'site.contact.email.info')}"><i class="fa fa-envelope mr-3 text-primary"></i>
+											 <g:message code="site.contact.email.info"/>
+										</a>
 									</li>
-									<!-- li>
-										<a href="#"><i class="fa fa-print mr-3 text-primary"></i> + 01 234 567 89</a>
-									</li -->
 								</ul>
 								<ul class="list-unstyled list-inline mt-3">
 									<li class="list-inline-item">
@@ -63,13 +59,12 @@
 								</ul>
 							</div>
 							<div class="col-lg-4 col-md-12">
-								<h6>Scrivici</h6>
+								<h6> <g:message code="site.footer.writeus"/> </h6>
 								<hr class="deep-purple  text-primary accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<div class="clearfix"></div>
 								<div id="v-contact-contact-app" v-cloak>
 
 									<v-contact-contact></v-contact-contact>
-									<!-- v-contact-contact :contact-service="contactService"></v-contact-contact -->
 
 								</div>
 							</div>

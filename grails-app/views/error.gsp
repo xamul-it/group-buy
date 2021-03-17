@@ -5,7 +5,7 @@
         <meta name="layout" content="claylist-min">
         <g:if env="development"><asset:stylesheet src="errors.css"/></g:if>
     </head>
-    <body class="construction-image">
+    <body class="construction-image-no">
         <g:if env="development">
             <g:if test="${Throwable.isInstance(exception)}">
                 <g:renderException exception="${exception}" />

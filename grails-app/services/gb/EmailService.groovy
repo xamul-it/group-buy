@@ -1,6 +1,9 @@
 package gb
 import grails.gorm.services.Service
 
+import org.springframework.context.MessageSource
+import org.springframework.context.i18n.LocaleContextHolder
+
 interface IEmailService {
     def orderStatusChange(Order order);
 }
@@ -17,6 +20,9 @@ interface IEmailService {
  */
 
 class EmailService implements IEmailService {
+
+    MessageSource messageSource
+
     grails.gsp.PageRenderer groovyPageRenderer
     static String fromUsername = "noreply@groupbuy.it"
 
@@ -162,7 +168,7 @@ class EmailService implements IEmailService {
             //multipart true
             to "default@site.com"
             from fromEmail
-            subject "Richiesta di contatto da Group-buy"
+            subject messageSource.getMessage('email.contact.subject', [] as Object[], LocaleContextHolder.locale)
             text( view:"/email/contactPlain", 		
                     model:[fromEmail:fromEmail,messageText:messageText])
         }

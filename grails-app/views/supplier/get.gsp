@@ -1,12 +1,12 @@
 <html>
     <head>
         <meta name="layout" content="claylist"/>
-        <title>Group Buy - Negozio</title>
+        <title><g:message code="supplier.title"/></title>
 
     </head>
     <body>
         <div class="app" id="v-supplier-app" v-cloak>
-            <vue-title prefix="Group Buy" :title="pageTitle"/></vue-title>
+            <vue-title prefix="${g.message(code:'site.title')}" :title="pageTitle"/></vue-title>
             <!--Sliders Section-->
             <g:render template="/common/theme-header" model="['headerTitle':'{{ supplierItem ? supplierItem.name : \'\' }}']"/>
             <!--/Sliders Section-->
@@ -62,7 +62,7 @@
                                                     <div v-if="supplierItem"  class="row text-dark">
                                                         <div v-if="supplierItem.shippingAddress" class="col-md-12">
                                                             <div class="media-heading">
-                                                                <h3 class="card-title mb-3 font-weight-bold">Indirizzo</h3>
+                                                                <h3 class="card-title mb-3 font-weight-bold"><g:message code="supplier.address"/></h3>
                                                             </div>
                                                             <p></p>
                                                             <p class="mb-0">
@@ -112,12 +112,12 @@
                                     <div class="row group-actions">
                                             <sec:ifLoggedIn>
                                                 <div class="col-md-12 form-group">
-                                                    <a class="btn btn-outline-primary btn-block btn-lg" :href="'./'+supplierId+'/order'"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
+                                                    <a class="btn btn-outline-primary btn-block btn-lg" :href="'./'+supplierId+'/order'"><i class="fa fa-shopping-cart"></i> <g:message code="button.newOrder"/> </a>
                                                 </div>
                                             </sec:ifLoggedIn>
                                             <sec:ifNotLoggedIn>
                                                 <div class="col-md-12 form-group">
-                                                    <button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-shopping-cart"></i> Nuovo ordine </button>
+                                                    <button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-shopping-cart"></i> <g:message code="button.newOrder"/> </button>
                                                 </div>
                                             </sec:ifNotLoggedIn>
                                     </div>

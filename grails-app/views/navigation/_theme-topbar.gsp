@@ -21,16 +21,16 @@
 								<div class="clearfix">
 									<ul class="contact border-left">
 										<li class="dropdown mr-5">
-											<a href="/chisiamo" class="text-dark"><span>Chi siamo</span>
+											<a href="/chisiamo" class="text-dark"><span> <g:message code="site.menu.aboutus"/> </span>
 											</a>
 										</li>
 										<li class="dropdown mr-5">
 											<a href="/contatti" class="text-dark"
-												data-toggle="dropdown"><span>Contatti</span></a>
+												data-toggle="dropdown"><span> <g:message code="site.menu.contacts"/> </span></a>
 										</li>
 										<li class="dropdown">
 											<a href="/supporto" class="text-dark"
-												data-toggle="dropdown"><span>Supporto</span></a>
+												data-toggle="dropdown"><span> <g:message code="site.menu.support"/> </span></a>
 										</li>
 									</ul>
 								</div>
@@ -43,18 +43,18 @@
 									<sec:ifNotLoggedIn>
 									<li>
 										<a href="${createLink(controller:'register', action:'register')}" class="text-dark"><i class="fa fa-user mr-1"></i>
-											<span>Registrazione</span></a>
+											<span><g:message code="site.menu.register"/></span></a>
 									</li>
 									<li>
 										<a href="${createLink(controller:'login', action:'auth')}" class="text-dark"><i class="fa fa-sign-in mr-1"></i>
-											<span>Login</span></a>
+											<span><g:message code="site.menu.login"/></span></a>
 									</li>
 									</sec:ifNotLoggedIn>
 
 									<sec:ifLoggedIn>
 									<li>
 										<a href="/logoff" class="text-dark"><i class="fa fa-power-off mr-1"></i>
-											<span>Logout</span></a>
+											<span><g:message code="site.menu.logout"/></span></a>
 									</li>
 
 									<div class="simple dropdown float-right">
@@ -65,17 +65,17 @@
 												<ul>
 													<li>
 														<a href="${createLink(controller: 'groupBuy', action: 'user')}" class="dropdown-item"> 
-															<i class="icon icon-user dropdown-icon"></i>Profilo															 
+															<i class="icon icon-user dropdown-icon"></i><g:message code="site.menu.profile"/>															 
 														</a>
 													</li>
 													<li>
 														<a href="${createLink(controller: 'user', action: 'orders')}" class="dropdown-item"> 
-															<i class="icon icon-basket dropdown-icon"></i>Ordini 
+															<i class="icon icon-basket dropdown-icon"></i><g:message code="site.menu.orders"/> 
 														</a>
 													</li>
 													<li>
 														<a href="${createLink(controller: 'user', action: 'groups')}" class="dropdown-item"> 
-															<i class="icon icon-share dropdown-icon"></i>Gruppi 
+															<i class="icon icon-share dropdown-icon"></i><g:message code="site.menu.groups"/> 
 														</a>
 													</li>
 												</ul>

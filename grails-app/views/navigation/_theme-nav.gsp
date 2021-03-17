@@ -5,10 +5,10 @@
             <!--Mobile Nav-->
             <div class="horizontal-header clearfix ">
                 <div class="container"> 
-                    <a href="${createLink(controller: 'group', action: 'list')}" class=" mobile-nav-icon-button mobile-nav-icon-button-left" title="Gruppi"><i class="zmdi zmdi-accounts"></i></a>
-                    <span class="smllogo"><img src="/assets/theme/img/brand/logo.png" alt="Group-buy" width="120"></span>
-                    <a href="${createLink(controller: 'supplier', action: 'list')}" class=" mobile-nav-icon-button mobile-nav-icon-button-right" title="Attività"><i class="zmdi zmdi-store"></i></a>
-                    <a href="${createLink(controller: 'user', action: 'orders')}" class=" mobile-nav-icon-button mobile-nav-icon-button-right" title="Gruppi"><i class="zmdi zmdi-store"></i></a>
+                    <a href="${createLink(controller: 'group', action: 'list')}" class=" mobile-nav-icon-button mobile-nav-icon-button-left" title="${g.message(code:'site.menu.groups')}"><i class="zmdi zmdi-accounts"></i></a>
+                    <span class="smllogo"><img src="/assets/theme/img/brand/logo.png" alt="${g.message(code:'site.title')}" width="120"></span>
+                    <a href="${createLink(controller: 'supplier', action: 'list')}" class=" mobile-nav-icon-button mobile-nav-icon-button-right" title="${g.message(code:'site.menu.suppliers')}"><i class="zmdi zmdi-store"></i></a>
+                    <!-- a href="${createLink(controller: 'user', action: 'orders')}" class=" mobile-nav-icon-button mobile-nav-icon-button-right" title="Gruppi"><i class="zmdi zmdi-store"></i></a -->
                 </div>
             </div>
             <!--/Mobile Nav-->
@@ -25,20 +25,18 @@
                             <div class="overlapblackbg"></div>
                             <ul class="horizontalMenu-list">
 
-                                <li><a href="${createLink(controller: 'group', action: 'list')}">Gruppi</a></li>
-                                <li><a href="${createLink(controller: 'supplier', action: 'list')}">Attivit&agrave;</a></li>
-                                <li><a href="${createLink(controller: 'user', action: 'orders')}" >I miei ordini</a></li>
+                                <li><a href="${createLink(controller: 'group', action: 'list')}"> <g:message code="site.menu.groups"/> </a></li>
+                                <li><a href="${createLink(controller: 'supplier', action: 'list')}"> <g:message code="site.menu.suppliers"/> </a></li>
+                                <li><a href="${createLink(controller: 'user', action: 'orders')}" > <g:message code="site.menu.orders"/> </a></li>
 
-                                <!-- Blog -->
-                                <!-- li><a href="https://www.group-buy.it/#blog"> Blog<span class="wsarrow"></span></a></li -->
                             </ul>
                             <ul class="mb-0">
                                 <li aria-haspopup="true" class="mt-5 d-none d-lg-block "> 
                                     <sec:ifNotLoggedIn>
-                                        <span><a class="btn btn-orange" @click="$refs.registerLoginModal.openModal()" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
+                                        <span><a class="btn btn-orange" @click="$refs.registerLoginModal.openModal()"> <g:message code="site.menu.cta.createGroup"/> </a></span>
                                     </sec:ifNotLoggedIn>
                                     <sec:ifLoggedIn>
-                                        <span><a class="btn btn-orange" href="${createLink(controller: 'groupBuy', action: 'groupCreate')}" title="Crea il tuo gruppo d'acquisto">Crea il tuo gruppo</a></span>
+                                        <span><a class="btn btn-orange" href="${createLink(controller: 'groupBuy', action: 'groupCreate')}"> <g:message code="site.menu.cta.createGroup"/> </a></span>
                                     </sec:ifLoggedIn>
                                 </li>
                             </ul>

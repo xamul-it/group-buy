@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="layout" content="claylist"/>
-    <title>Group-buy</title>
+    <title><g:message code="site.title"/></title>
 </head>
 <body>
     <div class="app" id="v-group-buy-app">
