@@ -40,7 +40,7 @@ class GroupBuyController {
     //pages
     
     def index() {
-
+        redirect uri: "/"
     }
 
 }

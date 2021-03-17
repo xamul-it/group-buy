@@ -5,21 +5,22 @@ import grails.util.Environment
 class UrlMappings {
 
     static mappings = {
-        
-        "/"(controller:"groupBuy",action:"index")
-        
+                
         if (Environment.current == Environment.DEVELOPMENT ||
             Environment.current == Environment.TEST) {
-
             "/info"(view:"/index")
-
         }
         
+        //pages
+        "/"(view:"/home")
+        "/chisiamo"(view:"/chisiamo")
+        "/faq"(view:"/faq")
+
         "/tos"(view:"/tos")
         "/privacy"(view:"/privacy")
         "/cookie"(view:"/cookie")
-        "/chisiamo"(view:"/chisiamo")
-
+        
+        //error codes
         "500"(view:'/error')
         "404"(view:'/notFound')
 
