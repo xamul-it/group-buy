@@ -63,7 +63,7 @@
                                                         <!-- Members -->
                                                         <a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: groupId)}" >
                                                             <h3 class="card-title mb-3 font-weight-bold">
-                                                                <span class="label label-pill badge-info mt-2">{{ groupItem.memberCount }} Iscritti</span>
+                                                                <span class="label label-pill badge-info mt-2">{{ groupItem.memberCount }} <g:message code="fields.group.members"/> </span>
                                                             </h3>
                                                             <%/* <div class="avatar-list avatar-list-stacked">
                                                                 <span class="avatar brround cover-image cover-image">AD</span>

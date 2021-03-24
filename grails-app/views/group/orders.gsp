@@ -1,13 +1,13 @@
 <html>
 <head>
 	<meta name="layout" content="claylist"/>
-    <title>Ordini del gruppo di acquisto</title>
+    <title><g:message code="group.orders.title"/></title>
 
 </head>
 <body>
 
     <!--Sliders Section-->
-    <g:render template="/common/theme-header" model="['headerTitle':'Ordini del gruppo di acquisto']"/>
+    <g:render template="/common/theme-header" model="['headerTitle':message(code:'group.orders.title')]"/>
     <!--/Sliders Section-->
 
     <!-- Group orders -->
@@ -49,21 +49,21 @@
                                             <thead>
                                                 <tr>
                                                     <!-- th></th -->
-                                                    <th>Ordine</th>
+                                                    <th><g:message code="fields.order"/></th>
                                                     <!-- th>Totale</th -->
-                                                    <th>Stato</th>
+                                                    <th><g:message code="fields.status"/></th>
                                                     <th>&nbsp;</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 <tr v-for="order in orderList">
-                                                    <!-- td>
+                                                    <%/* td>
                                                         <label class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
                                                             <span class="custom-control-label"></span>
                                                         </label>
-                                                    </td -->
+                                                    </td */%>
                                                     <td>
                                                         <div class="media mt-0 mb-0">
                                                             <div class="media-body">
@@ -75,9 +75,9 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <!-- td class="font-weight-semibold fs-16">
+                                                    <%/* td class="font-weight-semibold fs-16">
                                                         &euro; <!-- {{ orderTotal(order.id) }} -- >
-                                                    </td -->
+                                                    </td */%>
                                                     <td>
 
                                                         <span class="badge " :class="orderStatusBadgeClass(order.status.id)">{{ order.status.value }}</span>
@@ -85,10 +85,9 @@
                                                         
                                                     </td>
                                                     <td>
-                                                        <a v-if="canEdit(order.status.id)" :href="'/gruppo/'+order.groupId+'/ordine/'+order.id+'/modifica'" class="btn btn-success btn-sm text-white" title="Gestisci"><i class="fa fa-pencil"></i></a>
-                                                        <a v-if="canEdit(order.status.id)" :href="'#'" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-                                                        <a v-if="canEdit(order.status.id)" :href="'/gruppo/'+order.groupId+'/ordine/'+order.id+'/modifica'" class="btn btn-primary btn-sm text-white" title="Aggiungi voci"><i class="fa fa-cart-plus"></i></a>
-                                                        <!-- a class="btn btn-primary btn-sm text-white" data-toggle="tooltip"><i class="fa fa-eye"></i></a -->
+                                                        <a v-if="canEdit(order.status.id)" :href="'/gruppo/'+order.groupId+'/ordine/'+order.id+'/modifica'" class="btn btn-success btn-sm text-white" title="${g.message(code:'button.manage')}"><i class="fa fa-pencil"></i></a>
+                                                        <a v-if="canEdit(order.status.id)" :href="'#'" class="btn btn-danger btn-sm text-white" title="${g.message(code:'button.delete')}"><i class="fa fa-trash-o"></i></a>
+                                                        <a v-if="canEdit(order.status.id)" :href="'/gruppo/'+order.groupId+'/ordine/'+order.id+'/modifica'" class="btn btn-primary btn-sm text-white" title="${g.message(code:'order.action.addVoice')}"><i class="fa fa-cart-plus"></i></a>
                                                     </td>
                                                 </tr>
 
