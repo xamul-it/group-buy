@@ -11,24 +11,28 @@ grails.plugin.springsecurity.apf.storeLastUsername = true
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               					access: ['permitAll']],
-	[pattern: '/groupBuy/groupOrders/**',    		access: 'isAuthenticated()'],
-	[pattern: '/groupBuy/group/1/order/edit/**',    access: 'isAuthenticated()'],
-	[pattern: '/groupBuy/group/1/order/create',    access: 'isAuthenticated()'],
-	[pattern: '/groupOrder/supplierShow',			access: ['permitAll']],
-	[pattern: '/groupOrder/**',						access: 'isAuthenticated()'],
-	[pattern: '/supplier/**',       access: ['permitAll']],
+
+	[pattern: '/gruppi',       						access: ['permitAll']],
+	[pattern: '/gruppo/nuovo',    					access: 'isAuthenticated()'],
+	[pattern: '/gruppo/**',    						access: ['permitAll']],
+	[pattern: '/gruppo/**/modifica',    			access: 'isAuthenticated()'],
+	[pattern: '/gruppo/**/ordini',    				access: 'isAuthenticated()'],
+
+	[pattern: '/negozi',       						access: ['permitAll']],
+	[pattern: '/negozio/**',       					access: ['permitAll']],
+
+	[pattern: '/ordine/nuovo',    					access: 'isAuthenticated()'],
+	[pattern: '/ordine/**',    						access: ['permitAll']],
+
+	/*pages/views/assets*/
+	[pattern: '/error',          				access: ['permitAll']],
+	[pattern: '/index',          				access: ['permitAll']],
+	[pattern: '/index.gsp',      				access: ['permitAll']],
+	[pattern: '/shutdown',       				access: ['permitAll']],
+	[pattern: '/assets/**',      				access: ['permitAll']],
 
 
-	[pattern: '/error',          access: ['permitAll']],
-	[pattern: '/index',          access: ['permitAll']],
-	[pattern: '/index.gsp',      access: ['permitAll']],
-	[pattern: '/shutdown',       access: ['permitAll']],
-	[pattern: '/assets/**',      access: ['permitAll']],
-	[pattern: '/group/list',       access: ['permitAll']],
-	[pattern: '/navigation/**',  access: ['permitAll']],
-	[pattern: '/negozio/**',  access: ['permitAll']],
-	[pattern: '/vetrina/**',  access: ['permitAll']],
-	[pattern: '/api/v1/contact',    access: ['permitAll']],
+	[pattern: '/api/v1/**',    access: ['permitAll']],
 
 /*pagine vecchie*/
 	[pattern: '/securityinfo/**',access: 'ROLE_ADMIN'],
