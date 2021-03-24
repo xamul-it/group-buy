@@ -10,8 +10,6 @@ class UiDebugInterceptor {
 
     boolean after() { 
 
-        log.debug("UiDebugInterceptor after $params")
-
         if(!model)
             model = [:]
 

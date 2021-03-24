@@ -31,7 +31,7 @@
 
                                             <div class="tab-pane userprof-tab active">
                                                 <div class="table-responsive border-top">
-                                                    <table class="table table-bordered table-hover mb-0 text-nowrap">
+                                                    <table class="table table-bordered table-hover mb-0">
                                                     <thead>
                                                         <tr>
                                                             <!-- th></th -->
@@ -54,8 +54,9 @@
                                                                 <div class="media mt-0 mb-0">
                                                                     <div class="media-body">
                                                                         <div class="card-item-desc ml-4 p-0 mt-2">
-                                                                            <a :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" class="text-dark"><h4 class="font-weight-semibold">{{ order.description }}</h4></a>
-                                                                            <a :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" :title="dateTime(order.orderDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(order.orderDate) }} </a><br>
+                                                                            <a :href="'/gruppo/'+order.groupId+'/ordine/'+order.id" class="text-dark"><h4 class="font-weight-semibold">{{ order.description }}</h4></a>
+                                                                            <a :href="'/gruppo/'+order.groupId" :title="order.group.description" class="text-dark"><i class="fa fa-users mr-1"></i> {{ order.group.name }} </a></br>
+                                                                            <a :href="'/gruppo/'+order.groupId+'/ordine/'+order.id" :title="dateTime(order.orderDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(order.orderDate) }} </a><br>
                                                                             <!-- a><i class="fa fa-tag mr-1"></i>order label</a -->
                                                                         </div>
                                                                     </div>

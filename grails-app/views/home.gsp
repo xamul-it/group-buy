@@ -172,7 +172,7 @@
                                 <div class="item-card9-footer d-flex">
                                     <div class="item-card9-cost">
                                         <sec:ifLoggedIn>
-                                            <a :href="'./groupBuy/supplier/'+supplier.id+'/order'" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</a>
+                                            <a :href="'/negozio/'+supplier.id+'/ordine'" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</a>
                                         </sec:ifLoggedIn>
                                         <sec:ifNotLoggedIn>
                                             <button @click="$refs.registerLoginModal.openModal()" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</button>

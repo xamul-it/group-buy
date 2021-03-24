@@ -1,11 +1,11 @@
 <html>
     <head>
         <meta name="layout" content="claylist"/>
-        <title>Nuovo ordine</title>
+        <title><g:message code="order.new"/></title>
     </head>
     <body>
         <!--Sliders Section-->
-        <g:render template="/common/theme-header" model="['headerTitle':'Nuovo ordine']"/>
+        <g:render template="/common/theme-header" model="['headerTitle':message(code:'order.new')]"/>
         <!--/Sliders Section-->
 
         <!-- Order -->
@@ -26,14 +26,14 @@
                             <div class="card-body">
                                 <ul class="list-unstyled widget-spec mb-0">
                                     <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Seleziona l'<a href="/groupBuy/suppliers">attivit&aacute;</a> &nbsp; presso cui effettuare l'ordine </li>
-                                    <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Clicca sul bottone &nbsp; <a href="#ordinaora" name="ordinaora" class="btn btn-primary btn-sm mr-2"><i class="fa fa-shopping-cart"></i> Ordina ora</a>
+                                    <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Clicca sul bottone &nbsp; <button class="btn btn-primary btn-sm mr-2"><i class="fa fa-shopping-cart"></i> Ordina ora</button>
                                     <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Inserisci una descrizione (utile per tutti i partecipanti al gruppo) </li>
                                     <li class=""> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Seleziona il tuo gruppo </li>
                                     <li class="mb-0"> <i class="fa fa-caret-right text-success" aria-hidden="true"></i> Aggiungi articoli all'ordine </li>
                                 </ul>
                             </div>
                             <div class="card-footer text-right"> 
-                                <a href="/groupBuy/suppliers" class="btn btn-primary">Inizia</a> 
+                                <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="btn btn-primary"> <g:message code="button.start"/> </a> 
                             </div>
                         </div>
                         

@@ -2,6 +2,8 @@ package gb.ui
 
 class UserController {
 
+    static namespace = 'ui'
+
     def index() {
         redirect action: "profile"
     }

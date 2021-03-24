@@ -64,17 +64,17 @@
 
 												<ul>
 													<li>
-														<a href="${createLink(controller: 'groupBuy', action: 'user')}" class="dropdown-item"> 
+														<a href="${createLink(mapping: 'profiloUtente', namespace: 'ui')}" class="dropdown-item"> 
 															<i class="icon icon-user dropdown-icon"></i><g:message code="site.menu.profile"/>															 
 														</a>
 													</li>
 													<li>
-														<a href="${createLink(controller: 'user', action: 'orders')}" class="dropdown-item"> 
+														<a href="${createLink(mapping: 'ordiniUtente', namespace: 'ui')}" class="dropdown-item"> 
 															<i class="icon icon-basket dropdown-icon"></i><g:message code="site.menu.orders"/> 
 														</a>
 													</li>
 													<li>
-														<a href="${createLink(controller: 'user', action: 'groups')}" class="dropdown-item"> 
+														<a href="${createLink(mapping: 'gruppiUtente', namespace: 'ui')}" class="dropdown-item"> 
 															<i class="icon icon-share dropdown-icon"></i><g:message code="site.menu.groups"/> 
 														</a>
 													</li>

@@ -23,14 +23,19 @@ class UrlMappings {
         //error codes
         "500"(view:'/error')
         "404"(view:'/notFound')
+    
+        //security 
+        "/login/$action?/$id?(.$format)?" (controller: 'login')
+        "/register/$action?/$id?(.$format)?" (controller: 'register')
 
-        "/$controller/$action?/$id?(.$format)?"{
+        /*"/$controller/$action?/$id?(.$format)?"{
             constraints {
                 controller(validator: {
                     return !(it in ['groupOrder','emailTest'])
                 })
             }
-        }
+        }*/
+    
 
     }
 }

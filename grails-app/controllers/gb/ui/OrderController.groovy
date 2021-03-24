@@ -1,10 +1,10 @@
 package gb.ui
 
-class GroupOrderController {
+class OrderController {
+
+    static namespace = 'ui'
 
     def index() {
-        render "GroupOrderController index $params"
-        //redirect controller: "groupBuy", action: "group", id: params.groupId
     }
 
     def show() {

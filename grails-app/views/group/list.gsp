@@ -139,7 +139,7 @@
 														<div class="item-card9-img">
 															<div class="arrow-ribbon bg-primary">{{ group.category.name }}</div>
 															<div class="item-card9-imgs">
-																<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id"></a>
+																<a :href="'/gruppo/' + group.id"></a>
 																<img :src="'/assets/theme/img/categories/category-'+group.category.id+'.jpg'" :alt="group.category.name" :title="group.category.name" class="cover-image">
 															</div>
 															<div class="item-card9-icons">
@@ -148,7 +148,7 @@
 																</sec:ifNotLoggedIn>
 																<sec:ifLoggedIn>
 																	<a v-if="group.administrator" class="item-card9-icons1 ownership" title="Amministra gruppo"
-																		:href="'${createLink(controller: 'groupBuy', action: 'groupEdit')}/' + group.id"> <i class="fa fa fa-group"></i></a>
+																		:href="'/gruppo/' + group.id +'/modifica'"> <i class="fa fa fa-group"></i></a>
 																	<a v-else v-on="!group.member ? { click:()=>subscribe(group.id, index) }:{ click:()=>unsubscribe(group.id, index) }" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer"> <i class="fa fa fa-heart-o"></i></a>
 																</sec:ifLoggedIn>
 
@@ -157,14 +157,14 @@
 														<div class="card border-0 mb-0">
 															<div class="card-body ">
 																<div class="item-card9">
-																	<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id" class="text-dark"><h4 class="font-weight-semibold mt-1">{{ group.name }}</h4></a>
+																	<a :href="'/gruppo/' + group.id" class="text-dark"><h4 class="font-weight-semibold mt-1">{{ group.name }}</h4></a>
 																	<p class="mb-0 leading-tight text-dark">{{ group.description }}</p>
 																</div>
 															</div>
 															<div class="card-footer pt-4 pb-4">
 																<div class="item-card2-footer d-sm-flex">
 
-																	<a :href="'${createLink(controller: 'groupBuy', action: 'group')}/' + group.id" title="Creato"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </a>
+																	<a :href="'/gruppo/' + group.id" title="Creato"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </a>
 
 																	<div class="ml-auto">
 																		<a class="location" :title="addressFormat(group.deliveryAddress)"><i class="fa fa-map-marker text-muted mr-1"></i> {{ group.deliveryAddress.city }}</a>
@@ -191,26 +191,22 @@
 						<!--/Group lists-->
 						
 						<div v-if="groupsCount>0" class="col-xl-3 col-lg-4 col-md-12">
-							<div class="item2-gl ">
-								<div class="tab-content"> 
-									<div class="card"> 
 
+							<div class="item2-gl ">
+								<div class="tab-content">
+
+									<div class="card"> 
 										<div class="card-body"> 
-										
 											<div class="row group-actions">
 													<sec:ifLoggedIn>
-														<div class="col-md-12 form-group">
-															<a class="btn btn-outline-primary btn-block btn-lg" href="/order/create"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
-														</div>
+														<g:render template="/buttons/new-order" model="[:]"/>
 													</sec:ifLoggedIn>
 													<sec:ifNotLoggedIn>
-														<div class="col-md-12 form-group">
-															<button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-shopping-cart"></i> Nuovo ordine </button>
-														</div>
+														<g:render template="/buttons/new-order-modal" model="[:]"/>
 													</sec:ifNotLoggedIn>
 											</div>
-
 										</div>
+
 									</div>
 								</div>
 							</div>

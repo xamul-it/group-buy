@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta name="layout" content="claylist"/>
-        <title>Gruppo di acquisto</title>
+        <title><g:message code="group.title"/></title>
     </head>
     <body>
 

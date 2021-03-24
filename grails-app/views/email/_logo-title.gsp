@@ -43,10 +43,10 @@
 												style="padding-right: 0px;padding-left: 0px;">
 												<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><a
 													href="http://www.group-buy.it" style="outline:none" tabindex="-1"
-													target="_blank"> <img align="center" alt="Group Buy" border="0"
+													target="_blank"> <img align="center" alt="${g.message(code:'site.title')}" border="0"
 														class="center fixedwidth" src="${grailsApplication.config.grails.mail.serverURL}/assets/email/gb-logo1.png"
 														style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 170px; display: block;"
-														title="Group Buy" width="170" /></a>
+														title="${g.message(code:'site.title')}" width="170" /></a>
 												<div style="font-size:1px;line-height:5px"> </div>
 												<!--[if mso]></td></tr></table><![endif]-->
 											</div>

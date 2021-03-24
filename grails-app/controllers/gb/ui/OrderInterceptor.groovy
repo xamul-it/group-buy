@@ -1,6 +1,6 @@
 package gb.ui
 
-class GroupOrderInterceptor {
+class OrderInterceptor {
 
     boolean before() { true }
 

@@ -5,11 +5,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="wideget-user-desc text-center">
-                        <!-- div class="wideget-user-img">
-                            <img class="brround" src="/assets/images/faces/face.jpg" alt="img">
-                        </div -->
                         <div class="user-wrap wideget-user-info">
-                            <!-- v-once -->
                             <h4 v-if="groupItem" class="font-weight-semibold text-white">{{ groupItem.name }}</h4>
                             <!-- div class="wideget-user-rating">
                                 <a href="#"><i class="fa fa-star text-warning"></i></a>

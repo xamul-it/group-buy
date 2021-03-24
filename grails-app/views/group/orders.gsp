@@ -12,7 +12,7 @@
 
     <!-- Group orders -->
     <section class="sptb">
-        <div class="container" id="v-group-orders-app">
+        <div class="container" id="v-group-orders-app" v-cloak>
             <div class="row">
                 <div class="col-lg-12">
 
@@ -68,8 +68,8 @@
                                                         <div class="media mt-0 mb-0">
                                                             <div class="media-body">
                                                                 <div class="card-item-desc ml-4 p-0 mt-2">
-                                                                    <a :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" class="text-dark"><h4 class="font-weight-semibold">{{ order.description }}</h4></a>
-                                                                    <a :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" :title="dateTime(order.orderDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(order.orderDate) }} </a><br>
+                                                                    <a :href="'/gruppo/'+order.groupId+'/ordine/'+order.id" class="text-dark"><h4 class="font-weight-semibold">{{ order.description }}</h4></a>
+                                                                    <a :href="'/gruppo/'+order.groupId+'/ordine/'+order.id" :title="dateTime(order.orderDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(order.orderDate) }} </a><br>
                                                                     <!-- a><i class="fa fa-tag mr-1"></i>order label</a -->
                                                                 </div>
                                                             </div>
@@ -85,9 +85,9 @@
                                                         
                                                     </td>
                                                     <td>
-                                                        <a v-if="canEdit(order.status.id)" :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" class="btn btn-success btn-sm text-white" title="Gestisci"><i class="fa fa-pencil"></i></a>
+                                                        <a v-if="canEdit(order.status.id)" :href="'/gruppo/'+order.groupId+'/ordine/'+order.id+'/modifica'" class="btn btn-success btn-sm text-white" title="Gestisci"><i class="fa fa-pencil"></i></a>
                                                         <a v-if="canEdit(order.status.id)" :href="'#'" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-                                                        <a v-if="canEdit(order.status.id)" :href="'/groupBuy/group/'+order.groupId+'/order/edit/'+order.id" class="btn btn-primary btn-sm text-white" title="Aggiungi voci"><i class="fa fa-cart-plus"></i></a>
+                                                        <a v-if="canEdit(order.status.id)" :href="'/gruppo/'+order.groupId+'/ordine/'+order.id+'/modifica'" class="btn btn-primary btn-sm text-white" title="Aggiungi voci"><i class="fa fa-cart-plus"></i></a>
                                                         <!-- a class="btn btn-primary btn-sm text-white" data-toggle="tooltip"><i class="fa fa-eye"></i></a -->
                                                     </td>
                                                 </tr>
@@ -119,9 +119,7 @@
                                 
                                 <div class="row group-actions" v-if="groupItem">
                                         <sec:ifLoggedIn>
-                                            <div class="col-md-12 form-group" v-if="groupItem.administrator || groupItem.member">
-                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'/groupBuy/group/'+groupId+'/order/create'"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
-                                            </div>
+                                            <g:render template="/buttons/new-order" model="[:]"/>
                                         </sec:ifLoggedIn>
                                 </div>
 

@@ -11,6 +11,6 @@ ${toGroup.description}
 
 Ricevi questa mail perché ${fromUsername.encodeAsRaw()} ti ha invitato a partecipare al gruppo d'acquisto.
 
-Iscriviti ora: ${basePath}/groupBuy/group/${toGroup.id}
+Iscriviti ora: ${basePath}/gruppo/${toGroup.id}
 
 Made with ❤️ by Group Buy Team

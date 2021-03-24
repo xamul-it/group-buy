@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta name="layout" content="claylist"/>
-    <title>Attività commerciali</title>
+    <title> <g:message code="supplier.list.title"/> </title>
 </head>
 <body>
 
@@ -61,8 +61,6 @@
 		</section>
 		<!--/Sliders Section-->
 
-
-
     	<!--Supplier listing-->
 		<section class="sptb">
 			<div class="container">
@@ -109,7 +107,6 @@
 													<li><a href="#tab-12" data-toggle="tab" class="" title="Grid"><i class="fa fa-th"></i></a></li>
 												</ul --*/%>
 												<div class="d-flex">
-													
 													<%/*
 													<label class="mr-2 mt-1 mb-sm-1" style="white-space: nowrap;">Ordina per:</label>
 													<select name="sort" 
@@ -134,15 +131,15 @@
 													<div class="card overflow-hidden">
 														<div class="item-card9-img">
 															<div class="arrow-ribbon bg-info">{{ supplier.category.name }}</div>
-															<div class="item-card9-imgs"> <a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)"></a> <img
+															<div class="item-card9-imgs"> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"></a> <img
 																	:src="'/assets/theme/img/categories/supplier/category-'+supplier.category.id+'.jpg'" alt="img" class="cover-image"> </div>
 															<!-- div class="item-card9-icons"> <a href="#" class="item-card9-icons1 wishlist"> <i
 																		class="fa fa fa-heart-o"></i></a> </div -->
 														</div>
 														<div class="card-body">
 															<div class="item-card9 text-dark">
-															<em>Categoria:</em> <a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)"> {{ supplier.category.name }}</a>
-																<a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)" class="text-dark mt-2">
+															<em>Categoria:</em> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"> {{ supplier.category.name }}</a>
+																<a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)" class="text-dark mt-2">
 																	<h4 class="font-weight-semibold mt-1">{{ supplier.name }} </h4>
 																</a>
 																<!-- p class="text-dark">{{ supplier.description }}</p -->
@@ -158,15 +155,15 @@
 															<div class="item-card9-footer d-flex">
 																<div class="item-card9-cost">
 																	<sec:ifLoggedIn>
-																		<a :href="'./supplier/'+supplier.id+'/order'" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</a>
+																		<a :href="'/negozio/'+supplier.id+'/ordine'" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> <g:message code="button.orderNow"/> </a>
 																	</sec:ifLoggedIn>
 																	<sec:ifNotLoggedIn>
-																		<button @click="$refs.registerLoginModal.openModal()" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</button>
+																		<button @click="$refs.registerLoginModal.openModal()" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> <g:message code="button.orderNow"/> </button>
 																	</sec:ifNotLoggedIn>
 																	
 																</div>
-																<div class="ml-auto">
-																	<!--div class="rating-stars block"> <input type="number" readonly="readonly"
+																<!-- div class="ml-auto">
+																	<div class="rating-stars block"> <input type="number" readonly="readonly"
 																			class="rating-value star" name="rating-stars-value" value="3">
 																		<div class="rating-stars-container">
 																			<div class="rating-star sm is--active"> <i class="fa fa-star"></i> </div>
@@ -175,8 +172,8 @@
 																			<div class="rating-star sm"> <i class="fa fa-star"></i> </div>
 																			<div class="rating-star sm"> <i class="fa fa-star"></i> </div>
 																		</div>
-																	</div -->
-																</div>
+																	</div>
+																</div -->
 															</div>
 														</div>
 													</div>

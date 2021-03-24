@@ -118,7 +118,7 @@
 												style="padding-right: 5px;padding-left: 5px;">
 												<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 5px;padding-left: 5px;" align="center"><![endif]-->
 												<div style="font-size:1px;line-height:5px"> </div><a
-													href="${basePath}/groupBuy/group/${toGroup.id}" style="outline:none" tabindex="-1"
+													href="${basePath}/gruppo/${toGroup.id}" style="outline:none" tabindex="-1"
 													target="_blank"> <img align="center" alt="${toGroup.name}" title="${toGroup.name}" border="0"
 														class="center fixedwidth fullwidthOnMobile"
 														src="${basePath}/assets/theme/img/categories/category-${toGroup.category.id}.jpg"

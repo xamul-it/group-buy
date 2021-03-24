@@ -4,24 +4,26 @@ class GroupController {
 
     static namespace = 'ui'
 
-    def list() {
-
+    def index() {
+        redirect(action: "list")
     }
 
-    def edit(){
+    def list() {
+    }
 
+    def show() {
+    }
+
+    def edit() {
     }
 
     def create(){
-
     }
 
     def orders() {
-
     }
 
     def members() {
-
     }
 
 }

@@ -189,8 +189,10 @@
                 }
             },
             socialUrlPrefixes() {
-                this.socialLinkedInUrlPrefix = this.groupItem.linkedin.substring(0, this.groupItem.linkedin.lastIndexOf('/'))
-                this.socialYouTubeUrlPrefix = this.groupItem.youtube.substring(0, this.groupItem.youtube.lastIndexOf('/'))
+                if(this.groupItem.linkedin)
+                    this.socialLinkedInUrlPrefix = this.groupItem.linkedin.substring(0, this.groupItem.linkedin.lastIndexOf('/'))
+                if(this.groupItem.youtube)
+                    this.socialYouTubeUrlPrefix = this.groupItem.youtube.substring(0, this.groupItem.youtube.lastIndexOf('/'))
             },
             async fetchGroup() {
                 await this.fetchGroupAction({service: groupService, groupId: this.groupId});

@@ -1,11 +1,14 @@
-
+<%
+    def schedaGruppo = createLink(mapping: 'schedaGruppo', params: [groupId: groupId], namespace: 'ui')
+    def requestURI = request.getRequestURI()
+%>
 <ul class="nav no-print">
-    <li><a href="${createLink(controller: 'groupBuy', action: 'group', id: groupId)}" class="${controllerName == 'groupBuy' && actionName == 'group' ? 'active' : ''}">Scheda</a></li>
+    <li><a href="${schedaGruppo}" class="${requestURI.equals(schedaGruppo) ? 'active' : ''}"> <g:message code="site.menu.group.board"/> </a></li>
     <sec:ifLoggedIn>
         <gb:ifGroupOwner groupId="${groupId}">
-            <li><a href="${createLink(controller: 'groupBuy', action: 'groupEdit', id: groupId)}" class="${controllerName == 'groupBuy' && actionName == 'groupEdit' ? 'active' : ''}">Modifica</a></li>
+            <li><a href="${createLink(mapping: 'modificaGruppo', params: [groupId: groupId], namespace: 'ui')}" class="${requestURI.contains('modifica') ? 'active' : ''}">  <g:message code="site.menu.group.edit"/> </a></li>
         </gb:ifGroupOwner>
     </sec:ifLoggedIn>
-    <li><a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: groupId)}" class="${controllerName == 'groupBuy' && actionName == 'groupMembers' ? 'active' : ''}">Iscritti</a></li>
-    <li><a href="/group/${groupId}/orders" class="${controllerName == 'group' && actionName == 'orders' ? 'active' : ''}">Ordini</a></li>
+    <li><a href="${createLink(mapping: 'iscrittiGruppo', params: [groupId: groupId], namespace: 'ui')}" class="${requestURI.contains('iscritti') ? 'active' : ''}">  <g:message code="site.menu.group.members"/> </a></li>
+    <li><a href="${createLink(mapping: 'ordiniGruppo', params: [groupId: groupId], namespace: 'ui')}" class="${requestURI.contains('ordini') ? 'active' : ''}"> <g:message code="site.menu.group.orders"/> </a></li>
 </ul>

@@ -32,7 +32,7 @@
 
                                             <div class="tab-pane userprof-tab active">
                                                 <div class="table-responsive border-top">
-                                                    <table class="table table-bordered table-hover mb-0 text-nowrap">
+                                                    <table class="table table-bordered table-hover mb-0">
                                                     <thead>
                                                         <tr>
                                                             <!-- th></th -->
@@ -43,7 +43,6 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
                                                         <tr v-for="group in groupList">
                                                             <!-- td>
                                                                 <label class="custom-control custom-checkbox">
@@ -55,8 +54,10 @@
                                                                 <div class="mt-0 mb-0">
                                                                     <div class="media-body">
                                                                         <div class="card-item-desc ml-4 p-0 mt-2 text-dark">
-                                                                            <a :href="'/groupBuy/group/'+group.id"><h4 class="font-weight-semibold">{{ group.name }}</h4><p>{{ group.description }}</p></a>
-                                                                            Creato: <a :href="'/groupBuy/group/'+group.id" :title="dateTime(group.creationDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </a><br>
+                                                                            <a :href="'/gruppo/'+group.id"><h4 class="font-weight-semibold">{{ group.name }}</h4>
+                                                                                <p>{{ group.description }}</p>
+                                                                            </a>
+                                                                            Creato: <a :href="'/gruppo/'+group.id" :title="dateTime(group.creationDate)"><i class="fa fa-clock-o mr-1"></i> {{ timeFromNow(group.creationDate) }} </a><br>
                                                                             <!-- a><i class="fa fa-tag mr-1"></i>order label</a -->
                                                                         </div>
                                                                     </div>

@@ -1,14 +1,12 @@
 <html>
-<!-- TODO i18n -->
     <head>
         <meta name="layout" content="claylist"/>
-        <title>Gruppo di acquisto</title>
-
+        <title><g:message code="group.title"/></title>
     </head>
     <body>
 
         <!--Sliders Section-->
-        <g:render template="/common/theme-header" model="['headerTitle':'Gruppo di acquisto']"/>
+        <g:render template="/common/theme-header" model="['headerTitle':message(code:'group.title')]"/>
         <!--/Sliders Section-->
 
         <!-- Group -->

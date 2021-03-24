@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta name="layout" content="claylist"/>
-    <title>Gruppo di acquisto - Iscritti</title>
+    <title>Iscritti al gruppo</title>
 
 </head>
 <body>
