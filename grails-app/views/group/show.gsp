@@ -6,7 +6,7 @@
     <body>
 
         <!--Sliders Section-->
-        <g:render template="/common/theme-header" model="['headerTitle':'Gruppo di acquisto']"/>
+        <g:render template="/common/theme-header" model="['headerTitle':message(code:'group.title')]"/>
         <!--/Sliders Section-->
 
         <!-- Group -->
@@ -65,14 +65,14 @@
                                                             <h3 class="card-title mb-3 font-weight-bold">
                                                                 <span class="label label-pill badge-info mt-2">{{ groupItem.memberCount }} Iscritti</span>
                                                             </h3>
-                                                            <!-- <div class="avatar-list avatar-list-stacked">
+                                                            <%/* <div class="avatar-list avatar-list-stacked">
                                                                 <span class="avatar brround cover-image cover-image">AD</span>
                                                                 <span class="avatar brround cover-image cover-image">LU</span>
                                                                 <span class="avatar brround cover-image cover-image">TE</span>
                                                                 <span class="avatar brround cover-image cover-image">AL</span>
                                                                 <span class="avatar brround cover-image cover-image">US</span>
                                                                 <span class="avatar brround cover-image cover-image">+3</span>
-                                                            </div> -->
+                                                            </div> */%>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -84,7 +84,7 @@
                                                 <div v-if="groupItem"  class="row text-dark">
                                                     <div v-if="groupItem.deliveryAddress" class="col-md-12">
                                                         <div class="media-heading">
-                                                            <h3 class="card-title mb-3 font-weight-bold">Indirizzo</h3>
+                                                            <h3 class="card-title mb-3 font-weight-bold"><g:message code="fields.address"/></h3>
                                                         </div>
                                                         <p></p>
                                                         <p class="mb-0">
@@ -135,25 +135,19 @@
                                 <div class="row group-actions" v-if="groupItem">
                                         <sec:ifLoggedIn>
                                             <div class="col-md-12 form-group" v-if="!groupItem.administrator">
-                                                <button v-if="!groupItem.member" type="button" class="btn btn-primary btn-block btn-lg" v-on:click="subscribe">  <i class="fa fa-heart-o"></i> Iscriviti al gruppo</button>
-                                                <button v-else-if="groupItem.member" type="button" class="btn btn-secondary btn-block btn-lg" v-on:click="unsubscribe"><i class="fa fa-heart"></i> Lascia gruppo</button>
+                                                <button v-if="!groupItem.member" type="button" class="btn btn-primary btn-block btn-lg" v-on:click="subscribe">  <i class="fa fa-heart-o"></i> <g:message code="button.groupJoin"/> </button>
+                                                <button v-else-if="groupItem.member" type="button" class="btn btn-secondary btn-block btn-lg" v-on:click="unsubscribe"><i class="fa fa-heart"></i> <g:message code="button.groupLeave"/> </button>
                                             </div>
                                             <div class="col-md-12 form-group" v-if="groupItem.administrator || groupItem.member">
-                                                <a class="btn btn-outline-primary btn-block btn-lg" :href="'./'+groupId+'/order/create'"><i class="fa fa-shopping-cart"></i> Nuovo ordine </a>
-                                            </div>
-                                            <div class="col-md-12 form-group" v-if="!groupItem.member && !groupItem.administrator">
-                                                <button class="btn btn-outline-primary btn-block btn-lg" onclick="alert('unavailable')"><i class="fa fa-envelope"></i> Contatta l'amministratore </button>
+                                                <g:render template="/buttons/new-order" model="[:]"/>
                                             </div>
                                         </sec:ifLoggedIn>
                                         <sec:ifNotLoggedIn>
                                             <div class="col-md-12 form-group">
-                                                <button type="button" class="btn btn-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()">  <i class="fa fa-heart-o"></i> Iscriviti al gruppo</button>
+                                                <button type="button" class="btn btn-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()">  <i class="fa fa-heart-o"></i> <g:message code="button.groupJoin"/> </button>
                                             </div>
-                                            <!-- div class="col-md-12 form-group">
-                                                <button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-envelope"></i> Contatta l'amministratore </button>
-                                            </div -->
                                             <div class="col-md-12 form-group">
-                                                <button class="btn btn-outline-primary btn-block btn-lg" @click="$refs.registerLoginModal.openModal()"><i class="fa fa-shopping-cart"></i> Nuovo ordine </button>
+                                                <g:render template="/buttons/new-order-modal" model="[:]"/>
                                             </div>
                                         </sec:ifNotLoggedIn>
                                 </div>

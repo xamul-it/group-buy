@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta name="layout" content="claylist"/>
-    <title>Gruppi di acquisto</title>
+    <title><g:message code="group.list.title"/></title>
 </head>
 <body>
 
@@ -100,19 +100,15 @@
 									<div class="bg-white p-5 item2-gl-nav d-flex">
 										<h6 class="mb-0 mt-2"> 1 - {{groupsCount}} di {{ groupsTotal }}</h6>
 										<div class="nav item2-gl-menu ml-auto"></div>
-										<!-- ul class="nav item2-gl-menu ml-auto">
-											<li class=""><a href="#tab-11" class="active show" data-toggle="tab" title="List style"><i class="fa fa-list"></i></a></li>
-											<li><a href="#tab-12" data-toggle="tab" class="" title="Grid"><i class="fa fa-th"></i></a></li>
-										</ul -->
 										<div class="d-flex">
-											<label class="mr-2 mt-1 mb-sm-1" style="white-space: nowrap;">Ordina per:</label>
+											<label class="mr-2 mt-1 mb-sm-1" style="white-space: nowrap;"><g:message code="list.orderBy"/>:</label>
 											<select name="sort" 
 												class="form-control select-sm w-70"
 												v-model="sortOrder"
 												:disabled="searchDirty">
-												<option value="newest">Più recente</option>
-												<option value="oldest">Più vecchio</option>
-												<option value="nearest">Più vicino</option>
+												<option value="newest"><g:message code="list.newest"/></option>
+												<option value="oldest"><g:message code="list.oldest"/></option>
+												<option value="nearest"><g:message code="list.nearest"/></option>
 											</select>
 										</div>
 									</div>
@@ -144,12 +140,12 @@
 															</div>
 															<div class="item-card9-icons">
 																<sec:ifNotLoggedIn>
-																	<a class="item-card9-icons1 subscription" style="cursor:pointer" @click="$refs.registerLoginModal.openModal()"> <i class="fa fa fa-heart-o"></i></a>
+																	<a class="item-card9-icons1 subscription" style="cursor:pointer" title="${g.message(code:'group.action.favourite')}" @click="$refs.registerLoginModal.openModal()"> <i class="fa fa fa-heart-o"></i></a>
 																</sec:ifNotLoggedIn>
 																<sec:ifLoggedIn>
-																	<a v-if="group.administrator" class="item-card9-icons1 ownership" title="Amministra gruppo"
+																	<a v-if="group.administrator" class="item-card9-icons1 ownership" title="${g.message(code:'group.action.admin')}"
 																		:href="'/gruppo/' + group.id +'/modifica'"> <i class="fa fa fa-group"></i></a>
-																	<a v-else v-on="!group.member ? { click:()=>subscribe(group.id, index) }:{ click:()=>unsubscribe(group.id, index) }" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer"> <i class="fa fa fa-heart-o"></i></a>
+																	<a v-else v-on="!group.member ? { click:()=>subscribe(group.id, index) }:{ click:()=>unsubscribe(group.id, index) }" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer" title="${g.message(code:'group.action.favourite')}"> <i class="fa fa fa-heart-o"></i></a>
 																</sec:ifLoggedIn>
 
 															</div>
@@ -202,7 +198,9 @@
 														<g:render template="/buttons/new-order" model="[:]"/>
 													</sec:ifLoggedIn>
 													<sec:ifNotLoggedIn>
-														<g:render template="/buttons/new-order-modal" model="[:]"/>
+														<div class="col-md-12 form-group">
+															<g:render template="/buttons/new-order-modal" model="[:]"/>
+														</div>
 													</sec:ifNotLoggedIn>
 											</div>
 										</div>

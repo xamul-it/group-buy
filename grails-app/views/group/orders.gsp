@@ -119,7 +119,9 @@
                                 
                                 <div class="row group-actions" v-if="groupItem">
                                         <sec:ifLoggedIn>
-                                            <g:render template="/buttons/new-order" model="[:]"/>
+                                            <div class="col-md-12 form-group">
+                                                <g:render template="/buttons/new-order" model="[:]"/>
+                                            </div>
                                         </sec:ifLoggedIn>
                                 </div>
 
