@@ -141,6 +141,11 @@
                 this.createEmptyGroup();
             }
             this.fetchGroupCategoriesAction({service: categoriesService});
+            this.$watch('groupItem', (groupItem) => {
+                console.log("watch groupItem", groupItem, this.groupItem)
+                if(this.groupItem.id > 0)
+                    location.href = "/gruppo/"+this.groupItem.id
+            });
         },
         watch: {
             socialYouTubeUrlPrefix: function(prefix) {
