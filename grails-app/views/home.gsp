@@ -11,7 +11,8 @@
                 <div class="header-text1 mb-0">
                     <div class="container">
                         <div class="text-left text-white">
-                            <h1 class=""> La spesa sotto casa e dai negozianti e produttori di fiducia. In gruppo o da soli. </h1>
+                            <h1 class=""> La spesa sotto casa e dai negozianti e produttori di fiducia</h1>
+                            <h2>In gruppo o da soli</h2>
                         </div>
                     </div>
                 </div>
@@ -25,43 +26,162 @@
                 
                 <div class="text-justify">
                     <!-- h2 class="mb-4">Proprioqui</h2 -->
-                    <h4 class="leading-normal"> Accorciamo le distanze </h4>
+                    <!-- h4 class="leading-normal"> Accorciamo le distanze </h4 -->
 
-                    <p class="leading-normal">
-                        Crediamo nel valore dei rapporti umani; nei prodotti selezionati, nei negozianti amici e in quelli che vendono prodotti d’eccellenza.
-                        Per questo abbiamo creato Proprioqui.
+                    <p class="lead">
+                        Crediamo nel valore dei rapporti umani; nei prodotti selezionati, nei negozianti amici e in quelli che vendono prodotti d’eccellenza. 
+                        <br/>
+                        Per questo abbiamo creato ProprioQui. 
+                        
+                        Crediamo nei rapporti diretti e nelle strette di mano.  
                     </p>
-                    <p class="leading-normal">
+                    <p class="lead">
                         Sosteniamo negozi al dettaglio. Vicini a casa, o anche lontani. Capaci di fare la differenza.
+                        <br/>
                         Offriamo un servizio gratuito e facile, che vi permetterà di gestire l’ordine secondo le vostre esigenze.
+                        <br/>
+                        E a chi vende di inserirsi in un circuito virtuoso che li porterà lontano, grazie al passa parola dei i clienti.    
                     </p>
 
-                    <!--
                     <p class="leading-normal">
-                        Crediamo nel valore dei rapporti umani; nei prodotti selezionati, nei negozianti amici e in quelli che vendono prodotti d’eccellenza.
+                        <strong>Per ora solo a Milano, presto in altre città d’Italia </strong>
                     </p>
-                    <p class="leading-normal">
-                        Offriamo un servizio gratuito che consente in modo semplice di gestire ordini ai negozi della propria zona. Gli ordini possono essere individuali o di gruppo, ad esempio un condominio. Nel caso di ordini di gruppo il punto di consegna deve essere unico, in questo modo il negoziante è agevolato nella gestione del ordine di un gruppo di acquisto.
-                    </p>
-                    <p class="leading-normal">
-                        Non si tratta di un sistema di e-commerce, ma solo di un sistema che agevola la relazione tra negoziante e cliente in un era sempre più digitale. Sta al negoziante e al cliente mettersi d’accordo sulle modalità di pagamento e anche sulla modalità di consegna. Può essere ad esempio agevole ritirare la merce direttamente al punto vendita quando è pronta. 
-                    </p>
-                    -->
+
                 </div>
 
             </div>
         </section>
         <!-- /What -->
 
-        <!-- How -->
+        <!-- Examples -->
         <section class="sptb bg-white">
             <div class="container">
                 <div class="section-title center-block text-center">
+                    <h2> Cosa è possibile comprare? </h2>
+                </div>
+                <div class="row ">
+                    
+                    <div class="col-lg-4 col-md-12">
+                        <div class="card card-aside">
+                            <div class="card-body ">
+                                <div class="card-item d-flex">
+                                    <div class="fa-stack fa-lg fea-icon mb-3"> <i
+                                            class="mdi mdi-bicycle-electric"></i> </div>
+                                    <div class="ml-4">
+                                        <h6 class="font-weight-bold mt-2">L'utlimo modello di E-Bike</h6>
+                                        Trova un gruppo di persone interessate ad acquistare una e-bike e andate tutti insieme dal negoziante.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12">
+                        <div class="card card-aside">
+                            <div class="card-body ">
+                                <div class="card-item d-flex">
+                                    <div class="fa-stack fa-lg fea-icon mb-3"> <i
+                                            class="mdi mdi-office-building-marker-outline"></i> </div>
+                                    <div class="ml-4">
+                                        <h6 class="font-weight-bold mt-2">La spesa di tutti i giorni</h6>
+                                         Fai la spesa di tutti i giorni, con il tuo condominio o un gruppo di amici e con la famiglia.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12">
+                        <div class="card card-aside">
+                            <div class="card-body ">
+                                <div class="card-item d-flex">
+                                    <div class="fa-stack fa-lg fea-icon mb-3"> <i
+                                            class="mdi mdi-bottle-wine-outline"></i> </div>
+                                    <div class="ml-4">
+                                        <h6 class="font-weight-bold mt-2">Un prodotto tipico</h6>
+                                         Dal parmigiano alle arance, dalle mozzarelle all’olio. Siamo italiani, i sapori e i profumi non ci mancano!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- /Question -->
+        
+        <section class="sptb">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card widgets-cards">
+                            <div class="card-body d-flex">
+                                <div class="widgets-cards-icons">
+                                    <div class="wrp icon-circle bg-success"> <i class="mdi mdi-shopping icons"></i> </div>
+                                </div>
+                                <div class="widgets-cards-data">
+                                    <div class="wrp text-wrapper">
+                                        <p>Voglio acquistare</p>
+                                        <p class="text-muted mt-1 mb-0">
+                                            <ul>
+                                                <li>Siete un gruppo di amici, un condominio, una famiglia numerosa? Ecco il vostro gruppo d’acquisto! </li>
+                                                <li>Se ordinate in gruppo il punto di consegna dovrà essere unico, per il negoziante sarà più facile gestire l’ordine. Proprio come avviene nei Gruppi d’Acquisto Solidali (GAS). </li>
+                                                <li>Oppure potete fare la spesa solo per voi.</li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card widgets-cards">
+                            <div class="card-body d-flex">
+                                <div class="widgets-cards-icons">
+                                    <div class="wrp icon-circle bg-success"> <i class="mdi mdi-store fa-2x icons"></i> </div>
+                                </div>
+                                <div class="widgets-cards-data">
+                                    <div class="wrp text-wrapper">
+                                        <p>Voglio vendere </p>
+                                        <p class="text-muted mt-1 mb-0">
+                                            Invitate i clienti abituali ad unirsi ad amici e condomini per fare la spesa, e riservate loro offerte speciali.  
+                                            <br/>
+                                            Otterrete diversi vantaggi:
+                                            <ul>
+                                                <li>Potrete raggiungere persone che non conoscete e che non erano vostre clienti  ma che potranno diventarlo</li>
+                                                <li>Avrete un solo punto di consegna, deciso da voi, meno lavoro e più guadagno</li>
+                                                <li>Grazie agli acquisti di gruppo venderete di più e venderete meglio</li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="center-block text-center">
+                    <p class="lead">
+                        <strong>A voi la scelta, secondo le vostre necessità!</strong>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- How -->
+        <section class="sptb bg-white">
+            <div class="container">
+
+                <div class="section-title center-block text-center">
                     <h2> Sei pronto? </h2>
                     <h4 class="leading-normal"> Ora tocca a te! </h4>
-
-                    <!-- p>In tre semplici passi, effettua gli acquisti di gruppo presso le attività di vicinato.</p -->
                 </div>
+
                 <div class="row">
 
                     <div class="col-lg-4 col-md-4 col-sm-12">
@@ -113,25 +233,68 @@
                     </div>
 
                 </div>
+
+            </div>
+        </section>
+
+        <section class="sptb">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="">
+                            <div class="mb-lg-0 mb-4">
+                                <div class="service-card text-center">
+                                    <div class="bg-purple-transparent box-shadow icon-service text-indigo about"> <i
+                                            class="fa fa-newspaper-o fa-4x"></i>
+                                    </div>
+                                    <div class="servic-data mt-3">
+                                        <!-- h4 class="font-weight-semibold mb-2">Informa</h4 -->
+                                        <p class="text-muted mb-0">Informa i tuoi clienti di essere entrato nel circuito ProprioQui</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="">
+                            <div class="mb-lg-0 mb-4">
+                                <div class="service-card text-center">
+                                    <div class="bg-purple-transparent box-shadow icon-service text-indigo about"> <i
+                                            class="fa fa-percent fa-4x"></i>
+                                    </div>
+                                    <div class="servic-data mt-3">
+                                        <!-- h4 class="font-weight-semibold mb-2">Pensa</h4 -->
+                                        <p class="text-muted mb-0">Pensa alle offerte da riservare loro</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="">
+                            <div class="mb-sm-0 mb-4">
+                                <div class="service-card text-center">
+                                    <div class="bg-purple-transparent box-shadow icon-service text-indigo about">
+                                        <i class="fa fa-users fa-4x"></i>
+                                    </div>
+                                    <div class="servic-data mt-3">
+                                        <!-- h4 class="font-weight-semibold mb-2">Attiva</h4 -->
+                                        <p class="text-muted mb-0">Attiva un gruppo d’acquisto sul tuo negozio o attività. Tutti sono interessati a comprare con sconti o offerte! </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </section>
         <!-- /How -->
-
-        <!-- CTA -->
-        <section>
-            <div class="cover-image sptb bg-background-color" style="background: rgba(0, 0, 0, 0) repeat scroll center center;">
-                <div class="content-text mb-0">
-                    <div class="container">
-                        <div class="text-center text-white ">
-                            <h2 class="mb-2 display-5">Sei pronto ad acquistare online dai tuoi negozi di vicinato preferiti?</h2>
-                            <!-- p>Text message.</p -->
-                            <div class="mt-5"> <a href="/register/register" class="btn btn-primary btn-pill">Iscriviti ora</a> </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- /CTA-->
 
         <!--Shops list -->
         <section class="sptb bg-white" v-cloak>
@@ -139,7 +302,7 @@
             <v-modal ref="registerLoginModal"></v-modal>
 
                 <div class="section-title center-block text-left">
-                    <h2>I tuoi negozi</h2>
+                    <h2>I nostri negozi</h2>
                 </div>
 
                 <div class="row">
@@ -150,21 +313,15 @@
                                 <div class="arrow-ribbon bg-info">{{ supplier.category.name }}</div>
                                 <div class="item-card9-imgs"> <a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)"></a> <img
                                         :src="'/assets/theme/img/categories/supplier/category-'+supplier.category.id+'.jpg'" alt="img" class="cover-image"> </div>
-                                <!-- div class="item-card9-icons"> <a href="#" class="item-card9-icons1 wishlist"> <i
-                                            class="fa fa fa-heart-o"></i></a> </div -->
                             </div>
                             <div class="card-body">
                                 <div class="item-card9 text-dark">
-                                <em>Categoria:</em> <a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)"> {{ supplier.category.name }}</a>
+                                <em>Categoria:</em> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"> {{ supplier.category.name }}</a>
                                     <a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)" class="text-dark mt-2">
                                         <h4 class="font-weight-semibold mt-1">{{ supplier.name }} </h4>
                                     </a>
-                                    <!-- p class="text-dark">{{ supplier.description }}</p -->
                                     <div class="item-card9-desc"> <a target="_blank" :href="'https://www.openstreetmap.org/?mlat='+supplier.shippingAddress.lat+'&mlon='+supplier.shippingAddress.lon+'#map=19/'+supplier.shippingAddress.lat+'/'+supplier.shippingAddress.lon" class="mr-4"><span class=""><i
                                                     class="fa fa-map-marker text-muted mr-1"></i> {{ supplier.shippingAddress.address1 }} {{ supplier.shippingAddress.city }}</span></a> 
-                                                    <!-- a href="#"
-                                            class=""><span class=""><i class="fa fa-calendar-o text-muted mr-1"></i>
-                                                Nov-15-2019</span></a-->
                                     </div>
                                 </div>
                             </div>
@@ -202,22 +359,21 @@
         <!--/Shops list -->
 
         <!-- Why -->
-        <section class="sptb">
+        <section class="sptb bg-white">
             <div class="container">
                 <div class="section-title center-block text-center">
-                    <h2> Qualche esempio? </h2>
-                    <!-- p>Mauris ut cursus nunc. Morbi eleifend, ligula at consectetur vehicula</p -->
+                    <h2> Perché acquistare da ProprioQui? </h2>
                 </div>
                 <div class="row ">
+
                     <div class="col-md-6 col-lg-4 features">
                         <div class="card">
                             <div class="card-body text-center">
                                 <div class="feature">
                                     <div class="fa-stack fa-lg  fea-icon bg-success mb-3"> <i
-                                            class="fa fa-bicycle  text-white"></i> </div>
-                                    <h3>E-Bike</h3>
+                                            class="mdi mdi-store-outline text-white"></i> </div>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porttitor sit amet orci et finibus. Donec sed magna elit. 
+                                        Perché potrai scegliere di acquistare dal tuo negozio preferito e farlo conoscere ad amici e colleghi 
                                     </p>
                                 </div>
                             </div>
@@ -227,11 +383,10 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <div class="feature">
-                                    <div class="fa-stack fa-lg  fea-icon bg-primary mb-3"> <i
-                                            class="fa fa-building-o text-white"></i> </div>
-                                    <h3>Condominio</h3>
+                                    <div class="fa-stack fa-lg  fea-icon bg-primary mb-3" style="padding-top: 5px;"> <i
+                                            class="mdi mdi-sofa-single-outline text-white"></i> </div>
                                     <p>
-                                        Vestibulum vel tempor justo. Aenean diam quam, tristique at congue eu, fermentum at nunc. Nullam fringilla eget arcu non egestas. 
+                                        Perché con gli acquisti in gruppo otterrai interessanti vantaggi e sconti. Più spendi meno spendi
                                     </p>
                                 </div>
                             </div>
@@ -242,10 +397,52 @@
                             <div class="card-body text-center">
                                 <div class="feature">
                                     <div class="fa-stack fa-lg  fea-icon bg-secondary mb-3"> <i
-                                            class="fa fa-apple text-white"></i> </div>
-                                    <h3>Prodotto tipico</h3>
+                                            class="mdi mdi-medal-outline text-white"></i> </div>
                                     <p>
-                                        Aliquam viverra quam sed tellus laoreet, ac posuere nunc posuere. Vivamus semper suscipit sodales. Vestibulum eu turpis a neque pulvinar lobortis.
+                                         Perché, anche con un gesto semplice come fare la spesa, potrai fare la differenza.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row ">
+
+                    <div class="col-md-6 col-lg-4 features">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="feature">
+                                    <div class="fa-stack fa-lg  fea-icon bg-warning mb-3" style="padding-top: 5px;"> <i
+                                            class="mdi mdi-pasta text-white"></i> </div>
+                                    <p>
+                                        Perché potrai portare i sapori di regioni d’Italia lontane anche nella tua città
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 features">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="feature">
+                                    <div class="fa-stack fa-lg  fea-icon bg-danger mb-3" style="padding-top: 6px;"> <i
+                                            class="mdi mdi-label-percent-outline text-white"></i> </div>
+                                    <p>
+                                        Grazie agli sconti riservati a chi acquista in gruppo potrai arrivare a prodotti che diversamente non acquisteresti 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 features">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="feature">
+                                    <div class="fa-stack fa-lg  fea-icon bg-info mb-3" style="padding-top: 6px;"> <i
+                                            class="mdi mdi-trending-up text-white"></i> </div>
+                                    <p>
+                                         Se sei un negoziante, entrando a far parte di ProprioQui, potrai raggiungere persone diverse, vicino a casa, ma anche lontane
                                     </p>
                                 </div>
                             </div>
@@ -255,51 +452,27 @@
                     <div class="col-md-12 col-lg-12 features">
                         <a href="/faq" class="btn btn-white btn-block">Domande frequenti</a>
                     </div>
-                    
-                    <!-- div class="col-md-6 col-lg-4 features">
-                        <div class="card mb-lg-0">
-                            <div class="card-body text-center">
-                                <div class="feature">
-                                    <div class="fa-stack fa-lg  fea-icon bg-warning mb-3"> <i
-                                            class="fa fa-line-chart   text-white"></i> </div>
-                                    <h3>Motivo quattro</h3>
-                                    <p>our being able to do what we like best, every pleasure is to be welcomed and every pain.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 features">
-                        <div class="card mb-lg-0 mb-md-0">
-                            <div class="card-body text-center">
-                                <div class="feature">
-                                    <div class="fa-stack fa-lg  fea-icon bg-danger mb-3"> <i
-                                            class="fa fa-handshake-o   text-white"></i> </div>
-                                    <h3>Motivo cinque</h3>
-                                    <p>our being able to do what we like best, every pleasure is to be welcomed and every pain.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 features">
-                        <div class="card mb-0">
-                            <div class="card-body text-center">
-                                <div class="feature">
-                                    <div class="fa-stack fa-lg  fea-icon bg-info mb-3"> <i class="fa fa-phone  text-white"></i>
-                                    </div>
-                                    <h3>Motivo sei</h3>
-                                    <p>our being able to do what we like best, every pleasure is to be welcomed and every pain.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div -->
 
                 </div>
             </div>
         </section>
         <!-- /Why -->
+
+
+        <!-- CTA -->
+        <section>
+            <div class="cover-image sptb bg-background-color" style="background: rgba(0, 0, 0, 0) repeat scroll center center;">
+                <div class="content-text mb-0">
+                    <div class="container">
+                        <div class="text-center text-white ">
+                            <h2 class="mb-2 display-5">Sei pronto ad acquistare online dai tuoi negozi di vicinato preferiti?</h2>
+                            <div class="mt-5"> <a href="/register/register" class="btn btn-primary btn-pill">Iscriviti ora</a> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /CTA-->
 
     </div>
 
