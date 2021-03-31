@@ -21,8 +21,10 @@
 
 									<div class="text-left text-white mb-6">
 										<h1 class="mb-1 d-none d-md-block">
-											Trova gruppi di acquisto in zona e partecipa 
-											<br/> o crea il tuo adesso.
+											Più spendi meno spendi. Ecco i gruppi a cui unirsi per acquistare in compagnia. Scopri le offerte e le novità  
+
+											<%/*Trova gruppi di acquisto in zona e partecipa 
+											<br/> o crea il tuo adesso. */%>
 										</h1>
 									</div>
 									
@@ -143,9 +145,8 @@
 																	<a class="item-card9-icons1 subscription" style="cursor:pointer" title="${g.message(code:'group.action.favourite')}" @click="$refs.registerLoginModal.openModal()"> <i class="fa fa fa-heart-o"></i></a>
 																</sec:ifNotLoggedIn>
 																<sec:ifLoggedIn>
-																	<a v-if="group.administrator" class="item-card9-icons1 ownership" title="${g.message(code:'group.action.admin')}"
-																		:href="'/gruppo/' + group.id +'/modifica'"> <i class="fa fa fa-group"></i></a>
-																	<a v-else v-on="!group.member ? { click:()=>subscribe(group.id, index) }:{ click:()=>unsubscribe(group.id, index) }" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer" title="${g.message(code:'group.action.favourite')}"> <i class="fa fa fa-heart-o"></i></a>
+																	<a v-if="group.administrator" class="item-card9-icons1 ownership" title="${g.message(code:'group.action.admin')}" :href="'/gruppo/' + group.id +'/modifica'"> <i class="fa fa fa-group"></i></a>
+																	<a v-else @click="subscribe(group.id, index)" class="item-card9-icons1 subscription" :class="{active: group.member}" style="cursor:pointer" title="${g.message(code:'group.action.favourite')}"> <i class="fa fa fa-heart-o"></i></a>
 																</sec:ifLoggedIn>
 
 															</div>

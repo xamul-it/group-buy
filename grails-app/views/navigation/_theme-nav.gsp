@@ -26,7 +26,7 @@
 
                                 <li><a href="${createLink(mapping: 'gruppi', namespace: 'ui')}"> <g:message code="site.menu.groups"/> </a></li>
                                 <li><a href="${createLink(mapping: 'negozi', namespace: 'ui')}"> <g:message code="site.menu.suppliers"/> </a></li>
-                                <li><a href="${createLink(controller: 'user', action: 'orders')}" > <g:message code="site.menu.orders"/> </a></li>
+                                <li><a href="${createLink(mapping: 'ordiniUtente', namespace: 'ui')}" > <g:message code="site.menu.orders"/> </a></li>
 
                             </ul>
                             <ul class="mb-0">

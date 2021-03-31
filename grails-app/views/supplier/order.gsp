@@ -6,7 +6,7 @@
     </head>
     <body>
         <div id="v-order-create-app" v-cloak>
-            <vue-title prefix="${g.message(code:'site.title')}" :title="pageTitle"/></vue-title>
+            <vue-title prefix="${g.message(code:'order.new')}" :title="pageTitle"/></vue-title>
 
             <sec:ifLoggedIn>
             <!--Sliders Section-->
@@ -105,7 +105,7 @@
                     },
                     store,
                     data: {
-                        pageTitle: 'Nuovo ordine',
+                        pageTitle: '${g.message(code:'order.new')}',
                         supplierId: ${supplierId},
                         orderId: 0,
                     },
@@ -153,7 +153,8 @@
                         this.createEmptyOrder()
                         this.$watch('orderItem', (orderItem) => {
                             console.log("watch orderItem", orderItem, this.orderItem)
-                            location.href = "/groupBuy/group/"+this.orderItem.group.id+"/order/edit/" + this.orderItem.id
+                            if(this.orderItem.id > 0)
+                                location.href = "/gruppo/"+this.orderItem.group.id+"/ordine/" + this.orderItem.id
                         });
                     },
                     watch: {
