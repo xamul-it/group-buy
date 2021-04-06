@@ -204,6 +204,24 @@
 			</div>
 		</section>
 		<!--Supplier Listing-->
+
+		<!-- CTA -->
+		<sec:ifNotLoggedIn>
+			<section>
+				<div class="cover-image sptb bg-background-color" style="background: rgba(0, 0, 0, 0) repeat scroll center center;">
+					<div class="content-text mb-0">
+						<div class="container">
+							<div class="text-center text-white ">
+								<h2 class="mb-2 display-5">Sei pronto ad acquistare online dai tuoi negozi di vicinato preferiti?</h2>
+								<div class="mt-5"> <a href="/register/register" class="btn btn-primary btn-pill">Iscriviti ora</a> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</sec:ifNotLoggedIn>
+		<!-- /CTA-->
+		
 	</div>
 
 	<g:render template="/includes/js-vue-select-js"/>
