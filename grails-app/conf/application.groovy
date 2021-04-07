@@ -33,6 +33,9 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	[pattern: '/api/v1/users/**',	access: ['IS_AUTHENTICATED_REMEMBERED']],
 	[pattern: '/api/v1/**',    		access: ['permitAll']],
 
+	/*sitemap*/
+	[pattern: '/sitemap.xml',    	access: ['permitAll']],
+
 	/*pages/views/assets*/
 	[pattern: '/chisiamo',          			access: ['permitAll']],
 	[pattern: '/privacy',          				access: ['permitAll']],
