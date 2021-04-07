@@ -5,12 +5,21 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-3 col-md-12">
-								<h6><g:message code="site.title"/></h6>
-								<hr class="deep-purple  accent-2 mb-4 mt-0 d-inline-block mx-auto">
-								<p>Siamo un servizio gratuito che ti permette di gestire, in modo semplice e diretto, ordini di gruppo da negozi e produttori della tua zona. Pensiamo che comprare insieme, è meglio.</p>
-								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum .</p>
+								<p>
+									Siamo un servizio gratuito che ti permette di gestire, in modo semplice e diretto, ordini di <a href="/gruppi">gruppo</a> da negozi e produttori della tua zona.
+									Comprare insieme permette di sostenere i piccoli <a href="/negozi">negozianti</a>, ottenere sconti e promozioni e fare acquisti pensati e organizzati.
+									<!-- br/>
+									Pensiamo che comprare insieme, è meglio. -->
+								</p>
+								<p>
+									Scopri tutti i <a href="/negozi">negozi</a> presenti sul nostro sito, se hai un attività di fiducia che credi possa essere interessato a essere incluso sul portale scrivici, lo inseriremo.
+									<br/>
+									Se sei hai un'attività commerciale e vuoi essere inserito sul nostro portale, scrivici.
+									</p>
 							</div>
 							<div class="col-lg-2 col-md-12">
+								<h6><g:message code="site.title"/></h6>
+								<hr class="deep-purple  accent-2 mb-4 mt-0 d-inline-block mx-auto">
 								<ul class="list-unstyled mb-0">
 									<li><a href="/"> <g:message code="site.menu.home"/> </a></li>
 
