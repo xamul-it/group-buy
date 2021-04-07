@@ -30,7 +30,7 @@ class Supplier {
         creator nullable:false
         shippingAddress nullable:true
         owner nullable:true
-        name nullable: false, blank: false, size: 5..200, unique: false/*,
+        name nullable: false, blank: false, size: 3..200, unique: false/*,
                 validator: { val, obj ->
                     obj.springSecurityService && (obj.creator.id == obj.springSecurityService.getPrincipal().id ||
                             (obj.owner != null && obj.owner.id == obj.springSecurityService.getPrincipal().id)
