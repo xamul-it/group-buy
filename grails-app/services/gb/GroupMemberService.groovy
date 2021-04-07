@@ -90,7 +90,7 @@ class GroupMemberService {
                 gm.subscriptionDate = new Date()
                 gm.lastUpdate = new Date()
                 g.getMembers().add(gm)
-                g.save()
+                g.save(flush: true)
                 log.debug "subscribe " + g
             } else {
                 gm=new GroupMember()
@@ -99,7 +99,7 @@ class GroupMemberService {
         } else if (!gm.status.equals(MemberStatus.ACTIVE)) {
             gm.status = MemberStatus.ACTIVE
             gm.lastUpdate = new Date()
-            gm.save()
+            gm.save(flush: true)
         }
         log.debug "memberCount: ${gm.group.memberCount} - ${gm} status : ${gm.status} - ${gm.group}"
         gm.group.isMember=null //?
@@ -125,7 +125,7 @@ class GroupMemberService {
         } else if (!gm.status.equals(MemberStatus.CANCELLED)){
             gm.status = MemberStatus.CANCELLED
             gm.lastUpdate = new Date()
-            gm.save()
+            gm.save(flush: true)
         }
         log.debug "memberCount: ${gm.group.memberCount} - ${gm} status : ${gm.status} lastUpdate : ${gm.lastUpdate} - ${gm.group}"
         return gm
