@@ -33,7 +33,7 @@ class UiUrlMappings {
         group "/ordine", {
             name nuovoOrdine: "/nuovo" (controller:"order", action: "index", namespace: 'ui')  //new order page
 
-            name ordineNegozio: "/$orderToken" (controller:"order", action: "supplierShow", namespace: 'ui')  //order page
+            name ordineNegozioToken: "/$orderToken" (controller:"order", action: "supplierShow", namespace: 'ui')  //order page
         }
 
         group "/utente", {

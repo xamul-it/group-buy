@@ -28,6 +28,8 @@ class UrlMappings {
         "/login/$action?/$id?(.$format)?" (controller: 'login')
         "/register/$action?/$id?(.$format)?" (controller: 'register')
 
+        "/sitemap(.$format)?" (controller: 'sitemap')
+
         /*"/$controller/$action?/$id?(.$format)?"{
             constraints {
                 controller(validator: {
