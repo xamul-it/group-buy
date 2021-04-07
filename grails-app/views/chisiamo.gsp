@@ -12,9 +12,9 @@
             <!-- Content -->
             <section class="sptb">
                 <div class="container">
-                    <p class="leading-normal">
+                    <p class="lead">
                         Supportiamo l’incontro tra negozi, aziende e persone che credono nell’importanza di prendersi cura di sé, attraverso le piccole azioni quotidiane, come ciò che acquistano e il modo in cui lo fanno.
-                    </p> <p class="leading-normal">
+                    </p> <p class="lead">
                         Per questo abbiamo creato Proprioqui: un sito e un’app, per ora a Milano, presto in altre città d’Italia, per acquisti scelti e pensati. 
                     </p>
                     </div>

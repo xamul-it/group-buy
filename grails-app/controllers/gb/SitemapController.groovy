@@ -10,7 +10,27 @@ class SitemapController {
                     'xsi:schemaLocation': "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd") {
                 //more static pages here
                 url {
-                    loc(g.createLink(absolute: true, controller: 'home', action: 'view'))
+                    loc(g.createLink(absolute: true, uri: '/'))
+                    changefreq('daily')
+                    priority(1.0)
+                }
+                url {
+                    loc(g.createLink(absolute: true, uri: '/negozi'))
+                    changefreq('daily')
+                    priority(1.0)
+                }
+                url {
+                    loc(g.createLink(absolute: true, uri: '/gruppi'))
+                    changefreq('daily')
+                    priority(1.0)
+                }
+                url {
+                    loc(g.createLink(absolute: true, uri: '/chisiamo'))
+                    changefreq('daily')
+                    priority(1.0)
+                }
+                url {
+                    loc(g.createLink(absolute: true, uri: '/faq'))
                     changefreq('daily')
                     priority(1.0)
                 }
@@ -19,9 +39,10 @@ class SitemapController {
                 Supplier.list().each { domain ->
                     url {
                         loc(g.createLink(absolute: true,
-                                controller: 'supplier',
-                                action: 'get',
-                                params: [supplierName: domain.name, supplierId: domain.id]))
+                                mapping: 'schedaNegozio',
+                                params: [supplierName: domain.name, supplierId: domain.id]),
+                                namespace: 'ui'
+                                )
                         changefreq('daily')
                         priority(0.8)
                     }

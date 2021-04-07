@@ -164,9 +164,11 @@ class EmailService implements IEmailService {
             user = User.get(springSecurityService.getPrincipal().id)
         }
 
+        log.debug "contact ${LocaleContextHolder.getLocale()} ${messageSource.getMessage('email.contact.subject', [] as Object[], LocaleContextHolder.locale)}"
+
         sendMail {
             //multipart true
-            to "default@site.com"
+            to messageSource.getMessage('site.contact.email.info', [] as Object[], LocaleContextHolder.locale)
             from fromEmail
             subject messageSource.getMessage('email.contact.subject', [] as Object[], LocaleContextHolder.locale)
             text( view:"/email/contactPlain", 		

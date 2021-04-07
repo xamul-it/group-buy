@@ -86,7 +86,14 @@ class Group {
 	}
 
 	Long getMemberCount() {
-		return GroupMember.countByGroup(this)
+		//return GroupMember.countByGroup(this)
+		return GroupMember.createCriteria().get {
+            eq('group',this)
+            eq('status', MemberStatus.ACTIVE)
+			projections {
+				rowCount()
+    		}
+        }
 	}
 
 	private loadMemberStatus(){

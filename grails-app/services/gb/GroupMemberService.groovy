@@ -71,8 +71,8 @@ class GroupMemberService {
      * @return
      */
     @Transactional
-    GroupMember subscribe(groupId){
-        log.debug "subscribe " + groupId
+    GroupMember subscribe(groupId) {
+        log.debug "subscribe ${springSecurityService.getCurrentUser()} to $groupId "
         Group g = Group.get(groupId)
         GroupMember gm = new GroupMember()
         gm  = GroupMember.createCriteria().get{
@@ -81,6 +81,7 @@ class GroupMemberService {
         }
         if (gm==null) {
             if (g.publicGroup) {
+                log.debug "publicGroup: ${g.publicGroup}"
                 //verifica se è già iscritto
                 gm = new GroupMember()
                 gm.group = g
@@ -89,18 +90,44 @@ class GroupMemberService {
                 gm.subscriptionDate = new Date()
                 gm.lastUpdate = new Date()
                 g.getMembers().add(gm)
-                g.save()
+                g.save(flush: true)
                 log.debug "subscribe " + g
             } else {
                 gm=new GroupMember()
                 gm.status = MemberStatus.INVALID
             }
-        }else if (!gm.status.equals(MemberStatus.ACTIVE)){
+        } else if (!gm.status.equals(MemberStatus.ACTIVE)) {
             gm.status = MemberStatus.ACTIVE
             gm.lastUpdate = new Date()
-            gm.save()
+            gm.save(flush: true)
         }
-        gm.group.isMember=null
+        log.debug "memberCount: ${gm.group.memberCount} - ${gm} status : ${gm.status} - ${gm.group}"
+        gm.group.isMember=null //?
+        return gm
+    }
+
+    /**
+     * Sets user membership status to Invalid
+     */
+    @Transactional
+    GroupMember unsubscribe(groupId) {
+        log.debug "unsubscribe ${springSecurityService.getCurrentUser()} from $groupId "
+        Group g = Group.get(groupId)
+        GroupMember gm = new GroupMember()
+        gm  = GroupMember.createCriteria().get{
+            eq('group',g)
+            eq('user',springSecurityService.getCurrentUser())
+        }
+        log.debug " ${gm} status : ${gm.status} lastUpdate : ${gm.lastUpdate}"
+        if (gm==null) {
+            gm=new GroupMember()
+            gm.status = MemberStatus.INVALID
+        } else if (!gm.status.equals(MemberStatus.CANCELLED)){
+            gm.status = MemberStatus.CANCELLED
+            gm.lastUpdate = new Date()
+            gm.save(flush: true)
+        }
+        log.debug "memberCount: ${gm.group.memberCount} - ${gm} status : ${gm.status} lastUpdate : ${gm.lastUpdate} - ${gm.group}"
         return gm
     }
 
@@ -200,26 +227,5 @@ class GroupMemberService {
         return gm
     }
 
-    /**
-     * Sets user membership status to Invalid
-     */
-    @Transactional
-    GroupMember unsubscribe(groupId){
-        log.debug "unsubscribe " + groupId
-        Group g = Group.get(groupId)
-        GroupMember gm = new GroupMember()
-        gm  = GroupMember.createCriteria().get{
-            eq('group',g)
-            eq('user',springSecurityService.getCurrentUser())
-        }
-        if (gm==null) {
-            gm=new GroupMember()
-            gm.status = MemberStatus.INVALID
-        } else if (!gm.status.equals(MemberStatus.CANCELLED)){
-            gm.status = MemberStatus.CANCELLED
-            gm.lastUpdate = new Date()
-            gm.save()
-        }
-        return gm
-    }
+    
 }

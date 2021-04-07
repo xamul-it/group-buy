@@ -21,9 +21,12 @@
 
 									<div class="text-left text-white mb-6">
 										<h1 class="mb-1 d-none d-md-block">
-											Trova i negozi di vicinato che effettuano la consegna a domicilio 
-											<br/> e ordina subito.
+											Vieni a scoprire i negozi e i produttori che hanno scelto di far parte di ProprioQui 
 										</h1>
+
+										<%/* Trova i negozi di vicinato che effettuano la consegna a domicilio 
+											<br/> e ordina subito. */%>
+
 									</div>
 
 									<vue-lb-search-form ref="lbSearchForm"
@@ -65,6 +68,13 @@
 		<section class="sptb">
 			<div class="container">
 				<v-modal ref="registerLoginModal"></v-modal>
+
+				<div class="center-block text-center">
+                    <p class="lead">
+                        <strong>Per ora siamo solo a Milano, ma presto saremo nel resto d’Italia</strong>
+                    </p>
+                </div>
+
 				<div class="row">
 
 					<div v-if="suppliersCount==0 && !supplierListLoaded" class="col-md-12 col-lg-12">
@@ -194,6 +204,24 @@
 			</div>
 		</section>
 		<!--Supplier Listing-->
+
+		<!-- CTA -->
+		<sec:ifNotLoggedIn>
+			<section>
+				<div class="cover-image sptb bg-background-color" style="background: rgba(0, 0, 0, 0) repeat scroll center center;">
+					<div class="content-text mb-0">
+						<div class="container">
+							<div class="text-center text-white ">
+								<h2 class="mb-2 display-5">Sei pronto ad acquistare online dai tuoi negozi di vicinato preferiti?</h2>
+								<div class="mt-5"> <a href="/register/register" class="btn btn-primary btn-pill">Iscriviti ora</a> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</sec:ifNotLoggedIn>
+		<!-- /CTA-->
+		
 	</div>
 
 	<g:render template="/includes/js-vue-select-js"/>
