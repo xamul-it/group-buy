@@ -59,9 +59,10 @@
                                                         <p v-if="groupItem" class="mb-0">{{ groupItem.description }}</p>
                                                         <p></p>
                                                     </div>
+                                                    
                                                     <div class="col-xl-1 col-lg-2 col-md-12">
                                                         <!-- Members -->
-                                                        <a href="${createLink(controller: 'groupBuy', action: 'groupMembers', id: groupId)}" >
+                                                        <a href="${createLink(mapping: 'iscrittiGruppo', params: [groupId: groupId], namespace: 'ui')}" >
                                                             <h3 class="card-title mb-3 font-weight-bold">
                                                                 <span class="label label-pill badge-info mt-2">{{ groupItem.memberCount }} <g:message code="fields.group.members"/> </span>
                                                             </h3>
@@ -82,9 +83,18 @@
                                                     </div>
                                                 </div>
                                                 <div v-if="groupItem"  class="row text-dark">
-                                                    <div v-if="groupItem.deliveryAddress" class="col-md-12">
+                                                    <div v-if="groupItem.deliveryAddress" class="col-xl-4 col-lg-6 col-md-12">
                                                         <div class="media-heading">
-                                                            <h3 class="card-title mb-3 font-weight-bold"><g:message code="fields.address"/></h3>
+                                                            <h3 class="card-title mb-3 font-weight-bold"><g:message code="fields.address"/>
+                                                            
+                                                                <a :href="'/negozi?lat='+groupItem.deliveryAddress.lat+'&lon='+groupItem.deliveryAddress.lon" >
+                                                                    <span class="card-title mb-3 font-weight-bold">
+                                                                        <span class="label label-pill badge-info mt-2"> <g:message code="button.nearestSuppiers"/> </span>
+                                                                    </span>
+                                                                </a>
+
+                                                            </h3>
+                                                            
                                                         </div>
                                                         <p></p>
                                                         <p class="mb-0">
