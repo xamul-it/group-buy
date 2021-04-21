@@ -53,7 +53,7 @@
 								</ul>
 								<ul class="list-unstyled list-inline mt-3">
 									<li class="list-inline-item">
-										<a href="#" class="rgba-white-slight mx-1 waves-effect waves-light">
+										<a href="https://fb.me/proprioqui" class="rgba-white-slight mx-1 waves-effect waves-light">
 											<i class="fa fa-facebook mr-3 text-primary"></i>
 										</a>
 									</li>
@@ -68,7 +68,7 @@
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="#" class="rgba-white-slight mx-1 waves-effect waves-light">
+										<a href="https://www.linkedin.com/company/proprioqui" class="rgba-white-slight mx-1 waves-effect waves-light">
 											<i class="fa fa-linkedin mr-3 text-primary"></i>
 										</a>
 									</li>

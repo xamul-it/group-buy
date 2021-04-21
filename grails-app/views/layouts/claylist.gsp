@@ -49,6 +49,9 @@
 	<!-- Bbox Css -->
     <asset:stylesheet src="theme/css/gb-style.css"/>
 
+	<!-- gtag -->
+	<g:render template="/includes/gtag"/>
+
 	<!-- JavaScript libs -->
 	<g:render template="/includes/js-lodash-js"/>
 	<g:render template="/includes/js-moment-js"/>

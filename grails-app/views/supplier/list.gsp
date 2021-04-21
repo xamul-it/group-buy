@@ -142,18 +142,18 @@
 														<div class="item-card9-img">
 															<div class="arrow-ribbon bg-info">{{ supplier.category.name }}</div>
 															<div class="item-card9-imgs"> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"></a> <img
-																	:src="'/assets/theme/img/categories/supplier/category-'+supplier.category.id+'.jpg'" alt="img" class="cover-image"> </div>
+																	:src="'/assets/theme/img/categories/supplier/category-'+supplier.category.id+'.jpg'" :alt="supplier.name" :title="supplier.name" class="cover-image"> </div>
 															<!-- div class="item-card9-icons"> <a href="#" class="item-card9-icons1 wishlist"> <i
 																		class="fa fa fa-heart-o"></i></a> </div -->
 														</div>
 														<div class="card-body">
 															<div class="item-card9 text-dark">
-															<em>Categoria:</em> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"> {{ supplier.category.name }}</a>
+															<!-- em>Categoria:</em> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"> {{ supplier.category.name }}</a -->
 																<a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)" class="text-dark mt-2">
 																	<h4 class="font-weight-semibold mt-1">{{ supplier.name }} </h4>
 																</a>
 																<!-- p class="text-dark">{{ supplier.description }}</p -->
-																<div class="item-card9-desc"> <a target="_blank" :href="'https://www.openstreetmap.org/?mlat='+supplier.shippingAddress.lat+'&mlon='+supplier.shippingAddress.lon+'#map=19/'+supplier.shippingAddress.lat+'/'+supplier.shippingAddress.lon" class="mr-4"><span class=""><i
+																<div class="item-card9-desc"> <a target="_blank" title="${message(code:'action.viewMap')}" :href="'https://www.openstreetmap.org/?mlat='+supplier.shippingAddress.lat+'&mlon='+supplier.shippingAddress.lon+'#map=19/'+supplier.shippingAddress.lat+'/'+supplier.shippingAddress.lon" class="mr-4"><span class=""><i
 																				class="fa fa-map-marker text-muted mr-1"></i> {{ supplier.shippingAddress.address1 }} {{ supplier.shippingAddress.city }}</span></a> 
 																				<!-- a href="#"
 																		class=""><span class=""><i class="fa fa-calendar-o text-muted mr-1"></i>
@@ -165,7 +165,7 @@
 															<div class="item-card9-footer d-flex">
 																<div class="item-card9-cost">
 																	<sec:ifLoggedIn>
-																		<a :href="'/negozio/'+supplier.id+'/ordine'" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> <g:message code="button.orderNow"/> </a>
+																		<a :title="'${message(code:'action.orderNowFrom')} '+supplier.name" :href="'/negozio/'+supplier.id+'/ordine'" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> <g:message code="button.orderNow"/> </a>
 																	</sec:ifLoggedIn>
 																	<sec:ifNotLoggedIn>
 																		<button @click="$refs.registerLoginModal.openModal()" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> <g:message code="button.orderNow"/> </button>

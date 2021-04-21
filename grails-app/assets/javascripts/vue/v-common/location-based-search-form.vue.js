@@ -278,14 +278,31 @@ var VueLBSearchForm = Vue.component("VueLBSearchForm", {
         this.$emit("error", error.message);
       }
     },
+    async fetchAddressByCoordinates(latitude, longitude) {
+      this.locationAddress = await locationService.addressByCoordinates({latitude, longitude});
+    },
+    async fetchCoordinatesByQuery() {
+      let urlParams = new URLSearchParams(window.location.search);
+      if(urlParams.has('lat') && urlParams.has('lon')) {
+        this.locationLat = await _.toNumber(urlParams.get('lat'));
+        this.locationLon = await _.toNumber(urlParams.get('lon'));
+      }
+    },
     async search(lbSearch = false) {
+      let urlParams = new URLSearchParams(window.location.search);
       if (typeof lbSearch === "boolean" && lbSearch) {
-        try {
-          await this.fetchCurrentAddress();
-        } catch (error) {
-          this.$emit("error", error.message);
-          if (!_.isUndefined(this.address) && this.address != "") {
-            await this.fetchCoordinates();
+        if(urlParams.has('lat') && urlParams.has('lon')) {
+          await this.fetchCoordinatesByQuery();
+          this.address = null;
+          this.fetchAddressByCoordinates(this.locationLat, this.locationLon);
+        } else {
+          try {
+            await this.fetchCurrentAddress();
+          } catch (error) {
+            this.$emit("error", error.message);
+            if (!_.isUndefined(this.address) && this.address != "") {
+              await this.fetchCoordinates();
+            }
           }
         }
       } else {
