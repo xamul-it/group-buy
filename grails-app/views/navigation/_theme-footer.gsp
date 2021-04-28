@@ -101,6 +101,7 @@
 		</section>
 		<!--Footer Section-->
 
+		<g:render template="/includes/cookie-law"/>
 
 		<!-- Vue Pages and Components here -->
 
@@ -111,8 +112,6 @@
 				el: '#v-contact-contact-app',
 				components: {
 					'v-contact-contact': VContact,
-				},
-				data: {
 				},
 			})
 		</script>
