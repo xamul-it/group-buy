@@ -19,7 +19,9 @@ class UrlMappings {
         "/supporto"(view:"/supporto")
 
         "/tos"(view:"/tos")
-        "/privacy"(view:"/privacy")
+        //"/privacy"(view:"/privacy")
+        "/privacy"(redirect: [uri: 'https://www.iubenda.com/privacy-policy/32326580/legal'])
+
         "/cookie"(view:"/cookie")
         
         //error codes

@@ -9,31 +9,23 @@
             <g:render template="/common/theme-header" model="['headerTitle':'Privacy']"/>
             <!--/Sliders Section-->
 
-            <!-- Tos -->
+            <!-- Privacy -->
             <section class="sptb">
                 <div class="container">
                     
                     <div class="container">
                         <div class="text-justify">
-                            <h2 class="mb-4">Informativa sulla Privacy e Protezione dei Dati Personali</h2>
-                            <h4 class="leading-normal"> Punto 1 </h4>
+                            <h2 class="mb-4">Privacy Policy di www.proprioqui.it</h2>
                             <p class="leading-normal">
-                                Cerchiamo di mantenere vivo il commercio al dettaglio in un periodo in cui il commercio elettronico rischia di distruggere il tessuto commerciale al dettaglio e il legame umano che si crea tra negoziante e cliente.
-                            </p>
-                            <h4 class="leading-normal"> Punto 2 </h4>
-                            <p class="leading-normal">
-                                Offriamo un servizio gratuito che consente in modo semplice di gestire ordini ai negozi della propria zona. Gli ordini possono essere individuali o di gruppo, ad esempio un condominio. Nel caso di ordini di gruppo il punto di consegna deve essere unico, in questo modo il negoziante è agevolato nella gestione del ordine di un gruppo di acquisto.
-                            </p>
-                            <h4 class="leading-normal"> Punto 2 </h4>
-                            <p class="leading-normal">
-                                Non si tratta di un sistema di e-commerce, ma solo di un sistema che agevola la relazione tra negoziante e cliente in un era sempre più digitale. Sta al negoziante e al cliente mettersi d’accordo sulle modalità di pagamento e anche sulla modalità di consegna. Può essere ad esempio agevole ritirare la merce direttamente al punto vendita quando è pronta. 
+                                <a href="https://www.iubenda.com/privacy-policy/32326580" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a>
+                                <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
                             </p>
                         </div>
                     </div>
 
                 </div>
             </section>
-            <!-- /Tos -->
+            <!-- /Privacy -->
 
         </div>
 
