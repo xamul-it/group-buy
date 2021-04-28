@@ -21,6 +21,7 @@ class OrderController {
 
     def supplierShow() {
         log.debug "GroupOrderController.supplierShow $params"
+
     }
     
 }

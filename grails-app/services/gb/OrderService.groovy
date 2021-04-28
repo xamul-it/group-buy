@@ -35,10 +35,10 @@ abstract class OrderService implements IOrderService {
         def gm = GroupMember.findByUserAndGroupAndStatus(springSecurityService?.getCurrentUser(),group,MemberStatus.ACTIVE)
         def order
         if(gm)
-            order = group ? Order.findByGroupAndId(group, params.id) : Order.findByToken(params.id)
+            order = Order.findByGroupAndId(group, params.id)
         else
-            order = new Order()
-        log.debug "Order QUERY  by user $gm and $order"
+            order = Order.findByToken(params.id)
+        log.debug "OrderService.get QUERY  by user $gm and $order"
         return order
     }
 
@@ -52,7 +52,7 @@ abstract class OrderService implements IOrderService {
      */
     def query(Map params){
         def userId = springSecurityService?.getCurrentUser()?.getId()?:0;
-        log.debug "QUERY by user $userId and $params"
+        log.debug "OrderService.query QUERY by user $userId and $params"
         def qparam= [:]
         String q = "from Order as s where 1=1 "
         q += "and s.user.id=  :userId "
