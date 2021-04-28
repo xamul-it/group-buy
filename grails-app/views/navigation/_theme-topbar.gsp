@@ -8,16 +8,16 @@
 								<div class="clearfix">
 									<ul class="socials">
 										<li>
-											<a href="https://fb.me/proprioqui" class="social-icon text-dark" href="#"><i class="fa fa-facebook"></i></a>
+											<a class="social-icon text-dark" href="https://fb.me/proprioqui"><i class="fa fa-facebook"></i></a>
 										</li>
 										<li>
-											<a class="social-icon text-dark" href="#"><i class="fa fa-instagram"></i></a>
+											<a class="social-icon text-dark" href="https://www.instagram.com/proprioqui/"><i class="fa fa-instagram"></i></a>
 										</li>
 										<li>
-											<a class="social-icon text-dark" href="#"><i class="fa fa-twitter"></i></a>
+											<a class="social-icon text-dark" href="https://twitter.com/proprio_qui"><i class="fa fa-twitter"></i></a>
 										</li>
 										<li>
-											<a href="https://www.linkedin.com/company/proprioqui" class="social-icon text-dark" href="#"><i class="fa fa-linkedin"></i></a>
+											<a class="social-icon text-dark" href="https://www.linkedin.com/company/proprioqui"><i class="fa fa-linkedin"></i></a>
 										</li>
 									</ul>
 								</div>
