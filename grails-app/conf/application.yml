@@ -221,7 +221,7 @@ grails:
         register:
           defaultRoleNames: ["ROLE_CUSTOMER"]
           requireEmailValidation: true
-          postRegisterUrl: "/user"
+          postRegisterUrl: "/utente/benvenuto"
 
         gsp:
           layoutRegister: "claylist"
