@@ -28,9 +28,13 @@
                                     <div class="card-body">
 
                                         <div class="jumbotron">
-                                            <h1>Benvenuto {{userItem?.username}}</h1>
+                                            <h1>Benvenuto in Proprioqui</h1>
                                             <p class="lead">
-                                                Praesent tempus lacus ac lobortis viverra. Proin consectetur, urna ut viverra lobortis, neque odio ultricies sem, mollis maximus augue lorem sed erat. Aenean varius justo eget arcu dapibus mollis eget laoreet ante. Aliquam laoreet sit amet turpis a aliquam. Etiam at leo posuere, euismod quam vel, porttitor leo.
+                                                Il luogo in cui fare la spesa in gruppo sotto casa, o dai negozi e produttori di fiducia.
+                                                <br/>
+                                                Un servizio gratuito e facile, che permetterà a chi compra di gestire l’ordine secondo le proprie esigenze.
+                                                <br/>
+                                                E a chi vende di inserirsi in un circuito virtuoso che li porterà lontano, grazie al passa parola dei i clienti.  
                                             </p>
                                             <!-- p class="lead m-0"> 
                                                 <a href="#" class="btn btn-primary btn-lg text-white" role="button">Inizia subito</a>
