@@ -15,6 +15,8 @@ class UrlMappings {
         "/"(view:"/home")
         "/chisiamo"(view:"/chisiamo")
         "/faq"(view:"/faq")
+        "/contatti"(view:"/contatti")
+        "/supporto"(view:"/supporto")
 
         "/tos"(view:"/tos")
         "/privacy"(view:"/privacy")
