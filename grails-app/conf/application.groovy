@@ -34,7 +34,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	[pattern: '/api/v1/**',    		access: ['permitAll']],
 
 	/*sitemap*/
-	[pattern: '/sitemap.xml',    	access: ['permitAll']],
+	[pattern: '/sitemap.xml',    				access: ['permitAll']],
 
 	/*pages/views/assets*/
 	[pattern: '/chisiamo',          			access: ['permitAll']],
@@ -42,6 +42,8 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	[pattern: '/tos',          					access: ['permitAll']],
 	[pattern: '/cookie',          				access: ['permitAll']],
 	[pattern: '/faq',          					access: ['permitAll']],
+	[pattern: '/supporto',          			access: ['permitAll']],
+	[pattern: '/contatti',          			access: ['permitAll']],
 
 	[pattern: '/error',          				access: ['permitAll']],
 	[pattern: '/index',          				access: ['permitAll']],

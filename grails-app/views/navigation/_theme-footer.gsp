@@ -58,13 +58,13 @@
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="#" class="rgba-white-slight mx-1 waves-effect waves-light">
-											<i class="fa fa-twitter mr-3 text-primary"></i>
+										<a href="https://www.instagram.com/proprioqui/" class="rgba-white-slight mx-1 waves-effect waves-light">
+											<i class="fa fa-instagram mr-3 text-primary"></i>
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="#" class="rgba-white-slight mx-1 waves-effect waves-light">
-											<i class="fa fa-instagram mr-3 text-primary"></i>
+										<a href="https://twitter.com/proprio_qui" class="rgba-white-slight mx-1 waves-effect waves-light">
+											<i class="fa fa-twitter mr-3 text-primary"></i>
 										</a>
 									</li>
 									<li class="list-inline-item">

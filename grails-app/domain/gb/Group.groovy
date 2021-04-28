@@ -23,6 +23,9 @@ class Group {
 	String skype
 	String slack
 	String snapchat
+	long activeOrders
+	long activeSubscribers
+	long orders
 
 	transient Boolean member; //transient - true if logged user is group member
 	transient Long memberCount; //transient
@@ -38,7 +41,9 @@ class Group {
 
 	static constraints = {
 		name nullable: false, blank: false, size: 5..255, unique: true
-
+		activeOrders defaultValue:0
+		activeSubscribers defaultValue:0
+		orders defaultValue:0
 		facebook size: 5..255, nullable: true
 		twitter size: 5..255, nullable: true
 		youtube size: 5..255, nullable: true
@@ -125,6 +130,19 @@ class Group {
 		return this.owner == this.springSecurityService.getCurrentUser();
 	}
 
+	def beforeUpdate(){
+		def r = Order.executeQuery("select count(s) from Order as s where s.group.id=  :groupId ", [groupId:id]);
+		orders = r[0]
+		r  = Order.executeQuery("select count(s) from Order as s where s.group.id=  :groupId " +
+				"and s.status = :status" , [groupId:id,status:OrderStatus.ACTIVE]);
+		activeOrders = r[0]
+		r = GroupMember.executeQuery("select count(s) from GroupMember as s where s.group.id=  :groupId " +
+				"and s.status = :status" , [groupId:id,status:MemberStatus.ACTIVE])
+		activeSubscribers = r[0]
+
+
+
+	}
 	def beforeValidate () {
 		if (id==null) {
 			if (springSecurityService && springSecurityService.isLoggedIn()) {
