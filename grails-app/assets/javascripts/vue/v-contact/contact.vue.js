@@ -8,7 +8,7 @@ var VContact = Vue.component("VContact", {
   template: `
         <div class="vue-template">
 
-                <div class="input-group w-70 mb-1">
+                <div class="input-group mb-1" :class="{ 'w-70': !wide }">
                     <input class="form-control br-tl-3  br-bl-3 "
                         type="text"
                         placeholder="Email"
@@ -17,26 +17,26 @@ var VContact = Vue.component("VContact", {
                         v-model="emailAddress"
                         >
                 </div>
-                <div class="input-group w-70 mb-1" v-if="$v.emailAddress.$error">
+                <div class="input-group mb-1" :class="{ 'w-70': !wide }" v-if="$v.emailAddress.$error">
                     <p class="input-alert" v-if="!$v.emailAddress.email">Si prega di fornire un indirizzo e-mail valido.</p>
                     <p class="input-alert" v-if="!$v.emailAddress.required">Questo campo non deve essere vuoto.</p>
                 </div>
                 <!-- pre>{{$v.emailAddress}}</pre -->
 
-                <div class="input-group w-70 mb-1">
+                <div class="input-group mb-1" :class="{ 'w-70': !wide }">
                     <textarea rows="3" class="form-control"
                         placeholder="Messaggio"
                         required="required"
                         @input="$v.messageText.$touch()"
                         v-model="messageText"></textarea>
                 </div>
-                <div class="input-group w-70 mb-1" v-if="$v.messageText.$error">
+                <div class="input-group mb-1" :class="{ 'w-70': !wide }" v-if="$v.messageText.$error">
                     <p class="input-alert" v-if="!$v.messageText.minLength">Si prega di inserire almeno {{ $v.messageText.$params.minLength.min }} caratteri.</p>
                     <p class="input-alert" v-if="!$v.messageText.required">Si prega di inserire un messaggio.</p>
                 </div>
                 <!-- pre>{{$v.messageText}}</pre -->
 
-                <div class="input-group w-70 mb-1" @click.prevent="togglePrivacy($event)"> 
+                <div class="input-group mb-1" :class="{ 'w-70': !wide }" @click.prevent="togglePrivacy($event)"> 
                   <label class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="privacy" id="privacy" checked="checked" v-model="privacy">
                     <span class="custom-control-label">Consenso privacy</span>
@@ -44,7 +44,7 @@ var VContact = Vue.component("VContact", {
 
                 </div>
 
-                <div class="input-group w-70 submit">
+                <div class="input-group submit" :class="{ 'w-70': !wide }">
                     <button @click="contact()" type="button" :disabled="$v.$invalid || busy" class="btn btn-primary br-tr-3  br-br-3"> Invia </button>
                 </div>
 
@@ -52,8 +52,13 @@ var VContact = Vue.component("VContact", {
 
         </div>`,
 
-  props: {},
-
+  props: {
+    wide: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+  },
   data() {
     return {
       emailAddress: "",

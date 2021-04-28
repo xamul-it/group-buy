@@ -37,6 +37,9 @@ class UiUrlMappings {
         }
 
         group "/utente", {
+
+            name utente: "/" (controller:"user", action: "index", namespace: 'ui') //use main page (redirect)
+
             name profiloUtente: "/profilo" (controller:"user", action: "profile", namespace: 'ui') //user profile page
 
             name preferenzeUtente: "/preferenze" (controller:"user", action: "settings", namespace: 'ui') //user settings page
@@ -44,6 +47,8 @@ class UiUrlMappings {
             name ordiniUtente: "/ordini" (controller:"user", action: "orders", namespace: 'ui') //user orders page
 
             name gruppiUtente: "/gruppi" (controller:"user", action: "groups", namespace: 'ui') //user groups page
+
+            name benvenutoUtente: "/benvenuto" (controller:"user", action: "welcome", namespace: 'ui') //user welcome page
         }
 
     }

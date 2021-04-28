@@ -24,4 +24,8 @@ class UserController {
 
     }
 
+    def welcome () {
+
+    }
+
 }
