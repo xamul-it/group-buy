@@ -53,22 +53,22 @@
 								</ul>
 								<ul class="list-unstyled list-inline mt-3">
 									<li class="list-inline-item">
-										<a href="https://fb.me/proprioqui" class="rgba-white-slight mx-1 waves-effect waves-light">
+										<a href="https://fb.me/proprioqui" target="_blank" class="rgba-white-slight mx-1 waves-effect waves-light">
 											<i class="fa fa-facebook mr-3 text-primary"></i>
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="https://www.instagram.com/proprioqui/" class="rgba-white-slight mx-1 waves-effect waves-light">
+										<a href="https://www.instagram.com/proprioqui/" target="_blank" class="rgba-white-slight mx-1 waves-effect waves-light">
 											<i class="fa fa-instagram mr-3 text-primary"></i>
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="https://twitter.com/proprio_qui" class="rgba-white-slight mx-1 waves-effect waves-light">
+										<a href="https://twitter.com/proprio_qui" target="_blank" class="rgba-white-slight mx-1 waves-effect waves-light">
 											<i class="fa fa-twitter mr-3 text-primary"></i>
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="https://www.linkedin.com/company/proprioqui" class="rgba-white-slight mx-1 waves-effect waves-light">
+										<a href="https://www.linkedin.com/company/proprioqui" target="_blank" class="rgba-white-slight mx-1 waves-effect waves-light">
 											<i class="fa fa-linkedin mr-3 text-primary"></i>
 										</a>
 									</li>
