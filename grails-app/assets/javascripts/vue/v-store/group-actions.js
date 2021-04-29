@@ -277,6 +277,10 @@ export const saveGroupAction = async (
       path: "success",
       value: r.message,
     });
+    commit("updateField", {
+      path: "group.groupItem",
+      value: r.data,
+    });
   } catch (error) {
     if (state.debug)
       console.log("catch error", error, error.response, error.response.data);
