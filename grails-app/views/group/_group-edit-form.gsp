@@ -338,7 +338,7 @@
 
         <div class="col-md-12">
             <div class="form-group">
-                <button type="submit" :disabled="$v.$invalid" :title="$v.$invalid?'Compilare tutti campi obbligatori per inviare i dati':''" class="btn btn-primary" v-on:click="saveGroup">Salva gruppo</button>
+                <button type="submit" :disabled="$v.$invalid" :title="$v.$invalid?'Compilare tutti campi obbligatori per inviare i dati':''" class="btn btn-primary" @click.once="saveGroup()">Salva gruppo</button>
                 <a href="${createLink(controller: 'groupBuy', action: 'group', id: groupId)}" class="btn btn-secondary">Annulla</a>
                 <pre v-if="isDebug">{{ $v }}</pre>
             </div>
