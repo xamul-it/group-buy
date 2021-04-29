@@ -218,6 +218,64 @@
 .Cookie--dark-lime--rounded .Cookie__button--decline:hover{
     background:#202327
 }
+
+
+.Cookie--claylist{
+    background:#f1eef7;
+    color:#605e7e;
+    padding:1.250em
+}
+.Cookie--claylist .Cookie__button{
+    background:#97D058;
+    padding:0.625em 3.125em;
+    color:#fff;
+    border-radius:0;
+    border:0;
+    font-size:1em
+}
+.Cookie--claylist .Cookie__button:hover{
+    background:#7ebf36
+}
+.Cookie--claylist .Cookie__button--decline{
+    background:transparent;
+    padding:0.625em 3.125em;
+    color:#000;
+    border-radius:0;
+    border:0;
+    font-size:1em
+}
+.Cookie--claylist .Cookie__button--decline:hover{
+    background:#202327
+}
+.Cookie--claylist--rounded{
+    background:#424851;
+    color:#fff;
+    padding:1.250em
+}
+.Cookie--claylist--rounded .Cookie__button{
+    background:#97D058;
+    padding:0.625em 3.125em;
+    color:#fff;
+    border-radius:20px;
+    border:0;
+    font-size:1em
+}
+.Cookie--claylist--rounded .Cookie__button:hover{
+    background:#7ebf36
+}
+.Cookie--claylist--rounded .Cookie__button--decline{
+    background:transparent;
+    padding:0.625em 3.125em;
+    color:#000;
+    border-radius:20px;
+    border:0;
+    font-size:1em
+}
+.Cookie--claylist--rounded .Cookie__button--decline:hover{
+    background:#202327
+}
+
+
 .Cookie--royal{
     background:#FBC227;
     color:#232323;
