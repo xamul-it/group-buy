@@ -92,7 +92,7 @@ export async function update(id, payload) {
   );
 
   let message = HTTP_CODES_MESSAGES_MAP[status];
-  return { status, message };
+  return { data, status, message };
 }
 
 export async function save(payload) {
@@ -103,7 +103,7 @@ export async function save(payload) {
   );
 
   let message = HTTP_CODES_MESSAGES_MAP[status];
-  return { status, message };
+  return { data, status, message };
 }
 
 export async function members({

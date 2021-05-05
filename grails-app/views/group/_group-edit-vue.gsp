@@ -204,6 +204,7 @@
             },
             createEmptyGroup() {
                 this.groupItem = {
+                    id: 0,
                     category: {
                         id: 0,
                         name: 'Scegli la categoria',
