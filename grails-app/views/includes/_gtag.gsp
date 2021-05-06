@@ -8,7 +8,7 @@
 
       gtag('consent', 'default', {
         'ad_storage': 'denied',
-        'analytics_storage': 'denied'
+        'analytics_storage': 'denied',
         'wait_for_update': 500
       });
       gtag('set', 'ads_data_redaction', true); 
@@ -34,7 +34,7 @@
 
       gtag('consent', 'default', {
         'ad_storage': 'denied',
-        'analytics_storage': 'denied'
+        'analytics_storage': 'denied',
         'wait_for_update': 500
       });
       gtag('set', 'ads_data_redaction', true); 
@@ -57,5 +57,5 @@
       function consentAnalyticsGranted() {
         console.log("consent Analytics granted")
       }
-    </script>
+  </script>
 </g:if>
