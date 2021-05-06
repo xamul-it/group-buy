@@ -39,7 +39,6 @@ class OrderController extends RestfulController<Order> {
      */
     @Override
     protected List<Order> listAllResources(Map params) {
-        log.debug "orders listAllResources" + params
         response.setHeader('X-Pagination-Total', orderService.count(params).toString())
         orderService.list(params)
     }
