@@ -683,4 +683,5 @@
     <changeSet author="xamul (generated)" id="1620456368681-67">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="order_voice" constraintName="FKxqhopob8kefrpyoic350hbby" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
     </changeSet>
+    <include file="update-v1.0.4.xml"/>
 </databaseChangeLog>
