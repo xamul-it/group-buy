@@ -101,6 +101,11 @@ class Group {
         }
 	}
 
+	/**
+	 * If user is logged in the system memberstatus will hold the membership status of the logged in user
+	 *
+	 * @return
+	 */
 	private loadMemberStatus(){
 		isMember = false
 		memberStatus = null

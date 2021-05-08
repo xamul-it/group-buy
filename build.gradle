@@ -35,13 +35,13 @@ configurations {
     }
 }
 
-sourceSets {
-    main {
-        resources {
-            srcDir 'grails-app/migrations'
-        }
-    }
-}
+//sourceSets {
+//    main {
+//        resources {
+//            srcDir 'grails-app/migrations'
+//        }
+//    }
+//}
 
 dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")

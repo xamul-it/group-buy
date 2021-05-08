@@ -1,0 +1,686 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="xamul (generated)" id="1620456368681-1">
+        <createTable tableName="address">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address1" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_code" type="VARCHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postal_code" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address2" type="VARCHAR(35)"/>
+            <column name="city" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="district" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lat" type="BIGINT"/>
+            <column name="lon" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-2">
+        <createTable tableName="contact_info">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(10)"/>
+            <column name="mobile" type="VARCHAR(10)"/>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="web" type="VARCHAR(255)"/>
+            <column name="phone2" type="VARCHAR(50)"/>
+            <column name="phone1" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-3">
+        <createTable tableName="customer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT"/>
+            <column name="delivery_address_address1" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_country_code" type="VARCHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_postal_code" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_address2" type="VARCHAR(20)"/>
+            <column name="delivery_address_city" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_district" type="VARCHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_lat" type="BIGINT"/>
+            <column name="delivery_address_lon" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-4">
+        <createTable tableName="delivery_info">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_info" type="VARCHAR(255)"/>
+            <column name="book_times" type="VARCHAR(255)"/>
+            <column name="delivery_times" type="VARCHAR(255)"/>
+            <column name="delivery_info" type="VARCHAR(255)"/>
+            <column name="delivery_fee" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-5">
+        <createTable tableName="gbgroup">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="owner_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_address1" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_country_code" type="VARCHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_postal_code" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_address2" type="VARCHAR(35)"/>
+            <column name="delivery_address_city" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_district" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="public_group" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_address_lat_old" type="BIGINT"/>
+            <column name="delivery_address_lon_old" type="BIGINT"/>
+            <column name="twitter" type="VARCHAR(255)"/>
+            <column name="youtube" type="VARCHAR(255)"/>
+            <column name="instagram" type="VARCHAR(255)"/>
+            <column name="whatsapp" type="VARCHAR(255)"/>
+            <column name="facebook" type="VARCHAR(255)"/>
+            <column name="skype" type="VARCHAR(255)"/>
+            <column name="linkedin" type="VARCHAR(255)"/>
+            <column name="slack" type="VARCHAR(255)"/>
+            <column name="snapchat" type="VARCHAR(255)"/>
+            <column name="delivery_address_lat" type="DOUBLE"/>
+            <column name="delivery_address_lon" type="DOUBLE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-6">
+        <createTable tableName="gbgroup_customer">
+            <column name="group_members_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="members_idx" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-7">
+        <createTable tableName="gbgroup_user">
+            <column name="group_members_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT"/>
+            <column name="members_idx" type="INT"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subscription_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-8">
+        <createTable tableName="gborder">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shipment_date" type="datetime"/>
+            <column name="delivery_type" type="VARCHAR(255)"/>
+            <column name="supplier_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-9">
+        <createTable tableName="group_category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-10">
+        <createTable tableName="group_member">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subscription_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="members_idx" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-11">
+        <createTable tableName="order_status_log">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="note" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-12">
+        <createTable tableName="order_voice">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity_requested" type="INT"/>
+            <column name="quantity_shipped" type="INT"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="estimated_price" type="FLOAT(12)"/>
+            <column name="final_price" type="FLOAT(12)"/>
+            <column name="insert_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="product_code" type="VARCHAR(255)"/>
+            <column name="product_price" type="FLOAT(12)"/>
+            <column name="product_supplier_id" type="BIGINT"/>
+            <column name="product_description" type="VARCHAR(150)"/>
+            <column name="user_id" type="BIGINT"/>
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-13">
+        <createTable tableName="product">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="FLOAT(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="supplier_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-14">
+        <createTable tableName="registration_code">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date_created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-15">
+        <createTable tableName="role">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-16">
+        <createTable tableName="shop">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="frienly_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="portablepos" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="only_cash" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_delivery_distance" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="short_description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="internet_payments" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="min_delivery_amount" type="FLOAT(12)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-17">
+        <createTable tableName="supplier">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owner_id" type="BIGINT"/>
+            <column name="creator_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shipping_address_address1" type="VARCHAR(200)"/>
+            <column name="shipping_address_country_code" type="VARCHAR(2)"/>
+            <column name="shipping_address_postal_code" type="VARCHAR(5)"/>
+            <column name="shipping_address_address2" type="VARCHAR(200)"/>
+            <column name="shipping_address_city" type="VARCHAR(200)"/>
+            <column name="shipping_address_district" type="VARCHAR(2)"/>
+            <column name="contact_info_email" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shipping_address_lat" type="DOUBLE"/>
+            <column name="shipping_address_lon" type="DOUBLE"/>
+            <column name="contact_info_web" type="VARCHAR(255)"/>
+            <column name="contact_info_phone2" type="VARCHAR(50)"/>
+            <column name="contact_info_phone1" type="VARCHAR(50)"/>
+            <column name="delivery_info_payment_info" type="VARCHAR(500)"/>
+            <column name="delivery_info_book_times" type="VARCHAR(500)"/>
+            <column name="delivery_info_delivery_times" type="VARCHAR(500)"/>
+            <column name="delivery_info_delivery_info" type="VARCHAR(500)"/>
+            <column name="delivery_info_delivery_fee" type="VARCHAR(500)"/>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-18">
+        <createTable tableName="supplier_category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(200)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-19">
+        <createTable tableName="tag">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-20">
+        <createTable tableName="user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_expired" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="account_locked" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_expired" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-21">
+        <createTable tableName="user_role">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-22">
+        <createIndex indexName="FK16sb6aom9t1duhwrpnqaqtk5r" tableName="gborder">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-23">
+        <createIndex indexName="FK2kwarf57g7a6ktdjt19n003vf" tableName="order_status_log">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-24">
+        <createIndex indexName="FK2kxvbr72tmtscjvyp9yqb12by" tableName="product">
+            <column name="supplier_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-25">
+        <createIndex indexName="FK53lx4unun9jf9q7d9erq4mfpt" tableName="supplier">
+            <column name="category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-26">
+        <createIndex indexName="FK6fctk5if52xhahc8p6rxq3hj7" tableName="order_voice">
+            <column name="product_supplier_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-27">
+        <createIndex indexName="FK97t57wviuvg8okq5winshr5qr" tableName="gbgroup_user">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-28">
+        <createIndex indexName="FK9k5mg3nd82ci4b5on1tu7gs" tableName="gbgroup_customer">
+            <column name="customer_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-29">
+        <createIndex indexName="FK9o6m2xo8qv09wd5lrcboqgexa" tableName="gborder">
+            <column name="group_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-30">
+        <createIndex indexName="FKa68196081fvovjhkek5m97n3y" tableName="user_role">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-31">
+        <createIndex indexName="FKap38m2kjnyqojmsejdrqhyft2" tableName="supplier">
+            <column name="owner_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-32">
+        <createIndex indexName="FKbvacjlebv8vvnanxcxwajodp7" tableName="order_voice">
+            <column name="customer_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-33">
+        <createIndex indexName="FKdeukln2catl6jjnp8gnjjh3ms" tableName="order_voice">
+            <column name="order_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-34">
+        <createIndex indexName="FKeh2nyghso5scfx6ml9home9mf" tableName="group_member">
+            <column name="group_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-35">
+        <createIndex indexName="FKf9p4tdb84ljmuthi2s9eec73c" tableName="order_status_log">
+            <column name="order_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-36">
+        <createIndex indexName="FKfmjdcted2e98fomklp3tq2a9j" tableName="gborder">
+            <column name="supplier_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-37">
+        <createIndex indexName="FKfx0xxctppou5d8phemxn5o4ha" tableName="supplier">
+            <column name="creator_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-38">
+        <createIndex indexName="FKj8dlm21j202cadsbfkoem0s58" tableName="customer">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-39">
+        <createIndex indexName="FKj97brjwss3mlgdt7t213tkchl" tableName="shop">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-40">
+        <createIndex indexName="FKk9rxpho6clon9vawqm4lqun83" tableName="gbgroup">
+            <column name="owner_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-41">
+        <createIndex indexName="FKpy45r2qx8a2vqafo7rste49c" tableName="group_member">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-42">
+        <createIndex indexName="FKrealyhqhiyqd92xpgeu2e02sx" tableName="gbgroup">
+            <column name="category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-43">
+        <createIndex indexName="FKxqhopob8kefrpyoic350hbby" tableName="order_voice">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-44">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="gborder" constraintName="FK16sb6aom9t1duhwrpnqaqtk5r" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-45">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="order_status_log" constraintName="FK2kwarf57g7a6ktdjt19n003vf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-46">
+        <addForeignKeyConstraint baseColumnNames="supplier_id" baseTableName="product" constraintName="FK2kxvbr72tmtscjvyp9yqb12by" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="supplier" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-47">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="supplier" constraintName="FK53lx4unun9jf9q7d9erq4mfpt" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="supplier_category" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-48">
+        <addForeignKeyConstraint baseColumnNames="product_supplier_id" baseTableName="order_voice" constraintName="FK6fctk5if52xhahc8p6rxq3hj7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="supplier" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-49">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="FK859n2jvi8ivhui0rl0esws6o" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-50">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="gbgroup_user" constraintName="FK97t57wviuvg8okq5winshr5qr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-51">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="gbgroup_customer" constraintName="FK9k5mg3nd82ci4b5on1tu7gs" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="customer" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-52">
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="gborder" constraintName="FK9o6m2xo8qv09wd5lrcboqgexa" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="gbgroup" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-53">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_role" constraintName="FKa68196081fvovjhkek5m97n3y" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-54">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="supplier" constraintName="FKap38m2kjnyqojmsejdrqhyft2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-55">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="order_voice" constraintName="FKbvacjlebv8vvnanxcxwajodp7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-56">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_voice" constraintName="FKdeukln2catl6jjnp8gnjjh3ms" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="gborder" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-57">
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="group_member" constraintName="FKeh2nyghso5scfx6ml9home9mf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="gbgroup" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-58">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_status_log" constraintName="FKf9p4tdb84ljmuthi2s9eec73c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="gborder" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-59">
+        <addForeignKeyConstraint baseColumnNames="supplier_id" baseTableName="gborder" constraintName="FKfmjdcted2e98fomklp3tq2a9j" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="supplier" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-60">
+        <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="supplier" constraintName="FKfx0xxctppou5d8phemxn5o4ha" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-61">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="customer" constraintName="FKj8dlm21j202cadsbfkoem0s58" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-62">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="shop" constraintName="FKj97brjwss3mlgdt7t213tkchl" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-63">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="gbgroup" constraintName="FKk9rxpho6clon9vawqm4lqun83" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-64">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="group_member" constraintName="FKpy45r2qx8a2vqafo7rste49c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-65">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="gbgroup" constraintName="FKrealyhqhiyqd92xpgeu2e02sx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="group_category" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-66">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="order_voice" constraintName="FKt2l17kbv0qk4wt79ewcuvnmw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="customer" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620456368681-67">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="order_voice" constraintName="FKxqhopob8kefrpyoic350hbby" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
