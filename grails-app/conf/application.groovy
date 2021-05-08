@@ -9,6 +9,8 @@ grails.plugin.springsecurity.apf.storeLastUsername = true
 
 grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 
+grails.plugin.databasemigration.changelogFileName = 'changelog.xml'
+
 grails.plugin.springsecurity.interceptUrlMap = [
 	[pattern: '/',               					access: ['permitAll']],
 

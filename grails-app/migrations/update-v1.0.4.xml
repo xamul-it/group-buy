@@ -1,0 +1,84 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="xamul (generated)" id="1620459830100-10">
+        <addColumn tableName="gbgroup">
+            <column name="active_orders" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-11">
+        <addColumn tableName="gbgroup">
+            <column name="active_subscribers" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-12">
+        <addColumn tableName="gbgroup">
+            <column name="orders" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-13">
+        <dropForeignKeyConstraint baseTableName="gbgroup_user" constraintName="FK97t57wviuvg8okq5winshr5qr"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-14">
+        <dropForeignKeyConstraint baseTableName="gbgroup_customer" constraintName="FK9k5mg3nd82ci4b5on1tu7gs"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-15">
+        <dropForeignKeyConstraint baseTableName="order_voice" constraintName="FKbvacjlebv8vvnanxcxwajodp7"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-16">
+        <dropForeignKeyConstraint baseTableName="order_voice" constraintName="FKt2l17kbv0qk4wt79ewcuvnmw"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-17">
+        <dropTable tableName="gbgroup_customer"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-18">
+        <dropTable tableName="gbgroup_user"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-19">
+        <dropColumn columnName="customer_id" tableName="order_voice"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-20">
+        <dropColumn columnName="delivery_address_lat_old" tableName="gbgroup"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-21">
+        <dropColumn columnName="delivery_address_lon_old" tableName="gbgroup"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-22">
+        <dropColumn columnName="mobile" tableName="contact_info"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-23">
+        <dropColumn columnName="phone" tableName="contact_info"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-1">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="code" tableName="product"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-2">
+        <addNotNullConstraint columnDataType="double precision" columnName="delivery_address_lat" tableName="customer" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-3">
+        <addNotNullConstraint columnDataType="double precision" columnName="delivery_address_lat" tableName="gbgroup" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-4">
+        <addNotNullConstraint columnDataType="double precision" columnName="delivery_address_lon" tableName="customer" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-5">
+        <addNotNullConstraint columnDataType="double precision" columnName="delivery_address_lon" tableName="gbgroup" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-6">
+        <addNotNullConstraint columnDataType="double precision" columnName="lat" tableName="address" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-7">
+        <addNotNullConstraint columnDataType="double precision" columnName="lon" tableName="address" validate="true"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-8">
+        <dropNotNullConstraint columnDataType="float" columnName="price" tableName="product"/>
+    </changeSet>
+    <changeSet author="xamul (generated)" id="1620459830100-9">
+        <addNotNullConstraint columnDataType="bigint" columnName="user_id" tableName="order_voice" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -4,7 +4,7 @@ buildscript {
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath "org.grails.plugins:hibernate5:7.0.4"
+        classpath "org.grails.plugins:hibernate5:7.1.0.M5"
         classpath "gradle.plugin.com.github.erdi.webdriver-binaries:webdriver-binaries-gradle-plugin:2.0"
         //classpath "com.bertramlabs.plugins:asset-pipeline-gradle:3.2.4"
         classpath "org.grails.plugins:database-migration:3.1.0"
@@ -35,13 +35,13 @@ configurations {
     }
 }
 
-sourceSets {
-    main {
-        resources {
-            srcDir 'grails-app/migrations'
-        }
-    }
-}
+//sourceSets {
+//    main {
+//        resources {
+//            srcDir 'grails-app/migrations'
+//        }
+//    }
+//}
 
 dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -91,7 +91,7 @@ dependencies {
     compile "org.grails.plugins:mail:3.0.0"
     runtime 'mysql:mysql-connector-java:5.1.29'
     compile 'org.grails.plugins:database-migration:3.1.0'
-    compile 'org.liquibase:liquibase-core:3.6.1'
+    compile 'org.liquibase:liquibase-core:3.10.1'
     compile "org.flywaydb:flyway-core:6.4.1"
 }
 

@@ -13,6 +13,7 @@
                         :button-link-new-tab="true"
                         button-decline-class="btn btn-yellow br-tr-3"
                         storage-type="cookies"
+                        :cookie-options="{samesite: 'None', secure: true}"
                         v-on:accept="acceptCoockie()"/>
 		</div>
 
