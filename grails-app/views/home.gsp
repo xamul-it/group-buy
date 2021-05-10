@@ -311,13 +311,12 @@
                         <div class="card overflow-hidden">
                             <div class="item-card9-img">
                                 <div class="arrow-ribbon bg-info">{{ supplier.category.name }}</div>
-                                <div class="item-card9-imgs"> <a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)"></a> <img
+                                <div class="item-card9-imgs"> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"></a> <img
                                         :src="'/assets/theme/img/categories/supplier/category-'+supplier.category.id+'.jpg'" alt="img" class="cover-image"> </div>
                             </div>
                             <div class="card-body">
                                 <div class="item-card9 text-dark">
-                                <em>Categoria:</em> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"> {{ supplier.category.name }}</a>
-                                    <a :href="'./supplier/'+supplier.id+'/'+encodeURI(supplier.name)" class="text-dark mt-2">
+                                    <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"" class="text-dark mt-2">
                                         <h4 class="font-weight-semibold mt-1">{{ supplier.name }} </h4>
                                     </a>
                                     <div class="item-card9-desc"> <a target="_blank" :href="'https://www.openstreetmap.org/?mlat='+supplier.shippingAddress.lat+'&mlon='+supplier.shippingAddress.lon+'#map=19/'+supplier.shippingAddress.lat+'/'+supplier.shippingAddress.lon" class="mr-4"><span class=""><i
