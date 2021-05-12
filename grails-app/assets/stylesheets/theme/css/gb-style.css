@@ -497,14 +497,17 @@ label .location-gps.fa-spinner {
   padding-right: 2.25rem;
   padding-left: 0px;
 }
+
 .custom-switch-indicator {
   height: 1rem;
   width: 2rem;
 }
+
 .custom-switch-indicator:before {
   height: calc(1rem - 4px);
   width: calc(1rem - 4px);
 }
+
 .custom-switch-description {
   font-size: 12px;
 }
