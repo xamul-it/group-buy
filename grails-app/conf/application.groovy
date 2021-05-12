@@ -29,6 +29,9 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	[pattern: '/utente/**',    						access: ['IS_AUTHENTICATED_FULLY']],
 
 	/*API*/
+	[pattern: '/api/v1/orders/*/rejected',	access: ['permitAll'], httpMethod: 'PUT'],
+	[pattern: '/api/v1/orders/*/accepted',	access: ['permitAll'], httpMethod: 'PUT'],
+	[pattern: '/api/v1/orders/*/shipped',	access: ['permitAll'], httpMethod: 'PUT'],
 	[pattern: '/api/v1/**',			access: ['IS_AUTHENTICATED_REMEMBERED'], httpMethod: 'PUT'],
 	[pattern: '/api/v1/groups/**',	access: ['IS_AUTHENTICATED_REMEMBERED'], httpMethod: 'POST'],
 	[pattern: '/api/v1/orders/**',	access: ['IS_AUTHENTICATED_REMEMBERED'], httpMethod: 'POST'],	
