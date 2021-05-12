@@ -316,7 +316,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="item-card9 text-dark">
-                                    <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"" class="text-dark mt-2">
+                                    <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)" class="text-dark mt-2">
                                         <h4 class="font-weight-semibold mt-1">{{ supplier.name }} </h4>
                                     </a>
                                     <div class="item-card9-desc"> <a target="_blank" :href="'https://www.openstreetmap.org/?mlat='+supplier.shippingAddress.lat+'&mlon='+supplier.shippingAddress.lon+'#map=19/'+supplier.shippingAddress.lat+'/'+supplier.shippingAddress.lon" class="mr-4"><span class=""><i
