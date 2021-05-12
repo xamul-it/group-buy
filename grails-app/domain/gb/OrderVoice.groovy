@@ -17,9 +17,7 @@ class OrderVoice implements Comparable {
 
 	static transients = ['isOwner']
 
-
-	@Autowired
-	transient grails.plugin.springsecurity.SpringSecurityService  springSecurityService
+	transient springSecurityService
 
 	static embedded = ['product']
 
@@ -44,7 +42,7 @@ class OrderVoice implements Comparable {
 	}
 
 	Boolean getIsOwner(){
-		log.debug("ORDER!!!! {isOwner}")
+		log.debug("ORDER!!!! isOwner springSecurityService:${springSecurityService} this.user:${this.user} == currentUser:${springSecurityService?.getCurrentUser()}")
 		isOwner = this.user == springSecurityService?.getCurrentUser();
 		return isOwner
 	}

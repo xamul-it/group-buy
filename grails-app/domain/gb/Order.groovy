@@ -13,7 +13,6 @@ class Order {
 	String token
 	transient String statusName
 
-
 	transient springSecurityService
 
 	static belongsTo = [group: Group]
