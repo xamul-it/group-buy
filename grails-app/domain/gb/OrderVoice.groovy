@@ -1,6 +1,11 @@
 package gb
 
+import grails.plugin.springsecurity.SpringSecurityService
+
 class OrderVoice implements Comparable {
+
+	SpringSecurityService springSecurityService
+
 	Product product
 	Date insertDate = new Date()
 	User user
@@ -11,13 +16,15 @@ class OrderVoice implements Comparable {
 	Float finalPrice
 	Order order
 
-	transient Boolean isOwner
+	Boolean isOwner
+
+	static mapping = {
+       autowire true //if missed, by default autowired in domain classes is disabled due to performance issues.
+   	}
+	
+	static transients = ['springSecurityService','isOwner']
 
 	static belongsTo = [order: Order, user: User]
-
-	static transients = ['isOwner']
-
-	transient springSecurityService
 
 	static embedded = ['product']
 
