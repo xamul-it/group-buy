@@ -206,6 +206,21 @@ grails:
       #"mail.smtp.socketFactory.fallback": "false",
       #"mail.smtp.starttls.enable": "true",
     serverURL: "http://localhost:8080/"
+environments:
+  production:
+    grails:
+      mail:
+        port: 1025 #port: 1025
+        host: vm8783.seewebcloud.it #host: localhost
+        #username: "noreply@group-buy.it"
+        #password: "group-buy@noreply"
+        props:
+          ["mail.smtp.auth": "false", "mail.debug": "true"]
+          #"mail.smtp.socketFactory.port": "465",
+          #"mail.smtp.socketFactory.class": "javax.net.ssl.SSLSocketFactory",
+          #"mail.smtp.socketFactory.fallback": "false",
+        #"mail.smtp.starttls.enable": "true",
+        serverURL: "https://www.proprioqui.it/"
 ---
 grails:
   plugin:
