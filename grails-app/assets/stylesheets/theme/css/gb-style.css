@@ -87,9 +87,7 @@
 .nav a {
   text-decoration: none;
   display: block;
-
   color: white;
-
   transition: 0.2s all linear;
 }
 
@@ -160,17 +158,20 @@
   z-index: 102;
   padding: 11px 14px;
 }
+
 .mobile-nav-icon-button .fa,
 .mobile-nav-icon-button .mdi,
 .mobile-nav-icon-button .zmdi {
   vertical-align: top;
   margin-top: 4px;
 }
+
 .mobile-nav-icon-button-left {
   position: absolute;
   top: 0px;
   left: 5px;
 }
+
 .mobile-nav-icon-button-right {
   position: absolute;
   top: 0px;
@@ -178,6 +179,7 @@
 }
 
 /* media queries */
+
 @media print {
   .no-print,
   .no-print * {
@@ -189,6 +191,7 @@
   .container {
     max-width: 1380px;
   }
+
   .theme-header .col-xl-9 {
     -ms-flex: 0 0 80%;
     flex: 0 0 80%;
@@ -200,6 +203,7 @@
   .container {
     max-width: 1600px;
   }
+
   .theme-header .col-xl-9 {
     -ms-flex: 0 0 85%;
     flex: 0 0 85%;
@@ -211,6 +215,7 @@
   .container {
     max-width: 1860px;
   }
+
   .theme-header .col-xl-9 {
     -ms-flex: 0 0 90%;
     flex: 0 0 90%;
@@ -221,6 +226,7 @@
 /* end media queries */
 
 /* page header */
+
 .bg-background:before {
   /* background: rgba(4, 82, 212, 0.8); */
   background: linear-gradient(
@@ -231,9 +237,11 @@
   ) !important;
   z-index: -100 !important;
 }
+
 /* end page header */
 
 /* group page */
+
 .group-pattern-1 {
   /*background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(/assets/theme/img/groups/group-1.jpg) center center cover no-repeat;*/
@@ -256,25 +264,32 @@ label .location-gps.fa-spinner {
 .group-head .card-body {
   min-height: 150px;
 }
+
 /* end group page */
 
 /* group list */
+
 .subscription {
   background: #605e7e;
 }
+
 .subscription.active {
   background: #e62a72;
 }
+
 .ownership {
   background: rgb(241, 196, 15);
 }
+
 .location-gps.fa-spinner {
   cursor: auto;
   height: inherit;
 }
+
 /* end group list */
 
 /* social */
+
 .linkedin-bg {
   background: #0e76a8;
   color: #fff;
@@ -309,9 +324,11 @@ label .location-gps.fa-spinner {
   background: #000000;
   color: #fff;
 }
+
 /* end social */
 
 /* v-modal */
+
 .modal.show {
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -323,6 +340,7 @@ label .location-gps.fa-spinner {
 }*/
 
 /* backdrop transition */
+
 .modal-backdrop-enter-active,
 .modal-backdrop-leave-active {
   transition: opacity 0.3s linear;
@@ -334,6 +352,7 @@ label .location-gps.fa-spinner {
 }
 
 /* dialog transition */
+
 .modal-dialog-enter-active,
 .modal-dialog-leave-active {
   transition: all 0.3s ease-out;
@@ -348,9 +367,11 @@ label .location-gps.fa-spinner {
 .overflow-hidden {
   overflow: hidden;
 }
+
 /* end v-modal */
 
 /* vue select */
+
 .v-select {
   display: block;
   height: 40px;
@@ -393,7 +414,6 @@ label .location-gps.fa-spinner {
   top: 1px;
   right: 1px;
   width: 20px;
-
   height: 100% !important;
 }
 
@@ -430,9 +450,11 @@ label .location-gps.fa-spinner {
   transition: none !important;
   transform: none !important;
 }
+
 /* end vue-select */
 
 /* login register forgot password forms */
+
 .single-page .wrapper label.custom-control.custom-checkbox {
   top: 0px;
   margin-bottom: 0.25rem;
@@ -466,22 +488,28 @@ label .location-gps.fa-spinner {
   a {
   pointer-events: auto !important;
 }
+
 /* end login register forgot password forms */
 
 /* forms */
+
 .custom-switch {
   padding-right: 2.25rem;
   padding-left: 0px;
 }
+
 .custom-switch-indicator {
   height: 1rem;
   width: 2rem;
 }
+
 .custom-switch-indicator:before {
   height: calc(1rem - 4px);
   width: calc(1rem - 4px);
 }
+
 .custom-switch-description {
   font-size: 12px;
 }
+
 /* end forms */

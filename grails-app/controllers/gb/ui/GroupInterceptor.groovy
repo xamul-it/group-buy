@@ -11,9 +11,6 @@ class GroupInterceptor {
 
     boolean after() { 
 
-        def grailsUrlMappingsHolder
-        log.debug "grailsUrlMappingsHolder: $grailsUrlMappingsHolder"
-
         if(!model)
             model = [:]
 

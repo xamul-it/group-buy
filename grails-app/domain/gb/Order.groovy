@@ -13,7 +13,6 @@ class Order {
 	String token
 	transient String statusName
 
-
 	transient springSecurityService
 
 	static belongsTo = [group: Group]
@@ -32,6 +31,7 @@ class Order {
 	
 	static mapping = {
         table "gborder"
+        autowire true //if missed, by default autowired in domain classes is disabled due to performance issues.
     }
 
 	public String getStatusName(){
