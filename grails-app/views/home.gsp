@@ -7,10 +7,10 @@
     <div class="app" id="v-group-buy-app">
         <!--Sliders Section-->
         <section class="theme-header">
-            <div class="bannerimg cover-image bg-background" >
+            <div class="bannerimg cover-image bg-background slide-uno">
                 <div class="header-text1 mb-0">
                     <div class="container">
-                        <div class="text-left text-white">
+                        <div class="text-left">
                             <h1 class=""> La spesa sotto casa e dai negozianti e produttori di fiducia</h1>
                             <h2>In gruppo o da soli</h2>
                         </div>
