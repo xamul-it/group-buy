@@ -159,6 +159,22 @@
   padding: 11px 14px;
 }
 
+.mobile-nav-icon-button {
+    font-size: 28px;
+    line-height: 30px;
+    transition: all 0.4s ease-in-out 0s;
+    z-index: 102;
+    padding: 11px 14px;
+}
+
+.mobile-nav-icon-label {
+    font-size: 14px;
+    line-height: 30px;
+    transition: all 0.4s ease-in-out 0s;
+    z-index: 102;
+    padding: 11px 14px;
+}
+
 .mobile-nav-icon-button .fa,
 .mobile-nav-icon-button .mdi,
 .mobile-nav-icon-button .zmdi {
@@ -530,6 +546,23 @@ body {
   background: #fff;
 }
 
+
+
+.horizontalMenu>.horizontalMenu-list>li>a {
+    display: block;
+    padding: 9px 15px;
+    text-decoration: none;
+    position: relative;
+    margin: 0 2px;
+    border-radius: 3px;
+    color: #000;
+}
+
+.horizontalMenu>.horizontalMenu-list>li:hover>a {
+    background-color: #38aae1;
+    color: #fff !important;
+}
+
 .slide-uno {
   background: url(/assets/theme/img/other/slide1.jpg);
   width: 100%;
@@ -587,6 +620,7 @@ body {
 
 .feature .fea-icon i {
     font-size: 3rem;
+    line-height: 1.3em;
 }
 
 .fa-stack {
@@ -594,9 +628,162 @@ body {
     display: inline-block;
     width: 2em;
     height: 2em;
-    line-height: 3.5em;
+    line-height: 2em;
     vertical-align: middle;
 }
+
+.bg-success {
+    background-color: #38aae1!important;
+}
+
+/*MenuToggle*/
+
+
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 15px;
+  left: 15px;
+  
+  z-index: 100;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle a
+{
+  text-decoration: none;
+  color: #232323;
+  
+  transition: color 0.3s ease;
+}
+
+#menuToggle a:hover
+{
+  color: #38aae1;
+}
+
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 102; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 101;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: absolute;
+  width: 300px;
+  margin: -120px 0 0 -100px;
+  padding: 50px;
+  padding-top: 125px;
+  z-index:100;
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+/*MenuToggle*/
+
 
 @media (max-width:1280px) {
   .bg-background .header-text1 {
@@ -613,6 +800,28 @@ body {
     padding: 0em 0em 8em 3em;
   }
 }
+
+@media only screen and (max-width: 991px) {
+.horizontal-header {
+    width: 100%;
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    height: 70px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    -ms-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    box-shadow: none;
+ }
+
+}
+
 
 @media (max-width:769px) {
   .bg-background .header-text1 {

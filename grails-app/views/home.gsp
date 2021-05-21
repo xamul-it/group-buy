@@ -11,7 +11,8 @@
                 <div class="header-text1 mb-0">
                     <div class="container">
                         <div class="text-left">
-                            <h1 class=""> La spesa sotto casa e dai negozianti e produttori di fiducia</h1>
+                            <h1 class="">La spesa sotto casa</h1>
+                            <h1 class="">e dai negozianti e produttori di fiducia</h1>
                             <h2>In gruppo o da soli</h2>
                         </div>
                     </div>
@@ -24,7 +25,7 @@
         <section class="sptb">
             <div class="container">
                 
-                <div class="text-justify">
+                <div class="text-center">
                     <!-- h2 class="mb-4">Proprioqui</h2 -->
                     <!-- h4 class="leading-normal"> Accorciamo le distanze </h4 -->
 

@@ -18,7 +18,6 @@
 
 	<!-- Bootstrap Css -->
 	<asset:stylesheet src="bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" -->
 
 	<!-- Dashboard Css -->
     <asset:stylesheet src="claylist/css/dashboard.css" rel="stylesheet" />
@@ -30,15 +29,6 @@
 	<!--Horizontal Menu-->
     <asset:stylesheet src="theme/plugins/Horizontal2/Horizontal-menu/dropdown-effects/fade-down.css"/>
     <asset:stylesheet src="theme/plugins/Horizontal2/Horizontal-menu/horizontal.css"/>
-
-	<!-- Cookie css -->
-	<!-- link href="../../assets/plugins/cookie/cookie.css" rel="stylesheet" -->
-
-	<!-- Owl Theme css-->
-	<!-- link href="../../assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" / -->
-
-	<!-- Custom scroll bar css-->
-	<!-- link href="../../assets/plugins/scroll-bar/jquery.mCustomScrollbar.css" rel="stylesheet" / -->
 
 	<!-- COLOR-SKINS -->
     <asset:stylesheet src="claylist/webslidemenu/color-skins/color3.css" id="theme" rel="stylesheet" type="text/css" media="all" />
