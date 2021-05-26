@@ -22,7 +22,7 @@
         <!--/Sliders Section-->
 
         <!-- What -->
-        <section class="sptb">
+        <section class="sptb bg-azzurro">
             <div class="container">
                 
                 <div class="text-center">
@@ -55,7 +55,7 @@
         <!-- /What -->
 
         <!-- Examples -->
-        <section class="sptb bg-white">
+        <section class="sptb">
             <div class="container">
                 <div class="section-title center-block text-center">
                     <h2> Cosa è possibile comprare? </h2>
@@ -112,7 +112,7 @@
         </section>
         <!-- /Question -->
         
-        <section class="sptb">
+        <section class="sptb bg-azzurro">
             <div class="container">
                 <div class="row">
 
@@ -175,7 +175,7 @@
         </section>
 
         <!-- How -->
-        <section class="sptb bg-white">
+        <section class="sptb">
             <div class="container">
 
                 <div class="section-title center-block text-center">
@@ -238,7 +238,7 @@
             </div>
         </section>
 
-        <section class="sptb">
+        <section class="sptb bg-azzurro">
             <div class="container">
 
                 <div class="row">
@@ -298,7 +298,7 @@
         <!-- /How -->
 
         <!--Shops list -->
-        <section class="sptb bg-white" v-cloak>
+        <section class="sptb" v-cloak>
             <div class="container">
             <v-modal ref="registerLoginModal"></v-modal>
 
@@ -359,7 +359,7 @@
         <!--/Shops list -->
 
         <!-- Why -->
-        <section class="sptb bg-white">
+        <section class="sptb">
             <div class="container">
                 <div class="section-title center-block text-center">
                     <h2> Perché acquistare da ProprioQui? </h2>

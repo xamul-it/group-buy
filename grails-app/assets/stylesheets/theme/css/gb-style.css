@@ -245,12 +245,13 @@
 
 .bg-background:before {
   /* background: rgba(4, 82, 212, 0.8); */
-  background: linear-gradient(
+  /*background: linear-gradient(
     -225deg,
     rgba(1, 31, 255, 0.7) 0,
     rgba(24, 104, 242, 0.7) 48%,
     rgba(50, 106, 228, 0.7) 100%
-  ) !important;
+  ) !important;*/
+  background: #fff;
   z-index: -100 !important;
 }
 
@@ -533,13 +534,17 @@ label .location-gps.fa-spinner {
 /* RA */
 
 body {
-  background-color: #d3e7ee;
+  background-color: #fff;
 } 
 
 .horizontal-header .smllogo {
     display: inline-block;
     margin-top: 11px;
     margin-bottom: 50px;
+}
+
+.desktoplogo img {
+    width: 80%;
 }
 
 .horizontal-main {
@@ -570,10 +575,19 @@ body {
   margin-top: 100px;
  }
 
+
  .bg-background .header-text1 {
   position: relative;
   z-index: 10;
   padding: 10em 0em 10em 0em;
+}
+
+.bg-azzurro {
+  background-color: #d3e7ee;
+} 
+
+.txt-blu {
+    color: #38aae1!important;
 }
 
 .section-title {

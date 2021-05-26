@@ -14,9 +14,24 @@
                                 <span></span>
                                 <span></span>
                                     <ul id="menu">
-                                        <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="" title="${g.message(code:'site.menu.groups')}"><li>Gruppi</li></a>
-                                        <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="" title="${g.message(code:'site.menu.suppliers')}"><li>Negozi</li></a>
-                                    
+                                        <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="" title="${g.message(code:'site.menu.groups')}"> <li> <g:message code="site.menu.groups"/> </li> </a>
+                                        <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="" title="${g.message(code:'site.menu.suppliers')}"><li> <g:message code="site.menu.suppliers"/></li></a>
+                                        <sec:ifLoggedIn>
+                                            <a href="${createLink(mapping: 'ordiniUtente', namespace: 'ui')}" > <li> <g:message code="site.menu.orders"/> </li></a>
+                                        </sec:ifLoggedIn>
+                                        <sec:ifNotLoggedIn>
+                                            <li><a @click="$refs.registerLoginModal.openModal()" > <li> <g:message code="site.menu.orders"/> </li> </a>
+                                        </sec:ifNotLoggedIn>
+                                        
+                                        <sec:ifNotLoggedIn>
+                                            <a @click="$refs.registerLoginModal.openModal()"> <li> <g:message code="site.menu.cta.createGroup"/> </li> </a>
+                                        </sec:ifNotLoggedIn>
+                                        <sec:ifLoggedIn>
+                                            <a href="${createLink(mapping: 'nuovoGruppo', namespace: 'ui')}"> <li> <g:message code="site.menu.cta.createGroup"/> </li> </a>
+                                        </sec:ifLoggedIn>
+                                        
+                                        <a href="/contatti" class="" title=""><li> <g:message code="site.menu.contacts"/> </li></a>
+                                        <a href="/supporto" class="" title=""><li> <g:message code="site.menu.support"/> </li></a>        
                                     </ul>
                         </div>
                     </nav>
