@@ -9,7 +9,7 @@
 
 		<!--Sliders Section-->
 		<section class="theme-header">
-			<div class="bannerimg cover-image bg-background sptb-1" >
+			<div class="cover-image bg-background sptb-1 bg-azzurro" >
 
 				<div class="header-text1 slide-header-text mt-0 mb-0">
 				
@@ -19,7 +19,7 @@
 							<div class="col-xl-9 col-lg-12 col-md-12 d-block mx-auto">
 								<div class="search-background bg-transparent">
 
-									<div class="text-left text-white mb-6">
+									<div class="text-center mb-6">
 										<h1 class="mb-1 d-none d-md-block">
 											Più spendi meno spendi. Ecco i gruppi a cui unirsi per acquistare in compagnia. Scopri le offerte e le novità  
 

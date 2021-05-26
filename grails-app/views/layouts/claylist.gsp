@@ -10,15 +10,17 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="keywords" content="">
-	<link rel="icon" href="favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
 
 	<!-- Title -->
 	<title><g:message code="site.title"/> - <g:layoutTitle default="" /></title>
 
 	<!-- Bootstrap Css -->
 	<asset:stylesheet src="bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" -->
 
 	<!-- Dashboard Css -->
     <asset:stylesheet src="claylist/css/dashboard.css" rel="stylesheet" />
@@ -30,15 +32,6 @@
 	<!--Horizontal Menu-->
     <asset:stylesheet src="theme/plugins/Horizontal2/Horizontal-menu/dropdown-effects/fade-down.css"/>
     <asset:stylesheet src="theme/plugins/Horizontal2/Horizontal-menu/horizontal.css"/>
-
-	<!-- Cookie css -->
-	<!-- link href="../../assets/plugins/cookie/cookie.css" rel="stylesheet" -->
-
-	<!-- Owl Theme css-->
-	<!-- link href="../../assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" / -->
-
-	<!-- Custom scroll bar css-->
-	<!-- link href="../../assets/plugins/scroll-bar/jquery.mCustomScrollbar.css" rel="stylesheet" / -->
 
 	<!-- COLOR-SKINS -->
     <asset:stylesheet src="claylist/webslidemenu/color-skins/color3.css" id="theme" rel="stylesheet" type="text/css" media="all" />

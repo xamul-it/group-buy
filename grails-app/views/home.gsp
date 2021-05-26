@@ -7,11 +7,12 @@
     <div class="app" id="v-group-buy-app">
         <!--Sliders Section-->
         <section class="theme-header">
-            <div class="bannerimg cover-image bg-background" >
+            <div class="bannerimg cover-image bg-background slide-uno">
                 <div class="header-text1 mb-0">
                     <div class="container">
-                        <div class="text-left text-white">
-                            <h1 class=""> La spesa sotto casa e dai negozianti e produttori di fiducia</h1>
+                        <div class="text-left">
+                            <h1 class="">La spesa sotto casa</h1>
+                            <h1 class="">e dai negozianti e produttori di fiducia</h1>
                             <h2>In gruppo o da soli</h2>
                         </div>
                     </div>
@@ -21,10 +22,10 @@
         <!--/Sliders Section-->
 
         <!-- What -->
-        <section class="sptb">
+        <section class="sptb bg-azzurro">
             <div class="container">
                 
-                <div class="text-justify">
+                <div class="text-center">
                     <!-- h2 class="mb-4">Proprioqui</h2 -->
                     <!-- h4 class="leading-normal"> Accorciamo le distanze </h4 -->
 
@@ -54,7 +55,7 @@
         <!-- /What -->
 
         <!-- Examples -->
-        <section class="sptb bg-white">
+        <section class="sptb">
             <div class="container">
                 <div class="section-title center-block text-center">
                     <h2> Cosa è possibile comprare? </h2>
@@ -111,7 +112,7 @@
         </section>
         <!-- /Question -->
         
-        <section class="sptb">
+        <section class="sptb bg-azzurro">
             <div class="container">
                 <div class="row">
 
@@ -174,7 +175,7 @@
         </section>
 
         <!-- How -->
-        <section class="sptb bg-white">
+        <section class="sptb">
             <div class="container">
 
                 <div class="section-title center-block text-center">
@@ -237,7 +238,7 @@
             </div>
         </section>
 
-        <section class="sptb">
+        <section class="sptb bg-azzurro">
             <div class="container">
 
                 <div class="row">
@@ -297,7 +298,7 @@
         <!-- /How -->
 
         <!--Shops list -->
-        <section class="sptb bg-white" v-cloak>
+        <section class="sptb" v-cloak>
             <div class="container">
             <v-modal ref="registerLoginModal"></v-modal>
 
@@ -358,7 +359,7 @@
         <!--/Shops list -->
 
         <!-- Why -->
-        <section class="sptb bg-white">
+        <section class="sptb">
             <div class="container">
                 <div class="section-title center-block text-center">
                     <h2> Perché acquistare da ProprioQui? </h2>

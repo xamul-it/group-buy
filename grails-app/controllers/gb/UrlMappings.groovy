@@ -12,21 +12,21 @@ class UrlMappings {
         }
         
         //pages
-        "/"(view:"/home")
-        "/chisiamo"(view:"/chisiamo")
-        "/faq"(view:"/faq")
-        "/contatti"(view:"/contatti")
-        "/supporto"(view:"/supporto")
+        "/" (view:"/home")
+        "/chisiamo" (view:"/chisiamo")
+        "/faq" (view:"/faq")
+        "/contatti" (view:"/contatti")
+        "/supporto" (view:"/supporto")
 
-        "/tos"(view:"/tos")
-        //"/privacy"(view:"/privacy")
-        "/privacy"(redirect: [uri: 'https://www.iubenda.com/privacy-policy/32326580/legal'])
+        "/tos" (view:"/tos")
+        //"/privacy" (view:"/privacy")
+        "/privacy" (redirect: [uri: 'https://www.iubenda.com/privacy-policy/32326580/legal'])
 
-        "/cookie"(view:"/cookie")
+        "/cookie" (view:"/cookie")
         
         //error codes
-        "500"(view:'/error')
-        "404"(view:'/notFound')
+        "500" (view:'/error')
+        "404" (view:'/notFound')
     
         //security 
         "/login/$action?/$id?(.$format)?" (controller: 'login')

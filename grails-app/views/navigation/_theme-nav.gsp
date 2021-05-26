@@ -5,9 +5,38 @@
             <!--Mobile Nav-->
             <div class="horizontal-header clearfix ">
                 <div class="container"> 
-                    <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class=" mobile-nav-icon-button mobile-nav-icon-button-left" title="${g.message(code:'site.menu.groups')}"><i class="zmdi zmdi-accounts"></i></a>
-                    <span class="smllogo"><img src="/assets/theme/img/brand/logo.png" alt="${g.message(code:'site.title')}" width="120"></span>
-                    <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class=" mobile-nav-icon-button mobile-nav-icon-button-right" title="${g.message(code:'site.menu.suppliers')}"><i class="zmdi zmdi-store"></i></a>
+                    <nav role="navigation">
+                        <div id="menuToggle">
+                        <!--A fake / hidden checkbox is used as click reciever,so you can use the :checked selector on it.-->
+                            <input type="checkbox" />
+                            <!--Some spans to act as a hamburger.-->
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                    <ul id="menu">
+                                        <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="" title="${g.message(code:'site.menu.groups')}"> <li> <g:message code="site.menu.groups"/> </li> </a>
+                                        <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="" title="${g.message(code:'site.menu.suppliers')}"><li> <g:message code="site.menu.suppliers"/></li></a>
+                                        <sec:ifLoggedIn>
+                                            <a href="${createLink(mapping: 'ordiniUtente', namespace: 'ui')}" > <li> <g:message code="site.menu.orders"/> </li></a>
+                                        </sec:ifLoggedIn>
+                                        <sec:ifNotLoggedIn>
+                                            <li><a @click="$refs.registerLoginModal.openModal()" > <li> <g:message code="site.menu.orders"/> </li> </a>
+                                        </sec:ifNotLoggedIn>
+                                        
+                                        <sec:ifNotLoggedIn>
+                                            <a @click="$refs.registerLoginModal.openModal()"> <li> <g:message code="site.menu.cta.createGroup"/> </li> </a>
+                                        </sec:ifNotLoggedIn>
+                                        <sec:ifLoggedIn>
+                                            <a href="${createLink(mapping: 'nuovoGruppo', namespace: 'ui')}"> <li> <g:message code="site.menu.cta.createGroup"/> </li> </a>
+                                        </sec:ifLoggedIn>
+                                        
+                                        <a href="/contatti" class="" title=""><li> <g:message code="site.menu.contacts"/> </li></a>
+                                        <a href="/supporto" class="" title=""><li> <g:message code="site.menu.support"/> </li></a>        
+                                    </ul>
+                        </div>
+                    </nav>
+
+                    <span class="smllogo"><img src="/assets/theme/img/brand/logo.png" alt="${g.message(code:'site.title')}" width="180"></span>
                 </div>
             </div>
             <!--/Mobile Nav-->
@@ -36,10 +65,10 @@
                             <ul class="mb-0">
                                 <li aria-haspopup="true" class="mt-5 d-none d-lg-block "> 
                                     <sec:ifNotLoggedIn>
-                                        <span><a class="btn btn-orange" @click="$refs.registerLoginModal.openModal()"> <g:message code="site.menu.cta.createGroup"/> </a></span>
+                                        <span><a class="btn btn-blue" @click="$refs.registerLoginModal.openModal()"> <g:message code="site.menu.cta.createGroup"/> </a></span>
                                     </sec:ifNotLoggedIn>
                                     <sec:ifLoggedIn>
-                                        <span><a class="btn btn-orange" href="${createLink(mapping: 'nuovoGruppo', namespace: 'ui')}"> <g:message code="site.menu.cta.createGroup"/> </a></span>
+                                        <span><a class="btn btn-blue" href="${createLink(mapping: 'nuovoGruppo', namespace: 'ui')}"> <g:message code="site.menu.cta.createGroup"/> </a></span>
                                     </sec:ifLoggedIn>
                                 </li>
                             </ul>
@@ -50,6 +79,7 @@
                 
             </div>
             <!--/Desktop Nav-->
+
 
         </div>
 
