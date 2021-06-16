@@ -10,7 +10,7 @@
 																		<th class="column" width="170" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
 																			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																				<tr>
-																					<td class="img m-center" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="${basePath}/gruppi" target="_blank"><img src="${basePath}/assets/email/footer_logo.png" width="133" height="46" border="0" alt="ProprioQui" /></a></td>
+																					<td class="img m-center" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="${basePath}" target="_blank"><img src="${basePath}/assets/email/footer_logo.png" width="133" height="46" border="0" alt="ProprioQui" /></a></td>
 																				</tr>
 																			</table>
 																		</th>
