@@ -10,7 +10,7 @@ interface IEmailService {
 
 
 /**
- * Emil sending service
+ * Email sending service
  *
  * Managed emails:
  * -> Invite user
@@ -46,14 +46,15 @@ class EmailService implements IEmailService {
             user = User.get(springSecurityService.getPrincipal().id)
         }
         def toEmail = user.email
-        subscription(gm, toEmail, "Sei parte del gruppo ${gm.group.name}")
-        subscription(gm, gm.group.owner.email, "L'utente ${gm.group.name} è parte del gruppo ${gm.group.name}")
+        subscription(gm, toEmail, false)
+        subscription(gm, gm.group.owner.email, true)
     }
 
-    def subscription(GroupMember gm, String toEmail, String message) {
+    def subscription(GroupMember gm, String toEmail, Boolean alert) { 
         def basePath = grailsApplication.config.getProperty('grails.mail.serverURL')
         def toGroup = gm.group //TODO get the group
-        String emailSubject = message
+        String emailSubject = alert? "Nuovo iscritto a ${toGroup.name}":"Benvenuto in ${toGroup.name}"
+        String emailView = alert? "/email/subscribtion-alert":"/email/subscribtion"
         log.debug "to: ${toEmail}  from: ${fromUsername}  subject: ${emailSubject}"
 
         sendMail {
@@ -62,8 +63,8 @@ class EmailService implements IEmailService {
             subject emailSubject
             //text( view:"/email/groupInvitePlain",
             //        model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
-            html( view:"/email/subscribtion",
-                    model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
+            html( view:emailView,
+                model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
         }
     }
 

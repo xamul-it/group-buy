@@ -24,23 +24,9 @@
 							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<tr>
 									<td>
-										<g:render template="/email/group-main"/>
-
-										<g:render template="/email/description"/>
+										<g:render template="/email/alert-main"/>
 
 										<g:render template="/email/navigation"/>
-
-										<!-- Made by -- >
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td class="nav" style="color:#605e7e; font-family:'Lato', Arial, sans-serif; font-size:14px; line-height:18px; text-align:center; background:#d3e7ee; padding:18px 15px;">
-													<p style="font-size: 14px; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 18px; margin: 0;">
-														<strong>Fatto con il ❤️ dal Team di Proprioqui</strong><br/>
-													</p>
-												</td>
-											</tr>
-										</table>
-										< !-- END Made by -->
 
 										<g:render template="/email/footer"/>
 										

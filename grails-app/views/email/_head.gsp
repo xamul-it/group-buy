@@ -1,129 +1,69 @@
-    <!--[if gte mso 9]>
-        <xml>
-            <o:OfficeDocumentSettings>
-                <o:AllowPNG/>
-                <o:PixelsPerInch>96</o:PixelsPerInch>
-            </o:OfficeDocumentSettings>
-        </xml>
-    <![endif]-->
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-	<meta content="width=device-width" name="viewport" />
-	<!--[if !mso]><!-->
-	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-	<!--<![endif]-->
-	<!--[if !mso]><!-->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
-	<!--<![endif]-->
-	<style type="text/css">
-		body {
-			margin: 0;
-			padding: 0;
-		}
-
-		table,
-		td,
-		tr {
-			vertical-align: top;
-			border-collapse: collapse;
-		}
-
-		* {
-			line-height: inherit;
-		}
-
-		a[x-apple-data-detectors=true] {
-			color: inherit !important;
-			text-decoration: none !important;
-		}
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="date=no" />
+	<meta name="format-detection" content="address=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="x-apple-disable-message-reformatting" />
+    <!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+    <!--<![endif]-->
+	<!--[if gte mso 9]>
+	<style type="text/css" media="all">
+		sup { font-size: 100% !important; }
 	</style>
-	<style id="media-query" type="text/css">
-		@media (max-width: 700px) {
+	<![endif]-->
 
-			.block-grid,
-			.col {
-				min-width: 320px !important;
-				max-width: 100% !important;
-				display: block !important;
-			}
+	<style type="text/css" media="screen">
+		/* Linked Styles */
+		body { padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#0a2641; -webkit-text-size-adjust:none }
+		a { color:#8fc55b; text-decoration:none }
+		p { padding:0 !important; margin:0 !important } 
+		img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
+		.mcnPreviewText { display: none !important; }
+				
+		/* Mobile styles */
+		@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+			u + .body .gwfw { width:100% !important; width:100vw !important; }
 
-			.block-grid {
-				width: 100% !important;
-			}
+			.m-shell { width: 100% !important; min-width: 100% !important; }
+			
+			.m-center { text-align: center !important; }
+			.center { margin: 0 auto !important; }
+			
+			.td { width: 100% !important; min-width: 100% !important; }
+			.h2 { font-size: 35px !important; line-height: 40px !important; }
+			.nav { font-size: 12px !important; line-height: 22px !important; padding: 10px !important; }
 
-			.col {
-				width: 100% !important;
-			}
+			.m-br-15 { height: 15px !important; }
+			.p0-15-30 { padding: 0px 15px 30px 15px !important; }
+			.p0-20-30 { padding: 0px 20px 30px 20px !important; }
+			.p30-0 { padding: 30px 0px !important; }
+			.p30-20 { padding: 30px 20px !important; }
+			.pb30 { padding-bottom: 30px !important; }
+			.p10 { padding: 10px !important; }
 
-			.col_cont {
-				margin: 0 auto;
-			}
+			.m-td,
+			.m-hide { display: none !important; width: 0 !important; height: 0 !important; font-size: 0 !important; line-height: 0 !important; min-height: 0 !important; }
 
-			img.fullwidth,
-			img.fullwidthOnMobile {
-				max-width: 100% !important;
-			}
+			.m-block { display: block !important; }
 
-			.no-stack .col {
-				min-width: 0 !important;
-				display: table-cell !important;
-			}
+			.fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
 
-			.no-stack.two-up .col {
-				width: 50% !important;
-			}
+			.column,
+			.column-dir,
+			.column-top,
+			.column-bottom,
+			.column-dir-top { float: left !important; width: 100% !important; display: block !important; }
 
-			.no-stack .col.num2 {
-				width: 16.6% !important;
-			}
-
-			.no-stack .col.num3 {
-				width: 25% !important;
-			}
-
-			.no-stack .col.num4 {
-				width: 33% !important;
-			}
-
-			.no-stack .col.num5 {
-				width: 41.6% !important;
-			}
-
-			.no-stack .col.num6 {
-				width: 50% !important;
-			}
-
-			.no-stack .col.num7 {
-				width: 58.3% !important;
-			}
-
-			.no-stack .col.num8 {
-				width: 66.6% !important;
-			}
-
-			.no-stack .col.num9 {
-				width: 75% !important;
-			}
-
-			.no-stack .col.num10 {
-				width: 83.3% !important;
-			}
-
-			.video-block {
-				max-width: none !important;
-			}
-
-			.mobile_hide {
-				min-height: 0px;
-				max-height: 0px;
-				max-width: 0px;
-				display: none;
-				overflow: hidden;
-				font-size: 0px;
-			}
-
-			.desktop_hide {
-				display: block !important;
-				max-height: none !important;
-			}
+			.content-spacing { width: 15px !important; }
 		}
 	</style>
