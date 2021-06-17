@@ -740,15 +740,14 @@ body {
  */
 #menu {
   position: absolute;
-  width: 300px;
-  margin: -120px 0 0 -100px;
+  width: -webkit-fill-available;
+  margin: -45px 0px 0px -30px;
   padding: 50px;
-  padding-top: 125px;
-  z-index:100;
+  /* padding-top: 80px; */
+  z-index: 100;
   background: #ededed;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
@@ -784,7 +783,7 @@ body {
 }
 
 @media only screen and (max-width: 991px) {
-.horizontal-header {
+  .horizontal-header {
     width: 100%;
     display: block;
     position: relative;
@@ -800,7 +799,7 @@ body {
     -ms-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
     box-shadow: none;
- }
+  }
 }
 
 @media (max-width:769px) {
