@@ -30,14 +30,20 @@ class EmailService implements IEmailService {
 
     grails.plugin.springsecurity.SpringSecurityService  springSecurityService
 
-    def unsubscribe(GroupMember gm) {
-        def user = null
-        if (springSecurityService && springSecurityService.isLoggedIn()) {
-            user = User.get(springSecurityService.getPrincipal().id)
+    def groupMailSend(GroupMember gm, String toEmail, String userEmail, String emailSubject, String emailMessage, String emailView) {
+        def basePath = grailsApplication.config.getProperty('grails.mail.serverURL')
+
+        log.debug "groupMailSend -> to: ${toEmail}  from: ${fromUsername}  subject: ${emailSubject}"
+
+        sendMail {
+            multipart true
+            to toEmail
+            subject emailSubject
+            text( view:"${emailView}Plain",
+                    model:[fromUsername:fromUsername,userEmail:userEmail,toGroup:gm.group,message:emailSubject,basePath:basePath])
+            html( view:emailView,
+                model:[fromUsername:fromUsername,userEmail:userEmail,toGroup:gm.group,message:emailSubject,basePath:basePath])
         }
-        def toEmail = user.email
-        subscription(gm, toEmail, "Non sei più parte del gruppo ${gm.group.name}")
-        subscription(gm, gm.group.owner.email, "L'utente ${gm.group.name} non è più parte del gruppo ${gm.group.name}")
     }
 
     def subscribe(GroupMember gm) {
@@ -45,33 +51,25 @@ class EmailService implements IEmailService {
         if (springSecurityService && springSecurityService.isLoggedIn()) {
             user = User.get(springSecurityService.getPrincipal().id)
         }
-        def toEmail = user.email
-        subscription(gm, toEmail, false)
-        subscription(gm, gm.group.owner.email, true)
-    }
-
-    def subscription(GroupMember gm, String toEmail, Boolean alert) { 
-        def basePath = grailsApplication.config.getProperty('grails.mail.serverURL')
-        def toGroup = gm.group //TODO get the group
-        String emailSubject = alert? "Nuovo iscritto a ${toGroup.name}":"Benvenuto in ${toGroup.name}"
-        String emailView = alert? "/email/subscribtion-alert":"/email/subscribtion"
-        log.debug "to: ${toEmail}  from: ${fromUsername}  subject: ${emailSubject}"
-
-        sendMail {
-            multipart true
-            to toEmail
-            subject emailSubject
-            //text( view:"/email/groupInvitePlain",
-            //        model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
-            html( view:emailView,
-                model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
+        if(user) {
+            groupMailSend(gm, user.email, user.email, "Benvenuto in ${gm.group.name}", "/email/subscribe")
+            groupMailSend(gm, gm.group.owner.email, user.email, "${user.email} si è iscritto a ${gm.group.name}", "/email/subscription-alert")
+        } else {
+            log.error "No user available! Please login!"
         }
     }
 
-
-    //DEV
-    def groupInvite() {
-        groupInvite("invited@emaildomain.com", "Sei stato invitato a partecipare al gruppo d'acquisto")
+    def unsubscribe(GroupMember gm) {
+        def user = null
+        if (springSecurityService && springSecurityService.isLoggedIn()) {
+            user = User.get(springSecurityService.getPrincipal().id)
+        }
+        if(user) {
+            groupMailSend(gm, user.email, user.email, "Hai lasciato ${gm.group.name}", "/email/unsubscribe")
+            groupMailSend(gm, gm.group.owner.email, user.email, "${user.email} ha lasciato ${gm.group.name}", "/email/subscription-alert")
+        } else {
+            log.error "No user available! Please login!"
+        }
     }
 
     def groupInvite(GroupMember gm, String toEmail, String message) {
@@ -81,20 +79,14 @@ class EmailService implements IEmailService {
         if (springSecurityService && springSecurityService.isLoggedIn()) {
             user = User.get(springSecurityService.getPrincipal().id)
         }
-        def toGroup = gm.group
-        String emailSubject = "${gm.user.username} ti ha invitato a partecipare al gruppo di acquisto ${toGroup.name}"
-
-        log.debug "to: ${toEmail}  from: ${fromUsername}  subject: ${emailSubject}"
-        log.debug groovyPageRenderer.render(view: '/email/groupInvitePlain',  model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,basePath:basePath])
-
-        sendMail {
-            multipart true
-            to toEmail
-            subject emailSubject
-            text( view:"/email/groupInvitePlain", 		
-                    model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
-            html( view:"/email/groupInvite", 		
-                    model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
+        if(user) {
+            if(gm) {
+                groupMailSend(gm, toEmail, user.email, "Sei invitato a partecipare al gruppo", message, "/email/groupInvite")
+            } else {
+                log.error "You are not member of group. Please subscribe!"
+            }
+        } else {
+            log.error "No user available. Please login!"
         }
     }
 

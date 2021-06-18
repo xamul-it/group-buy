@@ -24,7 +24,9 @@
 							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<tr>
 									<td>
-										<g:render template="/email/alert-main"/>
+										<g:render template="/email/group-unsubscribe-main"/>
+
+										<g:render template="/email/description"/>
 
 										<g:render template="/email/navigation"/>
 
