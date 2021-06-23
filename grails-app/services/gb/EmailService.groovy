@@ -117,10 +117,10 @@ class EmailService implements IEmailService {
      * @return
      */
     def orderStatusChange(Order order){
-        order.group.members.any { member ->
+        order.group.members.each { member ->
             if(!order.group.owner.email.equals(member.user.email))
                 orderStatusChange(order,member.user.email)
-            return true
+            //return true
         }
         orderStatusChange(order,order.group.owner.email)
     }
