@@ -39,7 +39,7 @@ var VContact = Vue.component("VContact", {
                 <div class="input-group mb-1" :class="{ 'w-70': !wide }" @click.self.prevent="togglePrivacy($event)"> 
                   <label class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="privacy" id="privacy" checked="checked" v-model="privacy">
-                    <span class="custom-control-label">Acconsento al trattamento dei dati.</span> <a class="custom-control-label" href="/privacy" target="_blank"> Privacy </a>
+                    <span class="custom-control-label">Acconsento al trattamento dei dati.</span> <a class="" href="/privacy" target="_blank"> Privacy </a>
                   </label>
                 </div>
 
