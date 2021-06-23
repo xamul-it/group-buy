@@ -24,7 +24,7 @@ class EmailService implements IEmailService {
     MessageSource messageSource
 
     grails.gsp.PageRenderer groovyPageRenderer
-    static String fromUsername = "noreply@groupbuy.it"
+    static String appEmail = "noreply@proprioqui.it"
 
     grails.core.GrailsApplication grailsApplication
 
@@ -33,16 +33,17 @@ class EmailService implements IEmailService {
     def groupMailSend(GroupMember gm, String toEmail, String userEmail, String emailSubject, String emailMessage, String emailView) {
         def basePath = grailsApplication.config.getProperty('grails.mail.serverURL')
 
-        log.debug "groupMailSend -> to: ${toEmail}  from: ${fromUsername}  subject: ${emailSubject}"
+        log.debug "groupMailSend -> to: ${toEmail}  from: ${appEmail}  subject: ${emailSubject}"
 
         sendMail {
             multipart true
             to toEmail
+            from appEmail
             subject emailSubject
             text( view:"${emailView}Plain",
-                    model:[fromUsername:fromUsername,userEmail:userEmail,toGroup:gm.group,message:emailSubject,basePath:basePath])
+                    model:[fromUsername:appEmail,userEmail:userEmail,toGroup:gm.group,message:emailSubject,basePath:basePath])
             html( view:emailView,
-                model:[fromUsername:fromUsername,userEmail:userEmail,toGroup:gm.group,message:emailSubject,basePath:basePath])
+                model:[fromUsername:appEmail,userEmail:userEmail,toGroup:gm.group,message:emailSubject,basePath:basePath])
         }
     }
 
@@ -90,67 +91,50 @@ class EmailService implements IEmailService {
         }
     }
 
+
+
+    def orderMailSend(Order order, String toEmail, String userEmail, String emailSubject, String emailMessage, String emailView) {
+        def basePath = grailsApplication.config.getProperty('grails.mail.serverURL')
+
+        log.debug "orderMailSend -> to: ${toEmail}  from: ${appEmail}  subject: ${emailSubject}"
+
+        sendMail {
+            multipart true
+            to toEmail
+            from appEmail
+            subject emailSubject
+            text( view:"${emailView}Plain",
+                    model:[fromUsername:appEmail, userEmail:userEmail, toGroup:order.group, message:emailMessage, basePath:basePath, order:order])
+            html( view:emailView,
+                model:[userEmail:userEmail, toGroup:order.group, message:emailMessage, basePath:basePath, order:order])
+        }
+    }
+
     /**
      * Each time an order is changed a mail with the following information is sent
      * to all group partecipants:
-     *  List of ordered
-     *
+     * List of ordered
      * @return
      */
     def orderStatusChange(Order order){
-        order.group.members.each { member ->
-            def toEmail = member.user.email
-            orderStatusChange(order,toEmail)
+        order.group.members.any { member ->
+            if(!order.group.owner.email.equals(member.user.email))
+                orderStatusChange(order,member.user.email)
+            return true
         }
         orderStatusChange(order,order.group.owner.email)
     }
 
     def orderStatusChange(Order order, String toEmail) {
-        def basePath = grailsApplication.config.getProperty('grails.mail.serverURL')
-//        def user = null
-//        user = User.get(springSecurityService.getPrincipal().id)
-        //def fromUsername = "noreply@groupbuy.it"
-
-        def message = "L'ordine numero ${order.id} ha cambiato stato ora é in stato '${order.status.value}'"
-        def toGroup = order.group //TODO get the group
-        String emailSubject = "Ordine ${order.id} del gruppo di acquisto ${order.group.name}"
-        log.debug "to: ${toEmail}  from: ${fromUsername}  subject: ${emailSubject}"
-
-        sendMail {
-            multipart true
-            to toEmail
-            from fromUsername
-            subject emailSubject
-            //text( view:"/email/changeStatus",
-            //        model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
-            html(view: "/email/changeStatus",
-                    model: [fromUsername: fromUsername, toEmail: toEmail, toGroup: toGroup, message: message, basePath: basePath, order: order])
-        }
+        orderMailSend(order, toEmail, toEmail, "Ordine ${order.id} ${order.status.value}", "L'ordine numero ${order.id} ora è in stato '${order.status.value.toUpperCase()}'", "/email/order-status")
     }
 
     def sentToSupplier(Order order) {
-        def basePath = grailsApplication.config.getProperty('grails.mail.serverURL')
-//        def user = null
-//        user = User.get(springSecurityService.getPrincipal().id)
         String toEmail = order.supplier.contactInfo.email
-        def message = "Hai ricevuto l'ordine ${order.id} del gruppo di acquisto ${order.group.name}"
-        def toGroup = order.group //TODO get the group
-        String emailSubject = "Hai ricevuto l'ordine ${order.id} del gruppo di acquisto ${order.group.name}"
-        log.debug "to: ${toEmail}  from: ${fromUsername}  subject: ${emailSubject}"
-
-        sendMail {
-            multipart true
-            to toEmail
-            from fromUsername
-            subject emailSubject
-            //text( view:"/email/changeStatus",
-            //        model:[fromUsername:fromUsername,toEmail:toEmail,toGroup:toGroup,message:message,basePath:basePath])
-            html(view: "/email/supplierOrder",
-                    model: [fromUsername: fromUsername, toEmail: toEmail, toGroup: toGroup, message: message, basePath: basePath, order: order])
-        }
+        orderMailSend(order, toEmail, toEmail, "Hai ricevuto un nuovo ordine da ${order.group.name}", "Hai ricevuto un nuovo ordine da ${order.group.name}", "/email/supplier-order")
     }
 
-
+    //Contact
     def contact(String fromEmail, String messageText) {
         def user = null
         if (springSecurityService && springSecurityService.isLoggedIn()) {

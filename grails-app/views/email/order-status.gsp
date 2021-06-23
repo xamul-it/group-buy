@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
 	<g:render template="/email/head"/>
-	<title> Avviso del gruppo </title>
+	<title> Stato ordine </title>
 </head>
 <body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#0a2641; -webkit-text-size-adjust:none;">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#0a2641" class="gwfw">
@@ -24,7 +24,9 @@
 							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<tr>
 									<td>
-										<g:render template="/email/group-alert-main"/>
+										<g:render template="/email/order-status-main"/>
+
+										<g:render template="/email/description"/>
 
 										<g:render template="/email/navigation"/>
 
