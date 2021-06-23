@@ -10,7 +10,7 @@
 																		<th class="column" width="170" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
 																			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																				<tr>
-																					<td class="img m-center" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="${basePath}" target="_blank"><img src="${basePath}/assets/email/footer_logo.png" width="133" height="46" border="0" alt="ProprioQui" /></a></td>
+																					<td class="img m-center" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="${grailsApplication.config.grails.mail.serverURL}" target="_blank"><img src="${grailsApplication.config.grails.mail.serverURL}/assets/email/footer_logo.png" width="133" height="46" border="0" alt="ProprioQui" /></a></td>
 																				</tr>
 																			</table>
 																		</th>
@@ -21,10 +21,10 @@
 																					<td align="right">
 																						<table class="center" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
 																							<tr>
-																								<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;" title="Facebook"><a href="https://www.facebook.com/proprioqui/" target="_blank"><img src="${basePath}/assets/email/ico_facebook.png" width="15" height="15" border="0" alt="Facebook" /></a></td>
-																								<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;" title="Twitter"><a href="https://twitter.com/proprio_qui" target="_blank"><img src="${basePath}/assets/email/ico_twitter.png" width="15" height="15" border="0" alt="Twitter" /></a></td>
-																								<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;" title="Instagram"><a href="https://www.instagram.com/proprioqui/" target="_blank"><img src="${basePath}/assets/email/ico_instagram.png" width="15" height="15" border="0" alt="Instagram" /></a></td>
-																								<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;" title="LinedIn"><a href="https://www.linkedin.com/company/proprioqui" target="_blank"><img src="${basePath}/assets/email/ico_linkedin.png" width="15" height="15" border="0" alt="LinkedIn" /></a></td>
+																								<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;" title="Facebook"><a href="https://www.facebook.com/proprioqui/" target="_blank"><img src="${grailsApplication.config.grails.mail.serverURL}/assets/email/ico_facebook.png" width="15" height="15" border="0" alt="Facebook" /></a></td>
+																								<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;" title="Twitter"><a href="https://twitter.com/proprio_qui" target="_blank"><img src="${grailsApplication.config.grails.mail.serverURL}/assets/email/ico_twitter.png" width="15" height="15" border="0" alt="Twitter" /></a></td>
+																								<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;" title="Instagram"><a href="https://www.instagram.com/proprioqui/" target="_blank"><img src="${grailsApplication.config.grails.mail.serverURL}/assets/email/ico_instagram.png" width="15" height="15" border="0" alt="Instagram" /></a></td>
+																								<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;" title="LinedIn"><a href="https://www.linkedin.com/company/proprioqui" target="_blank"><img src="${grailsApplication.config.grails.mail.serverURL}/assets/email/ico_linkedin.png" width="15" height="15" border="0" alt="LinkedIn" /></a></td>
 																							</tr>
 																						</table>
 																					</td>
