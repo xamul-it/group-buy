@@ -117,7 +117,7 @@ abstract class OrderService implements IOrderService {
     }
 
     Order changeStatusTo(Map params, OrderStatus orderStatus) {
-        EmailService emailService = Holders.grailsApplication.mainContext.getBean('emailService')
+        //EmailService emailService = Holders.grailsApplication.mainContext.getBean('emailService')
         def group = Group.findById(params.groupId)
         def order = group ? Order.findByGroupAndId(group, params.id) : Order.findByToken(params.id)
         order.status = orderStatus
@@ -126,11 +126,11 @@ abstract class OrderService implements IOrderService {
                 date:new Date(),
                 user:springSecurityService.getCurrentUser()).save()
         //emailService.orderStatusChange(order)
-        log.debug("\nOrderService springSecurityService: "+springSecurityService +
+        /*log.debug("\nOrderService springSecurityService: "+springSecurityService +
                 " mailService: "+emailService+
                 " groupService: "+groupService+
                 " supplierService: "+supplierService
-        )
+        )*/
         order.save()
     }
 

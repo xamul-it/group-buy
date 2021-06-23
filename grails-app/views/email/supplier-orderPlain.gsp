@@ -5,14 +5,11 @@
 		groupName = "Gruppo "+groupName
 	}
 %>
-
-${groupName}
+Ordine da ${groupName.encodeAsRaw()} 
 
 ${message.encodeAsRaw()}
 
-Entra nel gruppo: ${basePath}/gruppo/${toGroup.id}
-
-Ricevi questa mail perché ${userEmail.encodeAsRaw()} ti ha invitato a partecipare al gruppo d'acquisto.
+Visualizza ordine: ${basePath}/ordine/${order.token}
 
 --
 Porpiroqui (${basePath}) è servizio gratuito che permette di gestire, in modo semplice e diretto, ordini di gruppo da negozi e produttori in zona.

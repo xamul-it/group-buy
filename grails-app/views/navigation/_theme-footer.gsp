@@ -93,6 +93,11 @@
 							<div class="col-lg-12 col-sm-12 mt-3 mb-3 text-center ">
 								Copyright © 2020 <a href="#" class="fs-14 text-primary">ILZ</a>. Made by <a
 									href="https://www.cloudbydesign.it" target="_blank" class="fs-14 text-primary">Cloud by Design</a> Tutti i diritti riservati.
+								
+									<g:if test="${request.getRequestURI().equals('/')}">
+										<a href="https://www.vecteezy.com/free-vector/web">Web Vectors by Vecteezy</a>
+									</g:if>
+
 							</div>
 						</div>
 					</div>

@@ -12,8 +12,8 @@
                     <div class="container">
                         <div class="text-left">
                             <h1 class="">La spesa sotto casa</h1>
-                            <h1 class="">e dai negozianti e produttori di fiducia</h1>
-                            <h2>In gruppo o da soli</h2>
+                            <h1 class="">e dai <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="">negozianti e produttori</a> di fiducia</h1>
+                            <h2>In <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="">gruppo</a> o da soli</h2>
                         </div>
                     </div>
                 </div>
@@ -53,6 +53,67 @@
             </div>
         </section>
         <!-- /What -->
+
+        <!--Shops list -->
+        <section class="sptb" v-cloak>
+            <div class="container">
+            <v-modal ref="registerLoginModal"></v-modal>
+
+                <div class="section-title center-block text-left">
+                    <h2>I negozi</h2>
+                </div>
+
+                <div class="row">
+                
+                    <div v-for="(supplier, index) in supplierList" class="col-lg-4 col-md-6 col-xl-3">
+                        <div class="card overflow-hidden">
+                            <div class="item-card9-img">
+                                <div class="arrow-ribbon bg-info">{{ supplier.category.name }}</div>
+                                <div class="item-card9-imgs"> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"></a> <img
+                                        :src="'/assets/theme/img/categories/supplier/category-'+supplier.category.id+'.jpg'" alt="img" class="cover-image"> </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="item-card9 text-dark">
+                                    <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)" class="text-dark mt-2">
+                                        <h4 class="font-weight-semibold mt-1">{{ supplier.name }} </h4>
+                                    </a>
+                                    <div class="item-card9-desc"> <a target="_blank" :href="'https://www.openstreetmap.org/?mlat='+supplier.shippingAddress.lat+'&mlon='+supplier.shippingAddress.lon+'#map=19/'+supplier.shippingAddress.lat+'/'+supplier.shippingAddress.lon" class="mr-4"><span class=""><i
+                                                    class="fa fa-map-marker text-muted mr-1"></i> {{ supplier.shippingAddress.address1 }} {{ supplier.shippingAddress.city }}</span></a> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="item-card9-footer d-flex">
+                                    <div class="item-card9-cost">
+                                        <sec:ifLoggedIn>
+                                            <a :href="'/negozio/'+supplier.id+'/ordine'" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</a>
+                                        </sec:ifLoggedIn>
+                                        <sec:ifNotLoggedIn>
+                                            <button @click="$refs.registerLoginModal.openModal()" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</button>
+                                        </sec:ifNotLoggedIn>
+                                        
+                                    </div>
+                                    <div class="ml-auto">
+                                        <!--div class="rating-stars block"> <input type="number" readonly="readonly"
+                                                class="rating-value star" name="rating-stars-value" value="3">
+                                            <div class="rating-stars-container">
+                                                <div class="rating-star sm is--active"> <i class="fa fa-star"></i> </div>
+                                                <div class="rating-star sm is--active"> <i class="fa fa-star"></i> </div>
+                                                <div class="rating-star sm is--active"> <i class="fa fa-star"></i> </div>
+                                                <div class="rating-star sm"> <i class="fa fa-star"></i> </div>
+                                                <div class="rating-star sm"> <i class="fa fa-star"></i> </div>
+                                            </div>
+                                        </div -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--/Shops list -->
 
         <!-- Examples -->
         <section class="sptb">
@@ -296,67 +357,6 @@
             </div>
         </section>
         <!-- /How -->
-
-        <!--Shops list -->
-        <section class="sptb" v-cloak>
-            <div class="container">
-            <v-modal ref="registerLoginModal"></v-modal>
-
-                <div class="section-title center-block text-left">
-                    <h2>I nostri negozi</h2>
-                </div>
-
-                <div class="row">
-                
-                    <div v-for="(supplier, index) in supplierList" class="col-lg-4 col-md-6 col-xl-3">
-                        <div class="card overflow-hidden">
-                            <div class="item-card9-img">
-                                <div class="arrow-ribbon bg-info">{{ supplier.category.name }}</div>
-                                <div class="item-card9-imgs"> <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)"></a> <img
-                                        :src="'/assets/theme/img/categories/supplier/category-'+supplier.category.id+'.jpg'" alt="img" class="cover-image"> </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="item-card9 text-dark">
-                                    <a :href="'/negozio/'+supplier.id+'/'+encodeURI(supplier.name)" class="text-dark mt-2">
-                                        <h4 class="font-weight-semibold mt-1">{{ supplier.name }} </h4>
-                                    </a>
-                                    <div class="item-card9-desc"> <a target="_blank" :href="'https://www.openstreetmap.org/?mlat='+supplier.shippingAddress.lat+'&mlon='+supplier.shippingAddress.lon+'#map=19/'+supplier.shippingAddress.lat+'/'+supplier.shippingAddress.lon" class="mr-4"><span class=""><i
-                                                    class="fa fa-map-marker text-muted mr-1"></i> {{ supplier.shippingAddress.address1 }} {{ supplier.shippingAddress.city }}</span></a> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="item-card9-footer d-flex">
-                                    <div class="item-card9-cost">
-                                        <sec:ifLoggedIn>
-                                            <a :href="'/negozio/'+supplier.id+'/ordine'" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</a>
-                                        </sec:ifLoggedIn>
-                                        <sec:ifNotLoggedIn>
-                                            <button @click="$refs.registerLoginModal.openModal()" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Ordina ora</button>
-                                        </sec:ifNotLoggedIn>
-                                        
-                                    </div>
-                                    <div class="ml-auto">
-                                        <!--div class="rating-stars block"> <input type="number" readonly="readonly"
-                                                class="rating-value star" name="rating-stars-value" value="3">
-                                            <div class="rating-stars-container">
-                                                <div class="rating-star sm is--active"> <i class="fa fa-star"></i> </div>
-                                                <div class="rating-star sm is--active"> <i class="fa fa-star"></i> </div>
-                                                <div class="rating-star sm is--active"> <i class="fa fa-star"></i> </div>
-                                                <div class="rating-star sm"> <i class="fa fa-star"></i> </div>
-                                                <div class="rating-star sm"> <i class="fa fa-star"></i> </div>
-                                            </div>
-                                        </div -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <!--/Shops list -->
 
         <!-- Why -->
         <section class="sptb">

@@ -75,4 +75,10 @@ class EmailTestController {
         respond o, [formats: ['xml', 'json']]
     }
 
+    //Contact
+    def contact() {
+        
+    }
+
+
 }
