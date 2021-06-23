@@ -48,7 +48,7 @@
                                             }"
                                             :errors="{
                                                     'loginMessage':${loginMessage},
-                                                    'loginMessageText':'${loginMessageText}',
+                                                    'loginMessageText':'${loginMessageText.encodeAsJavaScript()}',
                                                     'loginError':${loginError},
                                                     'loginErrorText':'${loginErrorText}',
                                             }"
