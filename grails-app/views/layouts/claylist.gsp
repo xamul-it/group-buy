@@ -34,7 +34,7 @@
     <asset:stylesheet src="theme/plugins/Horizontal2/Horizontal-menu/horizontal.css"/>
 
 	<!-- COLOR-SKINS -->
-    <asset:stylesheet src="claylist/webslidemenu/color-skins/color3.css" id="theme" rel="stylesheet" type="text/css" media="all" />
+    <asset:stylesheet src="theme/css/gb-color.css" id="theme" rel="stylesheet" type="text/css" media="all" />
 
 	<!-- Vue Css -->
     <asset:stylesheet src="theme/css/vue.css"/>
