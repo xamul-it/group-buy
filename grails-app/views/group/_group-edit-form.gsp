@@ -35,7 +35,7 @@
                 </v-select>
 
                 <!-- alerts -->
-                <div v-if="!$v.groupItem.category.id.required || !$v.groupItem.category.id.minValue && $v.groupItem.category.id.$error" class="alert alert-danger" role="alert">
+                <div v-if="!$v.groupItem.category.id.minValue && $v.groupItem.$anyDirty" class="alert alert-danger" role="alert">
                     Scegli una categoria per il gruppo.
                 </div>
 
@@ -51,7 +51,7 @@
                     @input="$v.groupItem.description.$touch()"
                     v-model="groupItem.description" ></textarea>
                 <!-- alerts -->
-                <div v-if="!$v.groupItem.description.required && $v.groupItem.description.$error" class="alert alert-danger" role="alert">
+                <div v-if="!$v.groupItem.description.required && $v.groupItem.$anyDirty" class="alert alert-danger" role="alert">
                     Inseirisci una descrizione per il gruppo.
                 </div>
 
@@ -88,12 +88,12 @@
             <div class="form-group">
                 <button 
                     type="button" 
-                    title="Verifica indirizzo" 
+                    title="Visualizza indirizzo" 
                     class="btn btn-outline-primary"
                     v-on:click="fetchCoordinates"
                     :disabled="$v.groupItem.deliveryAddress.address1.$invalid && $v.groupItem.deliveryAddress.city.$invalid"
                     >
-                    Verifica indirizzo
+                    Visualizza indirizzo
                 </button>
             </div>
         </div>
@@ -117,8 +117,8 @@
                     @input="$v.groupItem.deliveryAddress.address2.$touch()"
                     v-model="groupItem.deliveryAddress.address2">
                 <!-- alerts -->
-                <div v-if="!$v.groupItem.deliveryAddress.address1.required && $v.groupItem.deliveryAddress.address1.$error" class="alert alert-danger" role="alert">
-                    Inseirisci un indirizzo per il gruppo.
+                <div v-if="!$v.groupItem.deliveryAddress.address1.minLength || !$v.groupItem.deliveryAddress.address1.required && $v.groupItem.$anyDirty" class="alert alert-danger" role="alert">
+                    Inseirisci un indirizzo valido per il gruppo.
                 </div>
 
                 <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.address1 }}</pre>
