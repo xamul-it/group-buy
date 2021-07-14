@@ -9,7 +9,7 @@
 																<br/>
 																Comprare insieme permette di sostenere i piccoli negozianti, ottenere sconti e promozioni e fare acquisti pensati e organizzati.
 																<br/>
-																<a href="${basePath}/negozi" target="_blank" style="color:#ffffff; text-decoration:none;">Scopri tutti i negozi presenti sul nostro sito</a>.
+																<a href="${grailsApplication.config.grails.mail.serverURL}/negozi" target="_blank" style="color:#ffffff; text-decoration:none;">Scopri tutti i negozi presenti sul nostro sito</a>.
 															</td>
 														</tr>
 													</table>

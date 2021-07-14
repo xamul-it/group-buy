@@ -112,7 +112,7 @@
                                     <div class="row group-actions">
                                             <sec:ifLoggedIn>
                                                 <div class="col-md-12 form-group">
-                                                    <a class="btn btn-outline-primary btn-block btn-lg" href="/ordine"><i class="fa fa-shopping-cart"></i> <g:message code="button.newOrder"/> </a>
+                                                    <a :title="'${message(code:'action.orderNowFrom')} '+supplierItem.name" :href="'/negozio/'+supplierItem.id+'/ordine'" class="btn btn-outline-primary btn-block btn-lg"><i class="fa fa-shopping-cart"></i> <g:message code="button.orderNow"/> </a>
                                                 </div>
                                             </sec:ifLoggedIn>
                                             <sec:ifNotLoggedIn>

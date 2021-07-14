@@ -1,32 +1,46 @@
 <%@ page contentType="text/html"%>
-<!DOCTYPE html
-	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"
-	xmlns:v="urn:schemas-microsoft-com:vml">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
 	<g:render template="/email/head"/>
+	<title> Email </title>
 </head>
+<body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#0a2641; -webkit-text-size-adjust:none;">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#0a2641" class="gwfw">
+		<tr>
+			<td align="center" valign="top" style="padding: 50px 10px;" class="p10">
+				<table width="650" border="0" cellspacing="0" cellpadding="0" class="m-shell">
+					<tr>
+						<td>
+							<g:render template="/email/logo"/>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-bottom: 20px !important; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;" class="column"></td>
+					</tr>
+					<tr>
+						<td class="td" bgcolor="#38AAE1" style="border-radius: 12px; width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+							<!-- Main -->
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td>
+										${raw(content)}
 
-<body class="clean-body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #6891ec;">
-	<!--[if IE]><div class="ie-browser"><![endif]-->
-	<table bgcolor="#6891ec" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" border="1"
-		style="table-layout: fixed; vertical-align: top; min-width: 320px; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #6891ec; width: 100%;"
-		valign="top" width="100%">
-		<tbody>
-			<tr style="vertical-align: top;" valign="top">
-				<td style="word-break: break-word; vertical-align: top;" valign="top">
-					<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color:#6891ec"><![endif]-->
-					
-					${raw(content)}
-					
-					<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-				</td>
-			</tr>
-		</tbody>
+										<g:render template="/email/description"/>
+
+										<g:render template="/email/navigation"/>
+
+										<g:render template="/email/footer"/>
+										
+									</td>
+								</tr>
+							</table>
+							<!-- END Main -->
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 	</table>
-	<!--[if (IE)]></div><![endif]-->
 </body>
-
 </html>

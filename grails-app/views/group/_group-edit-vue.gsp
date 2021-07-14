@@ -61,6 +61,7 @@
                 deliveryAddress:{
                     address1: {
                         required,
+                        minLength: minLength(2),
                     },
                     city: {
                         required,
