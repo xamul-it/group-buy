@@ -35,7 +35,7 @@
                 </v-select>
 
                 <!-- alerts -->
-                <div v-if="!$v.groupItem.category.id.minValue && $v.groupItem.$anyDirty" class="alert alert-danger" role="alert">
+                <div v-if="!$v.groupItem.category.id.minValue && $v.groupItem.$anyDirty || $v.groupItem.category.id.$error" class="alert alert-danger" role="alert">
                     Scegli una categoria per il gruppo.
                 </div>
 
@@ -51,8 +51,8 @@
                     @input="$v.groupItem.description.$touch()"
                     v-model="groupItem.description" ></textarea>
                 <!-- alerts -->
-                <div v-if="!$v.groupItem.description.required && $v.groupItem.$anyDirty" class="alert alert-danger" role="alert">
-                    Inseirisci una descrizione per il gruppo.
+                <div v-if="!$v.groupItem.description.required && $v.groupItem.$anyDirty || $v.groupItem.description.$error" class="alert alert-danger" role="alert">
+                    Inseirisci una descrizione per il gruppo (almento {{ $v.groupItem.description.$params.minLength.min }} caratteri).
                 </div>
 
                 <pre v-if="isDebug">{{ $v.groupItem.description }}</pre>
@@ -120,6 +120,9 @@
                 <div v-if="!$v.groupItem.deliveryAddress.address1.minLength || !$v.groupItem.deliveryAddress.address1.required && $v.groupItem.$anyDirty" class="alert alert-danger" role="alert">
                     Inseirisci un indirizzo valido per il gruppo.
                 </div>
+                <div v-if="!$v.groupItem.deliveryAddress.address2.minLength" class="alert alert-danger" role="alert">
+                    Inseirisci almento {{ $v.groupItem.deliveryAddress.address2.$params.minLength.min }} caratteri.
+                </div>
 
                 <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.address1 }}</pre>
             </div>
@@ -133,8 +136,8 @@
                             v-model="groupItem.deliveryAddress.city"
                             >
                         <!-- alerts -->
-                        <div v-if="!$v.groupItem.deliveryAddress.city.minLength || !$v.groupItem.deliveryAddress.city.required && $v.groupItem.deliveryAddress.city.$error" class="alert alert-danger" role="alert">
-                            Inseirisci la città.
+                        <div v-if="!$v.groupItem.deliveryAddress.city.minLength || !$v.groupItem.deliveryAddress.city.required && $v.groupItem.$anyDirty || $v.groupItem.deliveryAddress.city.$error" class="alert alert-danger" role="alert">
+                            Inseirisci la città (almento {{ $v.groupItem.deliveryAddress.city.$params.minLength.min }} caratteri).
                         </div>
 
                         <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.city }}</pre>
@@ -153,8 +156,8 @@
                             @input="$v.groupItem.deliveryAddress.postalCode.$touch()"
                             v-model="groupItem.deliveryAddress.postalCode">
                         <!-- alerts -->
-                        <div v-if="!$v.groupItem.deliveryAddress.postalCode.required && $v.groupItem.deliveryAddress.postalCode.$error" class="alert alert-danger" role="alert">
-                            Inseirisci il CAP.
+                        <div v-if="(!$v.groupItem.deliveryAddress.postalCode.required || !$v.groupItem.deliveryAddress.postalCode.minLength || !$v.groupItem.deliveryAddress.postalCode.maxLength) && $v.groupItem.deliveryAddress.postalCode.$error" class="alert alert-danger" role="alert">
+                            Inseirisci il CAP corretto ({{ $v.groupItem.deliveryAddress.postalCode.$params.minLength.min }} cifre).
                         </div>
 
                         <pre v-if="isDebug">{{ $v.groupItem.deliveryAddress.postalCode }}</pre>
@@ -338,7 +341,7 @@
 
         <div class="col-md-12">
             <div class="form-group">
-                <button type="submit" :disabled="$v.$invalid" :title="$v.$invalid?'Compilare tutti campi obbligatori per inviare i dati':''" class="btn btn-primary" @click.once="saveGroup()">Salva gruppo</button>
+                <button type="submit" :disabled="$v.$invalid" :title="$v.$invalid?'Compilare tutti campi obbligatori per inviare i dati':''" class="btn btn-primary" @click.once="saveGroup()" :key="saveButtonKey">Salva gruppo</button> <!-- @click.once -->
                 <a href="${createLink(controller: 'groupBuy', action: 'group', id: groupId)}" class="btn btn-secondary">Annulla</a>
                 <pre v-if="isDebug">{{ $v }}</pre>
             </div>
