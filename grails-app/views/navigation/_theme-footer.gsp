@@ -6,15 +6,11 @@
 						<div class="row">
 							<div class="col-lg-3 col-md-12">
 								<p>
-									Siamo un servizio gratuito che ti permette di gestire, in modo semplice e diretto, ordini di <a href="/gruppi">gruppo</a> da negozi e produttori della tua zona.
-									Comprare insieme permette di sostenere i piccoli <a href="/negozi">negozianti</a>, ottenere sconti e promozioni e fare acquisti pensati e organizzati.
-									<!-- br/>
-									Pensiamo che comprare insieme, è meglio. -->
+									proprioqui.it ti permette di gestire in modo intuitivo e gratuito ordini di gruppo da negozi e produttori della tua zona.</br>
+									Comprare insieme permette di fare acquisti pensati e organizzati, ottenendo promozioni e sostenendo le piccole attività.
 								</p>
 								<p>
-									Scopri tutti i <a href="/negozi">negozi</a> presenti sul nostro sito, se hai un attività di fiducia che credi possa essere interessato a essere incluso sul portale scrivici, lo inseriremo.
-									<br/>
-									Se sei hai un'attività commerciale e vuoi essere inserito sul nostro portale, scrivici.
+									Scopri la lista dei <a href="/negozi">negozi</a> che hanno aderito.
 									</p>
 							</div>
 							<div class="col-lg-2 col-md-12">
