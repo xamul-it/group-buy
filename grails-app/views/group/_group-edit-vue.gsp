@@ -41,6 +41,7 @@
         },
         store,
         data: {
+            saveButtonKey: 1,
             groupId: ${groupId},
             locationLoading: false,
             locationFetching: false,
@@ -53,23 +54,28 @@
             groupItem: {
                 name: {
                     required,
-                    minLength: minLength(3),
+                    minLength: minLength(2),
                 },
                 description:  {
                     required,
+                    minLength: minLength(5),
                 },
                 deliveryAddress:{
                     address1: {
                         required,
                         minLength: minLength(2),
                     },
+                    address2: {
+                        minLength: minLength(2),
+                    },
                     city: {
                         required,
-                        minLength: minLength(2),
+                        minLength: minLength(5),
                     },
                     postalCode: {
                         required,
-                        minLength: minLength(3),
+                        minLength: minLength(5),
+                        maxLength: maxLength(5),
                     },
                     district: {
                         required,
@@ -81,7 +87,34 @@
                         required,
                         minValue: minValue(1),
                     }
-                }
+                },
+                facebook: {
+                        minLength: minLength(5),
+                },
+                twitter: {
+                        minLength: minLength(5),
+                },
+                youtube: {
+                        minLength: minLength(5),
+                },
+                linkedin: {
+                        minLength: minLength(5),
+                },
+                instagram: {
+                        minLength: minLength(5),
+                },
+                whatsapp: {
+                        minLength: minLength(5),
+                },
+                skype: {
+                        minLength: minLength(5),
+                },
+                slack: {
+                        minLength: minLength(5),
+                },
+                snapchat: {
+                        minLength: minLength(5),
+                },
             },
         },
         computed: {
@@ -143,7 +176,7 @@
             }
             this.fetchGroupCategoriesAction({service: categoriesService});
             this.$watch('groupItem', (groupItem) => {
-                console.log("watch groupItem", groupItem, this.groupItem)
+                //console.log("watch groupItem", groupItem, this.groupItem)
                 if(this.groupItem.id > 0)
                     location.href = "/gruppo/"+this.groupItem.id
             });
@@ -173,6 +206,7 @@
             },
             error: function (error) {
                 toastService.alertDanger(this.fetchError(error))
+                this.saveButtonKey+=1 //https://stackoverflow.com/questions/56041297/re-enable-button-click-once-after-clicking
             },
             success: function (message) {
                 toastService.alertSuccess(message)
@@ -260,6 +294,8 @@
 
             },
             async saveGroup() {
+                if(!this.groupItem.deliveryAddress.lat && !this.groupItem.deliveryAddress.lon)
+                    this.fetchCoordinates()
                 this.saveGroupAction({service: groupService, groupId: this.groupId, groupItem: this.groupItem});
             },
             fetchError(error) {
@@ -277,6 +313,8 @@
                             else
                                 return e.message;
                         }, '');
+                    } else {
+                        return error
                     }
 
                 } else {

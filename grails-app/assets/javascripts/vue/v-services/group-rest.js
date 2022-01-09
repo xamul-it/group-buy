@@ -23,6 +23,7 @@ const HTTP_CODES_MESSAGES_MAP = {
   201: "Gruppo creato",
   404: "Nessun gruppo trovato",
   422: "Errore durante il savataggio",
+  500: "500 Errore server"
 };
 
 /*
@@ -72,7 +73,8 @@ export async function list({
     }
   );
 
-  return { data, headers };
+  let message = HTTP_CODES_MESSAGES_MAP[status];
+  return { data, headers, status, message };
 }
 
 export async function show(id) {
@@ -103,7 +105,7 @@ export async function save(payload) {
   );
 
   let message = HTTP_CODES_MESSAGES_MAP[status];
-  return { data, status, message };
+  return { data, headers, status, message };
 }
 
 export async function members({
@@ -134,7 +136,8 @@ export async function members({
     }
   );
 
-  return { data, headers, status };
+  let message = HTTP_CODES_MESSAGES_MAP[status];
+  return { data, headers, status, message };
 }
 
 export async function subscribe(id) {
