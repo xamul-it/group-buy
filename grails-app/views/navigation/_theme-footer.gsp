@@ -120,3 +120,40 @@
 				},
 			})
 		</script>
+		<script>
+			(function () {
+			var s = document.createElement("script"),
+			e = !document.body ? document.querySelector("head") : 
+			document.body;
+			s.src = "https://acsbapp.com/apps/app/dist/js/app.js";
+			s.async = true;
+			s.onload = function () {
+			acsbJS.init({
+			statementLink: "",
+			footerHtml: '<a href="https:www.accessiway.com/">AccessiWay. The Web Accessibility Solution</a>',
+			hideMobile: false,
+			hideTrigger: false,
+			language: "it",
+			position: "left",
+			leadColor: "#0069fb",
+			triggerColor: "#004fce",
+			triggerRadius: "50%",
+			triggerPositionX: "left",
+			triggerPositionY: "bottom",
+			triggerIcon: "people",
+			triggerSize: "medium",
+			triggerOffsetX: 20,
+			triggerOffsetY: 20,
+			mobile: {
+			triggerSize: "medium",
+			triggerPositionX: "left",
+			triggerPositionY: "bottom",
+			triggerOffsetX: 10,
+			triggerOffsetY: 10,
+			triggerRadius: "50%",
+			},
+			});
+			};
+			e.appendChild(s);
+			})();
+		</script>

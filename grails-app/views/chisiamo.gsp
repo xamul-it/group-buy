@@ -14,10 +14,11 @@
                 <div class="container">
                     <div class="text-center">
                     <p class="lead">
-                        Siamo professionisti e imprenditori con oltre 20 anni di esperienza nell’IT. La curiosità per l'innovazione e il progresso ci spingono a sperimentare strade sempre nuove. Per questo abbiamo messo le nostre capacità al servizio delle attività locali.
+                        Siamo professionisti e imprenditori con oltre 20 anni di esperienza nell’IT.
                     </p>
                     <p class="lead">
-                        Crediamo nel valore dei rapporti umani, per questo abbiamo deciso di supportare l’incontro tra negozi, aziende e persone che credono nell’importanza del prendersi cura, attraverso le piccole azioni quotidiane, come ciò che acquistano e il modo in cui lo fanno.
+                        La curiosità per l’innovazione e il progresso ci hanno spinti a metterci in gioco un’altra volta, a servizio delle realtà locali.
+                        Crediamo nel valore dei rapporti umani: supportiamo l’incontro tra aziende e persone, che vogliono acquistare.
                     </p>
                     <p class="lead">
                         Per questo è nato ProprioQui: un sito e un’app, per ora a Milano, presto in altre città d’Italia, per acquisti scelti e pensati. 

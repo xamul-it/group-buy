@@ -12,8 +12,8 @@
                     <div class="container">
                         <div class="text-left">
                             <h1 class="">La spesa sotto casa</h1>
-                            <h1 class="">e dai <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="">negozianti e produttori</a> di fiducia</h1>
-                            <h2>In <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="">gruppo</a> o da soli</h2>
+                            <h1 class="">da <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="">negozianti e produttori</a> di fiducia</h1>
+                            <h2>Acquisti individuali e di <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="">gruppo</a></h2>
                         </div>
                     </div>
                 </div>
@@ -30,22 +30,17 @@
                     <!-- h4 class="leading-normal"> Accorciamo le distanze </h4 -->
 
                     <p class="lead">
-                        Crediamo nel valore dei rapporti umani; nei prodotti selezionati, nei negozianti amici e in quelli che vendono prodotti d’eccellenza. 
-                        <br/>
-                        Per questo abbiamo creato ProprioQui. 
-                        
-                        Crediamo nei rapporti diretti e nelle strette di mano.  
+                        La nostra rete crede nel valore dei rapporti umani, nella qualità e nella prossimità.</br>
+			Proprioqui mette al centro la relazione tra cliente e venditore, la fiducia reciproca.</br>
+			Torniamo alla stretta di mano.
                     </p>
                     <p class="lead">
-                        Sosteniamo negozi al dettaglio. Vicini a casa, o anche lontani. Capaci di fare la differenza.
-                        <br/>
-                        Offriamo un servizio gratuito e facile, che vi permetterà di gestire l’ordine secondo le vostre esigenze.
-                        <br/>
-                        E a chi vende di inserirsi in un circuito virtuoso che li porterà lontano, grazie al passa parola dei i clienti.    
+                        Sosteniamo realtà locali che nel loro piccolo fanno la differenza ogni giorno.</br>
+			Offriamo un servizio intuitivo e gratuito, che permette al cliente di gestire comodamente gli ordini, e al negozio di attivare un percorso virtuoso di crescita.
                     </p>
 
                     <p class="leading-normal">
-                        <strong>Per ora solo a Milano, presto in altre città d’Italia </strong>
+                        <strong>Nato a Milano, presto in altre realtà.</strong>
                     </p>
 
                 </div>
@@ -188,8 +183,7 @@
                                         <p>Voglio acquistare</p>
                                         <p class="text-muted mt-1 mb-0">
                                             <ul>
-                                                <li>Siete un gruppo di amici, un condominio, una famiglia numerosa? Ecco il vostro gruppo d’acquisto! </li>
-                                                <li>Se ordinate in gruppo il punto di consegna dovrà essere unico, per il negoziante sarà più facile gestire l’ordine. Proprio come avviene nei Gruppi d’Acquisto Solidali (GAS). </li>
+                                                <li>Siete una famiglia numerosa, un condominio, un gruppo di amici? Ottimizziamo i vostri acquisti a km 0 con un unico indirizzo di consegna.</li>
                                                 <li>Oppure potete fare la spesa solo per voi.</li>
                                             </ul>
                                         </p>
@@ -209,7 +203,7 @@
                                     <div class="wrp text-wrapper">
                                         <p>Voglio vendere </p>
                                         <p class="text-muted mt-1 mb-0">
-                                            Invitate i clienti abituali ad unirsi ad amici e condomini per fare la spesa, e riservate loro offerte speciali.  
+                                            Se avete un’attività, proprioqui.it offre la possibilità di vendere di più e meglio in modo etico, coinvolgendo le comunità di quartiere. 
                                             <br/>
                                             Otterrete diversi vantaggi:
                                             <ul>
