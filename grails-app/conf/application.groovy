@@ -13,6 +13,10 @@ grails.plugin.databasemigration.changelogFileName = 'changelog.xml'
 
 grails.plugin.springsecurity.interceptUrlMap = [
 	[pattern: '/',               					access: ['permitAll']],
+	[pattern: '/home1',               				access: ['permitAll']],
+	[pattern: '/home2',               				access: ['permitAll']],
+	[pattern: '/home3',               				access: ['permitAll']],
+	[pattern: '/home4',               				access: ['permitAll']],
 
 	[pattern: '/gruppi',       						access: ['permitAll']],
 	[pattern: '/gruppo/nuovo',    					access: 'IS_AUTHENTICATED_REMEMBERED'],

@@ -52,8 +52,8 @@
                             <div class="overlapblackbg"></div>
                             <ul class="horizontalMenu-list">
 
-                                <li><a href="${createLink(mapping: 'gruppi', namespace: 'ui')}"> <g:message code="site.menu.groups"/> </a></li>
-                                <li><a href="${createLink(mapping: 'negozi', namespace: 'ui')}"> <g:message code="site.menu.suppliers"/> </a></li>
+                                <!-- li><a href="${createLink(mapping: 'gruppi', namespace: 'ui')}"> <g:message code="site.menu.groups"/> </a></li>
+                                <li><a href="${createLink(mapping: 'negozi', namespace: 'ui')}"> <g:message code="site.menu.suppliers"/> </a></li -->
                                 <sec:ifLoggedIn>
                                     <li><a href="${createLink(mapping: 'ordiniUtente', namespace: 'ui')}" > <g:message code="site.menu.orders"/> </a></li>
                                 </sec:ifLoggedIn>
