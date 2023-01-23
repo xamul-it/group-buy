@@ -21,30 +21,6 @@
                                     
                                     <div class="card widgets-cards" style="padding: 10px 0px; border: 0px solid transparent; background-color: transparent; box-shadow: none;">
                                         <div class="d-flex">
-                                            <a href="${createLink(mapping: 'negozi', namespace: 'ui')}">
-                                                <div class="widgets-cards-icons">
-                                                    <div class="wrp icon-circle bg-success">
-                                                        <i class="fa fa-shopping-cart icons"></i>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="${createLink(mapping: 'negozi', namespace: 'ui')}">
-                                                <div class="widgets-cards-data">
-                                                    <div class="wrp text-wrapper">
-                                                        <p>Acquista ora</p>
-                                                        <p class="text-muted mt-1 mb-0">nei negozi di vicinato</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-
-                                <div class="col-lg-4 col-md-12">
-                                    
-                                    <div class="card widgets-cards" style="padding: 10px 0px; border: 0px solid transparent; background-color: transparent; box-shadow: none;">
-                                        <div class="d-flex">
                                             <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}">
                                                 <div class="widgets-cards-icons">
                                                     <div class="wrp icon-circle bg-success">
@@ -63,6 +39,30 @@
                                         </div>
                                     </div>
 
+                                </div>
+
+                                <div class="col-lg-4 col-md-12">
+                                    
+                                    <div class="card widgets-cards" style="padding: 10px 0px; border: 0px solid transparent; background-color: transparent; box-shadow: none;">
+                                        <div class="d-flex">
+                                            <a href="${createLink(mapping: 'negozi', namespace: 'ui')}">
+                                                <div class="widgets-cards-icons">
+                                                    <div class="wrp icon-circle bg-success">
+                                                        <i class="fa fa-shopping-cart icons"></i>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="${createLink(mapping: 'negozi', namespace: 'ui')}">
+                                                <div class="widgets-cards-data">
+                                                    <div class="wrp text-wrapper">
+                                                        <p>Acquista ora</p>
+                                                        <p class="text-muted mt-1 mb-0">nei negozi di vicinato</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
 
                             </div>

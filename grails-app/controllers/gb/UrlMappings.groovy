@@ -13,6 +13,11 @@ class UrlMappings {
         
         //pages
         "/" (view:"/home")
+        "/home1" (view:"/home")
+        "/home2" (view:"/home2")
+        "/home3" (view:"/home3")
+        "/home4" (view:"/home3")
+        
         "/chisiamo" (view:"/chisiamo")
         "/faq" (view:"/faq")
         "/contatti" (view:"/contatti")

@@ -15,54 +15,28 @@
                             <h1 class="">da <!-- a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="" -->negozianti e produttori<!-- /a --> di fiducia</h1>
                             <h2>Acquisti individuali e di <!-- a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="" -->gruppo<!-- /a --></h2>
                             
-                            <div class="row" style="padding: 30px 0px 0px;">
+                            <div class="row text-white" style="padding: 30px 0px 0px;">
 
                                 <div class="col-lg-4 col-md-12">
                                     
-                                    <div class="card widgets-cards" style="padding: 10px 0px; border: 0px solid transparent; background-color: transparent; box-shadow: none;">
-                                        <div class="d-flex">
-                                            <a href="${createLink(mapping: 'negozi', namespace: 'ui')}">
-                                                <div class="widgets-cards-icons">
-                                                    <div class="wrp icon-circle bg-success">
-                                                        <i class="fa fa-shopping-cart icons"></i>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="${createLink(mapping: 'negozi', namespace: 'ui')}">
-                                                <div class="widgets-cards-data">
-                                                    <div class="wrp text-wrapper">
-                                                        <p>Acquista ora</p>
-                                                        <p class="text-muted mt-1 mb-0">nei negozi di vicinato</p>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                    <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="text-white">
+                                        <div class="support-service mb-md-0 mb-1 bg-success">
+                                            <i class="fa fa-users icons"></i> <h6>Trova</h6>
+                                            <p>il <span title="Gruppo di Acquisto">GAS</span> e partecipa</p>
                                         </div>
-                                    </div>
-                                    
+                                    </a>
+
                                 </div>
 
                                 <div class="col-lg-4 col-md-12">
                                     
-                                    <div class="card widgets-cards" style="padding: 10px 0px; border: 0px solid transparent; background-color: transparent; box-shadow: none;">
-                                        <div class="d-flex">
-                                            <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}">
-                                                <div class="widgets-cards-icons">
-                                                    <div class="wrp icon-circle bg-success">
-                                                        <i class="fa fa-users icons"></i>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}">
-                                                <div class="widgets-cards-data">
-                                                    <div class="wrp text-wrapper">
-                                                        <p>Partecipa</p>
-                                                        <p class="text-muted mt-1 mb-0">al gruppo di acquisto di zona</p>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                    <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="text-white">
+                                        <div class="support-service mb-md-0 mb-1 bg-success">
+                                            <i class="fa fa-shopping-cart"></i> <h6>Scegli</h6>
+                                            <p>il negozio e ordina</p>
                                         </div>
-                                    </div>
-
+                                    </a>
+                                    
                                 </div>
 
                             </div>
