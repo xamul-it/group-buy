@@ -52,8 +52,8 @@
                             <div class="overlapblackbg"></div>
                             <ul class="horizontalMenu-list">
 
-                                <li><a href="${createLink(mapping: 'gruppi', namespace: 'ui')}"> <g:message code="site.menu.groups"/> </a></li>
-                                <li><a href="${createLink(mapping: 'negozi', namespace: 'ui')}"> <g:message code="site.menu.suppliers"/> </a></li>
+                                <!-- li><a href="${createLink(mapping: 'gruppi', namespace: 'ui')}"> <g:message code="site.menu.groups"/> </a></li>
+                                <li><a href="${createLink(mapping: 'negozi', namespace: 'ui')}"> <g:message code="site.menu.suppliers"/> </a></li -->
                                 <sec:ifLoggedIn>
                                     <li><a href="${createLink(mapping: 'ordiniUtente', namespace: 'ui')}" > <g:message code="site.menu.orders"/> </a></li>
                                 </sec:ifLoggedIn>
@@ -61,7 +61,7 @@
                                     <li><a @click="$refs.registerLoginModal.openModal()" > <g:message code="site.menu.orders"/> </a></li>
                                 </sec:ifNotLoggedIn>
                             </ul>
-                            <ul class="mb-0">
+                            <!-- ul class="mb-0">
                                 <li aria-haspopup="true" class="mt-5 d-none d-lg-block "> 
                                     <sec:ifNotLoggedIn>
                                         <span><a class="btn btn-blue" @click="$refs.registerLoginModal.openModal()"> <g:message code="site.menu.cta.createGroup"/> </a></span>
@@ -70,7 +70,7 @@
                                         <span><a class="btn btn-blue" href="${createLink(mapping: 'nuovoGruppo', namespace: 'ui')}"> <g:message code="site.menu.cta.createGroup"/> </a></span>
                                     </sec:ifLoggedIn>
                                 </li>
-                            </ul>
+                            </ul -->
                         </nav>
                         <!--Nav-->
                     </div>

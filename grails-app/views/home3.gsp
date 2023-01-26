@@ -1,6 +1,6 @@
 <html>
 <head>
-    <meta name="layout" content="claylist"/>
+    <meta name="layout" content="claylist-home"/>
     <title><g:message code="site.title"/></title>
 </head>
 <body>
@@ -11,18 +11,19 @@
                 <div class="header-text1 mb-0">
                     <div class="container">
                         <div class="text-left">
+                            <%/*
                             <h1 class="">La spesa sotto casa</h1>
-                            <h1 class="">da <!-- a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="" -->negozianti e produttori<!-- /a --> di fiducia</h1>
-                            <h2>Acquisti individuali e di <!-- a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="" -->gruppo<!-- /a --></h2>
-                            
-                            <div class="row text-white" style="padding: 30px 0px 0px;">
+                            <h1 class="">da <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="">negozianti e produttori</a> di fiducia</h1>
+                            <h2>Acquisti individuali e di <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="">gruppo</a></h2>
+                            */%>
+                            <div class="row text-white" style="padding: 0px 0px 0px;">
 
                                 <div class="col-lg-4 col-md-12">
                                     
                                     <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="text-white">
-                                        <div class="support-service mb-md-0 mb-1 bg-success">
-                                            <i class="fa fa-shopping-cart"></i> <h6>Scegli</h6>
-                                            <p>il negozio e ordina</p>
+                                        <div class="support-service mb-md-0 mb-1 bg-success" style="font-size: 1.15rem;">
+                                            <i class="fa fa-shopping-cart"></i> <h2>Acquista</h2>
+                                            <p style="font-size: 1.15rem;">nel tuo negozio preferito</p>
                                         </div>
                                     </a>
                                     
@@ -32,8 +33,8 @@
                                     
                                     <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="text-white">
                                         <div class="support-service mb-md-0 mb-1 bg-success">
-                                            <i class="fa fa-users icons"></i> <h6>Trova</h6>
-                                            <p>il <span title="Gruppo di Acquisto">GAS</span> e partecipa</p>
+                                            <i class="fa fa-users"></i> <h2>Crea</h2>
+                                            <p style="font-size: 1.15rem;">il tuo gruppo di acquisto</p>
                                         </div>
                                     </a>
 

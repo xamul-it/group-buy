@@ -1,6 +1,6 @@
 <html>
 <head>
-    <meta name="layout" content="claylist"/>
+    <meta name="layout" content="claylist-home"/>
     <title><g:message code="site.title"/></title>
 </head>
 <body>
