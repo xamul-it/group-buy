@@ -1,6 +1,6 @@
 <html>
 <head>
-    <meta name="layout" content="claylist"/>
+    <meta name="layout" content="claylist-home"/>
     <title><g:message code="site.title"/></title>
 </head>
 <body>
@@ -11,11 +11,12 @@
                 <div class="header-text1 mb-0">
                     <div class="container">
                         <div class="text-left">
+                            <%/*
                             <h1 class="">La spesa sotto casa</h1>
-                            <h1 class="">da <!-- a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="" -->negozianti e produttori<!-- /a --> di fiducia</h1>
-                            <h2>Acquisti individuali e di <!-- a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="" -->gruppo<!-- /a --></h2>
-                            
-                            <div class="row" style="padding: 30px 0px 0px;">
+                            <h1 class="">da <a href="${createLink(mapping: 'negozi', namespace: 'ui')}" class="">negozianti e produttori</a> di fiducia</h1>
+                            <h2>Acquisti individuali e di <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}" class="">gruppo</a></h2>
+                            */%>
+                            <div class="row" style="padding: 0px 0px 0px;">
 
                                 <div class="col-lg-4 col-md-12">
                                     
@@ -30,9 +31,9 @@
                                             </a>
                                             <a href="${createLink(mapping: 'negozi', namespace: 'ui')}">
                                                 <div class="widgets-cards-data">
-                                                    <div class="wrp text-wrapper">
-                                                        <p>Acquista ora</p>
-                                                        <p class="text-muted mt-1 mb-0">nei negozi di vicinato</p>
+                                                    <div class="wrp text-wrapper" style="font-size: 1.15rem;">
+                                                        <h2>Acquista</h2>
+                                                        <p class="text-muted mt-1 mb-0">nel tuo negozio preferito</p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -54,9 +55,9 @@
                                             </a>
                                             <a href="${createLink(mapping: 'gruppi', namespace: 'ui')}">
                                                 <div class="widgets-cards-data">
-                                                    <div class="wrp text-wrapper">
-                                                        <p>Partecipa</p>
-                                                        <p class="text-muted mt-1 mb-0">al gruppo di acquisto di zona</p>
+                                                    <div class="wrp text-wrapper" style="font-size: 1.15rem;">
+                                                        <h2>Crea</h2>
+                                                        <p class="text-muted mt-1 mb-0">il tuo gruppo di acquisto</p>
                                                     </div>
                                                 </div>
                                             </a>
